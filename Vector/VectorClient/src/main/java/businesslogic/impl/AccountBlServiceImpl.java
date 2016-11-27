@@ -1,9 +1,9 @@
 package businesslogic.impl;
 
-import businesslogic.AccountBlService;
+import businesslogic.service.AccountBlService;
 import common.AccountType;
 import common.ResultMessage;
-import dataService.dao.AccountDao;
+import dataService.dao.service.AccountDao;
 import po.AccountPo;
 import rmi.RemoteHelper;
 import vo.AccountVo;
@@ -98,42 +98,6 @@ public class AccountBlServiceImpl implements AccountBlService{
 
     public ResultMessage delete(String id) {
         return accountDao.delete(id);
-    }
-
-}
-        ResultMessage passwordValid   = checkInput(password) ;
-        if(memberNameValid == ResultMessage.VALID
-                && passwordValid == ResultMessage.VALID )
-             return accountDao.register(memberName,password);
-        else
-            return "FAIL";    //输入非法
-    }
-
-    public ResultMessage modify(String id,String newPassword) throws RemoteException{
-        return accountDao.modify(id,newPassword);
-    }
-
-    public ResultMessage checkInput(String input){
-        if(input.length()>0)
-            return ResultMessage.VALID;
-        else
-            return ResultMessage.FAIL;
-    }
-
-    public ResultMessage find(String id) throws RemoteException{
-        return accountDao.find(id);
-    }
-
-    public ResultMessage insert(AccountPo po) throws RemoteException{
-        return accountDao.insert(po);
-    }
-
-    public ResultMessage update(AccountPo po) throws RemoteException{
-        return accountDao.update(po);
-    }
-
-    public ResultMessage delete(AccountPo po) throws RemoteException{
-        return accountDao.delete(po);
     }
 
 }

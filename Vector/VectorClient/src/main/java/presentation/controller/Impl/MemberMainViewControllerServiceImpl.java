@@ -1,7 +1,7 @@
 package presentation.controller.Impl;
 
-import businesslogic.MemberBlService;
 import businesslogic.impl.MemberBlServiceImpl;
+import businesslogic.service.MemberBlService;
 import common.ResultMessage;
 import presentation.controller.MemberMainViewControllerService;
 import vo.MemberVo;

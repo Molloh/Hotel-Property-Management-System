@@ -1,4 +1,4 @@
-package businesslogic;
+package businesslogic.service;
 
 
 import common.InfoType;
@@ -60,24 +60,4 @@ public interface MemberBlService {
 	 * @version 2016-11-27
 	 */
 	public ResultMessage modifyInfo(MemberVo vo);
-}
-
-
-	/**
-	 * 检查输入信息的合法性
-	 * @param info 输入信息
-	 * @return 处理信息
-	 * @author Molloh
-	 * @version Oct 14, 2016
-	 */
-	public ResultMessage checkInfo(String info,InfoType infoType);
-
-	/**
-	 * 增删改一名用户VO
-	 * @param vo 用户信息
-	 * @return 处理信息
-	 * @author Molloh
-	 * @version Oct 14, 2016
-	 */
-	public ResultMessage modifyInfo(String id,MemberVo vo);
 }
