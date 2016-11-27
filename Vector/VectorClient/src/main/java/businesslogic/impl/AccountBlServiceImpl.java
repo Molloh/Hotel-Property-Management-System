@@ -1,6 +1,6 @@
-package businesslogic.impl;
+package businessLogic.impl;
 
-import businesslogic.service.AccountBlService;
+import businessLogic.service.AccountBlService;
 import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.service.AccountDao;

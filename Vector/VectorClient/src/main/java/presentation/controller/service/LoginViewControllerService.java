@@ -8,7 +8,7 @@ import common.ResultMessage;
  */
 public interface LoginViewControllerService {
     /**
-     * 用户账号登录s
+     * 用户账号登录
      * @return 账号登录是否成功，成功返回用户类型AccountType
      * @author lienming
      * @version 2016-11-27

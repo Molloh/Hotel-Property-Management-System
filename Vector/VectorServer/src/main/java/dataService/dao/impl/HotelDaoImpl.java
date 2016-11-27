@@ -8,9 +8,9 @@ import java.util.Map;
 
 import common.ResultMessage;
 import dataService.dao.service.HotelDao;
+import dataService.dataHelper.impl.DataFactoryImpl;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
-import dataService.dataHelper.Impl.DataFactoryImpl;
 import po.HotelPo;
 
 public class HotelDaoImpl implements HotelDao{

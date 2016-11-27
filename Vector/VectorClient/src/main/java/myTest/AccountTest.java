@@ -4,9 +4,10 @@ import java.rmi.RemoteException;
 
 import common.AccountType;
 import common.ResultMessage;
-import presentation.controller.LoginViewControllerService;
-import presentation.controller.RegisterViewControllerService;
-import presentation.controller.Impl.*;
+import presentation.controller.Impl.LoginViewControllerServiceImpl;
+import presentation.controller.Impl.RegisterViewControllerSerivceImpl;
+import presentation.controller.service.LoginViewControllerService;
+import presentation.controller.service.RegisterViewControllerService;
 
 /**
  * updated by lienming on 2016-11-27.
@@ -93,8 +94,9 @@ public class AccountTest {
     	 System.out.println( modify(id,newPassword) );
      }
      
-}
 
+	
+}
 
          /*
           * 测试登入功能
@@ -125,4 +127,4 @@ public class AccountTest {
 
 
   /*   }*/
-}
+

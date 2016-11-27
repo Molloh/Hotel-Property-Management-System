@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 
 import common.Sex;
 import po.MemberPo;
-import presentation.controller.MemberMainViewControllerService;
 import presentation.controller.Impl.MemberMainViewControllerServiceImpl;
+import presentation.controller.service.MemberMainViewControllerService;
 import vo.MemberVo;
 
 public class MemberTest {

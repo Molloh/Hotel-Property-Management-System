@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface MemberDataHelper {
 
-    public Map<Integer, MemberPo> getMemberData();
+    public Map<String, MemberPo> getMemberData();
 
-    public void updateMemberData(Map<Integer, MemberPo> map);
+    public void updateMemberData(Map<String, MemberPo> map);
 }

@@ -1,9 +1,9 @@
 package presentation.controller.Impl;
 
-import businesslogic.impl.AccountBlServiceImpl;
-import businesslogic.service.AccountBlService;
+import businessLogic.impl.AccountBlServiceImpl;
+import businessLogic.service.AccountBlService;
 import common.ResultMessage;
-import presentation.controller.RegisterViewControllerService;
+import presentation.controller.service.RegisterViewControllerService;
 
 /**
  * Updated by lienming on 2016-11-27.

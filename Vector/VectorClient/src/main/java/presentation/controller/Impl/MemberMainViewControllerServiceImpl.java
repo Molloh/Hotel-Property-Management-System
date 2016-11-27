@@ -1,9 +1,9 @@
 package presentation.controller.Impl;
 
-import businesslogic.impl.MemberBlServiceImpl;
-import businesslogic.service.MemberBlService;
+import businessLogic.impl.MemberBlServiceImpl;
+import businessLogic.service.MemberBlService;
 import common.ResultMessage;
-import presentation.controller.MemberMainViewControllerService;
+import presentation.controller.service.MemberMainViewControllerService;
 import vo.MemberVo;
 
 public class MemberMainViewControllerServiceImpl implements MemberMainViewControllerService{

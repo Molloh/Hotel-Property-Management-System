@@ -1,38 +1,37 @@
 package rmi;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import common.AccountType;
 import common.ResultMessage;
+import dataService.dao.impl.AccountDaoImpl;
+import dataService.dao.impl.MemberDaoImpl;
 import dataService.dao.service.AccountDao;
 import dataService.dao.service.MemberDao;
-import dataService.dao.impl.AccountDaoImpl;
-import dataService.dao.Impl.MemberDaoImpl;
-
 import po.AccountPo;
 import vo.AccountVo;
 import vo.MemberVo;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
 /**
- * Updated by lienming on 2016-11-27.
+ * Created by Administrator on 2016-11-20.
  */
 public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao{
 
 	 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     private AccountDao accountDao;
     private MemberDao memberDao ;
-	
+    
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
-	memberDao = MemberDaoImpl.getInstance();
+        memberDao = MemberDaoImpl.getInstance();
     }
 
 
     /* AccountDao 接口方法 */
-    public AccountType login(String id, String password) throws RemoteException{
+    public AccountType login(String id, String password)  throws RemoteException {
         return accountDao.login(id,password);
     }
 
@@ -48,7 +47,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         return accountDao.modify(id,newPassword);
     }
 
-    public ResultMessage find(String id) throws RemoteException{
+    public AccountVo find(String id) throws RemoteException{
         return accountDao.find(id);
     }
 
@@ -60,11 +59,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         return accountDao.update(po);
     }
 
-    public ResultMessage delete(AccountPo po) throws RemoteException{
-        return accountDao.delete(po);
+    public ResultMessage delete(String id) throws RemoteException{
+        return accountDao.delete(id);
     }
-     
-     /* MemberDao接口方法  */
+
+    /* MemberDao接口方法  */
     
     public int getCredit(String id)throws RemoteException {
     	return memberDao.getCredit(id);
@@ -82,6 +81,4 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     	return memberDao.modifyInfo(vo);
     }
     
-
-
 }

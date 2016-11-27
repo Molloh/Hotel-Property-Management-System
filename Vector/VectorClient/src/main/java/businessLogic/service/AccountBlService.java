@@ -1,4 +1,4 @@
-package businesslogic.service;
+package businessLogic.service;
 
 
 import common.AccountType;

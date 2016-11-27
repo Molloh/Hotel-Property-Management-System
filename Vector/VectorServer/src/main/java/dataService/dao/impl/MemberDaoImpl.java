@@ -1,14 +1,14 @@
-package dataService.dao.Impl;
+package dataService.dao.impl;
 
 
 import java.util.Iterator;
 import java.util.Map;
 
 import common.ResultMessage;
-import dataService.dao.MemberDao;
-import dataService.dataHelper.DataFactory;
-import dataService.dataHelper.MemberDataHelper;
-import dataService.dataHelper.Impl.DataFactoryImpl;
+import dataService.dao.service.MemberDao;
+import dataService.dataHelper.impl.DataFactoryImpl;
+import dataService.dataHelper.service.DataFactory;
+import dataService.dataHelper.service.MemberDataHelper;
 import po.MemberPo;
 import vo.MemberVo;
 
@@ -127,49 +127,4 @@ public class MemberDaoImpl implements MemberDao {
               return ResultMessage.FAIL;
     }
     
-}
-        return getInfo(id).getCredit();
-    }
-
-    public ResultMessage chargeCredit(int id, int amount){
-        Iterator<Map.Entry<Integer, MemberPo>> iterator = map.entrySet().iterator();
-        while(iterator.hasNext()) {
-            Map.Entry<Integer,MemberPo> entry = iterator.next();
-            if( id == entry.getKey() ) {
-                MemberPo po = entry.getValue();
-                MemberPo newPo = new MemberPo(po.getId(),po.getName(),po.getPhone(),
-                        po.getAddress(),po.getSex(),po.getCredit()+amount) ;
-                entry.setValue(newPo);
-                return ResultMessage.SUCCEED;
-            }
-
-        }
-        return ResultMessage.FAIL;
-    }
-
-    public MemberPo getInfo(int id){
-        Iterator<Map.Entry<Integer, MemberPo>> iterator = map.entrySet().iterator();
-        while(iterator.hasNext()) {
-            Map.Entry<Integer, MemberPo> entry = iterator.next();
-            if (id == entry.getKey()) {
-                MemberPo po = entry.getValue();
-                return po;
-            }
-        }
-        return null;
-    }
-
-    public ResultMessage modifyInfo(int id,MemberPo po){
-        Iterator<Map.Entry<Integer, MemberPo>> iterator = map.entrySet().iterator();
-        while(iterator.hasNext()) {
-            Map.Entry<Integer, MemberPo> entry = iterator.next();
-            if (id == entry.getKey()) {
-
-                entry.setValue(po);
-                return ResultMessage.SUCCEED;
-            }
-        }
-        return ResultMessage.FAIL;
-    }
-
 }

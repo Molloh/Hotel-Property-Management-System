@@ -1,10 +1,13 @@
-import dataService.dataHelper.AccountDataHelper;
+package dataService.dataHelper.impl;
+
 import po.AccountPo;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import dataService.dataHelper.service.AccountDataHelper;
 
 /**
  * Updated by lienming on 2016-11-27.
@@ -58,21 +61,6 @@ public class AccountDataTxtHelper implements AccountDataHelper {
             Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
             while(iterator.hasNext()){
                 Map.Entry<String, AccountPo> entry = iterator.next();
-                AccountPo accountPo = entry.getValue();
-                String str = accountPo.getMemberName()+";"+accountPo.getPassword()+";"
-                        +accountPo.getId()+";"+accountPo.getLogState();
-                writer.write(str);
-                writer.write("\r\n");
-            }
-
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-}
-
                 AccountPo accountPo = entry.getValue();
                 String str = accountPo.getMemberName()+";"+accountPo.getPassword()+";"
                         +accountPo.getId()+";"+accountPo.getLogState();

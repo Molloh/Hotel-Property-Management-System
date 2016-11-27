@@ -1,9 +1,9 @@
 package dataService.dao.impl;
 
+import java.util.List;
+
 import dataService.dao.service.HotelDao;
 import po.HotelPo;
-
-import java.util.List;
 
 /**
  * @author Molloh

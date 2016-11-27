@@ -1,9 +1,9 @@
-package businesslogic.impl;
+package businessLogic.impl;
 
-import businesslogic.MemberBlService;
+import businessLogic.service.MemberBlService;
 import common.InfoType;
 import common.ResultMessage;
-import dataService.dao.MemberDao;
+import dataService.dao.service.MemberDao;
 import rmi.RemoteHelper;
 import vo.MemberVo;
 

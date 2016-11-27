@@ -1,4 +1,4 @@
-package presentation.controller;
+package presentation.controller.service;
 
 import common.ResultMessage;
 import vo.MemberVo;
