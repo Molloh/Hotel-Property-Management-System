@@ -1,4 +1,4 @@
-package businesslogic;
+package businessLogic.service;
 
 import java.rmi.RemoteException;
 import java.util.List;

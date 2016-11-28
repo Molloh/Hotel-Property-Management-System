@@ -146,7 +146,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				switch(type){
 				case "SINGLE": room.setRoomType(RoomType.SINGLE);  break;
 				case "DOUBLE": room.setRoomType(RoomType.DOUBLE);  break;
-				case "BIG"   : room.setRoomType(RoomType.BIG);     break;
+				case "BIG"   : room.setRoomType(RoomType.FAMILY);     break;
 				}
 				room.setOriginalPrice(Integer.valueOf(data[2]));
 				if(data[3].equals("true"))  room.setisEmpty(true);
@@ -217,7 +217,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				switch (room.getRoomtype()){
 				case SINGLE: str += "SINGLE";break;
 				case DOUBLE: str += "DOUBLE";break;
-				case BIG :   str += "BIG"; break;
+				case FAMILY :   str += "BIG"; break;
 				}
 				
 				str += "/" + room.getPrice() + "/";
