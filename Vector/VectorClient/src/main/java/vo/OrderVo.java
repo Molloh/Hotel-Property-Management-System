@@ -1,19 +1,15 @@
-package po;
+package vo;
 
 import java.util.Date;
 
 import common.RoomType;
+import po.OrderPo;
 
-/**
- * @ author Aobang 
- * @ version 2016/11/27 
- * @ description
- */
-public class OrderPo {
+public class OrderVo {
 	private String orderId;
 	private Date createTime;
 	private Date executeTime;
-	private Date finishTime; // 退房时间
+	private Date finishTime; //退房时间
 	private String hotel;
 	private String hotelId;
 	private RoomType roomType;
@@ -23,23 +19,21 @@ public class OrderPo {
 	private int originalPrice;
 	private double discount;
 	private int discountedPrice;
-
-	public OrderPo(String orderId, Date createTime, Date executeTime, Date finishTime, String hotel, String hotelId,
-			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist, int originalPrice, double discount,
-			int discountedPrice) {
-		this.orderId = orderId;
-		this.createTime = createTime;
-		this.executeTime = executeTime;
-		this.finishTime = finishTime;
-		this.hotel = hotel;
-		this.hotelId = hotelId;
-		this.roomType = roomType;
-		this.numOfRoom = numOfRoom;
-		this.numOfGuest = numOfGuest;
-		this.childExist = childExist;
-		this.originalPrice = originalPrice;
-		this.discount = discount;
-		this.discountedPrice = discountedPrice;
+	
+	public OrderVo(OrderPo po) {
+		this.orderId = po.getOrderId();
+		this.createTime = po.getCreateTime();
+		this.executeTime = po.getExecuteTime();
+		this.finishTime = po.getFinishTime();
+		this.hotel = po.getHotel();
+		this.hotelId = po.getHotelId();
+		this.roomType = po.getRoomType();
+		this.numOfRoom = po.getNumOfRoom();
+		this.numOfGuest = po.getNumOfGuest();
+		this.childExist = po.getChildExist();
+		this.originalPrice = po.getOriginalPrice();
+		this.discount = po.getDiscount();
+		this.discountedPrice = po.getDiscountedPrice();
 	}
 	
 	public String getOrderId() {
@@ -51,7 +45,7 @@ public class OrderPo {
 	public Date getExecuteTime() {
 		return this.executeTime;
 	}
-	public Date getFinishTime() {
+	public Date getfinishTime() {
 		return this.finishTime;
 	}
 	public String getHotel() {
@@ -91,4 +85,5 @@ public class OrderPo {
 	public void setFinishTime(Date time) {
 		this.finishTime = time;
 	}
+	
 }
