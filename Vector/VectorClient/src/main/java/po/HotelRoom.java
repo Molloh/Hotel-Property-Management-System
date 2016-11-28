@@ -1,7 +1,10 @@
 package po;
+import java.io.Serializable;
+
 import common.RoomType;
 
-public class HotelRoom {
+public class HotelRoom implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private RoomType type;
 	private String roomID;
 	private String startDate;
@@ -14,6 +17,10 @@ public class HotelRoom {
 		this.hotelId = hotelId;
 	}
 
+	public String getHotelId(){
+		return hotelId;
+	}
+	
 	public void setRoomType(RoomType type) {
 		this.type = type;
 	}
