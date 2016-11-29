@@ -1,6 +1,7 @@
 package dataService.dao.impl;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import common.AccountType;
 import common.ResultMessage;
@@ -18,7 +19,7 @@ import vo.AccountVo;
 public class AccountDaoImpl implements AccountDao {
 
     /* map<Id,AccountPO> */
-    private Map<String,AccountPo> map;
+    private TreeMap<String,AccountPo> map;
 
     private AccountDataHelper accountDataHelper;
 
@@ -85,24 +86,31 @@ public class AccountDaoImpl implements AccountDao {
         Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
         String newId = "" ;
         /*找到accountPo库最末尾的Id，以方便创建一个新的Id，最后写入
-          过程中遍历之前的每一个memberName，如果有重复，直接返回-1
+                          过程中遍历之前的每一个memberName
          */
+        int Id_num = 0 ;
         while(iterator.hasNext()) {
             Map.Entry<String, AccountPo> entry = iterator.next();
             if(entry.getValue().getMemberName().equals(memberName))
                 return "FAIL";  //用户名已存在，不能重复注册
             newId = entry.getKey();
+            int temp = Integer.parseInt(newId.substring(1));
+            if(temp>Id_num)
+            	Id_num=temp;
         }
-        int Id_num = Integer.parseInt(newId.substring(1));
+       
+        
         Id_num ++ ;  //默认不会超出五位数
         newId = newId.charAt(0) + String.format("%05d",Id_num);
         AccountPo newAccPo = new AccountPo(memberName,password,newId,0);
-        insert(newAccPo);
+        ResultMessage w=insert(newAccPo) ;
         
         MemberPo newMemPo = new MemberPo(newId,memberName,null,null,null,0);
         MemberDaoImpl.getInstance().insert(newMemPo);
-        
-        return newId;
+        if(w==ResultMessage.SUCCEED)
+        	return newId;
+        else 
+        	return "??";
     }
 
     public ResultMessage modify(String id,String newPassword) {
@@ -131,7 +139,7 @@ public class AccountDaoImpl implements AccountDao {
 
     public ResultMessage insert(AccountPo po) {
         if(!map.containsKey(po.getId())) {
-            map.put(po.getId(), po);
+            map.put(po.getId(), po); 
             accountDataHelper.updateAccountData(map);
             return ResultMessage.SUCCEED;
         }

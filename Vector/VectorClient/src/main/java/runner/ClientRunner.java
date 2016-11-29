@@ -1,9 +1,10 @@
 package runner;
 
-import rmi.RemoteHelper;
-
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+
+import myTest.AccountTest;
+import rmi.RemoteHelper;
 
 /**
  * @ author lienming
@@ -29,7 +30,8 @@ public class ClientRunner {
 
     public static void main(String[] args) throws RemoteException{
         new ClientRunner();
-
+        AccountTest t= new AccountTest();
+        t.testRegister();
     }
 
 }

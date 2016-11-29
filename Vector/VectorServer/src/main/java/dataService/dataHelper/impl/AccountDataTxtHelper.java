@@ -1,22 +1,27 @@
 package dataService.dataHelper.impl;
 
-import po.AccountPo;
-
-import java.io.*;
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import dataService.dataHelper.service.AccountDataHelper;
+import po.AccountPo;
 
 /**
  * Updated by lienming on 2016-11-27.
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
-
-    public Map<String, AccountPo> getAccountData() {
-        Map<String, AccountPo> map = new HashMap<String, AccountPo>();
-        File file = new File("src/txtData/account.txt");
+	//"src/main/resources/textData/account.txt"
+	File file = new File("E:\\acc.txt");
+    
+    public TreeMap<String, AccountPo> getAccountData() {
+        TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
         try {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(
                     file), "UTF-8");
@@ -34,7 +39,7 @@ public class AccountDataTxtHelper implements AccountDataHelper {
 
                 AccountPo accountPo=new AccountPo(username,password,Id,logState);
 
-                map.put(Id, accountPo);
+                TreeMap.put(Id, accountPo);
 
                 str = br.readLine();
 
@@ -42,7 +47,7 @@ public class AccountDataTxtHelper implements AccountDataHelper {
 
             br.close();
 
-            return map;
+            return TreeMap;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,18 +55,17 @@ public class AccountDataTxtHelper implements AccountDataHelper {
         return null;
     }
 
-    public void updateAccountData(Map<String, AccountPo> map) {
+    public void updateAccountData(TreeMap<String, AccountPo> TreeMap) {
         //写入用户数据
-        File file = new File("src/txtData/account.txt");
         try {
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            FileWriter fw = new FileWriter(this.file.getAbsoluteFile());
             BufferedWriter writer = new BufferedWriter(fw);
 
-            //对map进行遍历
-            Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
-            while(iterator.hasNext()){
-                Map.Entry<String, AccountPo> entry = iterator.next();
-                AccountPo accountPo = entry.getValue();
+            //对TreeMap进行遍历
+            Iterator iterator = TreeMap.entrySet().iterator();
+            while(iterator.hasNext()){ 
+                Map.Entry entry = (Map.Entry)iterator.next();
+                AccountPo accountPo = (AccountPo)entry.getValue();
                 String str = accountPo.getMemberName()+";"+accountPo.getPassword()+";"
                         +accountPo.getId()+";"+accountPo.getLogState();
                 writer.write(str);

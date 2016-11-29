@@ -3,6 +3,7 @@ package dataService.dao.impl;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import common.ResultMessage;
 import dataService.dao.service.MemberDao;
@@ -18,7 +19,7 @@ import vo.MemberVo;
 
 public class MemberDaoImpl implements MemberDao {
 
-    private Map<String,MemberPo> map;
+    private TreeMap<String,MemberPo> map;
 
     private MemberDataHelper memberDataHelper;
 

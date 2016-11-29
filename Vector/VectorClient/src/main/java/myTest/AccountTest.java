@@ -30,11 +30,10 @@ public class AccountTest {
 	 String[] registerName    ={"Mao"    ,"XiJinPing",""      ,"123456"};
 	 String[] registerPassword={"123456" ,"123457"   ,"123456",""      };
 	 String[] resultExpected  = {"FAIL"  , "SUC"     ,"FAIL"  ,"FAIL"  };
-	 
+	 String name = "Jiang" ,password="00000000"; 
 	 public void testRegister() throws RemoteException{
-		 for(int i=0;i<4;i++){
-			 System.out.println(register(registerName[i],registerPassword[i])+" - "+
-					 				resultExpected[i]);
+		 for(int i=1;i<10;i++){
+			 System.out.println( register("BigDog"+i,password) );
 		 }
 	 }
 	 

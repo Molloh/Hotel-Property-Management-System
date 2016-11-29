@@ -1,12 +1,12 @@
 package dataService.dataHelper.service;
 
-import po.MemberPo;
+import java.util.TreeMap;
 
-import java.util.Map;
+import po.MemberPo;
 
 public interface MemberDataHelper {
 
-    public Map<String, MemberPo> getMemberData();
+    public TreeMap<String, MemberPo> getMemberData();
 
-    public void updateMemberData(Map<String, MemberPo> map);
+    public void updateMemberData(TreeMap<String, MemberPo> map);
 }

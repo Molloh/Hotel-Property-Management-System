@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import common.Sex;
 import dataService.dataHelper.service.MemberDataHelper;
@@ -19,10 +19,12 @@ import po.MemberPo;
  * Updated by lienming on 2016-11-27.
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
-
-    public Map<String, MemberPo> getMemberData(){
-        Map<String, MemberPo> map = new HashMap<String, MemberPo>();
-        File file = new File("src/txtData/member.txt");
+	
+	File file = new File("E:\\mem.txt");
+	
+    public TreeMap<String, MemberPo> getMemberData(){
+        TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();
+       
         try {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(
                     file), "UTF-8");
@@ -60,18 +62,18 @@ public class MemberDataTxtHelper implements MemberDataHelper {
         return map;
     }
 
-    public void updateMemberData(Map<String, MemberPo> map){
+    public void updateMemberData(TreeMap<String, MemberPo> map){
     	//写入用户数据
-        File file = new File("src/txtData/member.txt");
+        
         try {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter writer = new BufferedWriter(fw);
 
             //对map进行遍历
-            Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
+            Iterator  iterator = map.entrySet().iterator();
             while(iterator.hasNext()){
-                Map.Entry<String, MemberPo> entry = iterator.next();
-                MemberPo memberPo = entry.getValue();
+                Map.Entry entry = (Map.Entry)iterator.next();
+                MemberPo memberPo = (MemberPo)entry.getValue();
                 String str = memberPo.getId()+";"+memberPo.getName()+";"+memberPo.getPhone()+";"
                         +memberPo.getAddress()+";"+memberPo.getSex()+";"+memberPo.getCredit();
                 writer.write(str);
