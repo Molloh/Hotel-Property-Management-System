@@ -17,8 +17,8 @@ import po.AccountPo;
  * Updated by lienming on 2016-11-27.
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
-	//"src/main/resources/textData/account.txt"
-	File file = new File("E:\\acc.txt");
+	//
+	File file = new File("src/main/resources/textData/account.txt");
     
     public TreeMap<String, AccountPo> getAccountData() {
         TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
