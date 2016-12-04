@@ -1,14 +1,12 @@
-package businessLogic.service;
 /**
-* @version 2016-11-20
+* @version 2016-12-01
 * @author 金灵益
 * @description 负责酒店管理界面所需要的服务
 */
-
-import common.ResultMessage;
+package businessLogic.service;
 import common.RoomType;
+import vo.HotelVo;
 
-import java.util.List;
 
 /**
 * 酒店的属性有：
@@ -22,16 +20,55 @@ import java.util.List;
 public interface HotelBlService {
 
 	/**
-	 * @description 显示酒店具体信息
-	 * @return
+	 * 增加酒店，当创建好酒店ID时调用方法初始化酒店
+	 * @param hotelId
 	 */
-	public ResultMessage showhotelInfo();
-
+	public void addHotel(String hotelId);
+	
 	/**
-	 * @description 得到空余房间数
+	 * 当酒店基本信息变化时，只更新酒店列表
+	 * @param vo
+	 */
+	public void updateBasicInfo(HotelVo vo);
+	
+	/**
+	 * 删除酒店 
+	 * @param hotelId
+	 */
+	public void deleteHotel(String hotelId);
+	
+	/**
+	 * 酒店工作人员录入客房信息
+	 * @param hotelId
+	 * @param type
+	 * @param number
+	 * @param price
+	 */
+	public void initializeRoom(String hotelId, RoomType type, int number, int price);
+	
+	/**
+	 * 当酒店人员执行退房时，调用此方法
+	 * @param orderId
+	 * @param type
+	 */
+	public void checkoutRoom(String orderId, RoomType type);
+	
+	/**
+	 * 当客户预定房间，酒店工作人员执行订单或延迟订单，调用此方法
+	 * @param orderId
+	 * @param type
+	 * @param startDate
+	 * @param endDate
+	 */
+	public void updateBookRoom(String orderId, RoomType type, String startDate, String endDate);
+	
+	/**
+	 * 根据预定日期返回该时间段内该类型房间的空余数量
+	 * @param type
+	 * @param date
 	 * @return
 	 */
-	public int getReadyRoom();
+	public int getReadyRoom(RoomType type, String startDate, String endDate);
 
 	/**
 	 * @description 客户给予文字评价
@@ -40,30 +77,9 @@ public interface HotelBlService {
 	public void comment(String giveComment);
 
 	/**
-	 * @return 酒店所有的文字评价
-	 */
-	public List<String> getComment();
-
-	/**
 	 * @description 客户给予评分
 	 * @param poStrings
 	 */
 	public void givePoStrings(double poStrings);
-
-	/**
-	 * @return 酒店评分
-	 */
-	public double getPoStrings();
-
-	/**
-	 * @return 酒店所属商圈
-	 */
-	public String getInBusiness();
-
-	/**
-	 * @param Type
-	 * @return 不同类型房间的价格
-	 */
-	public int getOriginPrice(RoomType Type);
 
 }

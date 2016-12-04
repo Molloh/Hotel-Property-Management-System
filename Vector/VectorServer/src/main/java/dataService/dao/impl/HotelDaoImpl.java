@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import common.ResultMessage;
+import common.RoomType;
 import dataService.dao.service.HotelDao;
 import dataService.dataHelper.impl.DataFactoryImpl;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
 import po.HotelPo;
+import po.HotelTypeRoomPo;
 
 public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	private static final long serialVersionUID = 1L;
@@ -45,8 +47,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	@Override
 	public ResultMessage addHotelPO(HotelPo po) throws RemoteException{
 		if(!map.containsKey(po.getId())) {	    
-			map.put(po.getId(), po);	   
-			hotelDataHelper.updateHotelListData(map);
+			hotelDataHelper.addHotelData(po);
 			return ResultMessage.SUCCEED;   
 		}
 		//若已存在该po
@@ -57,22 +58,39 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	public ResultMessage updateHotelList(HotelPo po) throws RemoteException{
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
+			//修改map对应元素
+			map.put(hotelId, po);
 			hotelDataHelper.updateHotelListData(map);
 			return ResultMessage.SUCCEED;
 		}
 		return ResultMessage.FAIL;
 	}
-
+	
 	@Override
-	public ResultMessage updateRoom(HotelPo po) throws RemoteException{
-		String hotelId = po.getId();
+	public ResultMessage initHotelTypeRoom(String hotelId, RoomType type, int number, int price){
 		if(map.get(hotelId) != null){
-			hotelDataHelper.updateHotelRoom(hotelId, po.getRoom());
+			hotelDataHelper.initRoom(hotelId, type, number, price);
 			return ResultMessage.SUCCEED;
 		}
 		return ResultMessage.FAIL;
 	}
 	
+	public ResultMessage updateBookDate(HotelPo po, RoomType type){
+		String hotelId = po.getId();
+		if(map.get(hotelId) != null){
+			Iterator<HotelTypeRoomPo> iterator = po.getTypeRoom().iterator();
+			List<String> list = new ArrayList<String>();
+			while(iterator.hasNext()){
+				HotelTypeRoomPo rPo = iterator.next();
+				if(rPo.getType().equals(type))
+					list = rPo.getBookDate();
+			}
+			hotelDataHelper.upBookDateList(hotelId, type, list);
+			return ResultMessage.SUCCEED;
+		}
+		return ResultMessage.FAIL;
+	}
+
 	@Override
 	public ResultMessage updateComment(HotelPo po) throws RemoteException{
 		String hotelId = po.getId();
@@ -117,12 +135,4 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 		return hotelList;
 	}
 
-	@Override
-	public String getBusiness(String hotelId) throws RemoteException{
-		HotelPo po = findHotel(hotelId);
-		if(po != null){
-			return po.getInBusiness();
-		}
-		return null;
-	}
 }

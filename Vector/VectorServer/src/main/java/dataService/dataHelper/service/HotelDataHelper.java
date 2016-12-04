@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import common.ResultMessage;
+import common.RoomType;
 import po.HotelPo;
-import po.HotelRoom;
 
 /**
- * @ author 金灵益
- * @ version 2016/11/20
- * @ description
+ * @author 金灵益
+ * @version 2016/12/03
+ * @description
  */
 public interface HotelDataHelper {
 	/**
@@ -40,23 +40,9 @@ public interface HotelDataHelper {
 	/**
 	 * 
 	 * @param hotelId
-	 * @return 酒店房间信息
-	 */
-	public Map<String, HotelRoom> getHotelRoom(String hotelId);
-	
-	/**
-	 * 
-	 * @param hotelId
 	 * @return 酒店的文字评论
 	 */
 	public List<String> getComments(String hotelId);
-	
-	/**
-	 * 更新酒店房间数据
-	 * @param hotelId
-	 * @param map
-	 */
-	public void updateHotelRoom(String hotelId,Map<String,HotelRoom> map);
 	
 	/**
 	 * 更新酒店文字评论
@@ -64,4 +50,31 @@ public interface HotelDataHelper {
 	 * @param comment
 	 */
 	public void updateComments(String hotelId,List<String> commentList);
+	
+	/**
+	 * 初始化酒店房间信息，存储酒店的房间类型，数量，原始价格。不具体到单个房间
+	 * @param hotelId
+	 * @param type
+	 * @param number
+	 * @param price
+	 */
+	public void initRoom(String hotelId, RoomType type, int number, int price);
+	
+	/**
+	 * 在搜索、执行订单时可用于确认该类型房间在预定期间内是否有空
+	 * @param hotelId
+	 * @param type
+	 * @return
+	 */
+	public List<String> getBookDateList(String hotelId, RoomType type);
+	
+	/**
+	 * 更新酒店每种类型的房间的预定日期和结束日期，不具体到单个房间
+	 * 在客户确认该类型房间的预定期间时，更新文件
+	 * 在酒店工作人员退房时，更新文件
+	 * @param hotelId
+	 * @param type
+	 * @param list
+	 */
+	public void upBookDateList(String hotelId, RoomType type, List<String> list);
 }
