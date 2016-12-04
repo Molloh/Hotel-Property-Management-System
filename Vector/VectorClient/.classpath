@@ -17,6 +17,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="src/main/junit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: cn.edu.nju.3B326:VectorInterface:1.0-SNAPSHOT"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
