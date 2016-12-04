@@ -2,31 +2,37 @@ package rmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.impl.AccountDaoImpl;
+import dataService.dao.impl.HotelDaoImpl;
 import dataService.dao.impl.MemberDaoImpl;
 import dataService.dao.service.AccountDao;
+import dataService.dao.service.HotelDao;
 import dataService.dao.service.MemberDao;
 import po.AccountPo;
+import po.HotelPo;
 import vo.AccountVo;
 import vo.MemberVo;
 
 /**
  * Created by Administrator on 2016-11-20.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao{
+public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao{
 
 	 
 	private static final long serialVersionUID = 1L;
 
     private AccountDao accountDao;
     private MemberDao memberDao ;
+    private HotelDao hotelDao;
     
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
         memberDao = MemberDaoImpl.getInstance();
+        hotelDao = HotelDaoImpl.getInstance();
     }
 
 
@@ -80,5 +86,40 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     public ResultMessage modifyInfo(MemberVo vo)throws RemoteException {
     	return memberDao.modifyInfo(vo);
     }
+
+
+    /*HotelDao 接口方法*/
+	public ResultMessage addHotelPO(HotelPo po) throws RemoteException{
+		return hotelDao.addHotelPO(po);
+	}
+	
+	public ResultMessage updateHotelList(HotelPo po) throws RemoteException{
+		return hotelDao.updateHotelList(po);
+	}
+
+	public ResultMessage deleteHotelPO(String hotelId) throws RemoteException{
+		return hotelDao.deleteHotelPO(hotelId);
+	}
+
+	public HotelPo findHotel(String hotelId) throws RemoteException{
+		return hotelDao.findHotel(hotelId);
+	}
+	
+	public List<HotelPo> keyFind(String key) throws RemoteException{
+		return hotelDao.keyFind(key);
+	}
+
+	public String getBusiness(String hotelId) throws RemoteException{
+		return hotelDao.getBusiness(hotelId);
+	}
+
+	public ResultMessage updateRoom(HotelPo po) throws RemoteException{
+		return hotelDao.updateRoom(po);
+	}
+
+	public ResultMessage updateComment(HotelPo po) throws RemoteException{
+		return hotelDao.updateComment(po);
+	}
+    
     
 }

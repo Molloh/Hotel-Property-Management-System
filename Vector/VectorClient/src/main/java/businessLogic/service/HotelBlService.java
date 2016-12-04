@@ -8,7 +8,7 @@ package businessLogic.service;
 import common.ResultMessage;
 import common.RoomType;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
 * 酒店的属性有：
@@ -42,7 +42,7 @@ public interface HotelBlService {
 	/**
 	 * @return 酒店所有的文字评价
 	 */
-	public ArrayList<String> getComment();
+	public List<String> getComment();
 
 	/**
 	 * @description 客户给予评分

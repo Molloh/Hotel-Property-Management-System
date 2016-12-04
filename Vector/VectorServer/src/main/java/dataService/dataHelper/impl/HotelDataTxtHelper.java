@@ -19,11 +19,12 @@ import po.HotelPo;
 import po.HotelRoom;
 
 public class HotelDataTxtHelper implements HotelDataHelper{
-
+	private String rootPath = "src/main/resources/textData/hotel/";
+	
 	@Override
 	public Map<String, HotelPo> getHotelData() {
 		//读取数据
-		File file = new File("src/txtData/hotel/hotelList.txt");
+		File file = new File(rootPath + "hotelList.txt");
 		Map<String,HotelPo> map = new HashMap<String, HotelPo>();
 		try {
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -45,7 +46,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				po.setHotelInfo(data[8]);
 				
 				po.setRooms(getHotelRoom(data[0]));
-				po.setComment(getComments(data[0]));
+				po.setCommentList(getComments(data[0]));
 				map.put(data[0], po);
 				str = br.readLine();
 			}
@@ -61,9 +62,39 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	}
 
 	@Override
-	public void updateHotelData(Map<String, HotelPo> map) {
-		//写入数据
-		File file = new File("src/txtData/hotel/hotelList.txt");
+	public ResultMessage addHotelData(HotelPo po){
+		File file = new File(rootPath + "hotelList.txt");
+		try{
+			File rootFile = new File(rootPath + po.getId());	
+			rootFile.mkdir();
+	
+			File commentfile = new File(rootFile.getAbsolutePath(),"comments.txt");	
+			commentfile.createNewFile();
+			
+			File roomfile = new File(rootFile.getAbsolutePath(),"roomList.txt");	
+			roomfile.createNewFile();
+			
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
+			BufferedWriter writer = new BufferedWriter(fw);
+			
+			String str = po.getId() + "/" + po.getHotelName() + "/" + po.getHotelAddress() + "/"
+					+ po.getInBusiness() + "/" + po.getHotelTel() + "/" + (po.getStars()+"") + "/"
+					+ (po.getPoStrings()+"") + "/" + (po.getNumOfpoint()+"") + "/" + po.getHotelInfo();
+			
+			writer.write(str);
+			writer.newLine();
+			writer.close();
+			return ResultMessage.SUCCEED;
+		}catch(Exception e){
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+	}
+	
+	@Override
+	public ResultMessage updateHotelListData(Map<String, HotelPo> map) {
+		//写入数据  包括更新hotelList列表和酒店的房间和评论
+		File file = new File(rootPath + "hotelList.txt");
 		try {		
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -76,61 +107,56 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 						+ po.getInBusiness() + "/" + po.getHotelTel() + "/" + (po.getStars()+"") + "/"
 						+ (po.getPoStrings()+"") + "/" + (po.getNumOfpoint()+"") + "/" + po.getHotelInfo();
 				
-				updateHotelRoom(po.getId(),po.getRoom());
-				updateComments(po.getId(),po.getComment());
+	//			updateHotelRoom(po.getId(),po.getRoom());
+	//			updateComments(po.getId(),po.getCommentList());
 				writer.write(str);
 				
-				writer.write("\r\n");	
+				writer.newLine();
 			}
 			writer.close();	
+			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
-			e.printStackTrace();	
+			e.printStackTrace();
+			return ResultMessage.FAIL;
 		}	
 	}
 
 	@Override
 	public ResultMessage deleteHotelData(String hotelId) {
-		File file = new File("src/txtData/hotel/hotelList.txt");
+		//在酒店列表中删除酒店信息
+		Map<String, HotelPo> map = getHotelData();
+		if(!map.containsKey(hotelId))
+			return ResultMessage.FAIL;
 		
-		File hotelfile = new File("src/txtData/hotel/" + hotelId + ".txt");
-		//如果文件夹不存在则创建    
-		if(!hotelfile .exists()  && !hotelfile .isDirectory()){
-			return ResultMessage.INVALID;
-		}else{
-			hotelfile.delete();
+		Map<String,HotelPo> updateMap = new HashMap<String, HotelPo>();
+		Iterator<Map.Entry<String,HotelPo>> iterator = map.entrySet().iterator();
+		
+		while(iterator.hasNext()){
+			Map.Entry<String,HotelPo> entry = iterator.next();
+			HotelPo po = entry.getValue();
+			if( !po.getId().equals(hotelId) ){
+				updateMap.put(po.getId(), po);	
+			}	
+		}
+		updateHotelListData(updateMap);
+		
+		//删除该酒店房间、评价文件
+		File hotelfile = new File(rootPath + hotelId);
+		hotelfile.mkdir();
+			
+		for(File files : hotelfile.listFiles()){
+			files.delete();
 		}
 		
-		try{
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(
-					file), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
-			String str = br.readLine();
-			String result = "";
-			while(str != null){
-				String[] data = str.split("/");
-				if(data[0].equals(hotelId)){
-					
-				}else{
-					result += str + "\n";
-				}
-				str = br.readLine();
-			}
-			br.close();
-			
-			FileWriter fw = new FileWriter("src/txtData/hotel/hotelList.txt");
-			BufferedWriter writer = new BufferedWriter(fw);
-			writer.write(result);
-			writer.close();
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		return ResultMessage.SUCCEED;
+		hotelfile.delete();
+
+		return ResultMessage.SUCCEED;		
 	}
 
+	
+	@Override
 	public Map<String, HotelRoom> getHotelRoom(String hotelId) {
-		File file = new File("src/txtData/hotel/" + hotelId + "/roomList.txt");
+		File file = new File(rootPath + hotelId + "/roomList.txt");
 		Map<String, HotelRoom> map = new HashMap<String, HotelRoom>();
 		try {
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -146,7 +172,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				switch(type){
 				case "SINGLE": room.setRoomType(RoomType.SINGLE);  break;
 				case "DOUBLE": room.setRoomType(RoomType.DOUBLE);  break;
-				case "BIG"   : room.setRoomType(RoomType.FAMILY);     break;
+				case "FAMILY": room.setRoomType(RoomType.FAMILY);  break;
 				}
 				room.setOriginalPrice(Integer.valueOf(data[2]));
 				if(data[3].equals("true"))  room.setisEmpty(true);
@@ -168,8 +194,10 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		return null;
 	}
 	
+	
+	@Override
 	public List<String> getComments(String hotelId){
-		File file = new File("src/txtData/hotel/" + hotelId + "/comments.txt");
+		File file = new File(rootPath + hotelId + "/comments.txt");
 		List<String> comment = new ArrayList<String>();
 		
 		try {
@@ -197,18 +225,24 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		return null;
 	}
 	
-	/**
-	 * 更新酒店房间数据
-	 * @param hotelId
-	 * @param map
-	 */
+	
+	@Override
 	public void updateHotelRoom(String hotelId,Map<String,HotelRoom> map){
-		File file = new File("src/txtData/hotel/" + hotelId + "/roomList.txt");
-		try {		
+		try {	
+			File rootFile = new File(rootPath + hotelId);
+			rootFile.mkdir();
+		
+			File file = new File(rootFile.getAbsolutePath(),"roomList.txt");	
+			if(!file.exists())
+				file.createNewFile();
+
+			
+			file.createNewFile();	
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
 			//对map进行遍历
 			Iterator<Map.Entry<String,HotelRoom>> iterator = map.entrySet().iterator();
+			
 			while(iterator.hasNext()){
 				Map.Entry<String,HotelRoom> entry = iterator.next();
 				HotelRoom room = entry.getValue();
@@ -217,17 +251,17 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				switch (room.getRoomtype()){
 				case SINGLE: str += "SINGLE";break;
 				case DOUBLE: str += "DOUBLE";break;
-				case FAMILY :   str += "BIG"; break;
+				case FAMILY :str += "FAMILY"; break;
 				}
 				
 				str += "/" + room.getPrice() + "/";
-				if(room.getisEmpty() == true)  str += "true/";
-				if(room.getisEmpty() == false) str += "false/";
+				if(room.getisEmpty() == true)       str += "true/";
+				if(room.getisEmpty() == false)      str += "false/";			
 				
 				str += room.getCheckInDate() + "/" + room.getCheckOutdate();
-				writer.write(str);
-				
-				writer.write("\n");	
+					
+				writer.write(str);		
+				writer.newLine();
 			}
 			writer.close();	
 		} catch (Exception e) {
@@ -235,23 +269,28 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}	
 	}
 	
-	/**
-	 * 更新酒店文字评论
-	 * @param hotelId
-	 * @param list
-	 */
-	public void updateComments(String hotelId,List<String> list){
-		File file = new File("src/txtData/hotel/" + hotelId + "/comments.txt");
-		try {		
+	
+	@Override
+	public void updateComments(String hotelId,List<String> commentList){
+		
+		try {
+			File rootFile = new File(rootPath + hotelId);
+			rootFile.mkdir();
+		
+			File file = new File(rootFile.getAbsolutePath(),"comments.txt");	
+			if(!file.exists())
+				file.createNewFile();
+			
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
-			
-			Iterator<String> iterator = list.iterator();
+				
+			Iterator<String> iterator = commentList.iterator();
 			while(iterator.hasNext()){
-				String str = iterator.next();
-				writer.write(str);
-				writer.write("\n*\n");
-			}
+				writer.write(iterator.next());
+				writer.newLine();
+				writer.write("*");
+				writer.newLine();
+			}		
 			writer.close();	
 		} catch (Exception e) {
 			e.printStackTrace();	

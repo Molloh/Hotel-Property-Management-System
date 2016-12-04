@@ -1,10 +1,10 @@
 package po;
-
 /**
  * @ author 金灵益
  * @ version 2016/11/20
  * @ description
  */
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,32 +13,41 @@ import common.ResultMessage;
 import common.RoomType;
 
 
-public class HotelPo{
+public class HotelPo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String hotelName;
 	private String hotelID;
 	private String hotelAddress;
 	private String inBusiness;                                        //酒店所属商圈
 	private String tel;                                               //酒店联系电话
 	private String info;                                              //酒店简介
-	private List<String> comments = new ArrayList<String>();          //酒店的所有文字评价
+	private List<String> commentList = new ArrayList<String>();       //酒店的所有文字评价
+	private String commentOfmember;                                   //客户给予的文字评价
 	private double points;                                            //酒店评分
 	private int numOfpoint;                                           //酒店被评分的次数
 	private int stars;                                                //酒店星级
 	private Map<String,HotelRoom> map;
+	private int price;
 	
 	public ResultMessage showhotelInfo(){
 		return ResultMessage.SUCCEED;
 	}
 
-	public void comment(String giveComment){
-		comments.add(giveComment);
+	public void giveComment(String commentOfmember){
+		this.commentOfmember = commentOfmember;
+		commentList.add(commentOfmember);
 	}
 	
-	public void setComment(List list){
-		this.comments = list;
+	public String getCommentOfmember(){
+		return commentOfmember;
 	}
-	public List<String> getComment(){
-		return comments;
+	
+	public void setCommentList(List list){
+		this.commentList = list;
+	}
+	
+	public List<String> getCommentList(){
+		return commentList;
 	}
 
 	public double getPoStrings(){
@@ -54,8 +63,12 @@ public class HotelPo{
 		return inBusiness;
 	}
 	
-	public int getOriginPrice(RoomType type){
-		return 0;
+	public int getOriginPrice(){
+		return price;
+	}
+	
+	public void setOriginPrice(int price){
+		this.price = price;
 	}
 	
 	public String showInfo(){

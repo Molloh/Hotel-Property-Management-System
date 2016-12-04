@@ -1,8 +1,10 @@
 package businessLogic.impl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import businessLogic.service.HotelListService;
@@ -126,7 +128,18 @@ public class HotelListServiceImpl implements HotelListService{
 	 */
 	@Override
 	public List<HotelPo> findHotel(String key) {
-		return hotelDao.keyFind(key);
+		try {
+			List<HotelPo> list = hotelDao.keyFind(key);
+			Iterator<HotelPo> it = list.iterator();
+			while(it.hasNext()){
+				hotelList.add(new HotelPoToVo().poTovo(it.next()));
+			}
+			return list;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -154,4 +167,6 @@ public class HotelListServiceImpl implements HotelListService{
 	public void addHotel(HotelVo hotel){
 		hotelList.add(hotel);
 	}
+	
+	
 }

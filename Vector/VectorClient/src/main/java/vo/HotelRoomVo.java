@@ -1,11 +1,7 @@
-package po;
-
-import java.io.Serializable;
-
+package vo;
 import common.RoomType;
 
-public class HotelRoom implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HotelRoomVo {
 	private RoomType type;
 	private String roomID;
 	private String startDate;
@@ -14,8 +10,12 @@ public class HotelRoom implements Serializable {
 	private String hotelId;
 	private boolean isEmpty;
 
-	public HotelRoom(String hotelId){
+	public HotelRoomVo(String hotelId){
 		this.hotelId = hotelId;
+	}
+	
+	public String getHotelId(){
+		return hotelId;
 	}
 
 	public void setRoomType(RoomType type) {

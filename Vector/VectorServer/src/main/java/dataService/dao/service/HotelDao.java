@@ -20,11 +20,11 @@ public interface HotelDao extends Remote{
 	public ResultMessage addHotelPO(HotelPo po) throws RemoteException;
 	
 	/**
-	 * 更新酒店信息
+	 * 更新酒店列表信息
 	 * @param po
 	 * @return
 	 */
-	public ResultMessage updateHotel(HotelPo po) throws RemoteException;
+	public ResultMessage updateHotelList(HotelPo po) throws RemoteException;
 	
 	/**
 	 * 删除酒店
@@ -53,5 +53,21 @@ public interface HotelDao extends Remote{
 	 * @return
 	 */
 	public String getBusiness(String hotelId) throws RemoteException;
+
+	/**
+	 * 更新酒店房间信息
+	 * @param po
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage updateRoom(HotelPo po) throws RemoteException;
+
+	/**
+	 * 更新酒店文字评论
+	 * @param po
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage updateComment(HotelPo po) throws RemoteException;
 	
 }
