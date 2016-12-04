@@ -105,7 +105,7 @@ public class AccountDaoImpl implements AccountDao {
         AccountPo newAccPo = new AccountPo(memberName,password,newId,0);
         ResultMessage w=insert(newAccPo) ;
         
-        MemberPo newMemPo = new MemberPo(newId,memberName,null,null,null,0);
+        MemberPo newMemPo = new MemberPo(newId,memberName,null,null,null,100);
         MemberDaoImpl.getInstance().insert(newMemPo);
         if(w==ResultMessage.SUCCEED)
         	return newId;

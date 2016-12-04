@@ -6,7 +6,11 @@ import common.AccountType;
 import po.AccountPo;
 
 public class AccountVo  implements Serializable{
-    private String memberName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String memberName;
     private String password;
     private String id;
     private int logState=0;

@@ -2,6 +2,7 @@
 
 import common.AccountType;
 import common.ResultMessage;
+import vo.AccountVo;
 
 /**
  * Created by Molloh on 2016/11/5.
@@ -13,8 +14,9 @@ public interface LoginViewControllerService {
      * @author lienming
      * @version 2016-11-27
      */
-    public AccountType login(String memberName, String password) ;
+    public AccountType login(String id, String password) ;
 
     public ResultMessage logout(String id) ;
 
+    public AccountVo find(String id);
 }

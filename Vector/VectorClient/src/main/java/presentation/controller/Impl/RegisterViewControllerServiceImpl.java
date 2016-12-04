@@ -8,19 +8,19 @@ import presentation.controller.service.RegisterViewControllerService;
 /**
  * Updated by lienming on 2016-11-27.
  */
-public class RegisterViewControllerSerivceImpl implements RegisterViewControllerService{
+public class RegisterViewControllerServiceImpl implements RegisterViewControllerService{
 
     private AccountBlService accountBlService ;  //下层
 
-    private static RegisterViewControllerSerivceImpl registerImpl;   //本层
+    private static RegisterViewControllerServiceImpl registerImpl;   //本层
 
-    public static RegisterViewControllerSerivceImpl getInstance(){
+    public static RegisterViewControllerServiceImpl getInstance(){
         if(registerImpl == null)
-            registerImpl = new RegisterViewControllerSerivceImpl() ;
+            registerImpl = new RegisterViewControllerServiceImpl() ;
         return registerImpl ;
     }
 
-    private RegisterViewControllerSerivceImpl(){
+    private RegisterViewControllerServiceImpl(){
         accountBlService = AccountBlServiceImpl.getInstance();
     }
 

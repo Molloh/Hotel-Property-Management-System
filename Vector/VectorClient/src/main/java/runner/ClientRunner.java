@@ -31,7 +31,7 @@ public class ClientRunner {
     public static void main(String[] args) throws RemoteException{
         new ClientRunner();
         AccountTest t= new AccountTest();
-        t.testRegister();
+        t.testLogin();
     }
 
 }

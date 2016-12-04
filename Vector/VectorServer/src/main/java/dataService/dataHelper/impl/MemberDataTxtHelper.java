@@ -20,7 +20,7 @@ import po.MemberPo;
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
 	
-	File file = new File("src/main/resources/textData/account.txt");
+	File file = new File("src/main/resources/textData/member.txt");
 	
     public TreeMap<String, MemberPo> getMemberData(){
         TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();

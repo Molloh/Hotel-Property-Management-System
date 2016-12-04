@@ -53,7 +53,7 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     public ResultMessage chargeCredit(String id, int amount){
-    	// amount<0?
+    	// amount<0?      id not exist?
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String,MemberPo> entry = iterator.next();

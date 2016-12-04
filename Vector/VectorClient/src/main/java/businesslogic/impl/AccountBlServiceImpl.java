@@ -56,7 +56,9 @@ public class AccountBlServiceImpl implements AccountBlService{
     }
 
     public ResultMessage modify(String id,String newPassword){
-        return accountDao.modify(id,newPassword);
+    	if(newPassword.length()>=4 && newPassword.length()<=12)
+    		return accountDao.modify(id,newPassword);
+    	return ResultMessage.FAIL;
     }
 
     /**
