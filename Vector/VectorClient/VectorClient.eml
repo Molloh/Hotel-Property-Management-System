@@ -3,9 +3,11 @@
 	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
 	<contentEntry url="file://$MODULE_DIR$">
 		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
+		<testFolder url="file://$MODULE_DIR$/src/main/junit"/>
 		<excludeFolder url="file://$MODULE_DIR$/target"/>
 	</contentEntry>
 	<levels>
-		<level name="Maven: cn.edu.nju.3B326:VectorInterface:1.0-SNAPSHOT" value="project"/>
+		<level name="Maven: junit:junit:4.12" value="project"/>
+		<level name="Maven: org.hamcrest:hamcrest-core:1.3" value="project"/>
 	</levels>
 </component>

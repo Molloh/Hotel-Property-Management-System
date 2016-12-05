@@ -1,14 +1,15 @@
 package myTest;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import common.AccountType;
 import common.ResultMessage;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import presentation.controller.Impl.LoginViewControllerServiceImpl;
 import presentation.controller.service.LoginViewControllerService;
 import runner.ClientRunner;
+
 
 public class TestLogin {
 	private LoginViewControllerService test ;
