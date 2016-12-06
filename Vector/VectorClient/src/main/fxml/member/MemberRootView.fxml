@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="220.0" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberRootView">
+   <children>
+      <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane maxWidth="250.0" minHeight="0.0" minWidth="250.0" prefHeight="700.0" prefWidth="250.0">
+               <children>
+                  <Group layoutX="-14.0" layoutY="2.0">
+                     <children>
+                        <Button fx:id="signOut_btn" layoutX="139.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="51.0" prefWidth="40.0" text="登出" />
+                        <Label fx:id="memberName_label" layoutX="43.0" layoutY="48.0" text="Administrator" />
+                        <Label fx:id="memberId_label" layoutX="43.0" layoutY="85.0" text="M123456" />
+                     </children>
+                  </Group>
+                  <Button fx:id="myOrder_btn" layoutX="29.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="190.0" text="我的订单" />
+                  <Button fx:id="modifyInfo_btn" layoutX="29.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="190.0" text="修改信息" />
+                  <Button fx:id="home_btn" layoutX="29.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="190.0" text="主页" />
+               </children>
+            </AnchorPane>
+            <BorderPane fx:id="missionPane" prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

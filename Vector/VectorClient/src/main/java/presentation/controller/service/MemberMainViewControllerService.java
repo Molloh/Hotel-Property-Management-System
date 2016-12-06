@@ -1,21 +1,15 @@
 package presentation.controller.service;
 
-import common.ResultMessage;
-import vo.MemberVo;
-
 /**
- * @ author lienming
- * @ version 2016-11-27
+ * @ author Molloh
+ * @ version 2016/11/6
  * @ description
  */
 public interface MemberMainViewControllerService {
-	
 
-    public int getCredit(String id) ;
+    public String getMemberName();
 
-    public ResultMessage chargeCredit(String id, int amount) ;
+    public String getHotel();
 
-    public MemberVo getInfo(String id) ;
 
-    public ResultMessage modifyInfo(MemberVo vo) ;
 }

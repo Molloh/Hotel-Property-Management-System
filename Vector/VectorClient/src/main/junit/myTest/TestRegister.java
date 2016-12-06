@@ -1,4 +1,4 @@
-package myTest;
+/*package myTest;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,4 +40,4 @@ public class TestRegister {
 		Assert.assertEquals(newPassword,inter.find("N00002").getPassword());
 	}
 
-}
+}*/

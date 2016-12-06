@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelRootView">
+   <children>
+      <SplitPane dividerPositions="0.11174785100286533" layoutX="162.0" layoutY="178.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane maxHeight="75.0" minHeight="75.0" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
+               <children>
+                  <Label fx:id="hotelName_label" layoutX="857.0" layoutY="43.0" text="酒店名" />
+                  <Button fx:id="signOut_btn" layoutX="905.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="登出" />
+                  <Label layoutX="54.0" layoutY="14.0" text="酒店管理系统">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" prefHeight="592.0" prefWidth="998.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="56.0" layoutY="113.0" spacing="30.0">
+                                 <children>
+                                    <Button fx:id="order_btn" layoutY="105.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="查询订单信息" />
+                                    <Button fx:id="promotion_btn" layoutY="134.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="制定促销策略" />
+                                    <Button fx:id="modifyInfo_btn" layoutY="163.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="修改酒店信息" />
+                                    <Button fx:id="roomUpdate_btn" layoutY="193.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="更新房间信息" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <BorderPane fx:id="missionPane" prefHeight="200.0" prefWidth="200.0" />
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

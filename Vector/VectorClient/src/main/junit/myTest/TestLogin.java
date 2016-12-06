@@ -1,4 +1,4 @@
-package myTest;
+/*package myTest;
 
 
 import common.AccountType;
@@ -24,7 +24,7 @@ public class TestLogin {
 		password = "123456";
 		
 		clientRunner = new ClientRunner();
-		/*注：必须先开Client再开Service插件*/
+		//注：必须先开Client再开Service插件
 		test = LoginViewControllerServiceImpl.getInstance();
 		
 	}
@@ -43,4 +43,4 @@ public class TestLogin {
 		Assert.assertEquals(ResultMessage.SUCCEED, test.logout(id) );
 	}
 	
-}
+}*/

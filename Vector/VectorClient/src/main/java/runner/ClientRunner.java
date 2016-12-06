@@ -3,6 +3,12 @@ package runner;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import presentation.controller.ViewFxmlPath;
 import rmi.RemoteHelper;
 
 /**
@@ -10,11 +16,16 @@ import rmi.RemoteHelper;
  * @ version 2016/11/20
  * @ description 带RMI版的利用这个类，对自己写的方法进行了简单测试，写在这个类的main方法里
  */
-public class ClientRunner {
+public class ClientRunner extends Application {
     private RemoteHelper remoteHelper;
 
-    public ClientRunner(){
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         linkToServer();
+        Parent root = FXMLLoader.load(getClass().getResource(ViewFxmlPath.SignIn_View_Path));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     private void linkToServer(){
@@ -28,7 +39,7 @@ public class ClientRunner {
     }
 
     public static void main(String[] args) throws RemoteException{
-        new ClientRunner();
+        launch(args);
     }
 
 }
