@@ -37,11 +37,11 @@ public class TestAccount {
 		Assert.assertEquals(AccountType.Fail,test.login("N00001", "123456")); 
 	}
 
-	@Test
+	/*@Test
 	public void testLogout() {
 		Assert.assertEquals(ResultMessage.SUCCEED,test.logout("N00001"));
 		Assert.assertEquals(ResultMessage.FAIL,test.logout("N00001"));
-	}
+	}*/
 
 	@Test
 	public void testRegister() {

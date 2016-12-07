@@ -42,7 +42,7 @@ public class MemberInfoView implements Initializable {
         controller = MemberInfoViewControllerImpl.getInstance();
         controller.setMemberId(SingletonId.getInstance().getActivateId());
 
-        //credit_label.setText(controller.getCredit());
+        credit_label.setText(controller.getCredit());
         //name_field.setText(controller.getMemberName());
         //date_field.setAccessibleText(controller.getBirthDay());
     }

@@ -20,8 +20,8 @@ import po.MemberPo;
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
 	
-	//File file = new File("src/main/resources/textData/member.txt");
-    File file = new File(getClass().getResource("/textData/member.txt").getPath());
+	File file = new File("src/main/resources/textData/member.txt");
+    //File file = new File(getClass().getResource("/textData/member.txt").getPath());
 	
     public TreeMap<String, MemberPo> getMemberData(){
         TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();

@@ -20,13 +20,13 @@ import po.HotelPo;
 import po.HotelTypeRoomPo;
 
 public class HotelDataTxtHelper implements HotelDataHelper{
-	//private String rootPath = "src/main/resources/textData/hotel/";
-	private String rootPath = "/textData/hotel/";
+	private String rootPath = "src/main/resources/textData/hotel/";
+	//private String rootPath = "/textData/hotel/";
 	@Override
 	public Map<String, HotelPo> getHotelData() {
 		//读取数据
-		//File file = new File(rootPath + "hotelList.txt");
-		File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
+		File file = new File(rootPath + "hotelList.txt");
+		//File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
 		Map<String,HotelPo> map = new HashMap<String, HotelPo>();
 		try {
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -55,8 +55,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 
 	@Override
 	public ResultMessage addHotelData(HotelPo po){
-		//File file = new File(rootPath + "hotelList.txt");
-		File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
+		File file = new File(rootPath + "hotelList.txt");
+		//File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
 		try{
 			//File rootFile = new File(rootPath + po.getId());
 			File rootFile = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
@@ -91,8 +91,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	@Override
 	public ResultMessage updateHotelListData(Map<String, HotelPo> map) {
 		//写入数据  更新hotelList列表
-		//File file = new File(rootPath + "hotelList.txt");
-		File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
+		File file = new File(rootPath + "hotelList.txt");
+		//File file = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -138,8 +138,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		updateHotelListData(updateMap);
 		
 		//删除该酒店房间、评价文件
-		//File hotelfile = new File(rootPath + hotelId);
-		File hotelfile = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
+		File hotelfile = new File(rootPath + hotelId);
+		//File hotelfile = new File(getClass().getResource(rootPath + "hotelList.txt").getPath());
 		hotelfile.mkdir();
 			
 		for(File files : hotelfile.listFiles()){
@@ -153,8 +153,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		
 	@Override
 	public List<String> getComments(String hotelId){
-		//File file = new File(rootPath + hotelId + "/comments.txt");
-		File file = new File(getClass().getResource(rootPath + hotelId + "/comments.txt").getPath());
+		File file = new File(rootPath + hotelId + "/comments.txt");
+		//File file = new File(getClass().getResource(rootPath + hotelId + "/comments.txt").getPath());
 		List<String> comment = new ArrayList<String>();
 		
 		try {
@@ -186,8 +186,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	public void updateComments(String hotelId,List<String> commentList){
 		
 		try {
-			//File rootFile = new File(rootPath + hotelId);
-			File rootFile = new File(getClass().getResource(rootPath + hotelId + "/comments.txt").getPath());
+			File rootFile = new File(rootPath + hotelId);
+			//File rootFile = new File(getClass().getResource(rootPath + hotelId + "/comments.txt").getPath());
 			rootFile.mkdir();
 		
 			File file = new File(rootFile.getAbsolutePath(),"comments.txt");	
@@ -212,8 +212,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	
 	@Override
 	public void initRoom(String hotelId, RoomType type, int number, int price){
-		//File rootFile = new File(rootPath + hotelId);
-		File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
+		File rootFile = new File(rootPath + hotelId);
+		//File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
 		rootFile.mkdir();
 	
 		String type_str = getRoomTypeName(type);
@@ -261,8 +261,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	private List<HotelTypeRoomPo> getTypeRoom(String hotelId){
 		List<HotelTypeRoomPo> list = new ArrayList<HotelTypeRoomPo>();
 		
-		//File rootFile = new File(rootPath + hotelId);
-		File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
+		File rootFile = new File(rootPath + hotelId);
+		//File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
 
 		rootFile.mkdir();
 		
@@ -297,8 +297,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	@Override
 	public List<String> getBookDateList(String hotelId, RoomType type){
 		String type_str = getRoomTypeName(type);
-		//File rootFile = new File(rootPath + hotelId);
-		File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
+		File rootFile = new File(rootPath + hotelId);
+		//File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
 
 		rootFile.mkdir();
 		
@@ -325,8 +325,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	@Override
 	public void upBookDateList(String hotelId, RoomType type, List<String> list){
 		String type_str = getRoomTypeName(type);
-		//File rootFile = new File(rootPath + hotelId);
-		File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
+		File rootFile = new File(rootPath + hotelId);
+		//File rootFile = new File(getClass().getResource(rootPath + hotelId).getPath());
 
 		rootFile.mkdir();
 		

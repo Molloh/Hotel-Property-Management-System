@@ -17,10 +17,7 @@ import po.AccountPo;
  * Updated by lienming on 2016-11-27.
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
-
-    File file = new File(getClass().getResource("/textData/account.txt").getPath());
-    //
-	//File file = new File("src/main/resources/textData/account.txt");
+	File file = new File("src/main/resources/textData/account.txt");
     public TreeMap<String, AccountPo> getAccountData() {
         TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
         try {
@@ -61,7 +58,6 @@ public class AccountDataTxtHelper implements AccountDataHelper {
         try {
             FileWriter fw = new FileWriter(this.file.getAbsoluteFile());
             BufferedWriter writer = new BufferedWriter(fw);
-
             //对TreeMap进行遍历
             Iterator iterator = TreeMap.entrySet().iterator();
             while(iterator.hasNext()){ 

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faa990ec-c1f2-406b-a89a-91a8ec201095" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/runner/Runner.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/AccountBlServiceImpl.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/AccountBlServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/HotelBlServiceImpl.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/HotelBlServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/HotelListServiceImpl$1.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/businesslogic/impl/HotelListServiceImpl$1.class" />
@@ -28,7 +26,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/presentation/view/manager/ManagerMainView.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/presentation/view/manager/ManagerMainView.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/presentation/view/marketer/MarketerMainView.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/presentation/view/marketer/MarketerMainView.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/rmi/RemoteHelper.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/rmi/RemoteHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/runner/ClientRunner.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/runner/ClientRunner.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/vo/AccountVo.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/vo/AccountVo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/vo/HotelVo.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/vo/HotelVo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/target/classes/vo/MemberVo.class" afterPath="$PROJECT_DIR$/VectorClient/target/classes/vo/MemberVo.class" />
@@ -53,17 +50,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/target/classes/rmi/RemoteHelper.class" afterPath="$PROJECT_DIR$/VectorServer/target/classes/rmi/RemoteHelper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/target/classes/runner/ServerRunner.class" afterPath="$PROJECT_DIR$/VectorServer/target/classes/runner/ServerRunner.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/.classpath" afterPath="$PROJECT_DIR$/VectorClient/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberInfoView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberInfoView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberInfoViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberInfoViewControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberRootViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberRootViewControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/MemberInfoViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/MemberInfoViewControllerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/MemberRootViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/MemberRootViewControllerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/junit/myTest/TestAccount.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/junit/myTest/TestAccount.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/.classpath" afterPath="$PROJECT_DIR$/VectorServer/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/.settings/org.eclipse.jdt.core.prefs" afterPath="$PROJECT_DIR$/VectorServer/.settings/org.eclipse.jdt.core.prefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java" afterPath="$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java" />
     </list>
     <ignored path="Vector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,11 +79,31 @@
     <splitter split-orientation="horizontal" split-proportion="0.60667086">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="SignViewControllerImpl.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SignViewControllerImpl.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+                <state relative-caret-position="306">
+                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="account.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/VectorServer/src/main/resources/textData/account.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="54">
+                  <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AccountDataTxtHelper.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="202">
+                  <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
                   <folding />
                 </state>
               </provider>
@@ -103,7 +112,7 @@
           <file leaf-file-name="MemberInfoViewControllerImpl.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberInfoViewControllerImpl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="16">
+                <state relative-caret-position="299">
                   <caret line="57" column="52" lean-forward="false" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -112,11 +121,21 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="TestAccount.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/VectorClient/src/main/junit/myTest/TestAccount.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="159">
+                  <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="MemberRootView.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="592">
-                  <caret line="72" column="25" lean-forward="true" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+                <state relative-caret-position="954">
+                  <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -125,51 +144,11 @@
           <file leaf-file-name="MemberInfoView.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="268">
+                <state relative-caret-position="594">
                   <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HotelDataHelper.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/service/HotelDataHelper.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18">
-                  <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HotelDataTxtHelper.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/HotelDataTxtHelper.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MemberVo.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/MemberVo.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MemberPo.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/po/MemberPo.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="414">
-                  <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -226,9 +205,7 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="216">
                   <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-                  <folding>
-                    <element signature="imports" expanded="false" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -287,7 +264,6 @@
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignInViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/MemberBlService.java" />
         <option value="$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/MemberDataTxtHelper.java" />
-        <option value="$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/SignViewControllerService.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberRootViewConntrollerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/MemberRootViewControllerService.java" />
@@ -301,6 +277,8 @@
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/junit/myTest/TestAccount.java" />
+        <option value="$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java" />
       </list>
     </option>
   </component>
@@ -341,7 +319,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -428,6 +405,164 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="VectorServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataService" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataHelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataService" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataHelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataService" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="VectorClient" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -469,6 +604,14 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="junit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myTest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -718,10 +861,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -736,6 +902,13 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Molloh\Desktop\HPMS\Hotel-Property-Management-System\Vector\VectorServer\src\main" />
+      <recent name="C:\Users\Molloh\Desktop\HPMS\Hotel-Property-Management-System\Vector\VectorServer" />
+      <recent name="C:\Users\Molloh\Desktop\Hotel-Property-Management-System\Vector\VectorClient\src\main" />
+      <recent name="C:\Users\Molloh\Desktop\软工大作业\Hotel-Property-Management-System\Vector\VectorClient\src\main\java\presentation\view\member\memberMain" />
+      <recent name="C:\Users\Molloh\Desktop\Vector\VectorServer\src" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -746,15 +919,8 @@
       <recent name="C:\Users\Molloh\Desktop\Vector\VectorServer\src\main\java\dataService\dataHelper\Impl" />
       <recent name="C:\Users\Molloh\Desktop\Vector\VectorServer\src\main\java\dataService\dataHelper" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Molloh\Desktop\Hotel-Property-Management-System\Vector\VectorClient\src\main" />
-      <recent name="C:\Users\Molloh\Desktop\软工大作业\Hotel-Property-Management-System\Vector\VectorClient\src\main\java\presentation\view\member\memberMain" />
-      <recent name="C:\Users\Molloh\Desktop\Vector\VectorServer\src" />
-      <recent name="C:\Users\Molloh\Desktop\Vector\VectorClient\src\test" />
-      <recent name="C:\Users\Molloh\Desktop\Vector\VectorClient\src" />
-    </key>
   </component>
-  <component name="RunManager" selected="Application.ServerRunner">
+  <component name="RunManager" selected="JUnit.TestAccount.testLogin">
     <configuration default="false" name="ServerRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -813,6 +979,58 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="VectorClient" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestAccount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="myTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="VectorClient" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="myTest" />
+      <option name="MAIN_CLASS_NAME" value="myTest.TestAccount" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestAccount.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="myTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="VectorClient" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="myTest" />
+      <option name="MAIN_CLASS_NAME" value="myTest.TestAccount" />
+      <option name="METHOD_NAME" value="testLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1212,16 +1430,20 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.ServerRunner" />
       <item index="1" class="java.lang.String" itemvalue="Application.ClientRunner" />
       <item index="2" class="java.lang.String" itemvalue="Application.Runner" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestAccount" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestAccount.testLogin" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.ClientRunner" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestAccount.testLogin" />
         <item index="1" class="java.lang.String" itemvalue="Application.ServerRunner" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Runner" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ClientRunner" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestAccount" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Runner" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1272,15 +1494,39 @@
       <workItem from="1481088214831" duration="264000" />
       <workItem from="1481088568924" duration="4130000" />
       <workItem from="1481092765972" duration="3348000" />
-      <workItem from="1481096164105" duration="3501000" />
+      <workItem from="1481096164105" duration="4782000" />
+      <workItem from="1481101076902" duration="1392000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="TestAccount - 2016.12.07 at 16h 44m 07s.xml">
+      <configuration name="TestAccount" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount - 2016.12.07 at 16h 46m 15s.xml">
+      <configuration name="TestAccount" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount - 2016.12.07 at 16h 48m 33s.xml">
+      <configuration name="TestAccount" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount_testLogin - 2016.12.07 at 17h 01m 09s.xml">
+      <configuration name="TestAccount.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount_testLogin - 2016.12.07 at 17h 03m 12s.xml">
+      <configuration name="TestAccount.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount_testLogin - 2016.12.07 at 17h 10m 10s.xml">
+      <configuration name="TestAccount.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccount_testLogin - 2016.12.07 at 17h 18m 10s.xml">
+      <configuration name="TestAccount.testLogin" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21283000" />
+    <option name="totallyTimeSpent" value="23956000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1293,7 +1539,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28730965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49238577" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1347,19 +1593,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/service/OrderDataHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/service/MemberDataHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1367,7 +1604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1375,7 +1611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1383,7 +1618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1391,7 +1625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,7 +1632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="14" column="2" lean-forward="false" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1422,9 +1654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1432,7 +1661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
           <caret line="128" column="13" lean-forward="false" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1490,7 +1718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1498,14 +1725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/runner/ClientRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="26" column="37" lean-forward="false" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1522,15 +1741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1538,7 +1748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1562,27 +1771,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorServer/src/main/resources/textData/account.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/runner/Runner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="17" column="94" lean-forward="false" selection-start-line="17" selection-start-column="94" selection-end-line="17" selection-end-column="94" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/runner/Runner.java" />
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/MemberBlServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -1597,7 +1790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1653,7 +1845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1665,16 +1856,6 @@
         <state relative-caret-position="36">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberInfoViewControllerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="57" column="52" lean-forward="false" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1690,7 +1871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1698,13 +1878,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/HotelDataTxtHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="252">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
@@ -1712,7 +1891,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="594">
           <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1722,8 +1901,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="72" column="25" lean-forward="true" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+        <state relative-caret-position="954">
+          <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/SignViewControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorServer/src/main/resources/textData/account.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/runner/ClientRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1739,18 +1942,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/SignViewControllerService.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        <state relative-caret-position="306">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/SignViewControllerImpl.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/MemberInfoViewControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        <state relative-caret-position="299">
+          <caret line="57" column="52" lean-forward="false" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorServer/src/main/java/dataService/dataHelper/impl/AccountDataTxtHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/junit/myTest/TestAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
