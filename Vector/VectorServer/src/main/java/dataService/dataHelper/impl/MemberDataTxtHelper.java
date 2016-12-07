@@ -27,8 +27,7 @@ public class MemberDataTxtHelper implements MemberDataHelper {
         TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();
        
         try {
-            InputStreamReader reader = new InputStreamReader(new FileInputStream(
-                    file), "UTF-8");
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
             BufferedReader br = new BufferedReader(reader);
             String str = br.readLine();
 

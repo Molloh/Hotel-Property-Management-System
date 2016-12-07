@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 import presentation.controller.SingletonId;
 import presentation.controller.ViewFxmlPath;
 import presentation.controller.impl.MemberMainViewControllerImpl;
+import presentation.controller.impl.MemberRootViewControllerImpl;
 import presentation.controller.service.MemberMainViewControllerService;
+import presentation.controller.service.MemberRootViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,10 +46,13 @@ public class MemberRootView implements Initializable {
 
     private String fxmlPath;
 
+    private MemberRootViewControllerService controller;
+
     @Override
     public void initialize(URL location, ResourceBundle resources){
         String memberId = SingletonId.getInstance().getActivateId();
-        MemberMainViewControllerService controller = new MemberMainViewControllerImpl(memberId);
+        controller = MemberRootViewControllerImpl.getInstance();
+        controller.setMemberId(memberId);
 
         memberName_label.setText(controller.getMemberName());
         memberId_label.setText(memberId);
@@ -65,7 +70,9 @@ public class MemberRootView implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            return;
+            controller.signOut();
+
+
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.MemberInfo_View_Path;
         }else if(event.getSource() == myOrder_btn) {
@@ -74,7 +81,8 @@ public class MemberRootView implements Initializable {
             fxmlPath = ViewFxmlPath.MemberMain_View_Path;
         }
 
-        setMissionPane(fxmlPath);
+        if(fxmlPath != null)
+            setMissionPane(fxmlPath);
     }
 
     //load mission pane

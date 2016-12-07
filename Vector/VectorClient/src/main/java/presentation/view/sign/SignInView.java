@@ -14,8 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.controller.SingletonId;
 import presentation.controller.ViewFxmlPath;
-import presentation.controller.impl.SignInViewControllerImpl;
-import presentation.controller.service.SignInViewControllerService;
+import presentation.controller.impl.SignViewControllerImpl;
+import presentation.controller.service.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,11 +45,11 @@ public class SignInView implements Initializable{
 
     private String userId;
     private String fxmlPath;
-    private SignInViewControllerService controller;
+    private SignViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new SignInViewControllerImpl();
+        controller = new SignViewControllerImpl();
     }
 
     @FXML
