@@ -1,6 +1,12 @@
 package presentation.controller.impl;
 
+import businessLogic.impl.MemberBlServiceImpl;
+import businessLogic.service.MemberBlService;
+import common.Sex;
+import presentation.controller.SingletonId;
 import presentation.controller.service.MemberInfoViewControllerService;
+import presentation.controller.service.MemberMainViewControllerService;
+import vo.MemberVo;
 
 /**
  * @author Molloh
@@ -8,9 +14,33 @@ import presentation.controller.service.MemberInfoViewControllerService;
  * @description
  */
 public class MemberInfoViewControllerImpl implements MemberInfoViewControllerService {
+    private static MemberInfoViewControllerService memberInfoViewController;
+
+    private MemberBlService member;
+    private MemberVo memberVo;
+
+    private String memberId;
+
+    private MemberInfoViewControllerImpl() {
+        member = MemberBlServiceImpl.getInstance();
+        memberVo = member.getInfo(memberId);
+    }
+
+    public static MemberInfoViewControllerService getInstance() {
+        if(memberInfoViewController == null)
+            memberInfoViewController = new MemberInfoViewControllerImpl();
+
+        return memberInfoViewController;
+    }
+
+    @Override
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public String getMemberName() {
-        return "Molloh";
+        return memberVo.getName();
     }
 
     @Override
@@ -20,18 +50,20 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
 
     @Override
     public String getAddress() {
-        return null;
+        return memberVo.getAddress();
     }
 
     @Override
-    public String getVIPLevel() {
-        return null;
+    public String getCredit() {
+        return String.valueOf(memberVo.getCredit());
+        //return "111";
     }
 
     @Override
-    public boolean getSex() {
-        return true;
+    public Sex getSex() {
+        return memberVo.getSex();
     }
+
 
     @Override
     public void setSex() {

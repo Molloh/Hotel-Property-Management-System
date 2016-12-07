@@ -17,6 +17,9 @@ public class SignViewControllerImpl implements SignViewControllerService {
 
     @Override
     public AccountType signIn(String memberId, String password) throws RemoteException {
+        //return AccountType.Member;
         return accountBlService.login(memberId, password);
     }
+
+
 }

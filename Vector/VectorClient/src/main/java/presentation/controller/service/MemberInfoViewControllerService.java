@@ -1,5 +1,7 @@
 package presentation.controller.service;
 
+import common.Sex;
+
 /**
  * @author Molloh
  * @version 2016/11/27
@@ -13,9 +15,11 @@ public interface MemberInfoViewControllerService {
 
     public String getAddress();
 
-    public String getVIPLevel();
+    public String getCredit();
 
-    public boolean getSex();
+    public Sex getSex();
+
+    public void setMemberId(String memberId);
 
     public void setSex();
 

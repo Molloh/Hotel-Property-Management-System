@@ -7,10 +7,10 @@ package presentation.controller.service;
  */
 public interface MemberRootViewControllerService {
 
+    public void setMemberId(String memberId);
+
     public void signOut();
 
     public String getMemberName();
-
-    public void setMemberId(String memberId);
 
 }

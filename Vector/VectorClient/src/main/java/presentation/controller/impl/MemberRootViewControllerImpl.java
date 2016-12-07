@@ -1,8 +1,11 @@
 package presentation.controller.impl;
 
 import businessLogic.impl.AccountBlServiceImpl;
+import businessLogic.impl.MemberBlServiceImpl;
 import businessLogic.service.AccountBlService;
+import businessLogic.service.MemberBlService;
 import presentation.controller.service.MemberRootViewControllerService;
+import vo.MemberVo;
 
 /**
  * @author Molloh
@@ -11,12 +14,14 @@ import presentation.controller.service.MemberRootViewControllerService;
  */
 public class MemberRootViewControllerImpl implements MemberRootViewControllerService {
     private static MemberRootViewControllerService memberRootViewController;
-    private AccountBlService accountBlService;
+    private AccountBlService account;
+    private MemberBlService member;
 
     private String memberId;
 
     private MemberRootViewControllerImpl() {
-        accountBlService = AccountBlServiceImpl.getInstance();
+        account = AccountBlServiceImpl.getInstance();
+        member = MemberBlServiceImpl.getInstance();
     }
 
     public static MemberRootViewControllerService getInstance() {
@@ -33,11 +38,12 @@ public class MemberRootViewControllerImpl implements MemberRootViewControllerSer
 
     @Override
     public void signOut() {
-        accountBlService.logout(memberId);
+        account.logout(memberId);
     }
 
     @Override
     public String getMemberName() {
-        return null;
+        MemberVo memberVo = member.getInfo(memberId);
+        return memberVo.getName();
     }
 }

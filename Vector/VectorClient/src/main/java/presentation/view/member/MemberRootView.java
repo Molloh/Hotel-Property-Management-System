@@ -69,10 +69,9 @@ public class MemberRootView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            controller.signOut();
             stage.show();
             controller.signOut();
-
-
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.MemberInfo_View_Path;
         }else if(event.getSource() == myOrder_btn) {
