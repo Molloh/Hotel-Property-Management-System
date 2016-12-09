@@ -21,7 +21,7 @@ public class OrderDataTxtHelper implements OrderDataHelper {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	public Map<String, OrderPo> getOrderData() {
-		File file = new File("src/main/resources/textData/orderData.txt");
+		File file = new File("src/main/resources/textData/order/orderData.txt");
 		Map<String, OrderPo> map = new HashMap<String, OrderPo>();
 		try {
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -70,7 +70,7 @@ public class OrderDataTxtHelper implements OrderDataHelper {
 
 	public void updateOrderData(Map<String, OrderPo> map) {
 		//写入数据
-		File file = new File("src/main/resources/textData/orderData.txt");
+		File file = new File("src/main/resources/textData/order/orderData.txt");
 		try {		
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);

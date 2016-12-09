@@ -1,6 +1,5 @@
 package dataService.dao.impl;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
