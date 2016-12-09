@@ -21,19 +21,21 @@ import vo.MemberVo;
 /**
  * Created by Administrator on 2016-11-20.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao{
+public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao{
 
-	 
+
 	private static final long serialVersionUID = 1L;
 
     private AccountDao accountDao;
     private MemberDao memberDao ;
     private HotelDao hotelDao;
-    
+    private OrderDao orderDao;
+
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
         memberDao = MemberDaoImpl.getInstance();
         hotelDao = HotelDaoImpl.getInstance();
+        orderDao = OrderDaoImpl.getInstance();
     }
 
 
@@ -71,7 +73,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     }
 
     /* MemberDao接口方法  */
-    
+
     public int getCredit(String id)throws RemoteException {
     	return memberDao.getCredit(id);
     }
@@ -93,7 +95,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage addHotelPO(HotelPo po) throws RemoteException{
    		return hotelDao.addHotelPO(po);
    	}
-   	
+
    	public ResultMessage updateHotelList(HotelPo po) throws RemoteException{
    		return hotelDao.updateHotelList(po);
    	}
@@ -105,7 +107,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public HotelPo findHotel(String hotelId) throws RemoteException{
    		return hotelDao.findHotel(hotelId);
    	}
-   	
+
    	public List<HotelPo> keyFind(String key) throws RemoteException{
    		return hotelDao.keyFind(key);
    	}
@@ -113,7 +115,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage updateComment(HotelPo po) throws RemoteException{
    		return hotelDao.updateComment(po);
    	}
-       
+
    	public ResultMessage initHotelTypeRoom(String hotelId, RoomType type, int number, int price) throws RemoteException {
    		return hotelDao.initHotelTypeRoom(hotelId, type, number, price);
    	}
@@ -121,5 +123,41 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException {
    		return hotelDao.updateBookDate(po, type);
    	}
-    
+
+   	   	/*OrderDao 接口方法*/
+
+	public ResultMessage insertOrder(OrderPo po) throws RemoteException {
+		return orderDao.insertOrder(po);
+	}
+
+	public OrderPo findOrder(String orderId) throws RemoteException {
+		return orderDao.findOrder(orderId);
+	}
+
+	public ResultMessage updateOrder(OrderPo po) throws RemoteException {
+		return orderDao.updateOrder(po);
+	}
+
+	public ResultMessage deleteOrder(String orderId) throws RemoteException {
+		return orderDao.deleteOrder(orderId);
+	}
+
+	public List<OrderPo> getAllByHotel(String hotelId) throws RemoteException {
+		return orderDao.getAllByHotel(hotelId);
+	}
+
+	public List<OrderPo> getAllByMember(String memberId) throws RemoteException {
+		return orderDao.getAllByMember(memberId);
+	}
+
+	//网站营销人员查看每日未执行订单
+	public List<OrderPo> getNotExecuted(Date date) throws RemoteException {
+		return orderDao.getNotExecuted(date);
+	}
+
+	//网站营销人员查看异常订单
+	public List<OrderPo> getAbnormal(Date date) throws RemoteException {
+		return orderDao.getAbnormal(date);
+	}
+
 }

@@ -41,7 +41,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public ResultMessage insert(OrderPo po) {
+	public ResultMessage insertOrder(OrderPo po) {
         if(!map.containsKey(po.getOrderId())) {
             map.put(po.getOrderId(), po); 
             orderDataHelper.updateOrderData(map);
@@ -52,13 +52,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public OrderPo find(String orderId) {
+	public OrderPo findOrder(String orderId) {
 		OrderPo orderPo = map.get(orderId);
 		return orderPo;
 	}
 
 	@Override
-	public ResultMessage update(OrderPo po) {
+	public ResultMessage updateOrder(OrderPo po) {
 		String orderId = po.getOrderId();
 		if(map.containsKey(orderId)) {
 			map.put(orderId,po);
@@ -69,7 +69,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public ResultMessage delete(String orderId) {
+	public ResultMessage deleteOrder(String orderId) {
         if(map.containsKey(orderId)) {
             map.remove(orderId);
             orderDataHelper.updateOrderData(map);

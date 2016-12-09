@@ -15,13 +15,13 @@ import po.OrderPo;
  */
 public interface OrderDao extends Remote {
 	
-	public ResultMessage insert (OrderPo po) throws RemoteException;
+	public ResultMessage insertOrder (OrderPo po) throws RemoteException;
 	
-	public OrderPo find(String orderId) throws RemoteException;
+	public OrderPo findOrder(String orderId) throws RemoteException;
 	
-	public ResultMessage update(OrderPo po) throws RemoteException;
+	public ResultMessage updateOrder(OrderPo po) throws RemoteException;
 	
-	public ResultMessage delete(String orderId) throws RemoteException;
+	public ResultMessage deleteOrder(String orderId) throws RemoteException;
 	
 	public List<OrderPo> getAllByHotel(String hotelId) throws RemoteException;
 	
