@@ -4,12 +4,11 @@ import java.rmi.Remote;
 
 import common.AccountType;
 import common.ResultMessage;
-import po.AccountPo;
 import vo.AccountVo;
 
 /**
  * @ author lienming
- * @ version 2016/11/27
+ * @ version 2016-11-27
  * @ description
  */
 public interface AccountDao extends Remote {
@@ -18,16 +17,16 @@ public interface AccountDao extends Remote {
 
     public ResultMessage logout(String id)  ;
 
-    public String register(String memberName,String password) ;
+    public String register(String name,String password) ;
 
-    public ResultMessage modify(String id,String newPassword) ;
+    public ResultMessage modifyPassword(String id,String newPassword) ;
 
-    public AccountVo find(String id);
+    public AccountVo findAccount(String id);
 
-    public ResultMessage insert(AccountPo po) ;
+	public String insertAccount(String name,String password,AccountType type) ;
 
-    public ResultMessage update(AccountPo po);
+    public ResultMessage updateAccount(AccountVo vo);
 
-    public ResultMessage delete(String id);
+    public ResultMessage deleteAccount(String id);
 
 }

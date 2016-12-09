@@ -19,7 +19,7 @@ import vo.AccountVo;
 import vo.MemberVo;
 
 /**
- * Created by Administrator on 2016-11-20.
+ * Updated by lienming on 2016-12-08.
  */
 public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao{
 
@@ -50,24 +50,26 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         return accountDao.register(memberName,password);
     }
 
-    public ResultMessage modify(String id, String newPassword) throws RemoteException{
-        return accountDao.modify(id,newPassword);
+    public ResultMessage modifyPassword(String id, String newPassword) 
+    		throws RemoteException{
+        return accountDao.modifyPassword(id,newPassword);
     }
 
-    public AccountVo find(String id) throws RemoteException{
-        return accountDao.find(id);
+    public AccountVo findAccount(String id) throws RemoteException{
+        return accountDao.findAccount(id);
     }
 
-    public ResultMessage insert(AccountPo po) throws RemoteException{
-        return accountDao.insert(po);
+    public String insertAccount(String name,String password,AccountType type)
+    		throws RemoteException{
+        return accountDao.insertAccount(name,password,type);
     }
 
-    public ResultMessage update(AccountPo po) throws RemoteException{
-        return accountDao.update(po);
+    public ResultMessage updateAccount(AccountVo vo) throws RemoteException{
+        return accountDao.updateAccount(vo);
     }
 
-    public ResultMessage delete(String id) throws RemoteException{
-        return accountDao.delete(id);
+    public ResultMessage deleteAccount(String id) throws RemoteException{
+        return accountDao.deleteAccount(id);
     }
 
     /* MemberDao接口方法  */

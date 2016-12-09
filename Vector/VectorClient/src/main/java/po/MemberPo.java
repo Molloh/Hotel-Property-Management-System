@@ -1,5 +1,7 @@
 package po;
 
+import java.util.Date;
+
 import common.Sex;
 
 /**
@@ -14,9 +16,11 @@ public class MemberPo {
     private  String phone;
     private  String address;
     private  Sex sex;
-
+    private  Date birthday ;
+    private  int vip ;
+    
     public MemberPo(String id,String name, String phone, String address,
-                      Sex sex,int credit)
+                      Sex sex,int credit,Date birthday,int vip)
     {
         this.id=id;
         this.name=name;
@@ -24,6 +28,8 @@ public class MemberPo {
         this.address=address;
         this.sex=sex;
         this.credit=credit;
+        this.birthday=birthday;
+        this.vip=vip;
     }
 
     public String getId(){ return this.id; }
@@ -44,5 +50,10 @@ public class MemberPo {
     public Sex getSex(){ return this.sex; }
     public void setSex(Sex sex){ this.sex = sex ; }
 
+    public Date getBirthday(){ return this.birthday ; }
+    public void setBirthday(Date birthday){ this.birthday=birthday ;}
+
+    public int getVip(){ return this.vip ; }
+    public void setVip(int vip){ this.vip=vip ; }
 
 }

@@ -87,7 +87,8 @@ public class MemberDaoImpl implements MemberDao {
             Map.Entry<String, MemberPo> entry = iterator.next();
             if ( entry.getKey().equals(vo.getId())) {
             	MemberPo po = new MemberPo(vo.getId(),vo.getName(),vo.getPhone(),
-            			vo.getAddress(), vo.getSex(), vo.getCredit());
+            			vo.getAddress(), vo.getSex(), vo.getCredit(),
+            			vo.getBirthday(),vo.getVip());
                 update(po);
                 return ResultMessage.SUCCEED;
             }

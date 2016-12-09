@@ -35,7 +35,7 @@ public class AccountVo  implements Serializable{
     public int getLogState(){ return this.logState; }
     public void setLogState(int set){ this.logState=set; }
 
-    public AccountType getAccountType(String id){
+    public AccountType getAccountType(){
         char symbol = id.charAt(0);
         switch (symbol){
             case 'A':return AccountType.Manager ;

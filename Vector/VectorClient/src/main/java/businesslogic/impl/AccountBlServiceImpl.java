@@ -4,7 +4,6 @@ import businessLogic.service.AccountBlService;
 import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.service.AccountDao;
-import po.AccountPo;
 import rmi.RemoteHelper;
 import vo.AccountVo;
 
@@ -29,9 +28,9 @@ public class AccountBlServiceImpl implements AccountBlService{
 
     public AccountType login(String id, String password){
         //先检查输入
-        ResultMessage memberNameValid = checkInput(id);
+        ResultMessage idValid = checkInput(id);
         ResultMessage passwordValid   = checkInput(password) ;
-        if(memberNameValid == ResultMessage.VALID
+        if(idValid == ResultMessage.VALID
                 && passwordValid == ResultMessage.VALID )
             return accountDao.login(id,password);
         else
@@ -42,22 +41,13 @@ public class AccountBlServiceImpl implements AccountBlService{
         return accountDao.logout(id);
     }
 
-    public String register(String memberName,String password) {
-        //先检查输入
-        ResultMessage memberNameValid = checkInput(memberName);
-        ResultMessage passwordValid   = checkInput(password) ;
-        if(memberNameValid == ResultMessage.VALID
-                && passwordValid == ResultMessage.VALID )
-        {
-        	 return accountDao.register(memberName,password);
-        }
-        else
-            return "FAIL";    //输入非法
+    public String register(String name,String password) {
+       return insertAccount(name,password,AccountType.Member);
     }
 
-    public ResultMessage modify(String id,String newPassword){
+    public ResultMessage modifyPassword(String id,String newPassword){
     	if(newPassword.length()>=4 && newPassword.length()<=12)
-    		return accountDao.modify(id,newPassword);
+    		return accountDao.modifyPassword(id,newPassword);
     	return ResultMessage.FAIL;
     }
 
@@ -86,20 +76,28 @@ public class AccountBlServiceImpl implements AccountBlService{
         }
     }
 
-    public AccountVo find(String id) {
-        return accountDao.find(id);
+    public AccountVo findAccount(String id) {
+        return accountDao.findAccount(id);
     }
 
-    public ResultMessage insert(AccountPo po) {
-        return accountDao.insert(po);
+    public String insertAccount(String name,String password,AccountType type) {
+    	 //先检查输入
+        ResultMessage nameValid = checkInput(name);
+        ResultMessage passwordValid   = checkInput(password) ;
+        if(nameValid == ResultMessage.VALID
+                && passwordValid == ResultMessage.VALID )
+        {
+        	 return accountDao.insertAccount(name,password,type);
+        }
+        return null;
     }
 
-    public ResultMessage update(AccountPo po) {
-        return accountDao.update(po);
+    public ResultMessage updateAccount(AccountVo vo) {
+        return accountDao.updateAccount(vo);
     }
 
-    public ResultMessage delete(String id) {
-        return accountDao.delete(id);
+    public ResultMessage deleteAccount(String id) {
+        return accountDao.deleteAccount(id);
     }
 
 }

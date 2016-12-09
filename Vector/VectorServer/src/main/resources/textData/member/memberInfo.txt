@@ -1,0 +1,5 @@
+N00001;JiangZeMin;null;null;FEMALE;0
+N00002;BigDog1;null;null;FEMALE;0
+N00003;BigDog2;null;null;FEMALE;0
+N00004;XiJinPing;null;null;null;100
+N00005;LiKeQiang;null;null;null;100

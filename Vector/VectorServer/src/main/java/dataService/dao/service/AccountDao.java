@@ -19,16 +19,17 @@ public interface AccountDao extends Remote {
 
     public ResultMessage logout(String id) throws RemoteException;
 
-    public String register(String memberName, String password) throws RemoteException;
+    public String register(String name,String password) throws RemoteException;
 
-    public ResultMessage modify(String id, String newPassword) throws RemoteException;
+    public ResultMessage modifyPassword(String id, String newPassword) throws RemoteException;
 
-    public AccountVo find(String id) throws RemoteException;
+    public AccountVo findAccount(String id) throws RemoteException;
 
-    public ResultMessage insert(AccountPo po) throws RemoteException;
+    public String insertAccount(String name,String password,AccountType type)
+    		throws RemoteException;
 
-    public ResultMessage update(AccountPo po) throws RemoteException;
+    public ResultMessage updateAccount(AccountVo vo) throws RemoteException;
 
-    public ResultMessage delete(String id) throws RemoteException;
+    public ResultMessage deleteAccount(String id) throws RemoteException;
 
 }

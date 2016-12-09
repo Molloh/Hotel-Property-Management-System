@@ -14,13 +14,16 @@ import po.MemberPo;
 import vo.AccountVo;
 
 /**
- * Created by Administrator on 2016-11-27.
+ * Updated by lienming on 2016-12-8.
  */
 public class AccountDaoImpl implements AccountDao {
 
     /* map<Id,AccountPO> */
-    private TreeMap<String,AccountPo> map;
-
+    private TreeMap<String,AccountPo> map_member;
+    private TreeMap<String,AccountPo> map_hotel;
+    private TreeMap<String,AccountPo> map_marketer;
+    private TreeMap<String,AccountPo> map_manager;
+    
     private AccountDataHelper accountDataHelper;
 
     private DataFactory dataFactory;
@@ -36,15 +39,20 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     private AccountDaoImpl(){
-        if(map == null){
+        if(dataFactory == null){
             dataFactory = new DataFactoryImpl();
             accountDataHelper = dataFactory.getAccountDataHelper();
-            map = accountDataHelper.getAccountData();
+            map_member  = accountDataHelper.getAccountData(AccountType.Member);
+            map_hotel   = accountDataHelper.getAccountData(AccountType.Hotel);
+            map_marketer= accountDataHelper.getAccountData(AccountType.Marketer);
+            map_manager = accountDataHelper.getAccountData(AccountType.Manager);
         }
     }
 
 
     public AccountType login(String id, String password) {
+    	AccountType type = getAccountType(id);
+    	TreeMap<String,AccountPo> map = getMap(type);
         Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, AccountPo> entry = iterator.next();
@@ -57,7 +65,9 @@ public class AccountDaoImpl implements AccountDao {
                         return AccountType.Fail;    //已登入，不能重复登入
 
                     po.setLogState(1);
-                    update(po);       //默认更新po信息成功
+                    map.put(po.getId(), po);
+                    updateMap(map,type);       //更新Map中的po信息
+                    accountDataHelper.updateAccountData(map, type);
                     return po.getAccountType(id);
                 }
                 else
@@ -69,6 +79,8 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     public ResultMessage logout(String id) {
+    	AccountType type = getAccountType(id);
+    	TreeMap<String,AccountPo> map = getMap(type);
         if( map.containsKey(id) )
         {
         AccountPo po = map.get(id); 
@@ -76,58 +88,39 @@ public class AccountDaoImpl implements AccountDao {
             return ResultMessage.FAIL;
 
         po.setLogState(0);
-        update(po);
+        map.put(po.getId(), po);
+        updateMap(map,type);       //更新Map中的po信息
+        accountDataHelper.updateAccountData(map, type);
         return ResultMessage.SUCCEED;
         }
         else return ResultMessage.FAIL;
     }
 
-    public String register(String memberName,String password) {
-        Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
-        String newId = "" ;
-        /*找到accountPo库最末尾的Id，以方便创建一个新的Id，最后写入
-                          过程中遍历之前的每一个memberName
-         */
-        int Id_num = 0 ;
-        while(iterator.hasNext()) {
-            Map.Entry<String, AccountPo> entry = iterator.next();
-            if(entry.getValue().getMemberName().equals(memberName))
-                return "FAIL";  //用户名已存在，不能重复注册
-            newId = entry.getKey();
-            int temp = Integer.parseInt(newId.substring(1));
-            if(temp>Id_num)
-            	Id_num=temp;
-        }
-       
-        
-        Id_num ++ ;  //默认不会超出五位数
-        newId = newId.charAt(0) + String.format("%05d",Id_num);
-        AccountPo newAccPo = new AccountPo(memberName,password,newId,0);
-        ResultMessage w=insert(newAccPo) ;
-        
-        MemberPo newMemPo = new MemberPo(newId,memberName,null,null,null,100);
-        MemberDaoImpl.getInstance().insert(newMemPo);
-        if(w==ResultMessage.SUCCEED)
-        	return newId;
-        else 
-        	return "??";
+    public String register(String name,String password) {
+        return insertAccount(name,password,AccountType.Member);
     }
 
-    public ResultMessage modify(String id,String newPassword) {
-    	 if( map.containsKey(id) )
-         {
-         AccountPo po = map.get(id); 
-         if( po.getPassword().equals(newPassword))
-             return ResultMessage.FAIL;
+    public ResultMessage modifyPassword(String id,String newPassword) {
+    	AccountType type = getAccountType(id);
+    	TreeMap<String,AccountPo> map = getMap(type);
+    	if( map.containsKey(id) )
+        {
+    		AccountPo po = map.get(id); 
+    		if( po.getPassword().equals(newPassword))
+    			return ResultMessage.FAIL;
 
-         po.setPassword(newPassword);
-         update(po);
-         return ResultMessage.SUCCEED;
+    		po.setPassword(newPassword);
+    		po.setLogState(0);
+            map.put(po.getId(), po);
+            updateMap(map,type);       //更新Map中的po信息
+            return ResultMessage.SUCCEED;
          }
          else return ResultMessage.FAIL;
     }
 
-    public AccountVo find(String id){
+    public AccountVo findAccount(String id){
+    	AccountType type = getAccountType(id);
+    	TreeMap<String,AccountPo> map = getMap(type);
     	if( map.containsKey(id) )
         {
     		AccountPo po = map.get(id); 
@@ -137,37 +130,62 @@ public class AccountDaoImpl implements AccountDao {
         else return null;
     }
 
-    public ResultMessage insert(AccountPo po) {
-        if(!map.containsKey(po.getId())) {
-            map.put(po.getId(), po); 
-            accountDataHelper.updateAccountData(map);
-            return ResultMessage.SUCCEED;
+    public String insertAccount(String name,String password,AccountType type) {
+    	TreeMap<String,AccountPo> map = getMap(type);
+    	Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
+    	String newId = null;
+        int Id_num = 0 ;
+        while(iterator.hasNext()) {
+            Map.Entry<String, AccountPo> entry = iterator.next();
+            if(entry.getValue().getMemberName().equals(name))
+                return "FAIL";  //用户名已存在，不能重复注册
+            newId = entry.getKey();
+            int temp = Integer.parseInt(newId.substring(1));
+            if(temp>Id_num)
+            	Id_num=temp;
         }
-        else
-            return ResultMessage.FAIL; //已存在
+        Id_num ++ ;  //默认不会超出五位数
+        newId = newId.charAt(0)+ String.format("%05d",Id_num);
+        
+        AccountPo newAccPo = new AccountPo(name,password,newId,0);
+        map.put(newId, newAccPo);
+        updateMap(map,type);
+        
+        accountDataHelper.updateAccountData(map, type);
+        
+        MemberPo newMemPo = new MemberPo(newId,name,null,null,null,100,null,0);
+        MemberDaoImpl.getInstance().insert(newMemPo);
+        
+        return newId;
     }
 
-    /**对AccountDaoImpl类持有的map对象进行数据更新，再更新txtData里的数据
-    *  完全可由 map.put(int Id,AccountPo po)代替
-    */
-    public ResultMessage update(AccountPo po){
-        String id = po.getId() ;
+    /**对AccountDaoImpl类持有的map对象进行数据更新，再更新txtData里的数据*/
+    public ResultMessage updateAccount(AccountVo vo){
+        String id = vo.getId() ;
+        AccountType type = vo.getAccountType();
+        TreeMap<String,AccountPo> map = getMap(type);
         if(map.containsKey(id))
         {
+        	AccountPo po = map.get(id) ;
+        	po.setAccountType(vo.getAccountType());
+        	po.setMemberName(vo.getMemberName());
+        	po.setLogState(vo.getLogState());
+        	po.setPassword(vo.getPassword());
             map.put(id, po);
-            accountDataHelper.updateAccountData(map);
+            accountDataHelper.updateAccountData(map,type);
             return ResultMessage.SUCCEED;
         }
         else
             return ResultMessage.FAIL;
     }
 
-
-    public ResultMessage delete(String id){
+    public ResultMessage deleteAccount(String id){
+    	AccountType type = getAccountType(id);
+    	TreeMap<String,AccountPo> map = getMap(type);
         if(map.containsKey(id))
         {
             map.remove(id);
-            accountDataHelper.updateAccountData(map);
+            accountDataHelper.updateAccountData(map,type);
             
             MemberDaoImpl.getInstance().delete(id);
             return ResultMessage.SUCCEED;
@@ -176,4 +194,41 @@ public class AccountDaoImpl implements AccountDao {
             return ResultMessage.FAIL;
     }
 
+    public TreeMap<String,AccountPo> getMap(AccountType type){
+    	TreeMap<String,AccountPo> map;
+    	switch(type){
+    	 case Member   : map = this.map_member;
+         case Marketer : map = this.map_marketer;
+         case Hotel    : map = this.map_hotel;
+         case Manager  : map = this.map_manager;
+         default:        map = this.map_member;
+    	}
+    	return map;
+    }
+    
+    public void updateMap(TreeMap<String,AccountPo> map,AccountType type){
+    	switch(type){
+    	case Member   : this.map_member   = map ;
+        case Marketer : this.map_marketer = map ;
+        case Hotel    : this.map_hotel    = map ;
+        case Manager  : this.map_manager  = map ;
+        default:        this.map_member   = map ;
+    	}
+    }
+    
+    public AccountType getAccountType(String id){
+    	char label = id.charAt(0);
+    	AccountType type ;
+    	switch (label){
+        case 'A': type =  AccountType.Manager ;
+        case 'M': type =  AccountType.Marketer;
+        case 'H': type =  AccountType.Hotel;
+        case 'N': type =  AccountType.Member;
+        case 'E': type =  AccountType.Member;
+        default : type =  AccountType.Member;
+    	}
+    	return type;
+    }
+    
+    
 }

@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,7 +22,7 @@ import po.MemberPo;
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
 	
-	File file = new File("src/main/resources/textData/member.txt");
+	File file = new File("src/main/resources/textData/member/memberInfo.txt");
     //File file = new File(getClass().getResource("/textData/member.txt").getPath());
 	
     public TreeMap<String, MemberPo> getMemberData(){
@@ -30,8 +32,9 @@ public class MemberDataTxtHelper implements MemberDataHelper {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
             BufferedReader br = new BufferedReader(reader);
             String str = br.readLine();
-
+            
             while (str != null) {
+            //	str = SecurityHelper.decode(str);
                 String[] data = str.split(";");
 
                 String Id = data[0];
@@ -43,8 +46,13 @@ public class MemberDataTxtHelper implements MemberDataHelper {
                 	 sex = Sex.MALE;
                 else sex = Sex.FEMALE;
                 int credit=Integer.parseInt(data[5]);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date birthday = sdf.parse(data[6]) ;
+                int vip = Integer.parseInt(data[7]) ;
+                
 
-                MemberPo memberPo=new MemberPo(Id,username,phone,address,sex,credit);
+                MemberPo memberPo=new MemberPo(Id,username,phone,address,sex,credit,
+                		birthday,vip);
 
                 map.put(Id, memberPo);
 
@@ -75,7 +83,11 @@ public class MemberDataTxtHelper implements MemberDataHelper {
                 Map.Entry entry = (Map.Entry)iterator.next();
                 MemberPo memberPo = (MemberPo)entry.getValue();
                 String str = memberPo.getId()+";"+memberPo.getName()+";"+memberPo.getPhone()+";"
-                        +memberPo.getAddress()+";"+memberPo.getSex()+";"+memberPo.getCredit();
+                        +memberPo.getAddress()+";"+memberPo.getSex()+";"+memberPo.getCredit()
+                        +memberPo.getBirthday()+";"+memberPo.getVip();
+                
+         //       str = SecurityHelper.encode(str);
+                
                 writer.write(str);
                 writer.write("\r\n");
             }

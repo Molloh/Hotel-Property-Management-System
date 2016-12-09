@@ -31,27 +31,29 @@ public class TestAccount {
 	}
 
 	@Test
-	public void testLogin() {
-		Assert.assertEquals(AccountType.Fail,test.login("N00001", "00123456"));
-		Assert.assertEquals(AccountType.Member,test.login("N00001", "123456"));
-		Assert.assertEquals(AccountType.Fail,test.login("N00001", "123456")); 
+	public void testRegister() {
+		Assert.assertEquals("FAIL", test.register("JiangZeMin", "123456"));
+		Assert.assertEquals("N00004", test.register("XiJinPing", "1234567"));
+		Assert.assertEquals("N00005", test.register("LiKeQiang", "12345678"));
 	}
 
-	/*@Test
+	@Test
+	public void testLogin() {
+		Assert.assertEquals(AccountType.Fail,test.login("N00001", "00123456"));
+		Assert.assertEquals(AccountType.Member,test.login("N00001", "00000000"));
+		Assert.assertEquals(AccountType.Fail,test.login("N00001", "00000000")); 
+	}
+
+	@Test
 	public void testLogout() {
 		Assert.assertEquals(ResultMessage.SUCCEED,test.logout("N00001"));
 		Assert.assertEquals(ResultMessage.FAIL,test.logout("N00001"));
-	}*/
-
-	@Test
-	public void testRegister() {
-		Assert.assertEquals("FAIL", test.register("LiKeQiang", "66666666"));
 	}
 
 	@Test
 	public void testModify() {
-		test.modify("N00002","99999999");
-		Assert.assertEquals("99999999",test.find("N00002").getPassword());
+		test.modifyPassword("N00002","99999999");
+		Assert.assertEquals("99999999",test.findAccount("N00002").getPassword());
 	}
 
 	@Test

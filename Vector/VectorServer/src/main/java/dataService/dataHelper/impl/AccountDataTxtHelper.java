@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import common.AccountType;
 import dataService.dataHelper.service.AccountDataHelper;
 import po.AccountPo;
 
@@ -17,17 +18,22 @@ import po.AccountPo;
  * Updated by lienming on 2016-11-27.
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
-	File file = new File("src/main/resources/textData/account.txt");
-    public TreeMap<String, AccountPo> getAccountData() {
+	File memberFile = new File("src/main/resources/textData/account/memberAccount.txt");
+	File hotelFile = new File("src/main/resources/textData/account/hotelAccount.txt");
+	File marketerFile = new File("src/main/resources/textData/account/marketerAccount.txt");
+	File managerFile = new File("src/main/resources/textData/account/managerAccount.txt");
+	
+    public TreeMap<String, AccountPo> getAccountData(AccountType type) {
         TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
+        File file = getFile(type) ; 
         try {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(
                     file), "UTF-8");
             BufferedReader br = new BufferedReader(reader);
             String str = br.readLine();
-
+            
             while (str != null) {
-
+           // 	str = SecurityHelper.decode(str);
                 String[] data = str.split(";");
 
                 String username=data[0];
@@ -53,10 +59,11 @@ public class AccountDataTxtHelper implements AccountDataHelper {
         return null;
     }
 
-    public void updateAccountData(TreeMap<String, AccountPo> TreeMap) {
+    public void updateAccountData(TreeMap<String, AccountPo> TreeMap,AccountType type) {
         //写入用户数据
+    	File file = getFile(type);
         try {
-            FileWriter fw = new FileWriter(this.file.getAbsoluteFile());
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter writer = new BufferedWriter(fw);
             //对TreeMap进行遍历
             Iterator iterator = TreeMap.entrySet().iterator();
@@ -65,6 +72,8 @@ public class AccountDataTxtHelper implements AccountDataHelper {
                 AccountPo accountPo = (AccountPo)entry.getValue();
                 String str = accountPo.getMemberName()+";"+accountPo.getPassword()+";"
                         +accountPo.getId()+";"+accountPo.getLogState();
+                
+           //     str = SecurityHelper.encode(str);
                 writer.write(str);
                 writer.write("\r\n");
             }
@@ -75,4 +84,15 @@ public class AccountDataTxtHelper implements AccountDataHelper {
         }
 
     }
+    
+    public File getFile(AccountType type){
+    	switch(type){
+        case Member: return this.memberFile;
+        case Hotel : return this.hotelFile;
+        case Marketer:return this.marketerFile;
+        case Manager:return this.managerFile;
+        default: return this.memberFile;
+        }
+    }
+    
 }

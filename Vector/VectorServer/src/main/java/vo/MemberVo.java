@@ -1,11 +1,13 @@
 package vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import common.Sex;
 import po.MemberPo;
 
 public class MemberVo implements Serializable{
+	
 	/**
 	 * 
 	 */
@@ -17,7 +19,9 @@ public class MemberVo implements Serializable{
 	private  String phone;
 	private  String address;
 	private  Sex sex;
-
+	private  Date birthday ;
+    private  int vip ;
+    
 	public MemberVo(MemberPo po){
 		this.id=po.getId();
 		this.credit=po.getCredit();
@@ -25,6 +29,8 @@ public class MemberVo implements Serializable{
 		this.phone=po.getPhone();
 		this.address=po.getAddress();
 		this.sex=po.getSex();
+		this.birthday=po.getBirthday();
+		this.vip=po.getVip();
 	}
 
 	public String getId(){ return this.id; }
@@ -45,6 +51,10 @@ public class MemberVo implements Serializable{
 	public Sex getSex(){ return this.sex; }
 	public void setSex(Sex sex){ this.sex = sex ; }
 
+    public Date getBirthday(){ return this.birthday ; }
+    public void setBirthday(Date birthday){ this.birthday=birthday ;}
 
+    public int getVip(){ return this.vip ; }
+    public void setVip(int vip){ this.vip=vip ; }
 
 }

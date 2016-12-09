@@ -3,7 +3,6 @@ package businessLogic.service;
 
 import common.AccountType;
 import common.ResultMessage;
-import po.AccountPo;
 import vo.AccountVo;
 
 /**
@@ -37,9 +36,9 @@ public interface AccountBlService {
 	 * @param password
 	 * @return 返回值为ID（成功）/"FAIL"（失败）
 	 */
-	public String register(String memberName, String password) ;
+	public String register(String name, String password) ;
 
-	public ResultMessage modify(String id, String newPassword) ;
+	public ResultMessage modifyPassword(String id, String newPassword) ;
 
 	/**
 	 * 长度[4,12] 只能由大小写字符和数字组成
@@ -48,17 +47,17 @@ public interface AccountBlService {
 	 */
 	public ResultMessage checkInput(String input) ;
 
-	public AccountVo find(String id);
+	public AccountVo findAccount(String id);
 
 
 
 	/* 2.interface to Manager Client  */
 
-	public ResultMessage insert(AccountPo po) ;
+	public String insertAccount(String name,String password,AccountType type) ;
 
-	public ResultMessage update(AccountPo po) ;
+	public ResultMessage updateAccount(AccountVo vo) ;
 
-	public ResultMessage delete(String id) ;
+	public ResultMessage deleteAccount(String id) ;
 
 	
 
