@@ -4,6 +4,7 @@ import dataService.dataHelper.service.AccountDataHelper;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
 import dataService.dataHelper.service.MemberDataHelper;
+import dataService.dataHelper.service.OrderDataHelper;
 
 /**
  * Created by Administrator on 2016-11-13.
@@ -22,6 +23,11 @@ public class DataFactoryImpl implements DataFactory {
 
     public HotelDataHelper getHotelDataHelper(){
     	HotelDataHelper hotelDao = new HotelDataTxtHelper();
-    	return hotelDao; 
+    	return hotelDao;
+    }
+
+    public OrderDataHelper getOrderDataHelper() {
+    	OrderDataHelper orderDao = new OrderDataTxtHelper();
+    	return orderDao;
     }
 }
