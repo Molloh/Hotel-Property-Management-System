@@ -2,14 +2,18 @@ package vo;
 
 import java.util.Date;
 
+import common.OrderCondition;
 import common.RoomType;
 import po.OrderPo;
 
 public class OrderVo {
 	private String orderId;
+	private OrderCondition condition;
+	private String memberId;
+	private String memberName;
 	private Date createTime;
-	private Date executeTime;
-	private Date finishTime; //退房时间
+	private Date checkInTime;
+	private Date checkOutTime; //退房时间
 	private String hotel;
 	private String hotelId;
 	private RoomType roomType;
@@ -22,9 +26,12 @@ public class OrderVo {
 	
 	public OrderVo(OrderPo po) {
 		this.orderId = po.getOrderId();
+		this.condition = po.getCondition();
+		this.memberId = po.getMemberId();
+		this.memberName = po.getMemberName();
 		this.createTime = po.getCreateTime();
-		this.executeTime = po.getExecuteTime();
-		this.finishTime = po.getFinishTime();
+		this.checkInTime = po.getCheckInTime();
+		this.checkOutTime = po.getCheckOutTime();
 		this.hotel = po.getHotel();
 		this.hotelId = po.getHotelId();
 		this.roomType = po.getRoomType();
@@ -39,14 +46,23 @@ public class OrderVo {
 	public String getOrderId() {
 		return this.orderId;
 	}
+	public OrderCondition getCondition() {
+		return this.condition;
+	}
+	public String getMemberId() {
+		return this.memberId;
+	}
+	public String getMemberName() {
+		return this.memberName;
+	}
 	public Date getCreateTime() {
 		return this.createTime;
 	}
-	public Date getExecuteTime() {
-		return this.executeTime;
+	public Date getCheckInTime() {
+		return this.checkInTime;
 	}
-	public Date getfinishTime() {
-		return this.finishTime;
+	public Date getCheckOutTime() {
+		return this.checkOutTime;
 	}
 	public String getHotel() {
 		return this.hotel;
@@ -76,14 +92,17 @@ public class OrderVo {
 		return this.discountedPrice;
 	}
 	
+	public void setCondition(OrderCondition condition) {
+		this.condition = condition;
+	}
 	public void setCreateTime(Date time) {
 		this.createTime = time;
 	}
-	public void setExecuteTime(Date time) {
-		this.executeTime = time;
+	public void setCheckInTime(Date time) {
+		this.checkInTime = time;
 	}
-	public void setFinishTime(Date time) {
-		this.finishTime = time;
+	public void setCheckOutTime(Date time) {
+		this.checkOutTime = time;
 	}
 	
 }

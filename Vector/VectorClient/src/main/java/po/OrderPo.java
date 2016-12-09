@@ -2,6 +2,7 @@ package po;
 
 import java.util.Date;
 
+import common.OrderCondition;
 import common.RoomType;
 
 /**
@@ -11,9 +12,12 @@ import common.RoomType;
  */
 public class OrderPo {
 	private String orderId;
+	private OrderCondition condition;
+	private String memberId;
+	private String memberName;
 	private Date createTime;
-	private Date executeTime;
-	private Date finishTime; // 退房时间
+	private Date checkInTime;
+	private Date checkOutTime; // 退房时间
 	private String hotel;
 	private String hotelId;
 	private RoomType roomType;
@@ -24,13 +28,16 @@ public class OrderPo {
 	private double discount;
 	private int discountedPrice;
 
-	public OrderPo(String orderId, Date createTime, Date executeTime, Date finishTime, String hotel, String hotelId,
+	public OrderPo(String orderId, OrderCondition condition, String memberId, String memberName, Date createTime, Date checkInTime, Date checkOutTime, String hotel, String hotelId,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist, int originalPrice, double discount,
 			int discountedPrice) {
 		this.orderId = orderId;
+		this.condition = condition;
+		this.memberId = memberId;
+		this.memberName = memberName;
 		this.createTime = createTime;
-		this.executeTime = executeTime;
-		this.finishTime = finishTime;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
 		this.hotel = hotel;
 		this.hotelId = hotelId;
 		this.roomType = roomType;
@@ -45,14 +52,23 @@ public class OrderPo {
 	public String getOrderId() {
 		return this.orderId;
 	}
+	public OrderCondition getCondition() {
+		return this.condition;
+	}
+	public String getMemberId() {
+		return this.memberId;
+	}
+	public String getMemberName() {
+		return this.memberName;
+	}
 	public Date getCreateTime() {
 		return this.createTime;
 	}
-	public Date getExecuteTime() {
-		return this.executeTime;
+	public Date getCheckInTime() {
+		return this.checkInTime;
 	}
-	public Date getFinishTime() {
-		return this.finishTime;
+	public Date getCheckOutTime() {
+		return this.checkOutTime;
 	}
 	public String getHotel() {
 		return this.hotel;
@@ -82,13 +98,16 @@ public class OrderPo {
 		return this.discountedPrice;
 	}
 	
+	public void setCondition(OrderCondition condition) {
+		this.condition = condition;
+	}
 	public void setCreateTime(Date time) {
 		this.createTime = time;
 	}
-	public void setExecuteTime(Date time) {
-		this.executeTime = time;
+	public void setCheckInTime(Date time) {
+		this.checkInTime = time;
 	}
-	public void setFinishTime(Date time) {
-		this.finishTime = time;
+	public void setCheckOutTime(Date time) {
+		this.checkOutTime = time;
 	}
 }

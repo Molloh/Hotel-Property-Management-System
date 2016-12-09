@@ -5,6 +5,7 @@ import java.rmi.Remote;
 import dataService.dao.service.AccountDao;
 import dataService.dao.service.HotelDao;
 import dataService.dao.service.MemberDao;
+import dataService.dao.service.OrderDao;
 
 /**
  * Created by Administrator on 2016-11-20.
@@ -38,5 +39,8 @@ public class RemoteHelper {
     public HotelDao getHotelDao() {
         return (HotelDao)remote;
     }
-
+    
+    public OrderDao getOrderDao() {
+    	return (OrderDao)remote;
+    }
 }

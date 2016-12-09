@@ -2,6 +2,7 @@ package dataService.dao.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import common.ResultMessage;
@@ -14,17 +15,22 @@ import po.OrderPo;
  */
 public interface OrderDao extends Remote {
 	
-	public ResultMessage insert (OrderPo po) throws RemoteException;
+	public ResultMessage insertOrder (OrderPo po);
 	
-	public OrderPo find(String orderId) throws RemoteException;
+	public OrderPo findOrder(String orderId);
 	
-	public ResultMessage update(OrderPo po) throws RemoteException;
+	public ResultMessage updateOrder(OrderPo po);
+	
+	public ResultMessage deleteOrder(String orderId);
+	
+	public List<OrderPo> getAllByHotel(String hotelId);
+	
+	public List<OrderPo> getAllByMember(String memberId);
 	
 	//网站营销人员查看每日未执行订单
-	public List<OrderPo> getSubmitted(String date) throws RemoteException;
+	public List<OrderPo> getNotExecuted(Date date);
 	
 	//网站营销人员查看异常订单
-	public List<OrderPo> getFailed() throws RemoteException;
-	
-	
+	public List<OrderPo> getAbnormal(Date date);
+
 }
