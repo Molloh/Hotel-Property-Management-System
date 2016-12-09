@@ -32,16 +32,16 @@ public class TestAccount {
 
 	@Test
 	public void testRegister() {
-		Assert.assertEquals("FAIL", test.register("JiangZeMin", "123456"));
-		Assert.assertEquals("N00004", test.register("XiJinPing", "1234567"));
-		Assert.assertEquals("N00005", test.register("LiKeQiang", "12345678"));
+		Assert.assertEquals("E00002", test.register("JingDong", "123456",false));
+		Assert.assertEquals("E00003", test.register("SuNing", "1234567",false));
+		Assert.assertEquals("E00004", test.register("TaoBao", "12345678",false));
 	}
 
 	@Test
 	public void testLogin() {
 		Assert.assertEquals(AccountType.Fail,test.login("N00001", "00123456"));
-		Assert.assertEquals(AccountType.Member,test.login("N00001", "00000000"));
-		Assert.assertEquals(AccountType.Fail,test.login("N00001", "00000000")); 
+		Assert.assertEquals(AccountType.Member,test.login("N00001", "1234567"));
+		Assert.assertEquals(AccountType.Fail,test.login("N00001", "1234567")); 
 	}
 
 	@Test

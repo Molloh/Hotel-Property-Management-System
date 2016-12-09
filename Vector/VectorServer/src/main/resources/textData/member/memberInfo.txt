@@ -1,5 +1,6 @@
-N00001;JiangZeMin;null;null;FEMALE;0
-N00002;BigDog1;null;null;FEMALE;0
-N00003;BigDog2;null;null;FEMALE;0
-N00004;XiJinPing;null;null;null;100
-N00005;LiKeQiang;null;null;null;100
+N00001;MaoZeDong;null;null;FEMALE;5;1997-01-01;0
+N00002;BigDog1;99900008888;Beijing;FEMALE;100;1998-01-01;0
+N00003;BigDog2;99900007777;null;FEMALE;0;1999-01-01;0
+N00004;JiangZeMin;null;null;FEMALE;100;2010-01-01;0
+N00005;XiJinPing;null;null;FEMALE;100;2010-01-01;0
+N00006;LiKeQiang;null;null;FEMALE;100;2010-01-01;0

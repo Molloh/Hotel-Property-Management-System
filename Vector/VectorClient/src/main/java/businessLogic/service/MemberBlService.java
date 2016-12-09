@@ -6,12 +6,9 @@ import common.ResultMessage;
 import vo.MemberVo;
 
 /**
- * 会员的属性有：
- * 信用值、VIP等级
- * 会员基本信息 - 用户名、联系方式、生日
- * 权限（会员）
+ * 账号信息的属性有： 用户名、ID、地址、联系方式、性别、信用值、生日、VIP等级
  * @author lienming
- * @version 2016-11-17
+ * @version 2016-12-09
  */
 
 public interface MemberBlService {
@@ -28,7 +25,7 @@ public interface MemberBlService {
 	/**
 	 * 为客户充值信用
 	 * @param id :int, amount :int充值的信用数量 可为负数
-	 * @return ResultMessage
+	 * @return ResultMessage.SUCCEED/FAIL
 	 * @author lienming
 	 * @version 2016-11-27
 	 */
@@ -37,7 +34,7 @@ public interface MemberBlService {
 	/**
 	 * 显示用户的信息
 	 * @param id
-	 * @return MemberVo
+	 * @return MemberVo/null
 	 * @author lienming
 	 * @version 2016-11-27
 	 */
@@ -46,7 +43,7 @@ public interface MemberBlService {
 	/**
 	 * 检查输入信息的合法性
 	 * @param info:String
-	 * @return ResultMessage
+	 * @return ResultMessage.VALID/INVALID
 	 * @author lienming
 	 * @version 2016-11-27
 	 */
@@ -55,7 +52,7 @@ public interface MemberBlService {
 	/**
 	 * 修改用户信息
 	 * @param vo 
-	 * @return ResultMessage
+	 * @return ResultMessage.SUCCEED/FAIL
 	 * @author lienming
 	 * @version 2016-11-27
 	 */

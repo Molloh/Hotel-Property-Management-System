@@ -22,12 +22,17 @@ import po.MemberPo;
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
 	
-	File file = new File("src/main/resources/textData/member/memberInfo.txt");
+	File file_member	 = new File("src/main/resources/textData/member/memberInfo.txt");
+	File file_enterprise = new File("src/main/resources/textData/member/enterpriseInfo.txt");
     //File file = new File(getClass().getResource("/textData/member.txt").getPath());
 	
-    public TreeMap<String, MemberPo> getMemberData(){
+    public TreeMap<String, MemberPo> getMemberData(boolean isMember){
         TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();
-       
+        File file;
+        if(isMember)	
+        	file = file_member;
+        else 
+        	file = file_enterprise;
         try {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
             BufferedReader br = new BufferedReader(reader);
@@ -70,9 +75,14 @@ public class MemberDataTxtHelper implements MemberDataHelper {
         return map;
     }
 
-    public void updateMemberData(TreeMap<String, MemberPo> map){
+    public void updateMemberData(TreeMap<String, MemberPo> map,boolean isMember){
     	//写入用户数据
-        
+    	 File file;
+         if(isMember)	
+         	file = file_member;
+         else 
+         	file = file_enterprise;
+    	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter writer = new BufferedWriter(fw);
@@ -83,8 +93,8 @@ public class MemberDataTxtHelper implements MemberDataHelper {
                 Map.Entry entry = (Map.Entry)iterator.next();
                 MemberPo memberPo = (MemberPo)entry.getValue();
                 String str = memberPo.getId()+";"+memberPo.getName()+";"+memberPo.getPhone()+";"
-                        +memberPo.getAddress()+";"+memberPo.getSex()+";"+memberPo.getCredit()
-                        +memberPo.getBirthday()+";"+memberPo.getVip();
+                        +memberPo.getAddress()+";"+memberPo.getSex()+";"+memberPo.getCredit()+";"
+                        +sdf.format(memberPo.getBirthday())+";"+memberPo.getVip();
                 
          //       str = SecurityHelper.encode(str);
                 

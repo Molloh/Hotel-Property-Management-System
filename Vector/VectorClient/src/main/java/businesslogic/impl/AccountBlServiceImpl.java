@@ -41,8 +41,13 @@ public class AccountBlServiceImpl implements AccountBlService{
         return accountDao.logout(id);
     }
 
-    public String register(String name,String password) {
-       return insertAccount(name,password,AccountType.Member);
+    public String register(String name,String password,boolean isMember) {
+    	AccountType type;
+    	if(isMember) 
+    		type = AccountType.Member;
+    	else type = AccountType.Enterprise;
+    	
+    	return insertAccount(name,password,type);
     }
 
     public ResultMessage modifyPassword(String id,String newPassword){
@@ -52,10 +57,9 @@ public class AccountBlServiceImpl implements AccountBlService{
     }
 
     /**
-     * 长度限制 [4,12] 
-     * 字符限制 大小写字母、数字  -> ASCII: 48<=char<=57 || 65<=char<=90  || 97<=char<=122
-	 * 是否重复    
-	 * 是否敏感大小写   (未完成)
+     * 长度限制为[4,12] ；
+     * 字符限制为：大小写字母、数字 ；
+	 * 是否敏感大小写   (未完成)；
 	 * 注意：返回ResultMessage.VALID/INVALID
      */
     public ResultMessage checkInput(String input){
@@ -100,4 +104,15 @@ public class AccountBlServiceImpl implements AccountBlService{
         return accountDao.deleteAccount(id);
     }
 
+    public AccountType getAccountTypeById(String id){
+    	char label = id.charAt(0);
+    	switch(label){
+    	case 'N': 	
+    	case 'E':   return AccountType.Member;
+    	case 'A':   return AccountType.Manager;
+    	case 'M':   return AccountType.Marketer;
+    	case 'H':   return AccountType.Hotel;
+    	default:    return AccountType.Fail;
+    	}
+    }
 }

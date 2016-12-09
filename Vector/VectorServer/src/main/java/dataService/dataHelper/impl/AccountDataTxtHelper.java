@@ -18,10 +18,11 @@ import po.AccountPo;
  * Updated by lienming on 2016-11-27.
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
-	File memberFile = new File("src/main/resources/textData/account/memberAccount.txt");
-	File hotelFile = new File("src/main/resources/textData/account/hotelAccount.txt");
-	File marketerFile = new File("src/main/resources/textData/account/marketerAccount.txt");
-	File managerFile = new File("src/main/resources/textData/account/managerAccount.txt");
+	File memberFile    = new File("src/main/resources/textData/account/memberAccount.txt");
+	File enterpriseFile= new File("src/main/resources/textData/account/enterpriseAccount.txt");
+	File hotelFile     = new File("src/main/resources/textData/account/hotelAccount.txt");
+	File marketerFile  = new File("src/main/resources/textData/account/marketerAccount.txt");
+	File managerFile   = new File("src/main/resources/textData/account/managerAccount.txt");
 	
     public TreeMap<String, AccountPo> getAccountData(AccountType type) {
         TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
@@ -87,11 +88,12 @@ public class AccountDataTxtHelper implements AccountDataHelper {
     
     public File getFile(AccountType type){
     	switch(type){
-        case Member: return this.memberFile;
-        case Hotel : return this.hotelFile;
-        case Marketer:return this.marketerFile;
-        case Manager:return this.managerFile;
-        default: return this.memberFile;
+        case Member		: return this.memberFile;   
+        case Enterprise : return this.enterpriseFile;
+        case Hotel 		: return this.hotelFile;
+        case Marketer	: return this.marketerFile;
+        case Manager	: return this.managerFile;
+        default			: return null;
         }
     }
     

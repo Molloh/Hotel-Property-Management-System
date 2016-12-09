@@ -1,5 +1,7 @@
 package po;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import common.Sex;
@@ -18,6 +20,18 @@ public class MemberPo {
     private  Sex sex;
     private  Date birthday ;
     private  int vip ;
+    
+    public MemberPo(String id,String name) throws ParseException{
+    	 this.id=id;
+         this.name=name;
+         this.phone="00011112222";
+         this.address="Nanjing";
+         this.sex=Sex.MALE;
+         this.credit=100;
+         this.birthday=new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
+         this.vip=0;
+    }
+    
     public MemberPo(String id,String name, String phone, String address,
                       Sex sex,int credit,Date birthday,int vip)
     {

@@ -7,6 +7,7 @@ import common.AccountType;
  * @ version 2016/11/27
  * @ description
  */
+
 public class AccountPo {
     private String memberName;
     private String password;

@@ -19,8 +19,6 @@ public interface AccountDao extends Remote {
 
     public ResultMessage logout(String id) throws RemoteException;
 
-    public String register(String name,String password) throws RemoteException;
-
     public ResultMessage modifyPassword(String id, String newPassword) throws RemoteException;
 
     public AccountVo findAccount(String id) throws RemoteException;

@@ -1,5 +1,7 @@
 package myTest;
 
+import java.text.SimpleDateFormat;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,21 +39,23 @@ public class TestMember {
 
 	@Test
 	public void testGetInfo() {
-		MemberVo actual_vo = test.getInfo("N00001") ;
-		Assert.assertEquals("JiangZeMin", actual_vo.getName());
-		Assert.assertEquals("99900009999",actual_vo.getPhone());
-		Assert.assertEquals("BeiJing",actual_vo.getAddress());
-		Assert.assertEquals(Sex.MALE,actual_vo.getSex());
+		MemberVo actual_vo = test.getInfo("N00002") ;
+		Assert.assertEquals("BigDog1", actual_vo.getName());
+		Assert.assertEquals("99900008888",actual_vo.getPhone());
+		Assert.assertEquals("Beijing",actual_vo.getAddress());
+		Assert.assertEquals(Sex.FEMALE,actual_vo.getSex());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Assert.assertEquals("1998-01-01", sdf.format(actual_vo.getBirthday()));
 	}
 
 	@Test
 	public void testModifyInfo() {
-		String set = "99900008888";
-		MemberVo actual_vo = test.getInfo("N00002") ;
-		actual_vo.setPhone("99900008888");
+		String set = "99900007777";
+		MemberVo actual_vo = test.getInfo("N00003") ;
+		actual_vo.setPhone(set);
 		test.modifyInfo(actual_vo);
-		actual_vo = test.getInfo("N00002");
-		Assert.assertEquals("99900008888", actual_vo.getPhone());
+		actual_vo = test.getInfo("N00003");
+		Assert.assertEquals("99900007777", actual_vo.getPhone());
 	}
 
 

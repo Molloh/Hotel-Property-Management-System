@@ -52,10 +52,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         return accountDao.logout(id);
     }
 
-    public String register(String memberName, String password) throws RemoteException{
-        return accountDao.register(memberName,password);
-    }
-
     public ResultMessage modifyPassword(String id, String newPassword) 
     		throws RemoteException{
         return accountDao.modifyPassword(id,newPassword);

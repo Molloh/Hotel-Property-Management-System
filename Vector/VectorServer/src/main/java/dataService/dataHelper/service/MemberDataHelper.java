@@ -6,7 +6,7 @@ import po.MemberPo;
 
 public interface MemberDataHelper {
 
-    public TreeMap<String, MemberPo> getMemberData();
+    public TreeMap<String, MemberPo> getMemberData(boolean isMember);
 
-    public void updateMemberData(TreeMap<String, MemberPo> map);
+    public void updateMemberData(TreeMap<String, MemberPo> map,boolean isMember);
 }

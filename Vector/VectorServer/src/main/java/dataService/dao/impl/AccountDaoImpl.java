@@ -1,4 +1,5 @@
 package dataService.dao.impl;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -12,6 +13,7 @@ import dataService.dataHelper.service.DataFactory;
 import po.AccountPo;
 import po.MemberPo;
 import vo.AccountVo;
+import vo.MemberVo;
 
 /**
  * Updated by lienming on 2016-12-8.
@@ -20,6 +22,7 @@ public class AccountDaoImpl implements AccountDao {
 
     /* map<Id,AccountPO> */
     private TreeMap<String,AccountPo> map_member;
+    private TreeMap<String,AccountPo> map_enterprise;
     private TreeMap<String,AccountPo> map_hotel;
     private TreeMap<String,AccountPo> map_marketer;
     private TreeMap<String,AccountPo> map_manager;
@@ -42,10 +45,11 @@ public class AccountDaoImpl implements AccountDao {
         if(dataFactory == null){
             dataFactory = new DataFactoryImpl();
             accountDataHelper = dataFactory.getAccountDataHelper();
-            map_member  = accountDataHelper.getAccountData(AccountType.Member);
-            map_hotel   = accountDataHelper.getAccountData(AccountType.Hotel);
-            map_marketer= accountDataHelper.getAccountData(AccountType.Marketer);
-            map_manager = accountDataHelper.getAccountData(AccountType.Manager);
+            map_member 		 = accountDataHelper.getAccountData(AccountType.Member);
+            map_enterprise   = accountDataHelper.getAccountData(AccountType.Enterprise);
+            map_hotel  		 = accountDataHelper.getAccountData(AccountType.Hotel);
+            map_marketer     = accountDataHelper.getAccountData(AccountType.Marketer);
+            map_manager 	 = accountDataHelper.getAccountData(AccountType.Manager);
         }
     }
 
@@ -94,10 +98,6 @@ public class AccountDaoImpl implements AccountDao {
         return ResultMessage.SUCCEED;
         }
         else return ResultMessage.FAIL;
-    }
-
-    public String register(String name,String password) {
-        return insertAccount(name,password,AccountType.Member);
     }
 
     public ResultMessage modifyPassword(String id,String newPassword) {
@@ -153,9 +153,19 @@ public class AccountDaoImpl implements AccountDao {
         
         accountDataHelper.updateAccountData(map, type);
         
-        MemberPo newMemPo = new MemberPo(newId,name,null,null,null,100,null,0);
-        MemberDaoImpl.getInstance().insert(newMemPo);
-        
+        MemberPo newMemPo = null;
+		try {
+			newMemPo = new MemberPo(newId,name);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MemberVo newMemVo = new MemberVo(newMemPo);
+		if(type==AccountType.Member)
+			MemberDaoImpl.getInstance().insertInfo(newMemVo);
+		else if(type==AccountType.Enterprise)
+			MemberDaoImpl.getInstance().insertInfo(newMemVo);
+		
         return newId;
     }
 
@@ -187,7 +197,7 @@ public class AccountDaoImpl implements AccountDao {
             map.remove(id);
             accountDataHelper.updateAccountData(map,type);
             
-            MemberDaoImpl.getInstance().delete(id);
+            MemberDaoImpl.getInstance().deleteInfo(id);
             return ResultMessage.SUCCEED;
         }
         else
@@ -197,22 +207,24 @@ public class AccountDaoImpl implements AccountDao {
     public TreeMap<String,AccountPo> getMap(AccountType type){
     	TreeMap<String,AccountPo> map;
     	switch(type){
-    	 case Member   : map = this.map_member;
-         case Marketer : map = this.map_marketer;
-         case Hotel    : map = this.map_hotel;
-         case Manager  : map = this.map_manager;
-         default:        map = this.map_member;
+    	 case Member  	    : map = this.map_member; 		break;
+    	 case Enterprise	: map = this.map_enterprise;	break;
+         case Marketer 		: map = this.map_marketer;		break;
+         case Hotel   	    : map = this.map_hotel;			break;
+         case Manager       : map = this.map_manager;		break;
+         default            : map = null ;
     	}
     	return map;
     }
     
     public void updateMap(TreeMap<String,AccountPo> map,AccountType type){
     	switch(type){
-    	case Member   : this.map_member   = map ;
-        case Marketer : this.map_marketer = map ;
-        case Hotel    : this.map_hotel    = map ;
-        case Manager  : this.map_manager  = map ;
-        default:        this.map_member   = map ;
+    	case Member    : this.map_member    = map ;		break;
+    	case Enterprise: this.map_enterprise= map ;		break;
+        case Marketer  : this.map_marketer  = map ;		break;
+        case Hotel     : this.map_hotel     = map ;		break;
+        case Manager   : this.map_manager   = map ;		break;
+        default:         this.map_member    = null ;
     	}
     }
     
@@ -220,12 +232,12 @@ public class AccountDaoImpl implements AccountDao {
     	char label = id.charAt(0);
     	AccountType type ;
     	switch (label){
-        case 'A': type =  AccountType.Manager ;
-        case 'M': type =  AccountType.Marketer;
-        case 'H': type =  AccountType.Hotel;
-        case 'N': type =  AccountType.Member;
-        case 'E': type =  AccountType.Member;
-        default : type =  AccountType.Member;
+        case 'A': type =  AccountType.Manager ; 	break;
+        case 'M': type =  AccountType.Marketer;		break;
+        case 'H': type =  AccountType.Hotel;		break;
+        case 'N': type =  AccountType.Member;		break;
+        case 'E': type =  AccountType.Enterprise;	break;
+        default : type =  null;
     	}
     	return type;
     }
