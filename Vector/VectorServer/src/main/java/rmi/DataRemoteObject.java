@@ -10,22 +10,28 @@ import common.ResultMessage;
 import common.RoomType;
 import dataService.dao.impl.AccountDaoImpl;
 import dataService.dao.impl.HotelDaoImpl;
+import dataService.dao.impl.HotelPromotionDaoImpl;
 import dataService.dao.impl.MemberDaoImpl;
 import dataService.dao.impl.OrderDaoImpl;
 import dataService.dao.service.AccountDao;
 import dataService.dao.service.HotelDao;
+import dataService.dao.service.HotelPromotionDao;
 import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
 import po.AccountPo;
+import po.ActivityPromotionPo;
+import po.BirthdayProPo;
+import po.CompanyProPo;
 import po.HotelPo;
 import po.OrderPo;
+import po.RoomPromotionPo;
 import vo.AccountVo;
 import vo.MemberVo;
 
 /**
  * Updated by lienming on 2016-12-08.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao{
+public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao{
 
 
 	private static final long serialVersionUID = 1L;
@@ -34,12 +40,14 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     private MemberDao memberDao ;
     private HotelDao hotelDao;
     private OrderDao orderDao;
+    private HotelPromotionDao hotelPromotionDao;
 
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
         memberDao = MemberDaoImpl.getInstance();
         hotelDao = HotelDaoImpl.getInstance();
         orderDao = OrderDaoImpl.getInstance();
+        hotelPromotionDao = HotelPromotionDaoImpl.getInstance();
     }
 
 
@@ -126,6 +134,44 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    		return hotelDao.updateBookDate(po, type);
    	}
 
+   	/*HotelPromotionDao 接口方法*/
+	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
+		return hotelPromotionDao.upActPromotion(hotelId, po);
+	}
+
+	public ResultMessage delActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
+		return hotelPromotionDao.delActPromotion(hotelId, po);
+	}
+	
+	public List<String> getActProList(String hotelId) throws RemoteException{
+		return hotelPromotionDao.getActProList(hotelId);
+	}
+
+	public ResultMessage upBirthPromotion(String hotelId, BirthdayProPo po) throws RemoteException{
+		return hotelPromotionDao.upBirthPromotion(hotelId, po);
+	}
+
+	public BirthdayProPo getBirthPromotion(String hotelId) throws RemoteException{
+		return hotelPromotionDao.getBirthPromotion(hotelId);
+	}
+
+	public ResultMessage updateCooperPro(String hotelId, CompanyProPo po) throws RemoteException{
+		return hotelPromotionDao.updateCooperPro(hotelId, po);
+	}
+
+	public CompanyProPo getCooperPro(String hotelId) throws RemoteException{
+		return hotelPromotionDao.getCooperPro(hotelId);
+	}
+
+	public ResultMessage upRoomPromotion(String hotelId, RoomPromotionPo po) throws RemoteException{
+		return hotelPromotionDao.upRoomPromotion(hotelId, po);
+	}
+
+	public RoomPromotionPo getRoomPromotion(String hotelId) throws RemoteException{
+		return hotelPromotionDao.getRoomPromotion(hotelId);
+	}
+
+   	
    	   	/*OrderDao 接口方法*/
 
 	public ResultMessage insertOrder(OrderPo po) throws RemoteException {

@@ -54,13 +54,22 @@ public interface HotelListService {
 	public List<HotelVo> findByKeyword(String key);
 	
 	/**
-	 * 
+	 * @version 2016-12-03
 	 * @param province
 	 * @param city
 	 * @param business
 	 * @return 必须输入省份、城市、商圈三个条件才能得到搜索结果
 	 */
 	public List<HotelVo> findByAddress(String province, String city, String business);
+	
+	/**
+	 * @version 2016-12-09
+	 * @param type
+	 * @param low
+	 * @param high
+	 * @return 按照原始价格搜索
+	 */
+	public List<HotelVo> findByOriginalPrice(RoomType type, int low, int high, List<HotelVo> list);
 	
 	/**
 	 * @version 2016-12-03

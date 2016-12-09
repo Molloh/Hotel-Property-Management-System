@@ -13,6 +13,8 @@ public interface DataFactory {
 
     public HotelDataHelper getHotelDataHelper();
     
+    public HotelPromotionDataHelper getHotelPromotionDataHelper();
+    
     public OrderDataHelper getOrderDataHelper();
 
 }
