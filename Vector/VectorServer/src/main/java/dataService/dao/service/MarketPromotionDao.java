@@ -30,7 +30,7 @@ public interface MarketPromotionDao extends Remote{
 	public List<String> getActivity() throws RemoteException;
 	
 	/**
-	 * 网站营销人员更新等级促销策略
+	 * 网站营销人员更新等级促销策略,同时修改所有客户的等级
 	 * @param list
 	 * @return
 	 */
