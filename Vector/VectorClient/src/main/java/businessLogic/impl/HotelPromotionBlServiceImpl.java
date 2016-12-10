@@ -40,8 +40,8 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	
 	@Override
 	public ResultMessage addActivityStrategy(String hotelId, ActivityPromotionVo vo){
-		//输入的减价格为负数，折扣非法，日期非法
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1
+		//输入的折扣非法，日期非法
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1
 				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))
 			return ResultMessage.INVALID;
 		
@@ -63,8 +63,8 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	
 	@Override
 	public ResultMessage upActivityStrategy(String hotelId, ActivityPromotionVo vo){
-		//输入的减价格为负数，折扣非法，日期非法
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1
+		//输入的折扣非法，日期非法
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1
 				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))	
 			return ResultMessage.INVALID;
 		
@@ -125,7 +125,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 				 */
 				if(dateValid(token[1], token[2], now) == true){
 					ActivityPromotionVo vo = new ActivityPromotionVo(token[0], token[1], token[2],
-							                   Double.parseDouble(token[3]), Integer.parseInt(token[4]));
+							                   Double.parseDouble(token[3]));
 					list.add(vo);
 				}
 			}
@@ -140,12 +140,12 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 
 	@Override
 	public ResultMessage updateCooperationStrategy(String hotelId, CompanyProVo vo){
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1)
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1)
 			return ResultMessage.INVALID;
 		
 		try {
 			return hotelPromotionDao.updateCooperPro(hotelId, new CompanyProPo(vo.getDiscount(),
-					                                 vo.getDecPrice(), vo.getCompanyList()));
+					                                                    vo.getCompanyList()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -174,12 +174,12 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	@Override
 	public ResultMessage updateOrderRoomStrategy(String hotelId, RoomPromotionVo vo){
 		//检查输入合法性
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1 || vo.getNumOfRoom()<0)
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1 || vo.getNumOfRoom()<0)
 			return ResultMessage.INVALID;
 		
 		try {
 			return hotelPromotionDao.upRoomPromotion(hotelId, new RoomPromotionPo(vo.getPromotionName(),
-					                            vo.getNumOfRoom(), vo.getDiscount(), vo.getDecPrice()));
+					                            vo.getNumOfRoom(), vo.getDiscount()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

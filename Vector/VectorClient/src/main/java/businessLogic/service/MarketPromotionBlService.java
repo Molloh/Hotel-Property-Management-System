@@ -49,13 +49,6 @@ public interface MarketPromotionBlService {
 	public LevelVo getLevelStrategy(int level);
 	
 	/**
-	 * 通过客户信用值得到客户的等级
-	 * @param credit
-	 * @return
-	 */
-	public int getMemberLevel(int credit);
-	
-	/**
 	 * 更新等级促销策略
 	 * 本方法会检查输入的有效性：等级、信用值必须递增，List存的等级必须递增
 	 * @param list

@@ -40,7 +40,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			BirthdayProPo bpo = new BirthdayProPo(1.0);
 			updateBirthPromotion(hotelId, bpo);
 			
-			CompanyProPo cpo = new CompanyProPo(1.0, 0 , null);
+			CompanyProPo cpo = new CompanyProPo(1.0,null);
 			updateCompanyPro(hotelId, cpo);
 			return ResultMessage.SUCCEED;
 		} catch (IOException e) {
@@ -61,7 +61,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			List<String> actList = getActivity(hotelId);
 			
 			String str = po.getPromotionName() + "/" + po.getStartDate() + "/" + po.getEndDate() + "/" 
-					     + (po.getDiscount()+"") + "/" + (po.getDecPrice()+"");
+					     + (po.getDiscount()+"");
 			
 			if(actList.isEmpty()) actList.add(str);
 			else{
@@ -210,7 +210,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			//更新促销优惠
 			BufferedWriter bw1 = new BufferedWriter(new FileWriter(comPro.getAbsoluteFile()));
 			
-			String str = (po.getDiscount()+"") + "/" + (po.getDecPrice()+"");
+			String str = (po.getDiscount()+"");
 			bw1.write(str);
 			bw1.close();
 			
@@ -249,7 +249,6 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			br1.close();
 			
 			double discount = Double.parseDouble(token[0]);
-			int decPrice = Integer.parseInt(token[1]);
 			List<String> list = new ArrayList<String>();
 			
 			BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(comList), "UTF-8"));
@@ -261,7 +260,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			}
 			br2.close();
 			
-			CompanyProPo po = new CompanyProPo(discount, decPrice, list);
+			CompanyProPo po = new CompanyProPo(discount, list);
 			
 			return po;
 		} catch (IOException e) {
@@ -281,8 +280,8 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			roomProFile.createNewFile();
 			
 			BufferedWriter bw = new BufferedWriter(new FileWriter(roomProFile.getAbsoluteFile()));
-			String str = po.getPromotionName() + "/" + (po.getNumOfRoom()+"") + "/" + (po.getDiscount()+"")
-					     + "/" +(po.getDecPrice()+"");
+			String str = po.getPromotionName() + "/" + (po.getNumOfRoom()+"") + "/" + (po.getDiscount()+"");
+					   
 			bw.write(str);
 			bw.close();
 			
@@ -307,7 +306,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			br.close();
 			
 			RoomPromotionPo po = new RoomPromotionPo(token[0], Integer.parseInt(token[1]), 
-					             Double.parseDouble(token[2]), Integer.parseInt(token[3]));
+					             Double.parseDouble(token[2]));
 			return po;
 		}catch(IOException e){
 			e.printStackTrace();

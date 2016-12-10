@@ -33,8 +33,8 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	
 	@Override
 	public ResultMessage addActivityStrategy(ActivityPromotionVo vo){
-		//输入的减价格为负数，折扣非法，日期非法
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1
+		//输入的折扣非法，日期非法
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1
 				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))
 			return ResultMessage.INVALID;
 		
@@ -56,8 +56,8 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	
 	@Override
 	public ResultMessage upActivityStrategy(ActivityPromotionVo vo){
-		//输入的减价格为负数，折扣非法，日期非法
-		if(vo.getDecPrice()<0 || vo.getDiscount()<=0 || vo.getDiscount()>1
+		//输入的折扣非法，日期非法
+		if(vo.getDiscount()<=0 || vo.getDiscount()>1
 				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))	
 			return ResultMessage.INVALID;
 		
@@ -118,7 +118,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 				 */
 				if(dateValid(token[1], token[2], now) == true){
 					ActivityPromotionVo vo = new ActivityPromotionVo(token[0], token[1], token[2],
-							                   Double.parseDouble(token[3]), Integer.parseInt(token[4]));
+							                   Double.parseDouble(token[3]));
 					list.add(vo);
 				}
 			}
@@ -186,31 +186,6 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		}
 		return null;
 	}
-	
-	@Override
-	public int getMemberLevel(int credit){
-		int level = 1;
-		try {
-			List<LevelPo> levelList = marketPromotionDao.getLevelList();
-			Iterator<LevelPo> it = levelList.iterator();
-			
-			while(it.hasNext()){
-				LevelPo po = it.next();
-				int level_credit = po.getCredit();     //某个等级对应的信用值
-				//检查在哪个等级区间内
-				if(credit >= level_credit){
-					level = po.getLevel();
-				}else{
-					return level;
-				}
-			}
-			
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
-		return level;
-	}
-
 	
 	/**
 	 * 1.检验当前时间是否在某个时间区间内
