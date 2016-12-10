@@ -4,6 +4,7 @@ import dataService.dataHelper.service.AccountDataHelper;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
 import dataService.dataHelper.service.HotelPromotionDataHelper;
+import dataService.dataHelper.service.MarketPromotionDataHelper;
 import dataService.dataHelper.service.MemberDataHelper;
 import dataService.dataHelper.service.OrderDataHelper;
 
@@ -36,4 +37,9 @@ public class DataFactoryImpl implements DataFactory {
 		HotelPromotionDataHelper hotelPromotionDao = new HotelPromotionDataTxtHelper();
 		return hotelPromotionDao;
 	}
+    
+    public MarketPromotionDataHelper getMarketPromotionDataHelper(){
+    	MarketPromotionDataHelper marketPromotionDao = new MarketPromotionDataTxtHelper();
+    	return marketPromotionDao;
+    }
 }

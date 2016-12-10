@@ -11,21 +11,20 @@ import common.RoomType;
 import dataService.dao.impl.AccountDaoImpl;
 import dataService.dao.impl.HotelDaoImpl;
 import dataService.dao.impl.HotelPromotionDaoImpl;
+import dataService.dao.impl.MarketPromotionDaoImpl;
 import dataService.dao.impl.MemberDaoImpl;
 import dataService.dao.impl.OrderDaoImpl;
 import dataService.dao.service.AccountDao;
 import dataService.dao.service.HotelDao;
 import dataService.dao.service.HotelPromotionDao;
+import dataService.dao.service.MarketPromotionDao;
 import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
-<<<<<<< HEAD
-=======
-import po.AccountPo;
 import po.ActivityPromotionPo;
 import po.BirthdayProPo;
 import po.CompanyProPo;
->>>>>>> a1e7f32538b0790c9557a7efc4a077d7ac95d4b1
 import po.HotelPo;
+import po.LevelPo;
 import po.OrderPo;
 import po.RoomPromotionPo;
 import vo.AccountVo;
@@ -34,7 +33,7 @@ import vo.MemberVo;
 /**
  * Updated by lienming on 2016-12-08.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao{
+public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromotionDao{
 
 
 	private static final long serialVersionUID = 1L;
@@ -44,6 +43,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     private HotelDao hotelDao;
     private OrderDao orderDao;
     private HotelPromotionDao hotelPromotionDao;
+    private MarketPromotionDao marketPromotionDao;
 
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
@@ -51,6 +51,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         hotelDao = HotelDaoImpl.getInstance();
         orderDao = OrderDaoImpl.getInstance();
         hotelPromotionDao = HotelPromotionDaoImpl.getInstance();
+        marketPromotionDao = MarketPromotionDaoImpl.getInstance();
     }
 
 
@@ -212,6 +213,28 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 	//网站营销人员查看异常订单
 	public List<OrderPo> getAbnormal(Date date) throws RemoteException {
 		return orderDao.getAbnormal(date);
+	}
+
+
+	/*MarketPromotionDao 接口方法*/
+	public ResultMessage updateActivity(ActivityPromotionPo po) throws RemoteException{
+		return marketPromotionDao.updateActivity(po);
+	}
+
+	public List<String> getActivity() throws RemoteException{
+		return marketPromotionDao.getActivity();
+	}
+
+	public ResultMessage updateLevelRule(List<LevelPo> list) throws RemoteException{
+		return marketPromotionDao.updateLevelRule(list);
+	}
+
+	public ResultMessage deleteActivity(ActivityPromotionPo po) throws RemoteException {
+		return marketPromotionDao.deleteActivity(po);
+	}
+
+	public List<LevelPo> getLevelList() throws RemoteException {
+		return marketPromotionDao.getLevelList();
 	}
 
 }
