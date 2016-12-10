@@ -29,7 +29,7 @@ public class MemberPo {
          this.sex=Sex.MALE;
          this.credit=100;
          this.birthday=new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
-         this.vip=0;
+         this.vip=1;
     }
     
     public MemberPo(String id,String name, String phone, String address,

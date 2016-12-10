@@ -232,8 +232,8 @@ public class AccountDaoImpl implements AccountDao {
     	char label = id.charAt(0);
     	AccountType type ;
     	switch (label){
-        case 'A': type =  AccountType.Manager ; 	break;
-        case 'M': type =  AccountType.Marketer;		break;
+        case 'A': type =  AccountType.Marketer ; 	break;
+        case 'M': type =  AccountType.Manager;		break;
         case 'H': type =  AccountType.Hotel;		break;
         case 'N': type =  AccountType.Member;		break;
         case 'E': type =  AccountType.Enterprise;	break;

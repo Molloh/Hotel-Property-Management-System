@@ -33,7 +33,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			List<String> actList = getActivity();
 			
 			String str = po.getPromotionName() + "/" + po.getStartDate() + "/" + po.getEndDate() + "/" 
-					     + (po.getDiscount()+"") + "/" + (po.getDecPrice()+"");
+					     + (po.getDiscount()+"");
 			
 			if(actList.isEmpty()) actList.add(str);
 			else{

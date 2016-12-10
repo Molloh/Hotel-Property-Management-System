@@ -17,8 +17,7 @@ import po.LevelPo;
 import po.MemberPo;
 import vo.MemberVo;
 
-public class MarketPromotionDaoImpl extends UnicastRemoteObject implements MarketPromotionDao{
-	private static final long serialVersionUID = 1L;
+public class MarketPromotionDaoImpl implements MarketPromotionDao{
 	
 	private DataFactory dataFactory;
 
@@ -26,13 +25,13 @@ public class MarketPromotionDaoImpl extends UnicastRemoteObject implements Marke
 	
 	private static MarketPromotionDaoImpl marketPromotionDaoImpl;
 	
-	public static MarketPromotionDaoImpl getInstance() throws RemoteException{
+	public static MarketPromotionDaoImpl getInstance()  {
 		if(marketPromotionDaoImpl == null)
 			marketPromotionDaoImpl = new MarketPromotionDaoImpl();
 		return marketPromotionDaoImpl;
 	}
 	
-	private MarketPromotionDaoImpl() throws RemoteException {
+	private MarketPromotionDaoImpl()   {
 		super();
 		dataFactory = new DataFactoryImpl();
 		marketPromotionDataHelper = dataFactory.getMarketPromotionDataHelper();
@@ -66,6 +65,28 @@ public class MarketPromotionDaoImpl extends UnicastRemoteObject implements Marke
 	}
 	
 	/**
+	 * 通过客户信用值得到其等级
+	 * @param credit
+	 * @return
+	 */
+	public int getMemberLevel(int credit){
+		int level = 1;
+		List<LevelPo> levelList = getLevelList();
+		Iterator<LevelPo> it = levelList.iterator();
+		
+		while(it.hasNext()){
+			LevelPo po = it.next();
+			int level_credit = po.getCredit();     //某个等级对应的信用值
+			
+			//检查在哪个等级区间内
+			if(credit >= level_credit)     level = po.getLevel();
+			else                           return level;	
+		}
+
+		return level;
+	}
+	
+	/**
 	 * 网站营销人员更新等级策略时，同时调用此方法修改所有客户的等级
 	 * @param list
 	 */
@@ -96,6 +117,4 @@ public class MarketPromotionDaoImpl extends UnicastRemoteObject implements Marke
 		MemberDaoImpl.getInstance().updateMap(map, isMember);                  //更新map
 		
 	}
-	
-
 }

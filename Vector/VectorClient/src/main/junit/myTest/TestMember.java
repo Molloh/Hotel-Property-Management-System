@@ -34,7 +34,9 @@ public class TestMember {
 		int charge = 1 ;
 		test.chargeCredit("N00001", charge);
 		Assert.assertEquals(ori + charge, test.getCredit("N00001"));
-		
+		Assert.assertEquals(1,test.getInfo("N00001").getVip());
+		test.chargeCredit("N00001",100);
+		Assert.assertEquals(2,test.getInfo("N00001").getVip());
 	}
 
 	@Test

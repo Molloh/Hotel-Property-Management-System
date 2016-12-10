@@ -5,9 +5,9 @@ import java.io.Serializable;
 import common.HotelPromotionType;
 
 /**
- * @version 2016-12-06
+ * @version 2016-12-10
  * @author 金灵益
- * @description 活动促销策略，属性：（促销类型），名称，开始时间，结束时间，折扣，（折扣范围），减价
+ * @description 活动促销策略，属性：（促销类型），名称，开始时间，结束时间，折扣，（折扣范围）
  *              酒店、网站通用
  */
 public class ActivityPromotionPo implements Serializable {
@@ -17,15 +17,13 @@ public class ActivityPromotionPo implements Serializable {
 	private String startDate;
 	private String endDate;
 	private double discount;                 //折扣
-	private int decPrice;                    //减少的价格大小
 	
 	public ActivityPromotionPo(String promotionName, String startDate, String endDate, 
-			                   double discount, int decPrice){
+			                   double discount){
 		this.promotionName = promotionName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.discount = discount;
-		this.decPrice = decPrice;
 	}
 	
 	public HotelPromotionType getPromotionType(){
@@ -63,14 +61,4 @@ public class ActivityPromotionPo implements Serializable {
 	public double getDiscount(){
 		return discount;
 	}
-	
-	public void setDecPrice(int dec){
-		this.decPrice = dec;
-	}
-	
-	public int getDecPrice(){
-		return decPrice;
-	}
-	
-
 }

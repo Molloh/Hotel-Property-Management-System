@@ -5,13 +5,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.service.MemberDao;
 import dataService.dataHelper.impl.DataFactoryImpl;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.MemberDataHelper;
-import po.AccountPo;
 import po.MemberPo;
 import vo.MemberVo;
 
@@ -66,7 +64,7 @@ public class MemberDaoImpl implements MemberDao {
             if( entry.getKey().equals(id) ) {
                 MemberPo po = entry.getValue();
                 po.setCredit(po.getCredit()+amount);
-                int correctVip = MarketPromotionDaoImpl.getInstance().getVipByCredit(po.getCredit());
+                int correctVip = MarketPromotionDaoImpl.getInstance().getMemberLevel(po.getCredit());
                 po.setVip(correctVip);
                 MemberVo vo = new MemberVo(po);
                 updateInfo(vo);
