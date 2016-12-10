@@ -12,9 +12,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import common.ResultMessage;
+import dataService.dataHelper.service.MarketPromotionDataHelper;
 import po.ActivityPromotionPo;
+import po.LevelPo;
 
-public class MarketPromotionDataTxtHelper {
+public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 	private File rootFile;
 	
 	public MarketPromotionDataTxtHelper(){
@@ -22,11 +24,7 @@ public class MarketPromotionDataTxtHelper {
 		rootFile.mkdir();
 	}
 	
-	/**
-	 * 更新网站的活动策略列表
-	 * @param po
-	 * @return
-	 */
+	@Override
 	public ResultMessage updateActivity(ActivityPromotionPo po){
 		File actFile = new File(rootFile.getAbsolutePath() + "/promotion.txt");
 		
@@ -70,9 +68,36 @@ public class MarketPromotionDataTxtHelper {
 		return ResultMessage.FAIL;
 	}
 	
-	/**
-	 * @return 得到网站的活动策略列表
-	 */
+	@Override
+	public ResultMessage deleteActivity(ActivityPromotionPo po){
+		File actFile = new File(rootFile.getAbsolutePath() + "/promotion.txt");
+		
+		try {
+			actFile.createNewFile();
+
+			List<String> actList = getActivity();
+			Iterator<String> it = actList.iterator();
+		
+			BufferedWriter bw = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile()));
+			
+			while(it.hasNext()){
+				String str = it.next();
+				if(str.startsWith(po.getPromotionName()))
+					continue;
+				bw.write(str);
+				bw.newLine();
+			}
+			bw.close();
+			
+			return ResultMessage.SUCCEED;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;
+	}
+	
+	@Override
 	public List<String> getActivity(){
 		File actFile = new File(rootFile.getAbsolutePath() + "/promotion.txt");
 		List<String> list = new ArrayList<String>();
@@ -95,6 +120,54 @@ public class MarketPromotionDataTxtHelper {
 		return null;
 	}
 	
-	
+	@Override
+	public ResultMessage updateLevelRule(List<LevelPo> list){
+		File levelFile = new File(rootFile.getAbsolutePath() + "/rank.txt");
+		
+		try {
+			levelFile.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(levelFile.getAbsoluteFile()));
+			
+			Iterator<LevelPo> it = list.iterator();
+			while(it.hasNext()){
+				LevelPo po = it.next();
+				String str = (po.getLevel()+"") + "/" + (po.getCredit()+"") + "/" + (po.getDiscount()+"");
+				writer.write(str);
+				writer.newLine();
+			}
+			writer.close();
+			
+			return ResultMessage.SUCCEED;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;
+	}
+
+	@Override
+	public List<LevelPo> getLevelList() {
+		File levelFile = new File(rootFile.getAbsolutePath() + "/rank.txt");
+		List<LevelPo> levelList = new ArrayList<LevelPo>();
+		
+		try {
+			levelFile.createNewFile();
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(levelFile), "UTF-8"));
+			
+			String str = br.readLine();
+			while(str != null){
+				String [] token = str.split("/");
+				LevelPo po = new LevelPo(Integer.parseInt(token[0]), Integer.parseInt(token[1]), Double.parseDouble(token[2]));
+				levelList.add(po);
+				str = br.readLine();
+			}
+			br.close();
+			
+			return levelList;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }
