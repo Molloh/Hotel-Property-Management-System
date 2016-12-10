@@ -353,4 +353,44 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}
 		return type_str;
 	}
+	
+	@Override
+	public List<String> getProvinceList(){
+		List<String> list = new ArrayList<String>();
+		
+		File addressFile = new File("src/main/resources/textData/address");
+		addressFile.mkdir();
+		
+		for(File f: addressFile.listFiles()){
+			list.add(f.getName());
+		}
+		return list;
+	}
+	
+	@Override
+	public List<String> getCityList(String province){
+		List<String> list = new ArrayList<String>();
+		
+		File cityFile = new File("src/main/resources/textData/address/" + province);
+		cityFile.mkdir();
+		
+		for(File f: cityFile.listFiles()){
+			list.add(f.getName());
+		}
+		return list;
+	}
+	
+	@Override
+	public List<String> getBusinessList(String province, String city){
+		List<String> list = new ArrayList<String>();
+		
+		File businessFile = new File("src/main/resources/textData/address/" + province + "/" + city);
+		businessFile.mkdir();
+		
+		for(File f: businessFile.listFiles()){
+			String name = f.getName();
+			list.add(name.substring(0,name.lastIndexOf(".")));
+		}
+		return list;
+	}
 }

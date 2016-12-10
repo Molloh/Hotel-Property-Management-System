@@ -76,4 +76,24 @@ public interface HotelDao extends Remote{
 	 * @throws RemoteException 
 	 */
 	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException;
+	
+	/**
+	 * @return 所有省份列表
+	 */
+	public List<String> getProvinceList() throws RemoteException;
+	
+	/**
+	 * 根据省份返回其市级地区
+	 * @param province
+	 * @return
+	 */
+	public List<String> getCityList(String province) throws RemoteException;
+	
+	/**
+	 * 根据省市返回所在地的商圈
+	 * @param province
+	 * @param city
+	 * @return
+	 */
+	public List<String> getBusinessList(String province, String city) throws RemoteException;
 }

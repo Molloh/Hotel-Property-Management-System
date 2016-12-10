@@ -12,9 +12,11 @@ import businessLogic.service.MarketPromotionBlService;
 import common.ResultMessage;
 import dataService.dao.service.MarketPromotionDao;
 import po.ActivityPromotionPo;
+import po.BusinessProPo;
 import po.LevelPo;
 import rmi.RemoteHelper;
 import vo.ActivityPromotionVo;
+import vo.BusinessProVo;
 import vo.LevelVo;
 
 public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
@@ -230,6 +232,90 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	private String getNow(String format){
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 		return dateFormat.format(new Date());
+	}
+
+	@Override
+	public ResultMessage addBusinessStrategy(BusinessProVo vo) {
+		if(vo.getDiscount() <= 0 || vo.getDiscount() > 1)
+			return ResultMessage.INVALID;
+		try {
+			List<BusinessProPo> businessList = marketPromotionDao.getBusinessList();
+			Iterator<BusinessProPo> it = businessList.iterator();
+			//检查商圈名称有无重复
+			while(it.hasNext()){
+				BusinessProPo po = it.next();
+				if(po.getBusinessName().equals(vo.getBusinessName()))
+					return ResultMessage.INVALID;     //名称重复，无法添加
+			}	
+			
+			return marketPromotionDao.updateBusiness(new BusinessProPo(vo.getBusinessName(),vo.getDiscount()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;
+	}
+
+	@Override
+	public ResultMessage updateBusinessStrategy(BusinessProVo vo) {
+		if(vo.getDiscount() <= 0 || vo.getDiscount() > 1)
+			return ResultMessage.INVALID;
+		
+		try {
+			List<BusinessProPo> businessList = marketPromotionDao.getBusinessList();
+			Iterator<BusinessProPo> it = businessList.iterator();
+			//检查有无该商圈
+			while(it.hasNext()){
+				BusinessProPo po = it.next();
+				if(po.getBusinessName().equals(vo.getBusinessName()))
+					return ResultMessage.INVALID;     //名称重复，无法添加
+			}	
+			
+			return marketPromotionDao.updateBusiness(new BusinessProPo(vo.getBusinessName(),vo.getDiscount()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
+	}
+
+	@Override
+	public ResultMessage deleteBusinessStrategy(BusinessProVo vo) {
+		try {
+			List<BusinessProPo> businessList = marketPromotionDao.getBusinessList();
+			Iterator<BusinessProPo> it = businessList.iterator();
+			//检查有无该商圈
+			while(it.hasNext()){
+				BusinessProPo po = it.next();
+				if(po.getBusinessName().equals(vo.getBusinessName()))
+					return marketPromotionDao.deleteBusiness(new BusinessProPo(vo.getBusinessName(),vo.getDiscount()));
+			}	
+			
+			return ResultMessage.INVALID;    //不存在该活动
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;	
+	}
+
+	@Override
+	public BusinessProVo getBusinessStrategyList(String businessName) {
+		try {
+			List<BusinessProPo> businessList = marketPromotionDao.getBusinessList();
+			Iterator<BusinessProPo> it = businessList.iterator();
+			//检查有无该商圈
+			while(it.hasNext()){
+				BusinessProPo po = it.next();
+				if(po.getBusinessName().equals(businessName))
+					return new BusinessProVo(po);
+			}	
+			
+			return null;    //不存在该活动
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return null;	
 	}
 	
 }

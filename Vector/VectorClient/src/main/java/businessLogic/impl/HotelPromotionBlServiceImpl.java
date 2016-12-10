@@ -10,7 +10,6 @@ import java.util.List;
 
 import businessLogic.service.HotelPromotionBlService;
 import common.ResultMessage;
-import common.RoomType;
 import dataService.dao.service.HotelPromotionDao;
 import po.ActivityPromotionPo;
 import po.BirthdayProPo;
@@ -20,7 +19,6 @@ import rmi.RemoteHelper;
 import vo.ActivityPromotionVo;
 import vo.BirthdayProVo;
 import vo.CompanyProVo;
-import vo.MemberVo;
 import vo.RoomPromotionVo;
 
 public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
@@ -234,27 +232,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	public int getStrategyPrice(String hotelId, RoomType type, MemberVo vo){
-	
-		return 0;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * 1.检验当前时间是否在某个时间区间内
 	 * 2.检验开始时间是否小于结束时间

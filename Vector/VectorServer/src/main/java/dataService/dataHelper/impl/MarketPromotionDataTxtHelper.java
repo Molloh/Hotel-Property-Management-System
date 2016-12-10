@@ -14,6 +14,7 @@ import java.util.List;
 import common.ResultMessage;
 import dataService.dataHelper.service.MarketPromotionDataHelper;
 import po.ActivityPromotionPo;
+import po.BusinessProPo;
 import po.LevelPo;
 
 public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
@@ -170,4 +171,103 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		return null;
 	}
 	
+	@Override
+	public ResultMessage updateBusinessPro(BusinessProPo po){
+		File busiFile = new File(rootFile.getAbsolutePath() + "/business.txt");
+		
+		try {
+			busiFile.createNewFile();
+			List<BusinessProPo> list = getBusinessProList();//得到原文件中的商圈列表
+			List<String> writeList = new ArrayList<String>();//将要写入文件的list
+			
+			String str = po.getBusinessName() + "/" + (po.getDiscount()+"");
+			
+			if(list.isEmpty()) writeList.add(str);
+			else{
+				Iterator<BusinessProPo> it = list.iterator();
+		
+				int count = 0;
+				while(it.hasNext()){
+					BusinessProPo tempPo = it.next();
+					//若存在该商圈，则更新
+					if(tempPo.getBusinessName().equals(po.getBusinessName())){
+						writeList.add(str);
+						continue;
+					}
+					String tempStr = tempPo.getBusinessName() + "/" + (tempPo.getDiscount()+"");
+					writeList.add(tempStr);
+					count ++;
+				}
+				//若不存在则添加
+				if(count == list.size())  writeList.add(str);
+			}
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(busiFile.getAbsoluteFile()));
+			
+			Iterator<String> it = writeList.iterator();
+			while(it.hasNext()){
+				writer.write(it.next());
+				writer.newLine();
+			}
+			writer.close();
+			
+			return ResultMessage.SUCCEED;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
+	}
+	
+	@Override
+	public ResultMessage deleteBusiness(BusinessProPo po){
+		File busiFile = new File(rootFile.getAbsolutePath() + "/business.txt");
+		
+		try {
+			busiFile.createNewFile();
+
+			List<BusinessProPo> list = getBusinessProList();//得到原文件中的商圈列表
+			Iterator<BusinessProPo> it = list.iterator();
+		
+			BufferedWriter bw = new BufferedWriter(new FileWriter(busiFile.getAbsoluteFile()));
+			
+			while(it.hasNext()){
+				BusinessProPo temp = it.next();
+				if(temp.getBusinessName().equals(po.getBusinessName()))
+					continue;
+				bw.write(temp.getBusinessName()+"/"+ (temp.getDiscount()+""));
+				bw.newLine();
+			}
+			bw.close();
+			
+			return ResultMessage.SUCCEED;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;
+	}
+	
+	public List<BusinessProPo> getBusinessProList(){
+		File busiFile = new File(rootFile.getAbsolutePath() + "/business.txt");
+		List<BusinessProPo> list = new ArrayList<BusinessProPo>();
+		
+		try {
+			busiFile.createNewFile();
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(busiFile), "UTF-8"));
+			
+			String str = br.readLine();
+			while(str != null){
+				String [] token = str.split("/");
+				BusinessProPo po = new BusinessProPo(token[0], Double.parseDouble(token[1]));
+				list.add(po);
+				str = br.readLine();
+			}
+			br.close();
+			
+			return list;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return list;
+	}
 }

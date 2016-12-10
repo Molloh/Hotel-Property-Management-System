@@ -77,4 +77,24 @@ public interface HotelDataHelper {
 	 * @param list
 	 */
 	public void upBookDateList(String hotelId, RoomType type, List<String> list);
+	
+	/**
+	 * @return 所有省份列表
+	 */
+	public List<String> getProvinceList();
+	
+	/**
+	 * 根据省份返回其市级地区
+	 * @param province
+	 * @return
+	 */
+	public List<String> getCityList(String province);
+	
+	/**
+	 * 根据省市返回所在地的商圈
+	 * @param province
+	 * @param city
+	 * @return
+	 */
+	public List<String> getBusinessList(String province, String city);
 }

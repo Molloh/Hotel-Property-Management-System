@@ -4,6 +4,7 @@ import java.util.List;
 
 import common.ResultMessage;
 import po.ActivityPromotionPo;
+import po.BusinessProPo;
 import po.LevelPo;
 /**
  * @version 2016-12-10
@@ -11,7 +12,7 @@ import po.LevelPo;
  */
 public interface MarketPromotionDataHelper {
 	/**
-	 * 更新网站的活动策略列表
+	 * 增加或更新网站的活动策略列表
 	 * @param po
 	 * @return
 	 */
@@ -41,4 +42,24 @@ public interface MarketPromotionDataHelper {
 	 * @return
 	 */
 	public List<LevelPo> getLevelList();
+	
+	/**
+	 * 增加或更新特定商圈促销策略
+	 * @param po
+	 * @return
+	 */
+	public ResultMessage updateBusinessPro(BusinessProPo po);
+	
+	/**
+	 * 删除一条商圈策略
+	 * @param po
+	 * @return
+	 */
+	public ResultMessage deleteBusiness(BusinessProPo po);
+	
+	/**
+	 * 得到有促销策略的特定商圈促销列表
+	 * @return
+	 */
+	public List<BusinessProPo> getBusinessProList();
 }

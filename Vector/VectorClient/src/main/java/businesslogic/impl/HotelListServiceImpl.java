@@ -18,7 +18,6 @@ import vo.HotelVo;
 public class HotelListServiceImpl implements HotelListService{
 	private List<HotelVo> hotelList = new ArrayList<HotelVo>();  //只通过地址和商圈筛选得到
 	private HotelDao hotelDao;
-	private List<String> provinceAndCityBusinessList;
 	private static HotelListServiceImpl hotelListServiceImpl;
   
     public static HotelListServiceImpl getInstance(){
@@ -29,7 +28,6 @@ public class HotelListServiceImpl implements HotelListService{
 
     private HotelListServiceImpl(){
         hotelDao = RemoteHelper.getInstance().getHotelDao();
-        provinceAndCityBusinessList = getProvinceAndCityBusiness();
     }
 
 	@Override
@@ -162,76 +160,34 @@ public class HotelListServiceImpl implements HotelListService{
 
 	@Override
 	public List<String> getProvinceList(){
-		List<String> provinceList = new ArrayList<String>();
-		Iterator<String> it = provinceAndCityBusinessList.iterator();
-		
-		while(it.hasNext()){
-			String [] token = it.next().split("/");
-			//避免省份重复
-			if( !provinceList.contains(token[0]))
-				provinceList.add(token[0]);
-		}
-		
-		return provinceList;
-	}
-	
-	@Override
-	public List<String> getCityList(String province){
-		List<String> cityList = new ArrayList<String>();
-		Iterator<String> it = provinceAndCityBusinessList.iterator();
-		
-		while(it.hasNext()){
-			String [] token = it.next().split("/");
-			
-			if(token[0].equals(province)){
-				//取得该省份的市
-				if( !cityList.contains(token[1]))
-					 cityList.add(token[1]);
-			}
-			
-		}
-		return cityList;
-	}
-	
-	@Override
-	public List<String> getBusinessList(String city){
-		List<String> businessList = new ArrayList<String>();
-
-		Iterator<String> it = provinceAndCityBusinessList.iterator();
-
-		while(it.hasNext()){
-			String [] token = it.next().split("/");
-			
-			if(token[1].equals(city)){
-				//取得该省份的市
-				if( !businessList.contains(token[2]))
-					businessList.add(token[2]);
-			}
-			
-		}
-		return businessList;
-	}
-	
-	/**
-	 * 提供所有酒店所在的省份及城市和商圈
-	 * @return
-	 */
-	private List<String> getProvinceAndCityBusiness(){
-		List<String> list = new ArrayList<String>();
 		try {
-			List<HotelPo> polist = hotelDao.keyFind("H");
-			Iterator<HotelPo> it = polist.iterator();
-			while(it.hasNext()){
-				HotelPo po = it.next();
-				String address = po.getProvince() + "/" + po.getHotelCity() + "/" + po.getInBusiness();
-				list.add(address);
-			}
+			return hotelDao.getProvinceList();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return null;
 	}
-		
+	
+	@Override
+	public List<String> getCityList(String province){	
+		try {
+			return hotelDao.getCityList(province);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public List<String> getBusinessList(String province, String city){
+		try {
+			return hotelDao.getBusinessList(province, city);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	public List<HotelVo> findByOriginalPrice(RoomType type, int low, int high, List<HotelVo> list) {
 		List<HotelVo> findList = new ArrayList<HotelVo>();
@@ -285,6 +241,4 @@ public class HotelListServiceImpl implements HotelListService{
 		}
 		return findList;
 	}
-
-
 }

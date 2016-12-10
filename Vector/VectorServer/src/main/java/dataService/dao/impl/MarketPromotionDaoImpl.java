@@ -1,7 +1,5 @@
 package dataService.dao.impl;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +11,7 @@ import dataService.dataHelper.impl.DataFactoryImpl;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.MarketPromotionDataHelper;
 import po.ActivityPromotionPo;
+import po.BusinessProPo;
 import po.LevelPo;
 import po.MemberPo;
 import vo.MemberVo;
@@ -25,13 +24,13 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 	
 	private static MarketPromotionDaoImpl marketPromotionDaoImpl;
 	
-	public static MarketPromotionDaoImpl getInstance()  {
+	public static MarketPromotionDaoImpl getInstance(){
 		if(marketPromotionDaoImpl == null)
 			marketPromotionDaoImpl = new MarketPromotionDaoImpl();
 		return marketPromotionDaoImpl;
 	}
 	
-	private MarketPromotionDaoImpl()   {
+	private MarketPromotionDaoImpl(){
 		super();
 		dataFactory = new DataFactoryImpl();
 		marketPromotionDataHelper = dataFactory.getMarketPromotionDataHelper();
@@ -117,4 +116,21 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		MemberDaoImpl.getInstance().updateMap(map, isMember);                  //更新map
 		
 	}
+
+	@Override
+	public ResultMessage updateBusiness(BusinessProPo po) {
+		return marketPromotionDataHelper.updateBusinessPro(po);
+	}
+
+	@Override
+	public ResultMessage deleteBusiness(BusinessProPo po) {
+		return marketPromotionDataHelper.deleteBusiness(po);
+	}
+
+	@Override
+	public List<BusinessProPo> getBusinessList() {
+		return marketPromotionDataHelper.getBusinessProList();
+	}
+	
+
 }

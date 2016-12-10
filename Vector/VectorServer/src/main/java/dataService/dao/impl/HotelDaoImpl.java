@@ -1,7 +1,5 @@
 package dataService.dao.impl;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,8 +14,7 @@ import dataService.dataHelper.service.HotelDataHelper;
 import po.HotelPo;
 import po.HotelTypeRoomPo;
 
-public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
-	private static final long serialVersionUID = 1L;
+public class HotelDaoImpl implements HotelDao{
 	
 	private Map<String, HotelPo> map;
 	
@@ -27,7 +24,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	
 	private static HotelDaoImpl hotelDataServiceImpl;
 	
-	public static HotelDaoImpl getInstance() throws RemoteException{
+	public static HotelDaoImpl getInstance(){
 		if(hotelDataServiceImpl == null){
 			hotelDataServiceImpl = new HotelDaoImpl();
 		}
@@ -35,8 +32,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 		return hotelDataServiceImpl;
 	}
 	
-	public HotelDaoImpl() throws RemoteException{
-		super();
+	public HotelDaoImpl(){
 		if(map == null){
 			dataFactory = new DataFactoryImpl();
 			hotelDataHelper = dataFactory.getHotelDataHelper();
@@ -45,7 +41,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	}
 
 	@Override
-	public ResultMessage addHotelPO(HotelPo po) throws RemoteException{
+	public ResultMessage addHotelPO(HotelPo po) {
 		if(!map.containsKey(po.getId())) {	    
 			hotelDataHelper.addHotelData(po);
 			return ResultMessage.SUCCEED;   
@@ -53,9 +49,9 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 		//若已存在该po
 		return ResultMessage.FAIL;	
 	}
-
+	
 	@Override
-	public ResultMessage updateHotelList(HotelPo po) throws RemoteException{
+	public ResultMessage updateHotelList(HotelPo po) {
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
 			//修改map对应元素
@@ -75,6 +71,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 		return ResultMessage.FAIL;
 	}
 	
+	@Override
 	public ResultMessage updateBookDate(HotelPo po, RoomType type){
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
@@ -92,7 +89,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	}
 
 	@Override
-	public ResultMessage updateComment(HotelPo po) throws RemoteException{
+	public ResultMessage updateComment(HotelPo po){
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
 			hotelDataHelper.updateComments(hotelId, po.getCommentList());
@@ -102,12 +99,12 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	}
 	
 	@Override
-	public ResultMessage deleteHotelPO(String hotelId) throws RemoteException{
+	public ResultMessage deleteHotelPO(String hotelId){
 		return hotelDataHelper.deleteHotelData(hotelId);
 	}
 
 	@Override
-	public HotelPo findHotel(String hotelId) throws RemoteException{
+	public HotelPo findHotel(String hotelId){
 		Iterator<Map.Entry<String,HotelPo>> iterator = map.entrySet().iterator();
 
 		while(iterator.hasNext()){
@@ -121,7 +118,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 	}
 
 	@Override
-	public List<HotelPo> keyFind(String key) throws RemoteException{
+	public List<HotelPo> keyFind(String key){
 		List<HotelPo> hotelList = new ArrayList<HotelPo>();
 		Iterator<Map.Entry<String,HotelPo>> iterator = map.entrySet().iterator();
 		
@@ -135,4 +132,18 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao{
 		return hotelList;
 	}
 
+	@Override
+	public List<String> getProvinceList(){
+		return hotelDataHelper.getProvinceList();
+	}
+	
+	@Override
+	public List<String> getCityList(String province){
+		return hotelDataHelper.getCityList(province);
+	}
+	
+	@Override
+	public List<String> getBusinessList(String province, String city){
+		return hotelDataHelper.getBusinessList(province, city);
+	}
 }

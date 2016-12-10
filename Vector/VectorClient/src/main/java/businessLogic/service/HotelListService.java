@@ -98,21 +98,21 @@ public interface HotelListService {
 	public List<HotelVo> findByRoomType(RoomType type, List<HotelVo> list);
 	
 	/**
-	 * @version 2016-12-04
+	 * @version 2016-12-10
 	 * @return 所有有酒店的省份
 	 */
 	public List<String> getProvinceList();
 	
 	/**
-	 * @version 2016-12-04
+	 * @version 2016-12-10
 	 * 必须先确定省份
 	 * @return 该省份下拥有酒店的所有城市
 	 */
 	public List<String> getCityList(String province);
 	
 	/**
-	 * @version 2016-12-04
+	 * @version 2016-12-10
 	 * @return 必须先得到城市地址，返回该城市所有商圈
 	 */
-	public List<String> getBusinessList(String city);
+	public List<String> getBusinessList(String province, String city);
 }

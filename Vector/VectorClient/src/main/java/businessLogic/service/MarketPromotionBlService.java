@@ -4,6 +4,7 @@ import java.util.List;
 
 import common.ResultMessage;
 import vo.ActivityPromotionVo;
+import vo.BusinessProVo;
 import vo.LevelVo;
 
 /**
@@ -42,6 +43,34 @@ public interface MarketPromotionBlService {
 	public List<ActivityPromotionVo> getCurrentActStrategy();
 	
 	/**
+	 * 增加一个特定商圈促销策略
+	 * @param vo
+	 * @return
+	 */
+	public ResultMessage addBusinessStrategy(BusinessProVo vo);
+	
+	/**
+	 * 更新特定商圈促销策略
+	 * @param vo
+	 * @return
+	 */
+	public ResultMessage updateBusinessStrategy(BusinessProVo vo);
+	
+	/**
+	 * 删除一条商圈策略
+	 * @param vo
+	 * @return
+	 */
+	public ResultMessage deleteBusinessStrategy(BusinessProVo vo);
+	
+	/**
+	 * 得到有促销策略的特定商圈促销列表
+	 * @param businessName
+	 * @return
+	 */
+	public BusinessProVo getBusinessStrategyList(String businessName);	
+	
+	/**
 	 * 得到客户等级对应的促销策略
 	 * @param level
 	 * @return
@@ -51,8 +80,10 @@ public interface MarketPromotionBlService {
 	/**
 	 * 更新等级促销策略
 	 * 本方法会检查输入的有效性：等级、信用值必须递增，List存的等级必须递增
+	 * 同时修改所有客户等级
 	 * @param list
 	 * @return
 	 */
 	public ResultMessage updateLevelStrategy(List<LevelVo> list);
+	
 }

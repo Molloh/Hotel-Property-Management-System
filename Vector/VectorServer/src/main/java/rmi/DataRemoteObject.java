@@ -22,6 +22,7 @@ import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
 import po.ActivityPromotionPo;
 import po.BirthdayProPo;
+import po.BusinessProPo;
 import po.CompanyProPo;
 import po.HotelPo;
 import po.LevelPo;
@@ -140,6 +141,18 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException {
    		return hotelDao.updateBookDate(po, type);
    	}
+   	
+   	public List<String> getProvinceList() throws RemoteException {
+		return hotelDao.getProvinceList();
+	}
+
+	public List<String> getCityList(String province) throws RemoteException {
+		return hotelDao.getCityList(province);
+	}
+
+	public List<String> getBusinessList(String province, String city) throws RemoteException {
+		return hotelDao.getBusinessList(province, city);
+	}
 
    	/*HotelPromotionDao 接口方法*/
 	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
@@ -236,5 +249,18 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 	public List<LevelPo> getLevelList() throws RemoteException {
 		return marketPromotionDao.getLevelList();
 	}
+
+	public ResultMessage updateBusiness(BusinessProPo po) throws RemoteException {
+		return marketPromotionDao.updateBusiness(po);
+	}
+
+	public ResultMessage deleteBusiness(BusinessProPo po) throws RemoteException {
+		return marketPromotionDao.deleteBusiness(po);
+	}
+
+	public List<BusinessProPo> getBusinessList() throws RemoteException {
+		return marketPromotionDao.getBusinessList();
+	}
+
 
 }

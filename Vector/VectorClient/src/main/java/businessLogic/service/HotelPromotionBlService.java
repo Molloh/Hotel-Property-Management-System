@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import common.ResultMessage;
-import common.RoomType;
 import vo.ActivityPromotionVo;
 import vo.BirthdayProVo;
 import vo.CompanyProVo;
-import vo.MemberVo;
 import vo.RoomPromotionVo;
 
 /**
@@ -98,12 +96,4 @@ public interface HotelPromotionBlService {
 	 */
 	public ResultMessage upBirthStrategy(String hotelId, BirthdayProVo vo);
 	
-	/**
-	 * 根据促销策略和客户类型计算最优价格
-	 * @param hotelId
-	 * @param type  房间类型
-	 * @param vo    客户的vo
-	 * @return
-	 */
-	public int getStrategyPrice(String hotelId, RoomType type, MemberVo vo);
 }
