@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="127.0" layoutY="48.0" text="酒店名" />
+      <Label layoutX="127.0" layoutY="185.0" text="酒店简述" />
+      <Label layoutX="127.0" layoutY="92.0" text="地址" />
+      <Label layoutX="127.0" layoutY="134.0" text="星级" />
+      <Label layoutX="371.0" layoutY="48.0" text="酒店Id" />
+      <TextField layoutX="175.0" layoutY="44.0" />
+      <TextField layoutX="175.0" layoutY="88.0" />
+      <TextField layoutX="175.0" layoutY="130.0" />
+      <TextArea layoutX="127.0" layoutY="210.0" prefHeight="88.0" prefWidth="210.0" />
+      <Button layoutX="300.0" layoutY="335.0" mnemonicParsing="false" text="确认" />
+      <Button layoutX="369.0" layoutY="335.0" mnemonicParsing="false" text="取消" />
+   </children>
+</AnchorPane>

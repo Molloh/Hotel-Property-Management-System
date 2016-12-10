@@ -10,12 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import presentation.controller.SingletonId;
-import presentation.controller.ViewFxmlPath;
-import presentation.controller.impl.MemberMainViewControllerImpl;
-import presentation.controller.impl.MemberRootViewControllerImpl;
-import presentation.controller.service.MemberMainViewControllerService;
-import presentation.controller.service.MemberRootViewControllerService;
+import presentation.common.SingletonId;
+import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.member.MemberRootViewControllerImpl;
+import presentation.controller.service.member.MemberRootViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +55,7 @@ public class MemberRootView implements Initializable {
         memberName_label.setText(controller.getMemberName());
         memberId_label.setText(memberId);
 
-        setMissionPane(ViewFxmlPath.MemberMain_View_Path);
+        setMissionPane(ViewFxmlPath.MemberHotelList_View_Path);
     }
 
     @FXML
@@ -69,15 +67,15 @@ public class MemberRootView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            controller.signOut();
+            //controller.signOut();
             stage.show();
-            controller.signOut();
+            //controller.signOut();
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.MemberInfo_View_Path;
         }else if(event.getSource() == myOrder_btn) {
             fxmlPath = ViewFxmlPath.MemberOrder_View_Path;
         }else if(event.getSource() == home_btn) {
-            fxmlPath = ViewFxmlPath.MemberMain_View_Path;
+            fxmlPath = ViewFxmlPath.MemberHotelList_View_Path;
         }
 
         if(fxmlPath != null)

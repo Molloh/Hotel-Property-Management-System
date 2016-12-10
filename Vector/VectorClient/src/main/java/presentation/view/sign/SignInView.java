@@ -12,10 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import presentation.controller.SingletonId;
-import presentation.controller.ViewFxmlPath;
-import presentation.controller.impl.SignViewControllerImpl;
-import presentation.controller.service.SignViewControllerService;
+import presentation.common.SingletonId;
+import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.sign.SignViewControllerImpl;
+import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,16 +40,16 @@ public class SignInView implements Initializable{
     @FXML
     private Label alert_label;
 
-    @FXML
-    private BorderPane signPane;
-
     private String userId;
     private String fxmlPath;
     private SignViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new SignViewControllerImpl();
+        controller = SignViewControllerImpl.getInstance();
+        String userId = SingletonId.getInstance().getActivateId();
+        if(userId != null)
+            account_field.setText(userId);
     }
 
     @FXML
@@ -67,13 +67,13 @@ public class SignInView implements Initializable{
                 fxmlPath = ViewFxmlPath.MemberRoot_View_Path;
                 break;
             case Hotel:
-                fxmlPath = ViewFxmlPath.HotelMain_View_Path;
+                fxmlPath = ViewFxmlPath.HotelRoot_View_Path;
                 break;
             case Manager:
-                fxmlPath = ViewFxmlPath.ManagerMain_View_Path;
+                fxmlPath = ViewFxmlPath.ManagerRoot_View_Path;
                 break;
             case Marketer:
-                fxmlPath = ViewFxmlPath.MarketerMain_View_Path;
+                fxmlPath = ViewFxmlPath.MarketerRoot_View_Path;
                 break;
             default:
                 break;
@@ -90,14 +90,11 @@ public class SignInView implements Initializable{
 
     @FXML
     private void handleSignUp() throws IOException {
-        setMissionPane(ViewFxmlPath.SignUp_View_Path);
+        Stage stage = (Stage)signUp_btn.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource(ViewFxmlPath.SignUp_View_Path));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    private void setMissionPane(String fxmlPath) {
-        try {
-           signPane.setCenter(FXMLLoader.load(getClass().getResource(fxmlPath)));
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

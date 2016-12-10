@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelProInfoView">
+   <children>
+      <Label layoutX="81.0" layoutY="51.0" text="促销类型" />
+      <Label layoutX="81.0" layoutY="82.0" text="促销名称" />
+      <Label layoutX="81.0" layoutY="113.0" text="开始时间" />
+      <Label layoutX="81.0" layoutY="145.0" text="结束时间" />
+      <Label layoutX="81.0" layoutY="177.0" text="折扣方式" />
+      <Label layoutX="81.0" layoutY="209.0" text="折扣范围" />
+      <Button layoutX="213.0" layoutY="267.0" mnemonicParsing="false" text="删除" />
+      <Button layoutX="280.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+   </children>
+</AnchorPane>

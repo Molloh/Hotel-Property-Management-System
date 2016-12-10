@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import presentation.controller.ViewFxmlPath;
+import presentation.common.ViewFxmlPath;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +43,7 @@ public class HotelRootView implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setMissionPane(ViewFxmlPath.HotelMain_View_Path);
+        setMissionPane(ViewFxmlPath.HotelOrder_View_Path);
     }
 
     @FXML
@@ -60,7 +60,7 @@ public class HotelRootView implements Initializable{
         }else if(event.getSource() == promotion_btn) {
             fxmlPath = ViewFxmlPath.HotelPromotion_View_Path;
         }else if(event.getSource() == order_btn) {
-            fxmlPath = ViewFxmlPath.HotelMain_View_Path;
+            fxmlPath = ViewFxmlPath.HotelOrder_View_Path;
         }else if(event.getSource() == roomUpdate_btn) {
             fxmlPath = ViewFxmlPath.HotelRoom_View_Path;
         }
