@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.5" prefHeight="592.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.manager.ManagerRootView">
+   <items>
+      <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
+         <children>
+            <VBox layoutX="56.0" layoutY="113.0" spacing="30.0">
+               <children>
+                  <Button fx:id="searchUser_btn" layoutY="105.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="85.0" text="查找用户" />
+                  <Button fx:id="addUser_btn" layoutY="134.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="85.0" text="新增用户" />
+                  <Button fx:id="exit_btn" mnemonicParsing="false" onAction="#handleExit" prefHeight="23.0" prefWidth="82.0" text="退出" />
+               </children>
+            </VBox>
+            <Label fx:id="hotelName_label" layoutX="57.0" layoutY="31.0" text="管理" />
+            <Label fx:id="hotelName_label1" layoutX="57.0" layoutY="62.0" text="管理ID" />
+            <Button fx:id="signOut_btn" layoutX="104.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="47.0" prefWidth="40.0" text="登出" />
+         </children>
+      </AnchorPane>
+      <BorderPane fx:id="missionPane" prefHeight="200.0" prefWidth="200.0" />
+   </items>
+</SplitPane>

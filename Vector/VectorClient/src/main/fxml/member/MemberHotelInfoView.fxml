@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberHotelInfoView">
+   <children>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" prefHeight="150.0" prefWidth="598.0">
+               <children>
+                  <Label fx:id="name_label" layoutX="24.0" layoutY="25.0" text="酒店名" />
+                  <Label fx:id="star_label" layoutX="24.0" layoutY="52.0" text="酒店星级" />
+                  <Label fx:id="point_label" layoutX="24.0" layoutY="75.0" text="酒店评分" />
+                  <Label fx:id="price_label" layoutX="521.0" layoutY="117.0" text="房间价格" />
+                  <ComboBox fx:id="roomType_combo" layoutX="364.0" layoutY="113.0" prefWidth="150.0" />
+                  <Button fx:id="reserve_btn" layoutX="21.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleReverseOrReturn" text="预订酒店" />
+                  <Button fx:id="return_btn" layoutX="104.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleReverseOrReturn" text="返回" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TitledPane animated="false" layoutX="123.0" layoutY="24.0" prefHeight="317.0" prefWidth="598.0" text="评价" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <ListView fx:id="comment_list" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

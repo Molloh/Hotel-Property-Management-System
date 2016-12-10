@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberHotelOrderView">
+   <children>
+      <Label layoutX="92.0" layoutY="46.0" text="酒店名" />
+      <Label layoutX="95.0" layoutY="72.0" text="地址" />
+      <Label layoutX="95.0" layoutY="139.0" text="房间数量" />
+      <Label layoutX="95.0" layoutY="177.0" text="房间类型" />
+      <Label layoutX="95.0" layoutY="250.0" text="有无儿童" />
+      <Label layoutX="95.0" layoutY="215.0" text="预计入住人数" />
+      <RadioButton layoutX="188.0" layoutY="250.0" mnemonicParsing="false" text="有" />
+      <RadioButton layoutX="246.0" layoutY="250.0" mnemonicParsing="false" text="无" />
+      <TextField layoutX="188.0" layoutY="135.0" />
+      <TextField layoutX="188.0" layoutY="211.0" />
+      <ComboBox layoutX="188.0" layoutY="173.0" prefHeight="23.0" prefWidth="161.0" />
+      <Button layoutX="205.0" layoutY="307.0" mnemonicParsing="false" text="提交订单" />
+      <Button layoutX="309.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+   </children>
+</AnchorPane>

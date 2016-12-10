@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberInfoView">
    <children>
-      <GridPane alignment="CENTER_RIGHT" layoutX="-14.0" prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane alignment="CENTER_RIGHT" prefHeight="700.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="name_field" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <TextField fx:id="name_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Label text="用户名：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="密码：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="date_field" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <Label text="生日：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="性别：" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4">
+            <Group GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="enterprise_field" editable="false" layoutX="-106.0" layoutY="1.0" visible="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="birthday_field" layoutX="-106.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+               </children>
+            </Group>
+            <Label fx:id="type_label" text="生日：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="性别：" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6">
                <children>
                   <RadioButton mnemonicParsing="false" prefHeight="16.0" prefWidth="141.0" text="男" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <RadioButton mnemonicParsing="false" prefHeight="16.0" prefWidth="142.0" text="女" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                </children>
             </HBox>
-            <Button fx:id="confirm_btn" mnemonicParsing="false" text="保存" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="cancel_btn" cancelButton="true" mnemonicParsing="false" text="取消" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Button alignment="TOP_RIGHT" mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="修改密码" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <PasswordField editable="false" text="000000" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button fx:id="modify_btn" mnemonicParsing="false" onAction="#handleModifyMission" text="修改" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#handleModify" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Button fx:id="cancel_btn" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="取消" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button fx:id="modifyKey_btn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#handleModifyPassword" prefHeight="23.0" prefWidth="98.0" text="修改密码" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="信用：" GridPane.columnIndex="1" />
             <Label fx:id="credit_label" text="300" GridPane.columnIndex="2" />
+            <Label text="地址：" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="联系方式：" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="address_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <TextField fx:id="phone_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

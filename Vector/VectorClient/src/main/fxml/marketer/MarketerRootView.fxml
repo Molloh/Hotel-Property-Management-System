@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.5" prefHeight="592.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerRootView">
+   <items>
+      <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="200.0" prefHeight="160.0" prefWidth="200.0">
+         <children>
+            <VBox layoutX="56.0" layoutY="113.0" spacing="30.0">
+               <children>
+                  <Button fx:id="credit_btn" layoutY="105.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="信用充值" />
+                  <Button fx:id="abOrder_btn" layoutY="134.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="异常订单" />
+                  <Button fx:id="promotion_btn" layoutY="163.0" mnemonicParsing="false" onAction="#handleMissionSwitch" text="促销策略" />
+                  <Button fx:id="exit_btn" mnemonicParsing="false" onAction="#handleExit" prefHeight="23.0" prefWidth="64.0" text="退出" />
+               </children>
+            </VBox>
+            <Label fx:id="name_label" layoutX="57.0" layoutY="31.0" text="营销" />
+            <Label fx:id="id_label" layoutX="57.0" layoutY="62.0" text="营销ID" />
+            <Button fx:id="signOut_btn" layoutX="104.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="47.0" prefWidth="40.0" text="登出" />
+         </children>
+      </AnchorPane>
+      <BorderPane fx:id="missionPane" prefHeight="200.0" prefWidth="200.0" />
+   </items>
+</SplitPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerProAddView">
+   <children>
+      <ComboBox layoutX="193.0" layoutY="98.0" prefWidth="150.0" />
+      <Label layoutX="135.0" layoutY="102.0" text="策略类型" />
+      <Button layoutX="202.0" layoutY="200.0" mnemonicParsing="false" text="确认" />
+      <Button layoutX="288.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleReturn" text="取消" />
+   </children>
+</AnchorPane>

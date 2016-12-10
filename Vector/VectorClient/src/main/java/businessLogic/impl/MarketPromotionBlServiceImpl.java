@@ -157,7 +157,9 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 			poList.add(po2);
 		}
 
-		
+		/*
+		 * 当网站营销人员修改等级策略后，所有的客户等级必须随之变化
+		 */
 		try {
 			return marketPromotionDao.updateLevelRule(poList);
 		} catch (RemoteException e) {
@@ -208,9 +210,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		}
 		return level;
 	}
-	
-	
-	
+
 	
 	/**
 	 * 1.检验当前时间是否在某个时间区间内
