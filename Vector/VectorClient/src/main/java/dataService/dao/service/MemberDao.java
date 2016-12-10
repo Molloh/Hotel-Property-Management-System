@@ -20,5 +20,5 @@ public interface MemberDao extends Remote {
 
     public ResultMessage modifyInfo(MemberVo vo) ;
 
-
+    public boolean checkVip(int credit);
 }

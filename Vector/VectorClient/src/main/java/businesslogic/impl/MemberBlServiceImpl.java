@@ -84,4 +84,11 @@ public class MemberBlServiceImpl implements MemberBlService{
     	else return ResultMessage.FAIL;
     }
 
+	/**
+	 * 用户信用值发生改变时要确认是否改变VIP等级
+	 */
+    public boolean checkVip(int credit){
+    	return memberDao.checkVip(credit);
+    }
+
 }

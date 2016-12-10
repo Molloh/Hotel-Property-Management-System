@@ -57,4 +57,5 @@ public interface MemberBlService {
 	 * @version 2016-11-27
 	 */
 	public ResultMessage modifyInfo(MemberVo vo);
+	
 }

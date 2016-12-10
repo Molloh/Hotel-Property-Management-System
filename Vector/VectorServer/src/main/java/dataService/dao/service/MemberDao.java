@@ -25,5 +25,5 @@ public interface MemberDao extends Remote{
 
     public ResultMessage modifyInfo( MemberVo vo)throws RemoteException ;
 
-
-}
+    public boolean checkVip(int credit)throws RemoteException ;
+}	

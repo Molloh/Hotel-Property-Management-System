@@ -75,6 +75,10 @@ public class MemberDaoImpl implements MemberDao {
         return ResultMessage.FAIL;
     }
 
+    public boolean checkVip(int credit){
+    	return true;
+    }
+    
     public MemberVo getInfo(String id){
     	TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();

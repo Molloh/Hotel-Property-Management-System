@@ -16,7 +16,6 @@ import dataService.dao.service.AccountDao;
 import dataService.dao.service.HotelDao;
 import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
-import po.AccountPo;
 import po.HotelPo;
 import po.OrderPo;
 import vo.AccountVo;
@@ -92,6 +91,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     	return memberDao.modifyInfo(vo);
     }
 
+    public boolean checkVip(int credit) throws RemoteException{
+    	return memberDao.checkVip(credit);
+    }
 
     /*HotelDao 接口方法*/
    	public ResultMessage addHotelPO(HotelPo po) throws RemoteException{
