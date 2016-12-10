@@ -231,6 +231,23 @@ public class HotelListServiceImpl implements HotelListService{
 		}
 		return list;
 	}
+		
+	@Override
+	public List<HotelVo> findByOriginalPrice(RoomType type, int low, int high, List<HotelVo> list) {
+		List<HotelVo> findList = new ArrayList<HotelVo>();
+	
+		for(HotelVo hotel : list){
+			List<HotelTypeRoomVo> typeRoomList = hotel.getTypeRoom();
+			Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
+			while(it.hasNext()){
+				HotelTypeRoomVo vo = it.next();
+				if(vo.getType().equals(type) && vo.getPrice()>=low && vo.getPrice()<=high)
+					findList.add(hotel);
+			}
+			return findList;
+		}
+		return null;
+	}
 	
 	@Override
 	public List<HotelVo> findByPoint(double least, double max, List<HotelVo> list) {
@@ -268,4 +285,6 @@ public class HotelListServiceImpl implements HotelListService{
 		}
 		return findList;
 	}
+
+
 }

@@ -3,6 +3,7 @@ package dataService.dataHelper.impl;
 import dataService.dataHelper.service.AccountDataHelper;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
+import dataService.dataHelper.service.HotelPromotionDataHelper;
 import dataService.dataHelper.service.MemberDataHelper;
 import dataService.dataHelper.service.OrderDataHelper;
 
@@ -30,4 +31,9 @@ public class DataFactoryImpl implements DataFactory {
     	OrderDataHelper orderDao = new OrderDataTxtHelper();
     	return orderDao;
     }
+    
+    public HotelPromotionDataHelper getHotelPromotionDataHelper(){
+		HotelPromotionDataHelper hotelPromotionDao = new HotelPromotionDataTxtHelper();
+		return hotelPromotionDao;
+	}
 }
