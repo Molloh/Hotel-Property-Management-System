@@ -38,6 +38,13 @@ public interface HotelBlService {
 	public void deleteHotel(String hotelId);
 	
 	/**
+	 * 得到酒店vo
+	 * @param hotelId
+	 * @return
+	 */
+	public HotelVo getHotelVo(String hotelId);
+	
+	/**
 	 * 酒店工作人员录入客房信息
 	 * @param hotelId
 	 * @param type
