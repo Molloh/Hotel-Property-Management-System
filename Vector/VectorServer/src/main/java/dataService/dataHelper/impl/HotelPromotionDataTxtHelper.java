@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +41,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			BirthdayProPo bpo = new BirthdayProPo(1.0);
 			updateBirthPromotion(hotelId, bpo);
 			
-			CompanyProPo cpo = new CompanyProPo(1.0,null);
+			CompanyProPo cpo = new CompanyProPo(1.0, null);
 			updateCompanyPro(hotelId, cpo);
 			return ResultMessage.SUCCEED;
 		} catch (IOException e) {
@@ -59,9 +60,11 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		try {
 			actFile.createNewFile();
 			List<String> actList = getActivity(hotelId);
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
 			
-			String str = po.getPromotionName() + "/" + po.getStartDate() + "/" + po.getEndDate() + "/" 
-					     + (po.getDiscount()+"");
+			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
+			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
 			
 			if(actList.isEmpty()) actList.add(str);
 			else{
@@ -260,7 +263,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			}
 			br2.close();
 			
-			CompanyProPo po = new CompanyProPo(discount, list);
+			CompanyProPo po = new CompanyProPo(discount,list);
 			
 			return po;
 		} catch (IOException e) {
@@ -281,7 +284,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			
 			BufferedWriter bw = new BufferedWriter(new FileWriter(roomProFile.getAbsoluteFile()));
 			String str = po.getPromotionName() + "/" + (po.getNumOfRoom()+"") + "/" + (po.getDiscount()+"");
-					   
+					     
 			bw.write(str);
 			bw.close();
 			

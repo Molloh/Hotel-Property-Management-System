@@ -1,6 +1,7 @@
 package po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import common.HotelPromotionType;
 
@@ -14,11 +15,11 @@ public class ActivityPromotionPo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private final HotelPromotionType type = HotelPromotionType.ACTIVITY;
 	private String promotionName;
-	private String startDate;
-	private String endDate;
+	private Date startDate;
+	private Date endDate;
 	private double discount;                 //折扣
 	
-	public ActivityPromotionPo(String promotionName, String startDate, String endDate, 
+	public ActivityPromotionPo(String promotionName, Date startDate, Date endDate, 
 			                   double discount){
 		this.promotionName = promotionName;
 		this.startDate = startDate;
@@ -38,19 +39,19 @@ public class ActivityPromotionPo implements Serializable {
 		return promotionName;
 	}
 	
-	public void setStartDate(String date){
+	public void setStartDate(Date date){
 		this.startDate = date;
 	}
 	
-	public String getStartDate(){
+	public Date getStartDate(){
 		return startDate;
 	}
 	
-	public void setEndDate(String date){
+	public void setEndDate(Date date){
 		this.endDate = date;
 	}
 	
-	public String getEndDate(){
+	public Date getEndDate(){
 		return endDate;
 	}
 	
@@ -61,4 +62,5 @@ public class ActivityPromotionPo implements Serializable {
 	public double getDiscount(){
 		return discount;
 	}
+
 }

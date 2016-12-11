@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,9 +34,11 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			actFile.createNewFile();
 			List<String> actList = getActivity();
 			
-			String str = po.getPromotionName() + "/" + po.getStartDate() + "/" + po.getEndDate() + "/" 
-					     + (po.getDiscount()+"");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
 			
+			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
+			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
+
 			if(actList.isEmpty()) actList.add(str);
 			else{
 				Iterator<String> it = actList.iterator();

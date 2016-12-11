@@ -40,7 +40,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	public ResultMessage addActivityStrategy(String hotelId, ActivityPromotionVo vo){
 		//输入的折扣非法，日期非法
 		if(vo.getDiscount()<=0 || vo.getDiscount()>1
-				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))
+				|| vo.getStartDate().after(vo.getEndDate()))
 			return ResultMessage.INVALID;
 		
 		try {
@@ -63,7 +63,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	public ResultMessage upActivityStrategy(String hotelId, ActivityPromotionVo vo){
 		//输入的折扣非法，日期非法
 		if(vo.getDiscount()<=0 || vo.getDiscount()>1
-				|| (dateValid(vo.getStartDate(), vo.getEndDate(), null)== false))	
+				|| vo.getStartDate().after(vo.getEndDate()))	
 			return ResultMessage.INVALID;
 		
 		try {
@@ -111,20 +111,28 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 			List<String> actStr = hotelPromotionDao.getActProList(hotelId);
 			Iterator<String> it = actStr.iterator();
 			
-			String now = getNow("yyyy-MM-dd-HH");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
+			Date now = new Date();
 			
 			//得到当前时期有效的活动促销列表
 			while(it.hasNext()){
 				String [] token = it.next().split("/");
 				/*
-				 * token[1]   活动开始日期
-				 * token[2]   活动结束日期
+				 * 活动开始日期 token[1]
+				 * 活动结束日期 token[2]
 				 * 若当前在某次活动期间内
 				 */
-				if(dateValid(token[1], token[2], now) == true){
-					ActivityPromotionVo vo = new ActivityPromotionVo(token[0], token[1], token[2],
+				try {
+					Date start = df.parse(token[1]);
+					Date end = df.parse(token[2]);
+					
+					if(now.before(end) && now.after(start)){
+						ActivityPromotionVo vo = new ActivityPromotionVo(token[0], start, end,
 							                   Double.parseDouble(token[3]));
-					list.add(vo);
+						list.add(vo);
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
 			}
 			
@@ -217,11 +225,9 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 
 	@Override
 	public BirthdayProVo getBirthStrategy(String hotelId, Date birthDay){
-		//得到当天日期
-		String today = getNow("yyyy-MM-dd");
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String bitrh_str = df.format(birthDay);
-		
+		String today = df.format(new Date());
 		//若当天为客户生日，则得到酒店生日促销策略
 		if(today.equals(bitrh_str)){
 			try {
@@ -232,49 +238,5 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		}
 		return null;
 	}
-
-	/**
-	 * 1.检验当前时间是否在某个时间区间内
-	 * 2.检验开始时间是否小于结束时间
-	 * @param start
-	 * @param end
-	 * @param now
-	 * @return
-	 */
-	private boolean dateValid(String start, String end, String now){
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
-		
-		try {
-			Date dt1 = df.parse(start);
-			Date dt2 = df.parse(end);
-			
-			//此时判断当前是否在某个时间区间内
-			if(now != null){
-				Date dt0 = df.parse(now);
-				if(dt0.getTime() >= dt1.getTime() && dt0.getTime() <= dt2.getTime())
-					return true;
-				else   return false;
-			}
-			//此时判断开始区间与结束时间是否有效
-			else{
-				if(dt1.getTime() < dt2.getTime()) return true;
-				else                              return false;
-			}
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 	
-	
-	/**
-	 * 
-	 * @param format  日期格式
-	 * @return 当前时期
-	 */
-	private String getNow(String format){
-		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-		return dateFormat.format(new Date());
-	}
 }
