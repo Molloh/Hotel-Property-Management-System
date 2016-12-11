@@ -10,9 +10,16 @@
       <Label layoutX="81.0" layoutY="82.0" text="促销名称" />
       <Label layoutX="81.0" layoutY="113.0" text="开始时间" />
       <Label layoutX="81.0" layoutY="145.0" text="结束时间" />
-      <Label layoutX="81.0" layoutY="177.0" text="折扣方式" />
+      <Label layoutX="81.0" layoutY="177.0" text="折扣额度" />
       <Label layoutX="81.0" layoutY="209.0" text="折扣范围" />
-      <Button layoutX="213.0" layoutY="267.0" mnemonicParsing="false" text="删除" />
+      <Button layoutX="183.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleDelete" text="删除" />
       <Button layoutX="280.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+      <Label fx:id="proType_label" layoutX="152.0" layoutY="51.0" text="Label" />
+      <TextField fx:id="name_field" layoutX="153.0" layoutY="78.0" />
+      <DatePicker fx:id="start_date" layoutX="152.0" layoutY="109.0" />
+      <DatePicker fx:id="end_date" layoutX="152.0" layoutY="141.0" />
+      <TextField fx:id="discount_field" layoutX="153.0" layoutY="173.0" />
+      <TextField layoutX="153.0" layoutY="205.0" />
+      <Button layoutX="234.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleModifyPromotion" text="保存" />
    </children>
 </AnchorPane>

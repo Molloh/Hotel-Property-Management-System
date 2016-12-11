@@ -8,15 +8,15 @@ import javafx.beans.property.SimpleStringProperty;
  * @description
  */
 public class Hotel {
-    private final SimpleStringProperty hotelName;
+    private final SimpleStringProperty hotelNameWithId;
     private final SimpleStringProperty hotelStar;
     private final SimpleStringProperty hotelPoint;
     private final SimpleStringProperty hotelAddress;
     private final SimpleStringProperty hotelPrice;
 
 
-    public Hotel(String hotelName, String hotelStar, String hotelPoint, String hotelAddress, String hotelPrice) {
-        this.hotelName = new SimpleStringProperty(hotelName);
+    public Hotel(String hotelNameWithId, String hotelStar, String hotelPoint, String hotelAddress, String hotelPrice) {
+        this.hotelNameWithId = new SimpleStringProperty(hotelNameWithId);
         this.hotelStar = new SimpleStringProperty(hotelStar);
         this.hotelPoint = new SimpleStringProperty(hotelPoint);
         this.hotelAddress = new SimpleStringProperty(hotelAddress);
@@ -24,7 +24,7 @@ public class Hotel {
     }
 
     public String getName() {
-        return hotelName.get();
+        return hotelNameWithId.get();
     }
 
     public String getStar() {
@@ -44,7 +44,7 @@ public class Hotel {
     }
 
     public SimpleStringProperty hotelNameProperty() {
-        return hotelName;
+        return hotelNameWithId;
     }
 
     public SimpleStringProperty hotelStarProperty() {

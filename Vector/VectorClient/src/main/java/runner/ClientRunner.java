@@ -22,7 +22,7 @@ public class ClientRunner extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         linkToServer();
-        TimedTask timedTask = new TimedTask();
+        //TimedTask timedTask = new TimedTask();
         Parent root = FXMLLoader.load(getClass().getResource(ViewFxmlPath.SignIn_View_Path));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

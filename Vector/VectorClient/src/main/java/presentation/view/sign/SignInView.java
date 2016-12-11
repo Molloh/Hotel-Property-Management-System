@@ -10,9 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import presentation.common.SingletonId;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.sign.SignViewControllerImpl;
 import presentation.controller.service.sign.SignViewControllerService;
@@ -47,7 +46,7 @@ public class SignInView implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = SignViewControllerImpl.getInstance();
-        String userId = SingletonId.getInstance().getActivateId();
+        String userId = SingletonItem.getInstance().getActivateId();
         if(userId != null)
             account_field.setText(userId);
     }
@@ -57,7 +56,7 @@ public class SignInView implements Initializable{
         AccountType TYPE = controller.signIn(account_field.getText(), password_field.getText());
         if(TYPE != AccountType.Fail) {
             userId = account_field.getText();
-            SingletonId.getInstance().setActivateId(userId);
+            SingletonItem.getInstance().setActivateId(userId);
         }
         switch (TYPE) {
             case Fail:

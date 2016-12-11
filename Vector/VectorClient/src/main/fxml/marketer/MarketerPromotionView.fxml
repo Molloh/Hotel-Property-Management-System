@@ -6,9 +6,8 @@
 
 <AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerPromotionView">
    <children>
-      <TextArea layoutX="83.0" layoutY="81.0" prefHeight="46.0" prefWidth="200.0" text="简略信息" />
-      <Label layoutX="83.0" layoutY="57.0" text="促销策略" />
-      <Button layoutX="293.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleProEdit" prefHeight="46.0" prefWidth="40.0" text="编辑" />
-      <Button layoutX="422.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleAddPro" text="新增促销策略" />
+      <Button layoutX="489.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleAddPro" text="新增促销策略" />
+      <Separator layoutY="56.0" prefHeight="3.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0" />
+      <ListView fx:id="promotion_list" layoutY="59.0" prefHeight="344.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

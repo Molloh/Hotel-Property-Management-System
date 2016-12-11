@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerCreditView">
    <children>
       <GridPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -23,12 +23,12 @@
          <children>
             <Label text="客户ID：" />
             <Label text="充值额度：" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="确认" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleCharge" text="确认" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+            <TextField fx:id="memberId_field" GridPane.columnIndex="1" />
+            <TextField fx:id="credit_field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="应付金额：" GridPane.rowIndex="2" />
-            <TextField editable="false" text="￥" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="取消" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <TextField fx:id="charge_field" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleCancelCharge" text="取消" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

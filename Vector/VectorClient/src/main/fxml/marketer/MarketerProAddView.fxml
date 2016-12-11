@@ -6,9 +6,19 @@
 
 <AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerProAddView">
    <children>
-      <ComboBox layoutX="193.0" layoutY="98.0" prefWidth="150.0" />
-      <Label layoutX="135.0" layoutY="102.0" text="策略类型" />
-      <Button layoutX="202.0" layoutY="200.0" mnemonicParsing="false" text="确认" />
-      <Button layoutX="288.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleReturn" text="取消" />
+      <Label layoutX="91.0" layoutY="61.0" text="策略类型" />
+      <Button layoutX="235.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleConfirm" text="确认" />
+      <Button layoutX="312.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleCancelMission" text="取消" />
+      <ChoiceBox fx:id="type_choice" layoutX="160.0" layoutY="50.0" prefHeight="23.0" prefWidth="161.0" />
+      <TextField layoutX="163.0" layoutY="215.0" />
+      <TextField fx:id="discount_field" layoutX="163.0" layoutY="183.0" />
+      <DatePicker fx:id="end_date" layoutX="162.0" layoutY="151.0" />
+      <DatePicker fx:id="start_date" layoutX="162.0" layoutY="119.0" />
+      <TextField fx:id="name_field" layoutX="163.0" layoutY="88.0" />
+      <Label layoutX="91.0" layoutY="219.0" text="折扣范围" />
+      <Label layoutX="91.0" layoutY="187.0" text="折扣额度" />
+      <Label layoutX="91.0" layoutY="155.0" text="结束时间" />
+      <Label layoutX="91.0" layoutY="123.0" text="开始时间" />
+      <Label layoutX="91.0" layoutY="92.0" text="促销名称" />
    </children>
 </AnchorPane>

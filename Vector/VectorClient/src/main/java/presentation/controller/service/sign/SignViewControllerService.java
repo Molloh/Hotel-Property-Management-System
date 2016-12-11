@@ -5,14 +5,14 @@ import common.AccountType;
 /**
  * @author Molloh
  * @version 2016/11/5
- * @description
+ * @description 处理登录、登出、注册事件
  */
 public interface SignViewControllerService {
 
-    public AccountType signIn(String memberName, String password);
+    AccountType signIn(String memberName, String password);
 
-    public String signUp(String memberName, String password);
+    String signUp(String memberName, String password, boolean isMember);
 
-    public void signOut();
+    void signOut();
 
 }

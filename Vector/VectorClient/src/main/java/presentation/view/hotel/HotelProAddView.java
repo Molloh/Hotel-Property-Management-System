@@ -1,10 +1,16 @@
 package presentation.view.hotel;
 
+import common.HotelPromotionType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.hotel.HotelProAddViewControllerImpl;
+import presentation.controller.service.hotel.HotelProAddViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,9 +25,31 @@ public class HotelProAddView implements Initializable {
     @FXML
     private AnchorPane missionPane;
 
+    @FXML
+    private ChoiceBox<HotelPromotionType> type_choice;
+    @FXML
+    private TextField name_field;
+    @FXML
+    private TextField discount_field;
+    @FXML
+    private DatePicker start_date;
+    @FXML
+    private DatePicker end_date;
+
+    private HotelProAddViewControllerService controller;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controller = new HotelProAddViewControllerImpl();
+    }
 
+    @FXML
+    private void handleConfirm() {
+        controller.setPromotionType(type_choice.getValue());
+        controller.setPromotionName(name_field.getText());
+        controller.setDiscount(discount_field.getText());
+        controller.setStartDate(start_date.getValue());
+        controller.setEndDate(end_date.getValue());
     }
 
     @FXML

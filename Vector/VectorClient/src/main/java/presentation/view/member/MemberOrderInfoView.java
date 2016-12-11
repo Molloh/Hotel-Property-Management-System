@@ -19,13 +19,21 @@ import java.util.ResourceBundle;
  */
 public class MemberOrderInfoView implements Initializable {
     @FXML
-    private Label orderId;
+    private Label orderId_label;
     @FXML
-    private Label hotel;
+    private Label hotel_label;
     @FXML
-    private Label room;
+    private Label type_label;
     @FXML
-    private Label children;
+    private Label yesOrNo_label;
+    @FXML
+    private Label start_label;
+    @FXML
+    private Label end_label;
+    @FXML
+    private Label last_label;
+    @FXML
+    private Label people_label;
 
     @FXML
     private AnchorPane missionPane;

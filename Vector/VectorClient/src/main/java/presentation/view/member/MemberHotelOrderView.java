@@ -30,4 +30,9 @@ public class MemberHotelOrderView implements Initializable {
         missionPane.getChildren().clear();
         missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.MemberHotelInfo_View_Path)));
     }
+
+    @FXML
+    private void handleSubmmit() {
+
+    }
 }

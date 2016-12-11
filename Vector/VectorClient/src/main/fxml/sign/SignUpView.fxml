@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.sign.SignUpView">
    <children>
       <Button fx:id="signUp_btn" layoutX="105.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleSignUp" text="注册" />
-      <Button fx:id="cancel_btn" layoutX="274.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+      <Button layoutX="274.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
       <Label layoutX="105.0" layoutY="119.0" text="用户名：" />
       <Label layoutX="105.0" layoutY="159.0" text="密码：" />
       <Label layoutX="105.0" layoutY="201.0" text="重复：" />
@@ -13,5 +17,11 @@
       <PasswordField fx:id="password_field" layoutX="153.0" layoutY="155.0" />
       <PasswordField fx:id="repeat_field" layoutX="153.0" layoutY="197.0" />
       <Label fx:id="alert_label" layoutX="279.0" layoutY="228.0" />
+      <Group fx:id="member_group">
+         <children>
+            <RadioButton fx:id="normal_radio" layoutX="107.0" layoutY="80.0" mnemonicParsing="false" text="普通会员" />
+            <RadioButton fx:id="enterprise_radio" layoutX="221.0" layoutY="80.0" mnemonicParsing="false" text="企业会员" />
+         </children>
+      </Group>
    </children>
 </AnchorPane>

@@ -14,9 +14,11 @@
                   <Label fx:id="star_label" layoutX="24.0" layoutY="52.0" text="酒店星级" />
                   <Label fx:id="point_label" layoutX="24.0" layoutY="75.0" text="酒店评分" />
                   <Label fx:id="price_label" layoutX="521.0" layoutY="117.0" text="房间价格" />
-                  <ComboBox fx:id="roomType_combo" layoutX="364.0" layoutY="113.0" prefWidth="150.0" />
                   <Button fx:id="reserve_btn" layoutX="21.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleReverseOrReturn" text="预订酒店" />
                   <Button fx:id="return_btn" layoutX="104.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleReverseOrReturn" text="返回" />
+                  <Label layoutX="199.0" layoutY="25.0" text="酒店简述" />
+                  <ChoiceBox fx:id="roomType_choice" layoutX="363.0" layoutY="113.0" prefWidth="150.0" />
+                  <TextArea fx:id="description_area" layoutX="200.0" layoutY="50.0" prefHeight="82.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

@@ -22,12 +22,12 @@
             <Label text="性别：" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6">
                <children>
-                  <RadioButton mnemonicParsing="false" prefHeight="16.0" prefWidth="141.0" text="男" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <RadioButton mnemonicParsing="false" prefHeight="16.0" prefWidth="142.0" text="女" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <RadioButton fx:id="male_radio" mnemonicParsing="false" prefHeight="16.0" prefWidth="108.0" text="男" />
+                  <RadioButton fx:id="female_radio" mnemonicParsing="false" prefHeight="16.0" prefWidth="80.0" text="女" />
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#handleModify" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Button fx:id="cancel_btn" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="取消" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="取消" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Button fx:id="modifyKey_btn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#handleModifyPassword" prefHeight="23.0" prefWidth="98.0" text="修改密码" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="信用：" GridPane.columnIndex="1" />
             <Label fx:id="credit_label" text="300" GridPane.columnIndex="2" />
@@ -35,6 +35,7 @@
             <Label text="联系方式：" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="address_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
             <TextField fx:id="phone_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+            <Label fx:id="VIP_label" text="VIP 1" GridPane.columnIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

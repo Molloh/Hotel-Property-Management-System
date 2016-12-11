@@ -10,7 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.hotel.HotelRootViewControllerImpl;
+import presentation.controller.impl.sign.SignViewControllerImpl;
+import presentation.controller.service.hotel.HotelRootViewControllerService;
+import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,10 +44,19 @@ public class HotelRootView implements Initializable{
     @FXML
     private BorderPane missionPane;
 
+    private HotelRootViewControllerService controller;
+
     private String fxmlPath;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controller = HotelRootViewControllerImpl.getInstance();
+
+        String hotelId = SingletonItem.getInstance().getActivateId();
+        controller.setHotelId(hotelId);
+
+        hotelName_label.setText(controller.getHotelName());
+
         setMissionPane(ViewFxmlPath.HotelOrder_View_Path);
     }
 
@@ -54,6 +68,7 @@ public class HotelRootView implements Initializable{
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            SignViewControllerImpl.getInstance().signOut();
             stage.show();
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.HotelInfo_View_Path;

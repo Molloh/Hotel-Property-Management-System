@@ -6,11 +6,13 @@
 
 <AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelRoomView">
    <children>
-      <Button layoutX="124.0" layoutY="200.0" mnemonicParsing="false" text="确认" />
-      <Button layoutX="230.0" layoutY="200.0" mnemonicParsing="false" text="取消" />
-      <ComboBox layoutX="124.0" layoutY="70.0" prefWidth="150.0" />
+      <Button layoutX="124.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleUpdate" text="确认" />
+      <Button layoutX="230.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleClear" text="取消" />
       <Label layoutX="124.0" layoutY="42.0" text="选择：" />
       <Label layoutX="124.0" layoutY="116.0" text="数量：" />
-      <TextField layoutX="124.0" layoutY="148.0" />
+      <TextField fx:id="num_field" layoutX="124.0" layoutY="148.0" />
+      <ChoiceBox fx:id="mission_choice" layoutX="124.0" layoutY="70.0" prefWidth="150.0" />
+      <Label fx:id="price_label" layoutX="300.0" layoutY="116.0" text="单价：" />
+      <TextField fx:id="price_field" layoutX="300.0" layoutY="148.0" />
    </children>
 </AnchorPane>

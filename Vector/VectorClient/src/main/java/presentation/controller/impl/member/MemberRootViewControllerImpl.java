@@ -1,8 +1,6 @@
 package presentation.controller.impl.member;
 
-import businessLogic.impl.AccountBlServiceImpl;
 import businessLogic.impl.MemberBlServiceImpl;
-import businessLogic.service.AccountBlService;
 import businessLogic.service.MemberBlService;
 import presentation.controller.service.member.MemberRootViewControllerService;
 import vo.MemberVo;
@@ -19,8 +17,8 @@ public class MemberRootViewControllerImpl implements MemberRootViewControllerSer
 
     private String memberId;
 
-    private MemberRootViewControllerImpl() {/*
-        member = MemberBlServiceImpl.getInstance();*/
+    private MemberRootViewControllerImpl() {
+        member = MemberBlServiceImpl.getInstance();
     }
 
     public static MemberRootViewControllerService getInstance() {
@@ -34,8 +32,8 @@ public class MemberRootViewControllerImpl implements MemberRootViewControllerSer
 
     @Override
     public String getMemberName() {
-        /*MemberVo memberVo = member.getInfo(memberId);
-        return memberVo.getName();*/
-        return "Molloh";
+        MemberVo memberVo = member.getInfo(memberId);
+        return memberVo.getName();
+        //return "Molloh";
     }
 }

@@ -56,8 +56,8 @@ public class ManagerRootView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            SignViewControllerImpl.getInstance().signOut();
             stage.show();
-            controller.signOut();
         }else if(event.getSource() == searchUser_btn) {
             fxmlPath = ViewFxmlPath.ManagerUserSearch_View_Path;
         }else if(event.getSource() == addUser_btn) {

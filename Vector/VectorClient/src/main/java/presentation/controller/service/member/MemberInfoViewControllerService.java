@@ -1,40 +1,47 @@
 package presentation.controller.service.member;
 
+import common.AccountType;
 import common.Sex;
+
+import java.time.LocalDate;
 
 /**
  * @author Molloh
- * @version 2016/11/27
- * @description
+ * @version 2016/12/11
+ * @description Member编辑个人信息处理
  */
 public interface MemberInfoViewControllerService {
 
-    public String getMemberName();
+    String getMemberName();
 
-    public String getBirthDay();
+    LocalDate getBirthDay();
 
-    public String getAddress();
+    String getAddress();
 
-    public String getCredit();
+    String getCredit();
 
-    public String getPhone();
+    String getPhone();
+    
+    AccountType getAccountType();
 
-    public Sex getSex();
+    Sex getSex();
 
-    public String getEnterPrise();
+    String getEnterPrise();
 
-    public void setMemberId(String memberId);
+    String getVIPLevel();
 
-    public void setSex();
+    void setMemberId(String memberId);
 
-    public void setPhone(String phoneNum);
+    void setSex(Sex sex);
 
-    public void setMemberName(String memberName);
+    void setPhone(String phoneNum);
 
-    public void setBirthDay(String birthDay);
+    void setMemberName(String memberName);
 
-    public void setAddress(String address);
+    void setBirthDay(LocalDate birthDay);
 
-    public void setEnterPrise(String enterPrise);
+    void setAddress(String address);
+
+    void setEnterPrise(String enterPrise);
 
 }

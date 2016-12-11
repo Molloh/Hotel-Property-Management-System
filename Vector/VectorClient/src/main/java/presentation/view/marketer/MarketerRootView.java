@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.sign.SignViewControllerImpl;
+import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,6 +58,7 @@ public class MarketerRootView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            SignViewControllerImpl.getInstance().signOut();
             stage.show();
         }else if(event.getSource() == credit_btn) {
             fxmlPath = ViewFxmlPath.MarketerCredit_View_Path;
@@ -70,6 +73,7 @@ public class MarketerRootView implements Initializable {
 
     @FXML
     private void handleExit() {
+        SignViewControllerImpl.getInstance().signOut();
         System.exit(0);
     }
 

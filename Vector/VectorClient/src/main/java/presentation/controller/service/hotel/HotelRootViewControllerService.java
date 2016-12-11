@@ -7,8 +7,8 @@ package presentation.controller.service.hotel;
  */
 public interface HotelRootViewControllerService {
 
-    public void setHotelId(String Id);
+    void setHotelId(String Id);
 
-    public String getHotelName();
+    String getHotelName();
 
 }

@@ -1,6 +1,9 @@
 package presentation.controller.service.manager;
 
 import common.AccountType;
+import common.Sex;
+
+import java.time.LocalDate;
 
 /**
  * @author Molloh
@@ -9,28 +12,66 @@ import common.AccountType;
  */
 public interface ManagerUserControllerService {
 
-    public void addUser(String password, AccountType type);
+    void addUser(String password, AccountType type);
 
-    public void searchUser(String userId);
+    void searchUser(String userId);
 
-    public AccountType getUserType();
+    AccountType getUserType();
 
-    public String getMemberName();
+    String getUserName();
 
-    public String getHotelName();
+    void setUserName(String userName);
 
-    public String getMarketerName();
+    //member
 
-    public String getMemberAddress();
+    LocalDate getBirthDay();
 
-    public String getMemberPhone();
+    String getAddress();
 
-    public String getMemberBirthday();
+    String getCredit();
 
-    public String getMemberEnterPrise();
+    String getPhone();
 
-    public String getMemberCredit();
+    Sex getSex();
 
-    public String getHotelAddress();
+    String getEnterPrise();
+
+    String getVIPLevel();
+
+    void setSex(Sex sex);
+
+    void setPhone(String phoneNum);
+
+    void setMemberName(String memberName);
+
+    void setBirthDay(LocalDate birthDay);
+
+    void setAddress(String address);
+
+    void setEnterPrise(String enterPrise);
+
+    void setVIPLevel(String vipLevel);
+
+    //hotel
+
+    String getHotelAddress();
+
+    String getHotelDiscription();
+
+    String getHotelPoint();
+
+    String getHotelStar();
+
+    String getHotelPhone();
+
+    void setHotelAddress(String hotelAddress);
+
+    void setHotelDiscription(String hotelDiscription);
+
+    void setHotelPhone(String hotelPhone);
+
+    void setHotelStar(String hotelStar);
+
+    void setHotelPoint(String hotelPoint);
 
 }

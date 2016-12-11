@@ -10,19 +10,19 @@
    <children>
       <SplitPane dividerPositions="0.1" layoutX="91.0" layoutY="216.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="696.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
                <children>
-                  <ComboBox layoutX="579.0" layoutY="34.0" prefWidth="150.0" promptText="订单类型" />
+                  <ChoiceBox fx:id="orderType_choice" layoutX="550.0" layoutY="26.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
             <TableView fx:id="order_list" prefHeight="625.0" prefWidth="748.0">
               <columns>
-                <TableColumn fx:id="orderId_column" prefWidth="75.0" text="订单号" />
-                <TableColumn prefWidth="75.0" text="订单状态" />
-                  <TableColumn prefWidth="75.0" text="酒店名" />
-                  <TableColumn prefWidth="75.0" text="订单价格" />
-                  <TableColumn prefWidth="75.0" text="下单时间" />
-                  <TableColumn prefWidth="75.0" text="入住时间" />
+                <TableColumn fx:id="orderId_column" minWidth="100.0" prefWidth="75.0" text="订单号" />
+                <TableColumn fx:id="orderState_column" minWidth="100.0" prefWidth="75.0" text="订单状态" />
+                  <TableColumn fx:id="orderHotel_column" minWidth="100.0" prefWidth="75.0" text="酒店名" />
+                  <TableColumn fx:id="orderPrice_column" minWidth="100.0" prefWidth="75.0" text="订单价格" />
+                  <TableColumn fx:id="orderTime_column" minWidth="100.0" prefWidth="75.0" text="下单时间" />
+                  <TableColumn fx:id="orderExeTime_column" minWidth="100.0" prefWidth="75.0" text="入住时间" />
               </columns>
             </TableView>
          </items>

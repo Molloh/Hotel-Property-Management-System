@@ -10,10 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import presentation.common.SingletonId;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.member.MemberRootViewControllerImpl;
+import presentation.controller.impl.sign.SignViewControllerImpl;
 import presentation.controller.service.member.MemberRootViewControllerService;
+import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,8 +50,9 @@ public class MemberRootView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        String memberId = SingletonId.getInstance().getActivateId();
-        controller = MemberRootViewControllerImpl.getInstance();
+    	controller = MemberRootViewControllerImpl.getInstance();
+    	
+        String memberId = SingletonItem.getInstance().getActivateId();
         controller.setMemberId(memberId);
 
         memberName_label.setText(controller.getMemberName());
@@ -61,15 +64,15 @@ public class MemberRootView implements Initializable {
     @FXML
     private void handleMissionSwitch(ActionEvent event) throws IOException {
         if(event.getSource() == signOut_btn) {
-            //sign out, and switch stage
+            SignViewControllerImpl.getInstance().signOut();
+
             fxmlPath = ViewFxmlPath.SignIn_View_Path;
             Stage stage = (Stage)signOut_btn.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            //controller.signOut();
             stage.show();
-            //controller.signOut();
+
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.MemberInfo_View_Path;
         }else if(event.getSource() == myOrder_btn) {
