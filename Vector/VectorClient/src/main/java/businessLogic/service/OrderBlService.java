@@ -59,8 +59,9 @@ public interface OrderBlService {
 	
 	public List<OrderVo> getAbnormalByWebSite(Date date);
 	
-	public ResultMessage submit();
-	
+	public ResultMessage submit(String memberId, String planCheckInTime, String hoteId, int numOfDays,
+			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist);
+
 	public ResultMessage setToAbnormal(String orderId);
 	
 	public ResultMessage cancel(String orderId);
@@ -71,7 +72,7 @@ public interface OrderBlService {
 	
 	public ResultMessage checkOut(String orderId);
 	
-	public ResultMessage revoke(String orderId);
+	public ResultMessage revoke(String orderId, double allOrHalf);
 	
 	public ResultMessage delete(String orderId);
 }

@@ -10,6 +10,7 @@ import businessLogic.service.OrderBlService;
 import common.OrderCondition;
 import common.ResultMessage;
 import common.RoomType;
+import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
 import po.OrderPo;
 import rmi.RemoteHelper;
@@ -18,6 +19,7 @@ import vo.OrderVo;
 public class OrderBlServiceImpl implements OrderBlService {
 	
 	private OrderDao orderDao;
+	private MemberDao memberDao;
 	private static OrderBlServiceImpl orderBlServiceImpl;
 	
     public static OrderBlServiceImpl getInstance(){
@@ -28,6 +30,7 @@ public class OrderBlServiceImpl implements OrderBlService {
     
     private OrderBlServiceImpl(){
         orderDao = RemoteHelper.getInstance().getOrderDao();
+        memberDao = RemoteHelper.getInstance().getMemberDao();
     }
 	
 	@Override
@@ -176,7 +179,8 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 	
 	@Override
-	public ResultMessage submit() {
+	public ResultMessage submit(String memberId, String planCheckInTime, String hoteId, int numOfDays,
+			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist) {
 		Date d = new Date();  
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");  
 		String dateNowStr = sdf.format(d);
@@ -185,13 +189,20 @@ public class OrderBlServiceImpl implements OrderBlService {
 		String randomStr = String.valueOf(pross).substring(1, 6);
 		String orderId = dateNowStr + randomStr;
 		
+		Date createTime = new Date();
+		//获取酒店此种房间单价
+		//获取所有适用的打折策略并取最低的计算折扣
+		//由单价，天数，折扣计算最终价格
+		//由上面所有信息创建orderPo对象并存入数据层
 		return null;
 	}
 
 	@Override
 	public ResultMessage setToAbnormal(String orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		OrderPo orderPo = orderDao.findOrder(orderId);
+		orderPo.setCondition(OrderCondition.ABNORMAL);
+		memberDao.chargeCredit(orderPo.getMemberId(), - orderPo.getDiscountedPrice());
+		return orderDao.updateOrder(orderPo);
 	}	
 
 	@Override
@@ -206,13 +217,22 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.EXECUTING);
 		orderPo.setCheckInTime(new Date());
+		memberDao.chargeCredit(orderPo.getMemberId(), orderPo.getDiscountedPrice());
 		return orderDao.updateOrder(orderPo);
 	}
 
 	@Override
 	public ResultMessage abnormalCheckIn(String orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		OrderPo orderPo = orderDao.findOrder(orderId);
+		if(orderPo.getCondition() == OrderCondition.ABNORMAL) {
+			orderPo.setCondition(OrderCondition.EXECUTING);
+			orderPo.setCheckInTime(new Date());
+			memberDao.chargeCredit(orderPo.getMemberId(), 2 * orderPo.getDiscountedPrice());
+			return orderDao.updateOrder(orderPo);
+		}
+		else {
+			return ResultMessage.FAIL;
+		}
 	}
 	
 	@Override
@@ -224,9 +244,12 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 
 	@Override
-	public ResultMessage revoke(String orderId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessage revoke(String orderId, double allOrHalf) {
+		OrderPo orderPo = orderDao.findOrder(orderId);
+		orderPo.setCondition(OrderCondition.REVOKED);
+		orderPo.setRevokeTime(new Date());
+		memberDao.chargeCredit(orderPo.getMemberId(), (int)allOrHalf * orderPo.getDiscountedPrice());
+		return orderDao.updateOrder(orderPo);
 	}
 	
 	@Override

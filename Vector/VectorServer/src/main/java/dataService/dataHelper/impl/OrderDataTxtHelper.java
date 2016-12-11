@@ -37,20 +37,23 @@ public class OrderDataTxtHelper implements OrderDataHelper {
 				String memberId = data[2];
 				String memberName = data[3];
 				Date createTime = sdf.parse(data[4]);
-				Date checkInTime = sdf.parse(data[5]);
-				Date checkOutTime = sdf.parse(data[6]); // 退房时间
-				String hotel = data[7];
-				String hotelId = data[8];
-				RoomType roomType = RoomType.valueOf(data[9]);
-				int numOfRoom = Integer.parseInt(data[10]);
-				int numOfGuest = Integer.parseInt(data[11]);
-				boolean childExist = Boolean.parseBoolean(data[12]);
-				int originalPrice = Integer.parseInt(data[13]);
-				double discount = Double.parseDouble(data[14]);
-				int discountedPrice = Integer.parseInt(data[15]);
+				Date planCheckInTime = sdf.parse(data[5]);
+				Date checkInTime = sdf.parse(data[6]);
+				Date checkOutTime = sdf.parse(data[7]); // 退房时间
+				Date revokeTime = sdf.parse(data[8]);
+				String hotel = data[9];
+				String hotelId = data[10];
+				int numOfDays = Integer.parseInt(data[11]);
+				RoomType roomType = RoomType.valueOf(data[12]);
+				int numOfRoom = Integer.parseInt(data[13]);
+				int numOfGuest = Integer.parseInt(data[14]);
+				boolean childExist = Boolean.parseBoolean(data[15]);
+				int originalPrice = Integer.parseInt(data[16]);
+				double discount = Double.parseDouble(data[17]);
+				int discountedPrice = Integer.parseInt(data[18]);
 				
-				OrderPo orderPo = new OrderPo(orderId, condition, memberId, memberName, createTime, checkInTime,
-						checkOutTime, hotel, hotelId, roomType, numOfRoom, numOfGuest, childExist, originalPrice,
+				OrderPo orderPo = new OrderPo(orderId, condition, memberId, memberName, createTime, planCheckInTime, checkInTime,
+						checkOutTime, revokeTime, hotel, hotelId, numOfDays, roomType, numOfRoom, numOfGuest, childExist, originalPrice,
 						discount, discountedPrice);
 				map.put(orderId, orderPo);
 				
@@ -82,11 +85,13 @@ public class OrderDataTxtHelper implements OrderDataHelper {
 				OrderPo orderPo = entry.getValue();
 				String str = orderPo.getOrderId() + ";" + orderPo.getCondition().toString() + ";"
 						+ orderPo.getMemberId() + ";" + orderPo.getMemberName() + ";"
-						+ sdf.format(orderPo.getCreateTime()) + ";" + sdf.format(orderPo.getCheckInTime()) + ";"
-						+ sdf.format(orderPo.getCheckOutTime()) + ";" + orderPo.getHotel() + ";" + orderPo.getHotelId()
-						+ ";" + orderPo.getRoomType().toString() + ";" + String.valueOf(orderPo.getNumOfRoom()) + ";"
-						+ String.valueOf(orderPo.getNumOfGuest()) + ";" + String.valueOf(orderPo.getChildExist()) + ";"
-						+ String.valueOf(orderPo.getOriginalPrice()) + ";" + String.valueOf(orderPo.getDiscount()) + ";"
+						+ sdf.format(orderPo.getCreateTime()) + ";" + sdf.format(orderPo.getPlanCheckInTime()) + ";"
+						+ sdf.format(orderPo.getCheckInTime()) + ";" + sdf.format(orderPo.getCheckOutTime()) + ";"
+						+ sdf.format(orderPo.getRevokeTime()) + ";" + orderPo.getHotel() + ";" + orderPo.getHotelId()
+						+ ";" + String.valueOf(orderPo.getNumOfDays()) + ";" + orderPo.getRoomType().toString() + ";"
+						+ String.valueOf(orderPo.getNumOfRoom()) + ";" + String.valueOf(orderPo.getNumOfGuest()) + ";"
+						+ String.valueOf(orderPo.getChildExist()) + ";" + String.valueOf(orderPo.getOriginalPrice())
+						+ ";" + String.valueOf(orderPo.getDiscount()) + ";"
 						+ String.valueOf(orderPo.getDiscountedPrice());
 				
 				writer.write(str);

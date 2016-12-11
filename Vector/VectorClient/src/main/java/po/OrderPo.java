@@ -16,10 +16,13 @@ public class OrderPo {
 	private String memberId;
 	private String memberName;
 	private Date createTime;
+	private Date planCheckInTime;
 	private Date checkInTime;
-	private Date checkOutTime; // 退房时间
+	private Date checkOutTime;
+	private Date revokeTime;
 	private String hotel;
 	private String hotelId;
+	private int numOfDays;
 	private RoomType roomType;
 	private int numOfRoom;
 	private int numOfGuest;
@@ -28,18 +31,23 @@ public class OrderPo {
 	private double discount;
 	private int discountedPrice;
 
-	public OrderPo(String orderId, OrderCondition condition, String memberId, String memberName, Date createTime, Date checkInTime, Date checkOutTime, String hotel, String hotelId,
-			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist, int originalPrice, double discount,
+	public OrderPo(String orderId, OrderCondition condition, String memberId, String memberName, Date createTime,
+			Date planCheckInTime, Date checkInTime, Date checkOutTime, Date revokeTime, String hotel, String hotelId,
+			int numOfDays, RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist, int originalPrice,
+			double discount,
 			int discountedPrice) {
 		this.orderId = orderId;
 		this.condition = condition;
 		this.memberId = memberId;
 		this.memberName = memberName;
 		this.createTime = createTime;
+		this.planCheckInTime = planCheckInTime;
 		this.checkInTime = checkInTime;
 		this.checkOutTime = checkOutTime;
+		this.revokeTime = revokeTime;
 		this.hotel = hotel;
 		this.hotelId = hotelId;
+		this.numOfDays = numOfDays;
 		this.roomType = roomType;
 		this.numOfRoom = numOfRoom;
 		this.numOfGuest = numOfGuest;
@@ -64,17 +72,26 @@ public class OrderPo {
 	public Date getCreateTime() {
 		return this.createTime;
 	}
+	public Date getPlanCheckInTime() {
+		return this.planCheckInTime;
+	}
 	public Date getCheckInTime() {
 		return this.checkInTime;
 	}
 	public Date getCheckOutTime() {
 		return this.checkOutTime;
 	}
+	public Date getRevokeTime() {
+		return this.revokeTime;
+	}
 	public String getHotel() {
 		return this.hotel;
 	}
 	public String getHotelId() {
 		return this.hotelId;
+	}
+	public int getNumOfDays() {
+		return this.numOfDays;
 	}
 	public RoomType getRoomType() {
 		return this.roomType;
@@ -109,5 +126,8 @@ public class OrderPo {
 	}
 	public void setCheckOutTime(Date time) {
 		this.checkOutTime = time;
+	}
+	public void setRevokeTime(Date time) {
+		this.revokeTime = time;
 	}
 }
