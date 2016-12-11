@@ -67,17 +67,6 @@ public interface HotelDao extends Remote{
 	public ResultMessage initHotelTypeRoom(String hotelId, RoomType type, int number, int price) throws RemoteException;
 	
 	/**
-	 * 更新酒店每种类型的房间的预定日期和结束日期，不具体到单个房间
-	 * 在客户确认该类型房间的预定期间时，更新文件
-	 * 在酒店工作人员退房时，更新文件
-	 * @param po
-	 * @param type
-	 * @return
-	 * @throws RemoteException 
-	 */
-	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException;
-	
-	/**
 	 * @return 所有省份列表
 	 */
 	public List<String> getProvinceList() throws RemoteException;
@@ -96,4 +85,23 @@ public interface HotelDao extends Remote{
 	 * @return
 	 */
 	public List<String> getBusinessList(String province, String city) throws RemoteException;
+	
+	/**
+	 * 得到空余房间数量
+	 * @param hotelId
+	 * @param type
+	 * @return
+	 * @throws RemoteException
+	 */
+	public int getReadyRoom(String hotelId, RoomType type) throws RemoteException;
+	
+	/**
+	 * 更新酒店房间预订数量
+	 * @param hotelId
+	 * @param type
+	 * @param number
+	 * @param isCheckIn
+	 * @return
+	 */
+	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn) throws RemoteException;
 }

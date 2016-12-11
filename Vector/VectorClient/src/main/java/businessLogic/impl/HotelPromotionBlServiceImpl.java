@@ -103,6 +103,19 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		return ResultMessage.FAIL;
 	}
 	
+	public List<Double> getCurrentActDiscount(String hotelId){
+		List<ActivityPromotionVo> list = getCurrentActStrategy(hotelId);
+		if(list.isEmpty())  return null;
+		
+		Iterator<ActivityPromotionVo> it = list.iterator();
+		List<Double> discountList = new ArrayList<Double>();
+		
+		while(it.hasNext()){
+			discountList.add(it.next().getDiscount());
+		}
+		return discountList;
+	}
+	
 	@Override
 	public List<ActivityPromotionVo> getCurrentActStrategy(String hotelId){
 		List<ActivityPromotionVo> list = new ArrayList<ActivityPromotionVo>();
@@ -160,21 +173,21 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	}
 	
 	@Override
-	public CompanyProVo getCooperationStrategy(String hotelId, String memberId){
+	public double getCooperationStrategy(String hotelId, String memberId){
 		try {
 			CompanyProVo vo = new CompanyProVo(hotelPromotionDao.getCooperPro(hotelId));
 			List<String> idList = vo.getCompanyList();
 			
 			//检查该酒店的合作企业是否有该企业
 			if(idList.contains(memberId))
-				return vo;
+				return vo.getDiscount();
 			
-			return null;
+			return 1;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return 1;
 	}
 
 	@Override
@@ -191,6 +204,13 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		}
 		
 		return ResultMessage.FAIL;
+	}
+	
+	
+	public double getOrderRoomDiscount(String hotelId, int numOfRoom){
+		RoomPromotionVo vo = getOrderRoomStrategy(hotelId, numOfRoom);
+		if(vo != null)   return vo.getDiscount();
+		return 1;
 	}
 	
 	@Override
@@ -224,19 +244,19 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	}
 
 	@Override
-	public BirthdayProVo getBirthStrategy(String hotelId, Date birthDay){
+	public double getBirthStrategy(String hotelId, Date birthDay){
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String bitrh_str = df.format(birthDay);
 		String today = df.format(new Date());
 		//若当天为客户生日，则得到酒店生日促销策略
 		if(today.equals(bitrh_str)){
 			try {
-				return new BirthdayProVo(hotelPromotionDao.getBirthPromotion(hotelId));
+				return hotelPromotionDao.getBirthPromotion(hotelId).getDiscount();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return 1;
 	}
 	
 }

@@ -43,6 +43,13 @@ public interface MarketPromotionBlService {
 	public List<ActivityPromotionVo> getCurrentActStrategy();
 	
 	/**
+	 * 得到当前促销策略折扣列表
+	 * @param hotelId
+	 * @return
+	 */
+	public List<Double> getCurrentActDiscount(String hotelId);
+	
+	/**
 	 * 增加一个特定商圈促销策略
 	 * @param vo
 	 * @return
@@ -68,14 +75,14 @@ public interface MarketPromotionBlService {
 	 * @param businessName
 	 * @return
 	 */
-	public BusinessProVo getBusinessStrategyList(String businessName);	
+	public BusinessProVo getBusinessStrategy(String businessName);	
 	
 	/**
-	 * 得到客户等级对应的促销策略
+	 * 得到客户等级对应的促销策略折扣
 	 * @param level
 	 * @return
 	 */
-	public LevelVo getLevelStrategy(int level);
+	public double getLevelStrategy(int level);
 	
 	/**
 	 * 更新等级促销策略
@@ -86,4 +93,10 @@ public interface MarketPromotionBlService {
 	 */
 	public ResultMessage updateLevelStrategy(List<LevelVo> list);
 	
+	/**
+	 * 得到商圈折扣
+	 * @param businessName
+	 * @return
+	 */
+	public double getBusinessDiscount(String businessName);
 }

@@ -1,7 +1,5 @@
 package dataService.dao.impl;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import common.ResultMessage;
@@ -19,8 +17,7 @@ import po.RoomPromotionPo;
  * @author 金灵益
  *
  */
-public class HotelPromotionDaoImpl extends UnicastRemoteObject implements HotelPromotionDao{
-	private static final long serialVersionUID = 1L;
+public class HotelPromotionDaoImpl implements HotelPromotionDao{
 	
 	private DataFactory dataFactory;
 	
@@ -28,14 +25,14 @@ public class HotelPromotionDaoImpl extends UnicastRemoteObject implements HotelP
 	
 	private static HotelPromotionDaoImpl hotelPromotionDaoImpl;
 	
-	public static HotelPromotionDaoImpl getInstance() throws RemoteException{
+	public static HotelPromotionDaoImpl getInstance(){
 		if(hotelPromotionDaoImpl == null){
 			hotelPromotionDaoImpl = new HotelPromotionDaoImpl();
 		}
 		return hotelPromotionDaoImpl;
 	}
-	
-	private HotelPromotionDaoImpl() throws RemoteException{
+
+	private HotelPromotionDaoImpl(){
 		super();
 		dataFactory = new DataFactoryImpl();
 		hotelPromotionDataHelper = dataFactory.getHotelPromotionDataHelper();

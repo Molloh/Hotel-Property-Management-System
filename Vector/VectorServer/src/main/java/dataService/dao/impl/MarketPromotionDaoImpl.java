@@ -84,7 +84,7 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 
 		return level;
 	}
-	
+
 	/**
 	 * 网站营销人员更新等级策略时，同时调用此方法修改所有客户的等级
 	 * @param list

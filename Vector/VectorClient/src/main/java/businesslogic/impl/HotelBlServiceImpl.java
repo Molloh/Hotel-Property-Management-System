@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import businessLogic.service.HotelBlService;
+import common.ResultMessage;
 import common.RoomType;
 import dataService.dao.service.HotelDao;
 import po.HotelPo;
@@ -28,6 +29,17 @@ public class HotelBlServiceImpl implements HotelBlService{
 
 	private HotelBlServiceImpl(){
 		hotelDao = RemoteHelper.getInstance().getHotelDao();
+	}
+	
+	@Override
+	public HotelVo getHotelVo(String hotelId){
+		try {
+			this.vo = new HotelVo(hotelDao.findHotel(hotelId));
+			return vo;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
     @Override
@@ -58,18 +70,6 @@ public class HotelBlServiceImpl implements HotelBlService{
 		}
     }
     
-    public HotelVo getHotelVo(String hotelId){
-    	try {
-			HotelPo po = hotelDao.findHotel(hotelId);
-			HotelVo vo = new HotelVo(po);
-			this.vo = vo;
-			return vo;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-    	return null;
-    }
-    
     @Override
     public void initializeRoom(String hotelId, RoomType type, int number, int price){
     	try {
@@ -78,97 +78,38 @@ public class HotelBlServiceImpl implements HotelBlService{
 			e.printStackTrace();
 		}
     }
-    
-    /**
-     * 
-     * @param type
-     * @return 通过房间类型返回该类型的房间信息
-     */
-    private HotelTypeRoomVo getHotelTypeRoom(RoomType type){
-    	List<HotelTypeRoomVo> typeRoomList = vo.getTypeRoom();
-		Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
-		//得到该类型房间的信息
-		HotelTypeRoomVo htrv = null;
-		while(it.hasNext()){
-			htrv = it.next();
-			if(htrv.getType().equals(type))
-				break;
-		}
-		return htrv;
-    }
-    
-    @Override
-    public void checkoutRoom(String orderId, RoomType type){
-    	HotelTypeRoomVo htrv = getHotelTypeRoom(type);
 
-		List<String> list = htrv.getBookDate();
-		Iterator<String> it = list.iterator();
-		
-		int i = 0;
-		//若有相应的订单号，则表示当前状态为酒店人员执行退房
-		while(it.hasNext()){
-			String [] token = it.next().split("/");
-			if(token[0].equals(orderId)){
-				list.remove(i);
-				break;
-			}
-			i ++;
-		}
-		
-		//更新房间信息
-		htrv.setBookDate(list);
-		List<HotelTypeRoomVo> typeroomlist = vo.getTypeRoom();
-		typeroomlist.set(typeroomlist.indexOf(getHotelTypeRoom(type)), htrv); //元素替换
-				
-		vo.setHotelTypeRoomList(typeroomlist);
-		try {
-			hotelDao.updateBookDate(voTopo(vo), type);
-		} catch (RemoteException e) {
-			e.printStackTrace();	
-		}
-		
-    }
-    
     @Override
-    public void updateBookRoom(String orderId, RoomType type, String startDate, String endDate){
-		HotelTypeRoomVo htrv = getHotelTypeRoom(type);
-		String date = orderId + "/" + startDate + "/" + endDate;
-		
-		List<String> list = htrv.getBookDate();
-		Iterator<String> it = list.iterator();
-		int i = 0, flag = 0;
-		//若有相应的订单号，则表示当前状态为酒店人员执行订单
-		while(it.hasNext()){
-			String [] token = it.next().split("/");
-			if(token[0].equals(orderId)){
-				list.set(i, date);
-				flag = -1;
-				break;
-			}
-			i ++;
-		}
-		//若没有相应的订单号，则表示客户是在预定状态
-		if(flag == 0)
-			list.add(date);
-		
-		//更新房间信息
-		htrv.setBookDate(list);
-		List<HotelTypeRoomVo> typeroomlist = vo.getTypeRoom();
-		typeroomlist.set(typeroomlist.indexOf(getHotelTypeRoom(type)), htrv);
-		
-		vo.setHotelTypeRoomList(typeroomlist);
+    public ResultMessage checkoutRoom(RoomType type, int number, String orderId){
 		try {
-			hotelDao.updateBookDate(voTopo(vo), type);
+			OrderBlServiceImpl.getInstance().setToFinished(orderId);
+			return hotelDao.updateOrderedRoom(vo.getId(), type, number, false);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		return ResultMessage.FAIL;
     }
     
     @Override
-	public int getReadyRoom(RoomType type, String startDate, String endDate) {
-		HotelTypeRoomVo htrv = getHotelTypeRoom(type);
-		int readyRoom = htrv.getNumOfTypeRoom() - htrv.getBookDate().size();
-		return readyRoom;
+    public ResultMessage bookRoom(RoomType type, int number){
+    	try {
+    		//订房数量不超过剩余房间数
+    		if(number <= getReadyRoom(type))
+			 return hotelDao.updateOrderedRoom(vo.getId(), type, number, true);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+    	return ResultMessage.FAIL;
+    }
+    
+    @Override
+	public int getReadyRoom(RoomType type) {
+		try {
+			return hotelDao.getReadyRoom(vo.getId(), type);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 	public void comment(String giveComment) {
@@ -200,7 +141,7 @@ public class HotelBlServiceImpl implements HotelBlService{
 		while(it.hasNext()){
 			HotelTypeRoomVo htrv = it.next();
 			HotelTypeRoomPo htrp = new HotelTypeRoomPo(htrv.getType(),htrv.getNumOfTypeRoom(),
-					                                   htrv.getPrice(),htrv.getBookDate());
+					                                   htrv.getPrice());
 			typeRoomListPo.add(htrp);
 		}
 		

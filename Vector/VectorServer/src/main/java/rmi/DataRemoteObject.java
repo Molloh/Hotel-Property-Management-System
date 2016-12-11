@@ -2,7 +2,6 @@ package rmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Date;
 import java.util.List;
 
 import common.AccountType;
@@ -137,11 +136,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage initHotelTypeRoom(String hotelId, RoomType type, int number, int price) throws RemoteException {
    		return hotelDao.initHotelTypeRoom(hotelId, type, number, price);
    	}
-
-   	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException {
-   		return hotelDao.updateBookDate(po, type);
-   	}
-
+   	
    	public List<String> getProvinceList() throws RemoteException {
 		return hotelDao.getProvinceList();
 	}
@@ -154,6 +149,15 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 		return hotelDao.getBusinessList(province, city);
 	}
 
+	public int getReadyRoom(String hotelId, RoomType type) throws RemoteException {
+		return hotelDao.getReadyRoom(hotelId, type);
+	}
+
+	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn)
+			throws RemoteException {
+		return hotelDao.updateOrderedRoom(hotelId, type, number, isCheckIn);
+	}
+	
    	/*HotelPromotionDao 接口方法*/
 	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
 		return hotelPromotionDao.upActPromotion(hotelId, po);
@@ -162,7 +166,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 	public ResultMessage delActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
 		return hotelPromotionDao.delActPromotion(hotelId, po);
 	}
-
+	
 	public List<String> getActProList(String hotelId) throws RemoteException{
 		return hotelPromotionDao.getActProList(hotelId);
 	}

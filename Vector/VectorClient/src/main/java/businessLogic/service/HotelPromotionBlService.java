@@ -41,11 +41,19 @@ public interface HotelPromotionBlService {
 	public ResultMessage delActivityStrategy(String hotelId, ActivityPromotionVo vo);
 	
 	/**
-	 * 得到当前的有效活动策略
+	 * 得到当前的有效活动策略列表
+	 * 提供给酒店用
 	 * @param hotelId
 	 * @return
 	 */
 	public List<ActivityPromotionVo> getCurrentActStrategy(String hotelId);
+	
+	/**
+	 * 得到当前活动策略列表的折扣
+	 * @param hotelId
+	 * @return
+	 */
+	public List<Double> getCurrentActDiscount(String hotelId);
 	
 	/**
 	 * 更新合作企业促销策略
@@ -61,7 +69,7 @@ public interface HotelPromotionBlService {
 	 * @param memberId    企业账号
 	 * @return
 	 */
-	public CompanyProVo getCooperationStrategy(String hotelId, String memberId);
+	public double getCooperationStrategy(String hotelId, String memberId);
 
 	/**
 	 * 更新房间预订促销策略
@@ -71,6 +79,13 @@ public interface HotelPromotionBlService {
 	 */
 	public ResultMessage updateOrderRoomStrategy(String hotelId, RoomPromotionVo vo);
 	
+	/**
+	 * 得到房间预订折扣
+	 * @param hotelId
+	 * @param numOfRoom
+	 * @return
+	 */
+	public double getOrderRoomDiscount(String hotelId, int numOfRoom);
 	
 	/**
 	 * 当在该酒店一次订单订房间数量满足条件，得到该酒店房间预订促销策略
@@ -86,7 +101,7 @@ public interface HotelPromotionBlService {
 	 * @param birthDay
 	 * @return
 	 */
-	public BirthdayProVo getBirthStrategy(String hotelId, Date birthDay);
+	public double getBirthStrategy(String hotelId, Date birthDay);
 	
 	/**
 	 * 更新该酒店客户生日促销策略

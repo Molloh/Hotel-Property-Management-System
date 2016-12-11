@@ -249,6 +249,46 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}
 	}
 
+	
+	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn){
+		File file = new File(rootPath + hotelId + "/" + getRoomTypeName(type) + ".txt");
+		
+		try {
+			file.createNewFile();
+		
+			int num = 0;
+			if(isCheckIn)  num = number + getOrderedRoom(hotelId, type);
+			else           num = getOrderedRoom(hotelId, type) - number;
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));			
+			bw.write( (num+""));
+			bw.close();
+			
+			return ResultMessage.SUCCEED;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return ResultMessage.FAIL;
+	}
+	
+	
+	public int getOrderedRoom(String hotelId, RoomType type){
+		File file = new File(rootPath + hotelId + "/" + getRoomTypeName(type) + ".txt");
+		
+		try {
+			file.createNewFile();
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+			String str = br.readLine();
+			br.close();
+			
+			if(str == null) return 0;
+			return Integer.parseInt(str);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	/**
 	 * 根据酒店编号返回酒店房间信息
 	 * @param hotelId
@@ -277,7 +317,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				case "FAMILY": rt = RoomType.FAMILY; break;
 				}
 				HotelTypeRoomPo po = new HotelTypeRoomPo(rt,Integer.valueOf(data[1]),
-						Integer.valueOf(data[2]),getBookDateList(hotelId,rt));
+						Integer.valueOf(data[2]));
 				list.add(po);
 				str = br.readLine();
 			}
@@ -288,57 +328,6 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		return list;
 	}
 	
-	@Override
-	public List<String> getBookDateList(String hotelId, RoomType type){
-		String type_str = getRoomTypeName(type);
-		File rootFile = new File(rootPath + hotelId);
-		rootFile.mkdir();
-		
-		File file = new File(rootFile.getAbsolutePath(),type_str + ".txt");	
-		List<String> bookDate = new ArrayList<String>();
-		try {
-			file.createNewFile();
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(
-					file), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
-			
-			String str = br.readLine();
-			while(str != null){
-				bookDate.add(str);
-				str = br.readLine();
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return bookDate;
-	}
-	
-	@Override
-	public void upBookDateList(String hotelId, RoomType type, List<String> list){
-		String type_str = getRoomTypeName(type);
-		File rootFile = new File(rootPath + hotelId);
-		rootFile.mkdir();
-		
-		File file = new File(rootFile.getAbsolutePath(),type_str + ".txt");	
-		
-		try {
-			file.createNewFile();
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());	
-			BufferedWriter writer = new BufferedWriter(fw);
-			
-			Iterator<String> iterator = list.iterator();
-			while(iterator.hasNext()){
-				writer.write(iterator.next());
-				writer.newLine();
-			}
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-		
 	/**
 	 * 将房间类型转为对应的String
 	 * @param type

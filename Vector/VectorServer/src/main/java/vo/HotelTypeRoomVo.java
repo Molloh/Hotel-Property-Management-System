@@ -1,7 +1,6 @@
 package vo;
 
 import java.io.Serializable;
-import java.util.List;
 
 import common.RoomType;
 import po.HotelTypeRoomPo;
@@ -17,13 +16,11 @@ public class HotelTypeRoomVo implements Serializable {
 	private RoomType type;
 	private int number;            //房间数量
 	private int price;
-	private List<String> list;     //存储订单号,开始日期和结束日期
 	
 	public HotelTypeRoomVo(HotelTypeRoomPo po){
 		this.type = po.getType();
 		this.number = po.getNumOfTypeRoom();
 		this.price = po.getPrice();
-		this.list = po.getBookDate();
 	}
 	
 	public RoomType getType(){
@@ -36,9 +33,5 @@ public class HotelTypeRoomVo implements Serializable {
 	
 	public int getPrice(){
 		return price;
-	}
-	
-	public List<String> getBookDate(){
-		return list;
 	}
 }

@@ -100,6 +100,20 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		return ResultMessage.FAIL;
 	}
 	
+	public List<Double> getCurrentActDiscount(String hotelId){
+		List<ActivityPromotionVo> list = getCurrentActStrategy();
+		if(list.isEmpty())  return null;
+		
+		Iterator<ActivityPromotionVo> it = list.iterator();
+		List<Double> discountList = new ArrayList<Double>();
+		
+		while(it.hasNext()){
+			discountList.add(it.next().getDiscount());
+		}
+		return discountList;
+	}
+	
+	
 	@Override
 	public List<ActivityPromotionVo> getCurrentActStrategy(){
 		List<ActivityPromotionVo> list = new ArrayList<ActivityPromotionVo>();
@@ -179,7 +193,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	}
 		
 	@Override
-	public LevelVo getLevelStrategy(int level){
+	public double getLevelStrategy(int level){
 		try {
 			List<LevelPo> levelList = marketPromotionDao.getLevelList();
 			Iterator<LevelPo> it = levelList.iterator();
@@ -187,13 +201,13 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 			while(it.hasNext()){
 				LevelPo po = it.next();
 				if(po.getLevel() == level)
-					return new LevelVo(po);
+					return po.getDiscount();
 			}
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return 1;
 	}
 	
 
@@ -262,7 +276,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	}
 
 	@Override
-	public BusinessProVo getBusinessStrategyList(String businessName) {
+	public BusinessProVo getBusinessStrategy(String businessName) {
 		try {
 			List<BusinessProPo> businessList = marketPromotionDao.getBusinessList();
 			Iterator<BusinessProPo> it = businessList.iterator();
@@ -281,4 +295,10 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		return null;	
 	}
 	
+	
+	public double getBusinessDiscount(String businessName) {
+		BusinessProVo vo = getBusinessStrategy(businessName);
+		if(vo != null)   return vo.getDiscount();
+		return 1;
+	}
 }

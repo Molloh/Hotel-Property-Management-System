@@ -72,23 +72,6 @@ public class HotelDaoImpl implements HotelDao{
 	}
 	
 	@Override
-	public ResultMessage updateBookDate(HotelPo po, RoomType type){
-		String hotelId = po.getId();
-		if(map.get(hotelId) != null){
-			Iterator<HotelTypeRoomPo> iterator = po.getTypeRoom().iterator();
-			List<String> list = new ArrayList<String>();
-			while(iterator.hasNext()){
-				HotelTypeRoomPo rPo = iterator.next();
-				if(rPo.getType().equals(type))
-					list = rPo.getBookDate();
-			}
-			hotelDataHelper.upBookDateList(hotelId, type, list);
-			return ResultMessage.SUCCEED;
-		}
-		return ResultMessage.FAIL;
-	}
-
-	@Override
 	public ResultMessage updateComment(HotelPo po){
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
@@ -145,5 +128,26 @@ public class HotelDaoImpl implements HotelDao{
 	@Override
 	public List<String> getBusinessList(String province, String city){
 		return hotelDataHelper.getBusinessList(province, city);
+	}
+	
+	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn){
+		return hotelDataHelper.updateOrderedRoom(hotelId, type, number, isCheckIn);
+	}
+	
+	public int getReadyRoom(String hotelId, RoomType type){
+		HotelPo po = findHotel(hotelId);
+		List<HotelTypeRoomPo> list = po.getTypeRoom();
+		Iterator<HotelTypeRoomPo> it = list.iterator();
+		int sum = 0;
+		while(it.hasNext()){
+			HotelTypeRoomPo rpo = it.next();
+			if(rpo.getType().equals(type)){
+				sum = rpo.getNumOfTypeRoom();
+				break;
+			}
+		}
+		
+		int readyRoom = sum - hotelDataHelper.getOrderedRoom(hotelId, type);
+		return readyRoom;
 	}
 }
