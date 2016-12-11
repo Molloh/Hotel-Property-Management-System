@@ -65,7 +65,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         return accountDao.logout(id);
     }
 
-    public ResultMessage modifyPassword(String id, String newPassword) 
+    public ResultMessage modifyPassword(String id, String newPassword)
     		throws RemoteException{
         return accountDao.modifyPassword(id,newPassword);
     }
@@ -141,7 +141,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
    	public ResultMessage updateBookDate(HotelPo po, RoomType type) throws RemoteException {
    		return hotelDao.updateBookDate(po, type);
    	}
-   	
+
    	public List<String> getProvinceList() throws RemoteException {
 		return hotelDao.getProvinceList();
 	}
@@ -162,7 +162,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 	public ResultMessage delActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
 		return hotelPromotionDao.delActPromotion(hotelId, po);
 	}
-	
+
 	public List<String> getActProList(String hotelId) throws RemoteException{
 		return hotelPromotionDao.getActProList(hotelId);
 	}
@@ -191,7 +191,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 		return hotelPromotionDao.getRoomPromotion(hotelId);
 	}
 
-   	
+
    	   	/*OrderDao 接口方法*/
 
 	public ResultMessage insertOrder(OrderPo po) throws RemoteException {
@@ -218,14 +218,14 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 		return orderDao.getAllByMember(memberId);
 	}
 
-	//网站营销人员查看每日未执行订单
-	public List<OrderPo> getNotExecuted(Date date) throws RemoteException {
-		return orderDao.getNotExecuted(date);
+	//网站营销人员查看未执行订单
+	public List<OrderPo> getNotExecuted() throws RemoteException {
+		return orderDao.getNotExecuted();
 	}
 
 	//网站营销人员查看异常订单
-	public List<OrderPo> getAbnormal(Date date) throws RemoteException {
-		return orderDao.getAbnormal(date);
+	public List<OrderPo> getAbnormal() throws RemoteException {
+		return orderDao.getAbnormal();
 	}
 
 

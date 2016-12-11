@@ -19,7 +19,6 @@ import vo.OrderVo;
 public class OrderBlServiceImpl implements OrderBlService {
 	
 	private OrderDao orderDao;
-	private MemberDao memberDao;
 	private static OrderBlServiceImpl orderBlServiceImpl;
 	
     public static OrderBlServiceImpl getInstance(){
@@ -30,7 +29,6 @@ public class OrderBlServiceImpl implements OrderBlService {
     
     private OrderBlServiceImpl(){
         orderDao = RemoteHelper.getInstance().getOrderDao();
-        memberDao = RemoteHelper.getInstance().getMemberDao();
     }
 	
 	@Override
@@ -159,9 +157,9 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 	
 	@Override
-	public List<OrderVo> getNotExecutedOrderByWebSite(Date date) {
+	public List<OrderVo> getNotExecutedOrderByWebSite() {
 		List<OrderVo> voList = new ArrayList<OrderVo>();
-		List<OrderPo> poList = orderDao.getNotExecuted(date);
+		List<OrderPo> poList = orderDao.getNotExecuted();
 		for(int i = 0; i < poList.size(); i++) {
 			voList.add(new OrderVo(poList.get(i)));
 		}
@@ -169,9 +167,9 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 	
 	@Override
-	public List<OrderVo> getAbnormalByWebSite(Date date) {
+	public List<OrderVo> getAbnormalByWebSite() {
 		List<OrderVo> voList = new ArrayList<OrderVo>();
-		List<OrderPo> poList = orderDao.getAbnormal(date);
+		List<OrderPo> poList = orderDao.getAbnormal();
 		for(int i = 0; i < poList.size(); i++) {
 			voList.add(new OrderVo(poList.get(i)));
 		}
@@ -198,11 +196,19 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 
 	@Override
-	public ResultMessage setToAbnormal(String orderId) {
-		OrderPo orderPo = orderDao.findOrder(orderId);
-		orderPo.setCondition(OrderCondition.ABNORMAL);
-		memberDao.chargeCredit(orderPo.getMemberId(), - orderPo.getDiscountedPrice());
-		return orderDao.updateOrder(orderPo);
+	public ResultMessage setToAbnormal() {
+		List<OrderPo> poList = orderDao.getNotExecuted();
+		for(OrderPo orderPo : poList) {
+			if(orderPo.getPlanCheckInTime().before(new Date())) {
+				orderPo.setCondition(OrderCondition.ABNORMAL);
+				MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), - orderPo.getDiscountedPrice());
+				ResultMessage updateSucceed = orderDao.updateOrder(orderPo);
+				if(updateSucceed == ResultMessage.FAIL) {
+					return ResultMessage.FAIL;
+				}
+			}
+		}
+		return ResultMessage.SUCCEED;
 	}	
 
 	@Override
@@ -217,7 +223,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.EXECUTING);
 		orderPo.setCheckInTime(new Date());
-		memberDao.chargeCredit(orderPo.getMemberId(), orderPo.getDiscountedPrice());
+		MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), orderPo.getDiscountedPrice());
 		return orderDao.updateOrder(orderPo);
 	}
 
@@ -227,7 +233,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		if(orderPo.getCondition() == OrderCondition.ABNORMAL) {
 			orderPo.setCondition(OrderCondition.EXECUTING);
 			orderPo.setCheckInTime(new Date());
-			memberDao.chargeCredit(orderPo.getMemberId(), 2 * orderPo.getDiscountedPrice());
+			MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), 2 * orderPo.getDiscountedPrice());
 			return orderDao.updateOrder(orderPo);
 		}
 		else {
@@ -248,13 +254,20 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.REVOKED);
 		orderPo.setRevokeTime(new Date());
-		memberDao.chargeCredit(orderPo.getMemberId(), (int)allOrHalf * orderPo.getDiscountedPrice());
+		MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), (int)allOrHalf * orderPo.getDiscountedPrice());
 		return orderDao.updateOrder(orderPo);
 	}
 	
 	@Override
 	public ResultMessage delete(String orderId) {
 		return orderDao.deleteOrder(orderId);
+	}
+
+	@Override
+	public ResultMessage setToFinished(String orderId) {
+		OrderPo orderPo = orderDao.findOrder(orderId);
+		orderPo.setCondition(OrderCondition.FINISHED);
+		return orderDao.updateOrder(orderPo);
 	}
 
 }

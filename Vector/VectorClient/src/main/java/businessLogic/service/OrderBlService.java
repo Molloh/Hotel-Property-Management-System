@@ -55,14 +55,14 @@ public interface OrderBlService {
 	
 	public List<OrderVo> getOrdersInConditionByMember(String memberId, OrderCondition condition);
 	
-	public List<OrderVo> getNotExecutedOrderByWebSite(Date date);
+	public List<OrderVo> getNotExecutedOrderByWebSite();
 	
-	public List<OrderVo> getAbnormalByWebSite(Date date);
+	public List<OrderVo> getAbnormalByWebSite();
 	
 	public ResultMessage submit(String memberId, String planCheckInTime, String hoteId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist);
 
-	public ResultMessage setToAbnormal(String orderId);
+	public ResultMessage setToAbnormal();
 	
 	public ResultMessage cancel(String orderId);
 	
@@ -75,4 +75,6 @@ public interface OrderBlService {
 	public ResultMessage revoke(String orderId, double allOrHalf);
 	
 	public ResultMessage delete(String orderId);
+	
+	public ResultMessage setToFinished(String orderId); //提供给Hotel评价使用
 }

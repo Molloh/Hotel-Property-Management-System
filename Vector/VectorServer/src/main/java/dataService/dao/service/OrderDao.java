@@ -27,10 +27,10 @@ public interface OrderDao extends Remote {
 	
 	public List<OrderPo> getAllByMember(String memberId) throws RemoteException;
 	
-	//网站营销人员查看每日未执行订单
-	public List<OrderPo> getNotExecuted(Date date) throws RemoteException;
+	//网站营销人员查看未执行订单
+	public List<OrderPo> getNotExecuted() throws RemoteException;
 	
 	//网站营销人员查看异常订单
-	public List<OrderPo> getAbnormal(Date date) throws RemoteException;
+	public List<OrderPo> getAbnormal() throws RemoteException;
 
 }

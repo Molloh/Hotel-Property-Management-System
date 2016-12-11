@@ -108,13 +108,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<OrderPo> getNotExecuted(Date date) {
+	public List<OrderPo> getNotExecuted() {
 		List<OrderPo> orderList = new ArrayList<OrderPo>();
 		Iterator<Map.Entry<String, OrderPo>> iterator = map.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<String, OrderPo> entry = iterator.next();
 			OrderPo orderPo = entry.getValue();
-			if (orderPo.getCreateTime() == date && orderPo.getCondition() == OrderCondition.CANCELED) {
+			if (orderPo.getCondition() == OrderCondition.CANCELED) {
 				orderList.add(orderPo);
 			}
 		}
@@ -122,13 +122,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<OrderPo> getAbnormal(Date date) {
+	public List<OrderPo> getAbnormal() {
 		List<OrderPo> orderList = new ArrayList<OrderPo>();
 		Iterator<Map.Entry<String, OrderPo>> iterator = map.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<String, OrderPo> entry = iterator.next();
 			OrderPo orderPo = entry.getValue();
-			if (orderPo.getCreateTime() == date && orderPo.getCondition() == OrderCondition.ABNORMAL) {
+			if (orderPo.getCondition() == OrderCondition.ABNORMAL) {
 				orderList.add(orderPo);
 			}
 		}
