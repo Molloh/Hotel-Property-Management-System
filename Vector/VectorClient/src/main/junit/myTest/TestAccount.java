@@ -91,10 +91,10 @@ public class TestAccount {
 	public void testInsert() {
 		//test insert manager
 		test.insertAccount("Admin", "Admin", AccountType.Manager);
-		Assert.assertEquals("Admin",test.findAccount("M00002").getMemberName());
+		Assert.assertEquals("Admin",test.findAccount("A00002").getMemberName());
 		//test insert marketer
 		test.insertAccount("Jack", "Monica", AccountType.Marketer);
-		Assert.assertEquals("Monica",test.findAccount("A00002").getPassword());
+		Assert.assertEquals("Monica",test.findAccount("M00002").getPassword());
 		//test insert hotel
 		test.insertAccount("TrumpHotel", "american", AccountType.Hotel);
 		Assert.assertEquals(0,test.findAccount("H00002").getLogState());

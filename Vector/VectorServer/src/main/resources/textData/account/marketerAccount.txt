@@ -1,2 +1,2 @@
-Ivanca;00980808az;A00001;0
-Jack;Monica;A00002;0
+Ivanca;00980808az;M00001;0
+Jack;Monica;M00002;0
