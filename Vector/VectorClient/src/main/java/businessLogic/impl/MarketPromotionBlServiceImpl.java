@@ -245,10 +245,9 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 			while(it.hasNext()){
 				BusinessProPo po = it.next();
 				if(po.getBusinessName().equals(vo.getBusinessName()))
-					return ResultMessage.INVALID;     //名称重复，无法添加
+					return marketPromotionDao.updateBusiness(new BusinessProPo(vo.getBusinessName(),vo.getDiscount()));
 			}	
-			
-			return marketPromotionDao.updateBusiness(new BusinessProPo(vo.getBusinessName(),vo.getDiscount()));
+		
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

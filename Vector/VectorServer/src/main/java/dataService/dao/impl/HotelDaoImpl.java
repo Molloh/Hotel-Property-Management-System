@@ -147,7 +147,6 @@ public class HotelDaoImpl implements HotelDao{
 				break;
 			}
 		}
-		
 		int readyRoom = sum - hotelDataHelper.getOrderedRoom(hotelId, type);
 		return readyRoom;
 	}

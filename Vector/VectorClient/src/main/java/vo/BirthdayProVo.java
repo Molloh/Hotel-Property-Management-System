@@ -19,6 +19,8 @@ public class BirthdayProVo implements Serializable {
 		this.discount = po.getDiscount();
 	}
 	
+	public BirthdayProVo(){}
+	
 	public HotelPromotionType getPromotionType(){
 		return type;
 	}

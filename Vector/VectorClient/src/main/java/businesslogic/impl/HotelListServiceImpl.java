@@ -193,16 +193,12 @@ public class HotelListServiceImpl implements HotelListService{
 		List<HotelVo> findList = new ArrayList<HotelVo>();
 	
 		for(HotelVo hotel : list){
-			List<HotelTypeRoomVo> typeRoomList = hotel.getTypeRoom();
-			Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
-			while(it.hasNext()){
-				HotelTypeRoomVo vo = it.next();
-				if(vo.getType().equals(type) && vo.getPrice()>=low && vo.getPrice()<=high)
-					findList.add(hotel);
+			int price = hotel.getOriginPrice(type);
+			if(price != -1 && price >= low && price <= high){
+				findList.add(hotel);
 			}
-			return findList;
 		}
-		return null;
+		return findList;
 	}
 	
 	@Override

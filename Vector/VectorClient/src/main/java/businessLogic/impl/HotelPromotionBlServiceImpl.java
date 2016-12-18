@@ -218,6 +218,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		
 		try {
 			RoomPromotionVo vo = new RoomPromotionVo(hotelPromotionDao.getRoomPromotion(hotelId));
+			if( vo != null)
 			//若预订数量满足房间预订促销策略
 			if(numOfRoom >= vo.getNumOfRoom())
 				return vo;

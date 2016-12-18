@@ -5,7 +5,7 @@ import java.io.Serializable;
 import common.HotelPromotionType;
 import po.RoomPromotionPo;
 /**
- * @version 2016-12-10
+ * @version 2016-12-07
  * @author 金灵益
  * @description 预定多间房间优惠
  */
@@ -20,6 +20,12 @@ public class RoomPromotionVo implements Serializable {
 		this.name = po.getPromotionName();
 		this.number = po.getNumOfRoom();
 		this.discount = po.getDiscount();
+	}
+	
+	public RoomPromotionVo(String name, int number, double discount){
+		this.name = name;
+		this.number = number;
+		this.discount = discount;
 	}
 	
 	public HotelPromotionType getPromotionType(){
@@ -37,5 +43,6 @@ public class RoomPromotionVo implements Serializable {
 	public double getDiscount(){
 		return discount;
 	}
+
 }
 

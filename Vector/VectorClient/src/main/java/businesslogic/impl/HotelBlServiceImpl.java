@@ -48,6 +48,7 @@ public class HotelBlServiceImpl implements HotelBlService{
     @Override
     public void addHotel(String hotelId){
     	HotelPo po = new HotelPo(hotelId);    	
+    	
     	try {
 			hotelDao.addHotelPO(po);
 		} catch (RemoteException e) {

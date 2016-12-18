@@ -1,7 +1,7 @@
 package vo;
 /**
  * @author 金灵益
- * @version 2016/12/18
+ * @version 2016/12/04
  * @description
  */
 import java.io.Serializable;

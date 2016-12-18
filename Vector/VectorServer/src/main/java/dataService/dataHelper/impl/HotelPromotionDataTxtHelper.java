@@ -304,13 +304,16 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		try {
 			roomProFile.createNewFile();
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(roomProFile), "UTF-8"));
+			String str = br.readLine();
+			if(str != null){
+				String [] token = str.split("/");
+				br.close();
 			
-			String [] token = br.readLine().split("/");
-			br.close();
-			
-			RoomPromotionPo po = new RoomPromotionPo(token[0], Integer.parseInt(token[1]), 
+				RoomPromotionPo po = new RoomPromotionPo(token[0], Integer.parseInt(token[1]), 
 					             Double.parseDouble(token[2]));
-			return po;
+				return po;
+			}
+			br.close();
 		}catch(IOException e){
 			e.printStackTrace();
 		}

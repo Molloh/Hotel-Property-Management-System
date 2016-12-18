@@ -24,6 +24,10 @@ public class BusinessProVo implements Serializable {
 		this.discount = discount;
 	}
 	
+	public void setDiscount(double d){
+		this.discount = d;
+	}
+	
 	public String getBusinessName(){
 		return businessName;
 	}

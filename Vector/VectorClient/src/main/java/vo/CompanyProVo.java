@@ -22,6 +22,11 @@ public class CompanyProVo implements Serializable {
 		this.company = po.getCompanyList();
 	}
 	
+	public CompanyProVo(double discount, List<String> company){
+		this.discount = discount;
+		this.company = company;
+	}
+	
 	public HotelPromotionType getPromotionType(){
 		return type;
 	}
