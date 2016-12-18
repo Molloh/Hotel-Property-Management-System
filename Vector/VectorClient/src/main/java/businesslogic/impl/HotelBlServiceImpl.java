@@ -1,6 +1,7 @@
 package businessLogic.impl;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -126,6 +127,9 @@ public class HotelBlServiceImpl implements HotelBlService{
 		double points = vo.getPoStrings();
 		int num = vo.getNumOfpoint();
 		points = (points * num + poStrings) / (num+1);
+		//保留1位小数
+		DecimalFormat df = new DecimalFormat("#.0");
+		points = Double.parseDouble(df.format(points));
 		vo.setNumOfPoint(num + 1);
 		vo.setPoStrings(points);
 		OrderBlServiceImpl.getInstance().setToFinished(orderId);
