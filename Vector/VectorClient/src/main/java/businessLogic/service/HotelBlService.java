@@ -55,11 +55,11 @@ public interface HotelBlService {
 	public void initializeRoom(String hotelId, RoomType type, int number, int price);
 	
 	/**
-	 * 当酒店人员执行退房时，调用此方法，更新房间预订数量，订单状态改为已执行
+	 * 当酒店人员执行退房时，调用此方法，更新房间预订数量
 	 * @param type
 	 * @return 
 	 */
-	public ResultMessage checkoutRoom(RoomType type, int number, String orderId);
+	public ResultMessage checkoutRoom(RoomType type, int number);
 	
 	/**
 	 * 当客户预定房间，调用此方法
@@ -83,9 +83,9 @@ public interface HotelBlService {
 	public void comment(String giveComment);
 
 	/**
-	 * @description 客户给予评分
+	 * @description 客户给予评分，同时将订单状态置为已执行
 	 * @param poStrings
 	 */
-	public void givePoStrings(double poStrings);
+	public void givePoStrings(String orderId, double poStrings);
 
 }

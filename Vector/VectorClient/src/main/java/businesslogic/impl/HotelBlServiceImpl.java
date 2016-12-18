@@ -80,9 +80,8 @@ public class HotelBlServiceImpl implements HotelBlService{
     }
 
     @Override
-    public ResultMessage checkoutRoom(RoomType type, int number, String orderId){
+    public ResultMessage checkoutRoom(RoomType type, int number){
 		try {
-			OrderBlServiceImpl.getInstance().setToFinished(orderId);
 			return hotelDao.updateOrderedRoom(vo.getId(), type, number, false);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -123,13 +122,13 @@ public class HotelBlServiceImpl implements HotelBlService{
 		}
 	}
 
-	public void givePoStrings(double poStrings) {
+	public void givePoStrings(String orderId, double poStrings) {
 		double points = vo.getPoStrings();
 		int num = vo.getNumOfpoint();
 		points = (points * num + poStrings) / (num+1);
 		vo.setNumOfPoint(num + 1);
 		vo.setPoStrings(points);
-		
+		OrderBlServiceImpl.getInstance().setToFinished(orderId);
 		updateBasicInfo(vo);
 	}
 
