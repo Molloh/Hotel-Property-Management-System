@@ -1,7 +1,7 @@
 package vo;
 /**
  * @author 金灵益
- * @version 2016/12/04
+ * @version 2016/12/18
  * @description
  */
 import java.io.Serializable;
@@ -48,10 +48,13 @@ public class HotelVo implements Serializable {
 
 		//typeRoomPo -- > typeRoomVo
 		typeRoomList = new ArrayList<HotelTypeRoomVo>();
-		Iterator<HotelTypeRoomPo> it = po.getTypeRoom().iterator();
-		while(it.hasNext()){
-			typeRoomList.add(new HotelTypeRoomVo(it.next()));
+		if(po.getTypeRoom() != null){
+			Iterator<HotelTypeRoomPo> it = po.getTypeRoom().iterator();
+			while(it.hasNext()){
+				typeRoomList.add(new HotelTypeRoomVo(it.next()));
+			}
 		}
+		
 	}
 	
 	public List<String> getCommentList(){

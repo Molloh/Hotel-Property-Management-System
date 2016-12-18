@@ -44,6 +44,7 @@ public class HotelDaoImpl implements HotelDao{
 	public ResultMessage addHotelPO(HotelPo po) {
 		if(!map.containsKey(po.getId())) {	    
 			hotelDataHelper.addHotelData(po);
+			map.put(po.getId(), po);
 			return ResultMessage.SUCCEED;   
 		}
 		//若已存在该po

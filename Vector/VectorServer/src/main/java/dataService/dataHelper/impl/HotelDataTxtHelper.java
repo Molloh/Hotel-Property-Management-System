@@ -74,7 +74,6 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		              	 + "/" + po.getHotelPosition() + "/" + po.getInBusiness() + "/" + po.getHotelTel()
 		              	 + "/" + (po.getStars()+"") + "/" + (po.getPoStrings()+"") + "/"
 		              	 + (po.getNumOfpoint()+"") + "/" + po.getHotelInfo();
-			
 			writer.write(str);
 			writer.newLine();
 			writer.close();
@@ -137,14 +136,20 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}
 		updateHotelListData(updateMap);
 		
-		//删除该酒店房间、评价文件
+		//删除该酒店房间、促销策略、评价文件
 		File hotelfile = new File(rootPath + hotelId);
-		hotelfile.mkdir();
-			
+		hotelfile.mkdir();	
 		for(File files : hotelfile.listFiles()){
 			files.delete();
-		}
 		
+		}		
+		
+		File profile = new File(hotelfile.getAbsolutePath() + "/promotion");	
+		profile.mkdir();
+		for(File files : profile.listFiles()){
+			files.delete();
+		}
+		profile.delete();
 		hotelfile.delete();
 
 		return ResultMessage.SUCCEED;		

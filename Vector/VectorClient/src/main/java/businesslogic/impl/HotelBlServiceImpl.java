@@ -29,12 +29,14 @@ public class HotelBlServiceImpl implements HotelBlService{
 	}
 
 	private HotelBlServiceImpl(){
-		hotelDao = RemoteHelper.getInstance().getHotelDao();
+		if(hotelDao == null)
+			hotelDao = RemoteHelper.getInstance().getHotelDao();
 	}
 	
 	@Override
 	public HotelVo getHotelVo(String hotelId){
 		try {
+		//	hotelDao = RemoteHelper.getInstance().getHotelDao();
 			this.vo = new HotelVo(hotelDao.findHotel(hotelId));
 			return vo;
 		} catch (RemoteException e) {
@@ -114,6 +116,9 @@ public class HotelBlServiceImpl implements HotelBlService{
 
 	public void comment(String giveComment) {
 		List<String> comment = vo.getCommentList();
+		if(comment == null){
+			comment = new ArrayList<String>();
+		}
 		comment.add(giveComment);
 		vo.setCommentList(comment);
 		try {
