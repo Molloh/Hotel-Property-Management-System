@@ -1,5 +1,6 @@
 package businessLogic.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,6 @@ import businessLogic.service.OrderBlService;
 import common.OrderCondition;
 import common.ResultMessage;
 import common.RoomType;
-import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
 import po.OrderPo;
 import rmi.RemoteHelper;
@@ -177,22 +177,54 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 	
 	@Override
-	public ResultMessage submit(String memberId, String planCheckInTime, String hoteId, int numOfDays,
+	public ResultMessage submit(String memberId, String planCheckInTimeStr, String hotelId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist) {
 		Date d = new Date();  
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");  
-		String dateNowStr = sdf.format(d);
+		SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyyMMdd");  
+		String dateNowStr = sdf_1.format(d);
 		Random rm = new Random();
 		double pross = (1 + rm.nextDouble()) * Math.pow(10, 5);
 		String randomStr = String.valueOf(pross).substring(1, 6);
+		
 		String orderId = dateNowStr + randomStr;
 		
+		String memberName = MemberBlServiceImpl.getInstance().getInfo(memberId).getName();
+		
 		Date createTime = new Date();
+		
+	    SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	    Date planCheckInTime = null;
+		try {
+			planCheckInTime = sdf_2.parse(planCheckInTimeStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}  
+		
+		String hotelName = HotelBlServiceImpl.getInstance().getHotelVo(hotelId).getHotelName();
 		//获取酒店此种房间单价
+		int originalPrice = HotelBlServiceImpl.getInstance().getHotelVo(hotelId).getOriginPrice(roomType);
+		
 		//获取所有适用的打折策略并取最低的计算折扣
+		double minDiscount = 1.0;
+		List<Double> hotelDiscountList = HotelPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		List<Double> marketDiscountList = MarketPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		for(double discount : hotelDiscountList) {
+			if(discount < minDiscount) {
+				minDiscount = discount;
+			}
+		}
+		for(double discount : marketDiscountList) {
+			if(discount < minDiscount) {
+				minDiscount = discount;
+			}
+		}
 		//由单价，天数，折扣计算最终价格
+		int discountedPrice = (int) (minDiscount * originalPrice * numOfDays * numOfRoom);
 		//由上面所有信息创建orderPo对象并存入数据层
-		return null;
+		OrderPo orderPo = new OrderPo(orderId, OrderCondition.WAITING, memberId, memberName, createTime,
+				planCheckInTime, null, null, null, hotelName, hotelId, numOfDays, roomType, numOfRoom, numOfGuest,
+				childExist, originalPrice, minDiscount, discountedPrice);
+		return orderDao.insertOrder(orderPo);
 	}
 
 	@Override
@@ -246,7 +278,14 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.EXECUTED);
 		orderPo.setCheckOutTime(new Date());
-		return orderDao.updateOrder(orderPo);
+		ResultMessage roomUpdate = HotelBlServiceImpl.getInstance().checkoutRoom(orderPo.getRoomType(), orderPo.getNumOfRoom());
+		ResultMessage orderUpdate = orderDao.updateOrder(orderPo);
+		if(roomUpdate == ResultMessage.SUCCEED && orderUpdate == ResultMessage.SUCCEED) {
+			return ResultMessage.SUCCEED;
+		}
+		else {
+			return ResultMessage.FAIL;
+		}
 	}
 
 	@Override

@@ -59,7 +59,8 @@ public interface OrderBlService {
 	
 	public List<OrderVo> getAbnormalByWebSite();
 	
-	public ResultMessage submit(String memberId, String planCheckInTime, String hoteId, int numOfDays,
+	//planCheckInTimeStr格式为yyyy-MM-dd HH:mm:ss
+	public ResultMessage submit(String memberId, String planCheckInTimeStr, String hoteId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist);
 
 	public ResultMessage setToAbnormal();
