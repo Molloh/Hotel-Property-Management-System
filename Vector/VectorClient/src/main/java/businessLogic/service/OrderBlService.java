@@ -14,6 +14,7 @@ import vo.OrderVo;
  * @ description
  */
 public interface OrderBlService {
+	public OrderVo getOrder(String orderId);
 	
 	public String getOrderId(String orderId);
 	
@@ -45,7 +46,7 @@ public interface OrderBlService {
 	
 	public double getDiscount(String orderId);
 	
-	public double getDiscountedPrice(String orderId);
+	public int getDiscountedPrice(String orderId);
 	
 	public List<OrderVo> getAllOrdersByHotel(String hotelId);
 	

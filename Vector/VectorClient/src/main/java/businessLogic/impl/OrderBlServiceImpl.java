@@ -31,6 +31,11 @@ public class OrderBlServiceImpl implements OrderBlService {
         orderDao = RemoteHelper.getInstance().getOrderDao();
     }
 	
+    @Override
+    public OrderVo getOrder(String orderId) {
+    	return new OrderVo(orderDao.findOrder(orderId));
+    }
+    
 	@Override
 	public String getOrderId(String orderId) {
 		return orderDao.findOrder(orderId).getOrderId();
@@ -107,7 +112,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 	}
 
 	@Override
-	public double getDiscountedPrice(String orderId) {
+	public int getDiscountedPrice(String orderId) {
 		return orderDao.findOrder(orderId).getDiscountedPrice();
 	}
 
@@ -179,6 +184,10 @@ public class OrderBlServiceImpl implements OrderBlService {
 	@Override
 	public ResultMessage submit(String memberId, String planCheckInTimeStr, String hotelId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist) {
+		HotelBlServiceImpl.getInstance().getHotelVo(hotelId);
+		if(HotelBlServiceImpl.getInstance().getReadyRoom(roomType) <= 0) {
+			return ResultMessage.FAIL;
+		}
 		Date d = new Date();  
 		SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyyMMdd");  
 		String dateNowStr = sdf_1.format(d);
@@ -194,7 +203,9 @@ public class OrderBlServiceImpl implements OrderBlService {
 		
 	    SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 	    Date planCheckInTime = null;
+	    Date invalidDate = null;
 		try {
+			invalidDate = sdf_2.parse("1970-01-01 00:00:00");
 			planCheckInTime = sdf_2.parse(planCheckInTimeStr);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -207,7 +218,17 @@ public class OrderBlServiceImpl implements OrderBlService {
 		//获取所有适用的打折策略并取最低的计算折扣
 		double minDiscount = 1.0;
 		List<Double> hotelDiscountList = HotelPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getOrderRoomDiscount(hotelId, numOfRoom));
+		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getBirthStrategy(hotelId,
+				MemberBlServiceImpl.getInstance().getInfo(memberId).getBirthday()));
+		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getCooperationStrategy(hotelId, memberId));
+		
 		List<Double> marketDiscountList = MarketPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		marketDiscountList.add(MarketPromotionBlServiceImpl.getInstance()
+				.getBusinessDiscount(HotelBlServiceImpl.getInstance().getHotelVo(hotelId).getInBusiness()));
+		marketDiscountList.add(MarketPromotionBlServiceImpl.getInstance()
+				.getLevelStrategy(MemberBlServiceImpl.getInstance().getInfo(memberId).getVip()));
+		
 		for(double discount : hotelDiscountList) {
 			if(discount < minDiscount) {
 				minDiscount = discount;
@@ -222,7 +243,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		int discountedPrice = (int) (minDiscount * originalPrice * numOfDays * numOfRoom);
 		//由上面所有信息创建orderPo对象并存入数据层
 		OrderPo orderPo = new OrderPo(orderId, OrderCondition.WAITING, memberId, memberName, createTime,
-				planCheckInTime, null, null, null, hotelName, hotelId, numOfDays, roomType, numOfRoom, numOfGuest,
+				planCheckInTime, invalidDate, invalidDate, invalidDate, hotelName, hotelId, numOfDays, roomType, numOfRoom, numOfGuest,
 				childExist, originalPrice, minDiscount, discountedPrice);
 		return orderDao.insertOrder(orderPo);
 	}
