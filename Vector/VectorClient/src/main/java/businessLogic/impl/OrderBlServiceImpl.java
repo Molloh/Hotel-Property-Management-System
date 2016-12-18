@@ -179,10 +179,6 @@ public class OrderBlServiceImpl implements OrderBlService {
 	@Override
 	public ResultMessage submit(String memberId, String planCheckInTimeStr, String hotelId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist) {
-		HotelBlServiceImpl.getInstance().getHotelVo(hotelId);
-		if(HotelBlServiceImpl.getInstance().getReadyRoom(roomType) <= 0) {
-			return ResultMessage.FAIL;
-		}
 		Date d = new Date();  
 		SimpleDateFormat sdf_1 = new SimpleDateFormat("yyyyMMdd");  
 		String dateNowStr = sdf_1.format(d);
