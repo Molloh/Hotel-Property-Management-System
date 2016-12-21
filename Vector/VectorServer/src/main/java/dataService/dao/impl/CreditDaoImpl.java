@@ -1,5 +1,7 @@
 package dataService.dao.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import common.ResultMessage;
@@ -33,13 +35,14 @@ public class CreditDaoImpl implements CreditDao {
 	public ResultMessage addCreditByOrder(String id,int amount,OrderVo vo){
 		int ori_credit = MemberDaoImpl.getInstance().getCredit(id);
 		CreditRecordPo po;
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time_str = sdf.format(new Date());
 		if(vo==null) //充值信用，与订单无关!
 			po = new CreditRecordPo(ori_credit+amount,
-					"Charge credit",amount);
+					"Charge credit",time_str,amount);
 		else
 			po = new CreditRecordPo(ori_credit+amount,
-				vo.getOrderId()+"&&"+vo.getCondition(),amount);
+				vo.getOrderId()+"&&"+vo.getCondition(),time_str,amount);
 		
 		List<CreditRecordPo> list = creditDataHelper.getCreditRecordData(id);
 		list.add(po);

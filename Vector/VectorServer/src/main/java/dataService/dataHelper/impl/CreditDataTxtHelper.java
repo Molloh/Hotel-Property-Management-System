@@ -39,8 +39,7 @@ public class CreditDataTxtHelper implements CreditDataHelper{
                 String str_time  = data[2];
                 int delta = Integer.parseInt(data[3]);
                 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                CreditRecordPo po = new CreditRecordPo(creditNow,reason,delta);
+                CreditRecordPo po = new CreditRecordPo(creditNow,reason,str_time,delta);
                 list.add(po);
 
                 str = br.readLine();
