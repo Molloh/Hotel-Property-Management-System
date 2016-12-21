@@ -36,5 +36,9 @@ public class CreditRecordPo implements Serializable  {
 		return creditNow+";"+reason+";"+time+";"+delta;
 	}
 	
+	public int getCredit(){
+		return this.creditNow;
+	}
 	
+	 
 }

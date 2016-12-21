@@ -36,7 +36,8 @@ import vo.OrderVo;
 /**
  * Updated by lienming on 2016-12-08.
  */
-public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromotionDao{
+public class DataRemoteObject extends UnicastRemoteObject
+implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromotionDao,CreditDao{
 
 
 	private static final long serialVersionUID = 1L;
