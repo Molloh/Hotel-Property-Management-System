@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.OrderCondition;
+import common.RoomType;
 
 public class TestOrder {
 	private OrderBlService test;
@@ -32,12 +34,12 @@ public class TestOrder {
 
 	@Test
 	public void testGetMemberId() {
-		Assert.assertEquals("N00001", test.getMemberId("2016121812345"));
+		Assert.assertEquals("N00007", test.getMemberId("2016121812345"));
 	}
 
 	@Test
 	public void testGetMemberName() {
-		Assert.assertEquals("MaoZeDong", test.getMemberName("2016121812345"));
+		Assert.assertEquals("HuJinTao", test.getMemberName("2016121812345"));
 	}
 
 	@Test
@@ -47,12 +49,12 @@ public class TestOrder {
 
 	@Test
 	public void testGetCheckInTime() {
-		Assert.assertEquals("1970-01-01 00:00:00", sdf.format(test.getCreateTime("2016121812345")));
+		Assert.assertEquals("1970-01-01 00:00:00", sdf.format(test.getCheckInTime("2016121812345")));
 	}
 
 	@Test
 	public void testGetCheckOutTime() {
-		Assert.assertEquals("1970-01-01 00:00:00", sdf.format(test.getCreateTime("2016121812345")));
+		Assert.assertEquals("1970-01-01 00:00:00", sdf.format(test.getCheckOutTime("2016121812345")));
 	}
 
 	@Test
@@ -67,7 +69,7 @@ public class TestOrder {
 
 	@Test
 	public void testGetRoomType() {
-		Assert.assertEquals("DOUBLE", test.getRoomType("2016121812345"));
+		Assert.assertEquals(RoomType.DOUBLE, test.getRoomType("2016121812345"));
 	}
 
 	@Test
@@ -77,7 +79,7 @@ public class TestOrder {
 
 	@Test
 	public void testGetNumOfGuest() {
-		Assert.assertEquals(2, test.getNumOfGuest("2016121812345"));
+		Assert.assertEquals(4, test.getNumOfGuest("2016121812345"));
 	}
 
 	@Test
@@ -114,7 +116,7 @@ public class TestOrder {
 	@Test
 	public void testCheckIn() {
 		test.checkIn("2016121812345");
-		Assert.assertEquals("EXCUTING", test.getOrderCondition("2016121812345"));
+		Assert.assertEquals(OrderCondition.EXECUTING, test.getOrderCondition("2016121812345"));
 	}
 /*
 	@Test
