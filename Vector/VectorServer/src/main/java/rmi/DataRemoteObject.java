@@ -8,12 +8,14 @@ import common.AccountType;
 import common.ResultMessage;
 import common.RoomType;
 import dataService.dao.impl.AccountDaoImpl;
+import dataService.dao.impl.CreditDaoImpl;
 import dataService.dao.impl.HotelDaoImpl;
 import dataService.dao.impl.HotelPromotionDaoImpl;
 import dataService.dao.impl.MarketPromotionDaoImpl;
 import dataService.dao.impl.MemberDaoImpl;
 import dataService.dao.impl.OrderDaoImpl;
 import dataService.dao.service.AccountDao;
+import dataService.dao.service.CreditDao;
 import dataService.dao.service.HotelDao;
 import dataService.dao.service.HotelPromotionDao;
 import dataService.dao.service.MarketPromotionDao;
@@ -29,6 +31,7 @@ import po.OrderPo;
 import po.RoomPromotionPo;
 import vo.AccountVo;
 import vo.MemberVo;
+import vo.OrderVo;
 
 /**
  * Updated by lienming on 2016-12-08.
@@ -44,7 +47,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
     private OrderDao orderDao;
     private HotelPromotionDao hotelPromotionDao;
     private MarketPromotionDao marketPromotionDao;
-
+    private CreditDao creditDao;
+    
     protected DataRemoteObject() throws RemoteException{
         accountDao = AccountDaoImpl.getInstance();
         memberDao = MemberDaoImpl.getInstance();
@@ -52,6 +56,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
         orderDao = OrderDaoImpl.getInstance();
         hotelPromotionDao = HotelPromotionDaoImpl.getInstance();
         marketPromotionDao = MarketPromotionDaoImpl.getInstance();
+        creditDao = CreditDaoImpl.getInstance();
     }
 
 
@@ -266,5 +271,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements AccountDao,
 		return marketPromotionDao.getBusinessList();
 	}
 
-
+	/* CreditDao 接口方法 */
+	public ResultMessage addCreditByOrder(String id,int amount,OrderVo vo)
+			throws RemoteException{
+		return creditDao.addCreditByOrder(id, amount, vo);
+	}
+		
+	
 }

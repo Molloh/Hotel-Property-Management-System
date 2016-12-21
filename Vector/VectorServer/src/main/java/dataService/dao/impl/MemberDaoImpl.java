@@ -55,22 +55,24 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     public ResultMessage chargeCredit(String id, int amount){
-    	// amount<0?      id not exist?
     	TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
-    	
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String,MemberPo> entry = iterator.next();
             if( entry.getKey().equals(id) ) {
                 MemberPo po = entry.getValue();
+                //更新会员信息中的credit和vip
                 po.setCredit(po.getCredit()+amount);
                 int correctVip = MarketPromotionDaoImpl.getInstance().getMemberLevel(po.getCredit());
                 po.setVip(correctVip);
                 MemberVo vo = new MemberVo(po);
                 updateInfo(vo);
+                
+                //更新信用变化记录
+                CreditDaoImpl.getInstance().addCreditByOrder(id, amount, null);
+                
                 return ResultMessage.SUCCEED;
             }
-
         }
         return ResultMessage.FAIL;
     }

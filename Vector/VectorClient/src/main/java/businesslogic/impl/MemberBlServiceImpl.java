@@ -30,7 +30,10 @@ public class MemberBlServiceImpl implements MemberBlService{
         return memberDao.getCredit(id);
     }
 
+    /*线下充值调用接口,amount为正整数*/
     public ResultMessage chargeCredit(String id, int amount){
+    	if(amount<=0)
+			return ResultMessage.FAIL;
         return memberDao.chargeCredit(id,amount);
     }
 

@@ -1,6 +1,7 @@
 package dataService.dataHelper.impl;
 
 import dataService.dataHelper.service.AccountDataHelper;
+import dataService.dataHelper.service.CreditDataHelper;
 import dataService.dataHelper.service.DataFactory;
 import dataService.dataHelper.service.HotelDataHelper;
 import dataService.dataHelper.service.HotelPromotionDataHelper;
@@ -42,4 +43,10 @@ public class DataFactoryImpl implements DataFactory {
     	MarketPromotionDataHelper marketPromotionDao = new MarketPromotionDataTxtHelper();
     	return marketPromotionDao;
     }
+    
+    public CreditDataHelper getCreditDataHelper(){
+    	CreditDataHelper creditDao = new CreditDataTxtHelper();
+    	return creditDao;
+    }
+    
 }

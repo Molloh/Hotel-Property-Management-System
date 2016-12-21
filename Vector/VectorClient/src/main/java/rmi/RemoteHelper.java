@@ -3,6 +3,7 @@ package rmi;
 import java.rmi.Remote;
 
 import dataService.dao.service.AccountDao;
+import dataService.dao.service.CreditDao;
 import dataService.dao.service.HotelDao;
 import dataService.dao.service.HotelPromotionDao;
 import dataService.dao.service.MarketPromotionDao;
@@ -52,5 +53,9 @@ public class RemoteHelper {
     
     public MarketPromotionDao getMarketPromotionDao() {
     	return (MarketPromotionDao) remote;
+    }
+    
+    public CreditDao getCreditDao(){
+    	return (CreditDao)remote;
     }
 }

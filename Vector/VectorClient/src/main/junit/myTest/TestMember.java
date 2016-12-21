@@ -24,23 +24,29 @@ public class TestMember {
 
 	@Test
 	public void testGetCredit() {
+		//test member
 		int credit = test.getCredit("N00002");
 		Assert.assertEquals(100, credit);
+		
+		//test enterprise
+		
 	}
 
 	@Test
 	public void testChargeCredit() {
-		int ori = test.getCredit("N00001");
+		//test member
+		int ori = test.getCredit("N00007");
 		int charge = 1 ;
-		test.chargeCredit("N00001", charge);
-		Assert.assertEquals(ori + charge, test.getCredit("N00001"));
-		Assert.assertEquals(1,test.getInfo("N00001").getVip());
-		test.chargeCredit("N00001",100);
-		Assert.assertEquals(2,test.getInfo("N00001").getVip());
+		test.chargeCredit("N00007", charge);
+		Assert.assertEquals(ori + charge, test.getCredit("N00007"));
+		Assert.assertEquals(1,test.getInfo("N00007").getVip());
+		test.chargeCredit("N00007",100);
+		Assert.assertEquals(2,test.getInfo("N00007").getVip());
 	}
 
 	@Test
 	public void testGetInfo() {
+		//test member
 		MemberVo actual_vo = test.getInfo("N00002") ;
 		Assert.assertEquals("BigDog1", actual_vo.getName());
 		Assert.assertEquals("99900008888",actual_vo.getPhone());
@@ -52,6 +58,7 @@ public class TestMember {
 
 	@Test
 	public void testModifyInfo() {
+		//test member
 		String set = "99900007777";
 		MemberVo actual_vo = test.getInfo("N00003") ;
 		actual_vo.setPhone(set);

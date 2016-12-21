@@ -18,4 +18,6 @@ public interface DataFactory {
     public OrderDataHelper getOrderDataHelper();
 
     public MarketPromotionDataHelper getMarketPromotionDataHelper();
+    
+    public CreditDataHelper getCreditDataHelper();
 }

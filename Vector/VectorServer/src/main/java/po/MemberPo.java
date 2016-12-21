@@ -27,7 +27,7 @@ public class MemberPo {
          this.phone="00011112222";
          this.address="Nanjing";
          this.sex=Sex.MALE;
-         this.credit=100;
+         this.credit=0;
          this.birthday=new SimpleDateFormat("yyyy-MM-dd").parse("1970-01-01");
          this.vip=1;
     }

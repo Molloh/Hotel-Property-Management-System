@@ -165,6 +165,8 @@ public class AccountDaoImpl implements AccountDao {
 			MemberDaoImpl.getInstance().insertInfo(newMemVo);
 		else if(type==AccountType.Enterprise)
 			MemberDaoImpl.getInstance().insertInfo(newMemVo);
+	
+		CreditDaoImpl.getInstance().newCredit(newId);
 		
         return newId;
     }
@@ -183,6 +185,13 @@ public class AccountDaoImpl implements AccountDao {
         	po.setPassword(vo.getPassword());
             map.put(id, po);
             accountDataHelper.updateAccountData(map,type);
+            if(vo.getAccountType()==AccountType.Member||
+            		vo.getAccountType()==AccountType.Enterprise)
+            {
+            	MemberVo memVo = MemberDaoImpl.getInstance().getInfo(id);
+            	memVo.setName(po.getMemberName());
+            	MemberDaoImpl.getInstance().updateInfo(memVo);
+            }
             return ResultMessage.SUCCEED;
         }
         else
