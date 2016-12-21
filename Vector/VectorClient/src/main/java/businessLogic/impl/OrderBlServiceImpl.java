@@ -185,7 +185,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 	public ResultMessage submit(String memberId, String planCheckInTimeStr, String hotelId, int numOfDays,
 			RoomType roomType, int numOfRoom, int numOfGuest, boolean childExist) {
 		HotelBlServiceImpl.getInstance().getHotelVo(hotelId);
-		if(HotelBlServiceImpl.getInstance().getReadyRoom(roomType) <= 0) {
+		if(HotelBlServiceImpl.getInstance().bookRoom(roomType, numOfRoom) == ResultMessage.FAIL) {
 			return ResultMessage.FAIL;
 		}
 		Date d = new Date();  
