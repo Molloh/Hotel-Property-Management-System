@@ -1,12 +1,13 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import common.OrderCondition;
 import common.RoomType;
 import po.OrderPo;
 
-public class OrderVo {
+public class OrderVo  implements Serializable {
 	private String orderId;
 	private OrderCondition condition;
 	private String memberId;

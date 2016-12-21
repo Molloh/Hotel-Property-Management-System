@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import common.OrderCondition;
@@ -10,7 +11,7 @@ import common.RoomType;
  * @ version 2016/11/27 
  * @ description
  */
-public class OrderPo {
+public class OrderPo  implements Serializable {
 	private String orderId;
 	private OrderCondition condition;
 	private String memberId;

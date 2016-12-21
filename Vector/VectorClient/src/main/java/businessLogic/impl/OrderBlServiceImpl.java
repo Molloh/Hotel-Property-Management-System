@@ -276,7 +276,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.EXECUTING);
 		orderPo.setCheckInTime(new Date());
-		MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), orderPo.getDiscountedPrice());
+		CreditBlServiceImpl.getInstance().addCreditByOrder(orderPo.getMemberId(), orderPo.getDiscountedPrice(), new OrderVo(orderPo));
 		return orderDao.updateOrder(orderPo);
 	}
 
@@ -286,7 +286,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		if(orderPo.getCondition() == OrderCondition.ABNORMAL) {
 			orderPo.setCondition(OrderCondition.EXECUTING);
 			orderPo.setCheckInTime(new Date());
-			MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), 2 * orderPo.getDiscountedPrice());
+			CreditBlServiceImpl.getInstance().addCreditByOrder(orderPo.getMemberId(), orderPo.getDiscountedPrice(), new OrderVo(orderPo));
 			return orderDao.updateOrder(orderPo);
 		}
 		else {
@@ -314,7 +314,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.REVOKED);
 		orderPo.setRevokeTime(new Date());
-		MemberBlServiceImpl.getInstance().chargeCredit(orderPo.getMemberId(), (int)allOrHalf * orderPo.getDiscountedPrice());
+		CreditBlServiceImpl.getInstance().addCreditByOrder(orderPo.getMemberId(), (int)allOrHalf * orderPo.getDiscountedPrice(), new OrderVo(orderPo));
 		return orderDao.updateOrder(orderPo);
 	}
 	
