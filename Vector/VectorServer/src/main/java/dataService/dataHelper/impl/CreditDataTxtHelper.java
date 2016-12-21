@@ -16,6 +16,7 @@ import java.util.TreeMap;
 import common.ResultMessage;
 import dataService.dataHelper.service.CreditDataHelper;
 import po.CreditRecordPo;
+import vo.CreditRecordVo;
 
 public class CreditDataTxtHelper implements CreditDataHelper{
 	String memberFile    ="src/main/resources/textData/creditRecord/member/";
@@ -95,6 +96,7 @@ public class CreditDataTxtHelper implements CreditDataHelper{
 		}	
 		return ResultMessage.SUCCEED;
 	}
+	
 	
 	public String getMemberTxtFile(String id){
 		return memberFile + id ; 

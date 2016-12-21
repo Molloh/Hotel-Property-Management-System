@@ -1,9 +1,12 @@
 package businessLogic.impl;
 
+import java.util.List;
+
 import businessLogic.service.CreditBlService;
 import common.ResultMessage;
 import dataService.dao.service.CreditDao;
 import rmi.RemoteHelper;
+import vo.CreditRecordVo;
 import vo.OrderVo;
 
 public class CreditBlServiceImpl implements CreditBlService {
@@ -28,4 +31,7 @@ public class CreditBlServiceImpl implements CreditBlService {
 		return creditDao.addCreditByOrder(id, amount, vo);
 	}
 	
+	public List<CreditRecordVo> getCreditRecordList(String id){
+		return creditDao.getCreditRecordList(id);
+	}
 }

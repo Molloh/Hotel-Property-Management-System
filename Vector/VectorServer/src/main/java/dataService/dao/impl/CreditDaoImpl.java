@@ -1,7 +1,9 @@
 package dataService.dao.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import common.ResultMessage;
@@ -10,6 +12,7 @@ import dataService.dataHelper.impl.DataFactoryImpl;
 import dataService.dataHelper.service.CreditDataHelper;
 import dataService.dataHelper.service.DataFactory;
 import po.CreditRecordPo;
+import vo.CreditRecordVo;
 import vo.OrderVo;
 
 public class CreditDaoImpl implements CreditDao {
@@ -53,5 +56,13 @@ public class CreditDaoImpl implements CreditDao {
 		return creditDataHelper.newCredit(id);
 	}
 	
-	
+	public List<CreditRecordVo> getCreditRecordList(String id){
+		List<CreditRecordPo> list_po = creditDataHelper.getCreditRecordData(id);
+		List<CreditRecordVo> list_vo = new ArrayList<CreditRecordVo>();
+		Iterator<CreditRecordPo> iterator = list_po.iterator();
+		while(iterator.hasNext()){
+			list_vo.add( new CreditRecordVo(iterator.next()));
+		}		
+		return list_vo;
+	}
 }

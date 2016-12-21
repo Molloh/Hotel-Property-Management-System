@@ -30,6 +30,7 @@ import po.LevelPo;
 import po.OrderPo;
 import po.RoomPromotionPo;
 import vo.AccountVo;
+import vo.CreditRecordVo;
 import vo.MemberVo;
 import vo.OrderVo;
 
@@ -278,5 +279,7 @@ implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromot
 		return creditDao.addCreditByOrder(id, amount, vo);
 	}
 		
-	
+	public List<CreditRecordVo> getCreditRecordList(String id)throws RemoteException{
+		return creditDao.getCreditRecordList(id);
+	}
 }
