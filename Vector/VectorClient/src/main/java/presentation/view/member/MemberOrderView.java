@@ -77,6 +77,7 @@ public class MemberOrderView implements Initializable {
 
     private void initTable() {
         ObservableList<Order> data = FXCollections.observableArrayList();
+        //data.add(new Order("1","2", "3", "4", "5", "6"));
         for(OrderVo vo : orderList) {
             data.add(new Order(vo.getOrderId(),
                     vo.getCondition().toString(),

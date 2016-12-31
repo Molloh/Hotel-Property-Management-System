@@ -25,6 +25,7 @@ public class MemberOrderViewControllerImpl implements MemberOrderViewControllerS
     @Override
     public void setMemberId(String memberId) {
         this.memberId = memberId;
+        System.out.print(memberId);
     }
 
     public static MemberOrderViewControllerService getInstance() {

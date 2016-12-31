@@ -215,14 +215,16 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	
 	@Override
 	public RoomPromotionVo getOrderRoomStrategy(String hotelId, int numOfRoom){
-		
 		try {
-			RoomPromotionVo vo = new RoomPromotionVo(hotelPromotionDao.getRoomPromotion(hotelId));
-			if( vo != null)
-			//若预订数量满足房间预订促销策略
-			if(numOfRoom >= vo.getNumOfRoom())
-				return vo;
-			
+			RoomPromotionPo po = hotelPromotionDao.getRoomPromotion(hotelId);
+
+			if(po != null){
+				RoomPromotionVo vo = new RoomPromotionVo(po);
+				//若预订数量满足房间预订促销策略
+				if(numOfRoom >= vo.getNumOfRoom())
+					return vo;
+			}
+
 			return null;
 		} catch (RemoteException e) {
 			e.printStackTrace();

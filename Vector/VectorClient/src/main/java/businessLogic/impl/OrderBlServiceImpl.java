@@ -217,7 +217,8 @@ public class OrderBlServiceImpl implements OrderBlService {
 		
 		//获取所有适用的打折策略并取最低的计算折扣
 		double minDiscount = 1.0;
-		List<Double> hotelDiscountList = HotelPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		List<Double> hotelDiscountList = new ArrayList<Double>();
+		hotelDiscountList = HotelPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
 		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getOrderRoomDiscount(hotelId, numOfRoom));
 		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getBirthStrategy(hotelId,
 				MemberBlServiceImpl.getInstance().getInfo(memberId).getBirthday()));
