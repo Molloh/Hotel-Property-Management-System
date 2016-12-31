@@ -1,7 +1,6 @@
 /**
-* @version 2016-12-01
+* @version 2017-01-01
 * @author 金灵益
-* @description 负责酒店管理界面所需要的服务
 */
 package businessLogic.service;
 import common.ResultMessage;
@@ -11,12 +10,8 @@ import vo.HotelVo;
 
 /**
 * 酒店的属性有：
-* 编号，名称，所属商圈，简介，地址，联系方式，星级
-* 总房间数，评分，空余房间数，房间类型，价格
-* 酒店的查询可以通过选择酒店分类、输入关键字进行模糊查找
-* @author 金灵益
-* @version 2016-12-11
-*
+* 编号，名称，所属省份、城市、商圈，简介，地址，联系方式，星级，评分，评价，评分的人数
+* 酒店每种类型房间的初始价格、总数量，被预定的数量
 */
 public interface HotelBlService {
 	
@@ -24,19 +19,20 @@ public interface HotelBlService {
 	 * 增加酒店，当创建好酒店ID时调用方法初始化酒店
 	 * @param hotelId
 	 */
-	public void addHotel(String hotelId);
+	public ResultMessage addHotel(String hotelId);
 	
 	/**
 	 * 当酒店基本信息变化时，只更新酒店列表
+	 * 基本信息：编号，名称，所属省份、城市、商圈，简介，地址，联系方式，星级，评分，评价，评分的人数
 	 * @param vo
 	 */
-	public void updateBasicInfo(HotelVo vo);
+	public ResultMessage updateBasicInfo(HotelVo vo);
 	
 	/**
 	 * 删除酒店 
 	 * @param hotelId
 	 */
-	public void deleteHotel(String hotelId);
+	public ResultMessage deleteHotel(String hotelId);
 	
 	/**
 	 * 得到酒店vo
@@ -52,17 +48,17 @@ public interface HotelBlService {
 	 * @param number
 	 * @param price
 	 */
-	public void initializeRoom(String hotelId, RoomType type, int number, int price);
+	public ResultMessage initializeRoom(String hotelId, RoomType type, int number, int price);
 	
 	/**
-	 * 当酒店人员执行退房时，调用此方法，更新房间预订数量
+	 * 当酒店人员执行退房时，调用此方法，更新房间预订数量，订单状态改为已执行
 	 * @param type
 	 * @return 
 	 */
 	public ResultMessage checkoutRoom(RoomType type, int number);
 	
 	/**
-	 * 当客户预定房间，调用此方法
+	 * 当客户预定房间，调用此方法；若房间有空，则更新酒店房间预订数量信息；若预订数量超过剩余，则返回fail
 	 * @param type
 	 * @param number  该类型房间预订的数量
 	 * @return 
@@ -70,7 +66,7 @@ public interface HotelBlService {
 	 public ResultMessage bookRoom(RoomType type, int number);
 	
 	/**
-	 * 根据预定日期返回该时间段内该类型房间的空余数量
+	 * 返回该类型房间的空余数量
 	 * @param type
 	 * @return
 	 */
@@ -80,12 +76,12 @@ public interface HotelBlService {
 	 * @description 客户给予文字评价
 	 * @param giveComment
 	 */
-	public void comment(String giveComment);
+	public ResultMessage comment(String giveComment);
 
 	/**
-	 * @description 客户给予评分，同时将订单状态置为已执行
+	 * @description 客户给予评分,同时将订单状态置为已评价状态
 	 * @param poStrings
 	 */
-	public void givePoStrings(String orderId, double poStrings);
+	public ResultMessage givePoStrings(String orderId, double poStrings);
 
 }

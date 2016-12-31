@@ -33,10 +33,10 @@ public class HotelBlServiceImpl implements HotelBlService{
 			hotelDao = RemoteHelper.getInstance().getHotelDao();
 	}
 	
+	
 	@Override
 	public HotelVo getHotelVo(String hotelId){
 		try {
-		//	hotelDao = RemoteHelper.getInstance().getHotelDao();
 			this.vo = new HotelVo(hotelDao.findHotel(hotelId));
 			return vo;
 		} catch (RemoteException e) {
@@ -45,44 +45,53 @@ public class HotelBlServiceImpl implements HotelBlService{
 		return null;
 	}
 	
+	
     @Override
-    public void addHotel(String hotelId){
+    public ResultMessage addHotel(String hotelId){
     	HotelPo po = new HotelPo(hotelId);    	
     	
     	try {
-			hotelDao.addHotelPO(po);
+			return hotelDao.addHotelPO(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+    	return ResultMessage.FAIL;
     }
     
-    @Override
-    public void updateBasicInfo(HotelVo vo){
-    	try {
-			hotelDao.updateHotelList(voTopo(vo));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-    }
     
     @Override
-    public void deleteHotel(String hotelId){
+    public ResultMessage updateBasicInfo(HotelVo vo){
     	try {
-			hotelDao.deleteHotelPO(hotelId);
+			return hotelDao.updateHotelList(voTopo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+    	return ResultMessage.FAIL;
     }
     
+    
     @Override
-    public void initializeRoom(String hotelId, RoomType type, int number, int price){
+    public ResultMessage deleteHotel(String hotelId){
     	try {
-			hotelDao.initHotelTypeRoom(hotelId, type, number, price);
+			return hotelDao.deleteHotelPO(hotelId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+    	return ResultMessage.FAIL;
+    }
+    
+    
+    @Override
+    public ResultMessage initializeRoom(String hotelId, RoomType type, int number, int price){
+    	try {
+			return hotelDao.initHotelTypeRoom(hotelId, type, number, price);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+    	return ResultMessage.FAIL;
     }
 
+    
     @Override
     public ResultMessage checkoutRoom(RoomType type, int number){
 		try {
@@ -93,6 +102,7 @@ public class HotelBlServiceImpl implements HotelBlService{
 		return ResultMessage.FAIL;
     }
     
+    
     @Override
     public ResultMessage bookRoom(RoomType type, int number){
     	try {
@@ -102,8 +112,10 @@ public class HotelBlServiceImpl implements HotelBlService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+    	//房间数量不够
     	return ResultMessage.FAIL;
     }
+    
     
     @Override
 	public int getReadyRoom(RoomType type) {
@@ -114,34 +126,51 @@ public class HotelBlServiceImpl implements HotelBlService{
 		}
 		return 0;
 	}
+    
 
-	public void comment(String giveComment) {
+    @Override
+	public ResultMessage comment(String giveComment) {
 		List<String> comment = vo.getCommentList();
+		//酒店评论为空的情况
 		if(comment == null){
 			comment = new ArrayList<String>();
 		}
 		comment.add(giveComment);
 		vo.setCommentList(comment);
 		try {
-			hotelDao.updateComment(voTopo(vo));
+			return hotelDao.updateComment(voTopo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		return ResultMessage.FAIL;
 	}
 
-	public void givePoStrings(String orderId, double poStrings) {
+    
+	@Override
+	public ResultMessage givePoStrings(String orderId, double poStrings) {
+		//计算评分
 		double points = vo.getPoStrings();
 		int num = vo.getNumOfpoint();
 		points = (points * num + poStrings) / (num+1);
+		
 		//保留1位小数
 		DecimalFormat df = new DecimalFormat("#.0");
 		points = Double.parseDouble(df.format(points));
-		vo.setNumOfPoint(num + 1);
+		vo.setNumOfPoint(num + 1);                  //评分人数发生变化
 		vo.setPoStrings(points);
-		OrderBlServiceImpl.getInstance().setToFinished(orderId);
-		updateBasicInfo(vo);
+		ResultMessage r1 = OrderBlServiceImpl.getInstance().setToFinished(orderId);   //更新订单状态
+		ResultMessage r2 = updateBasicInfo(vo);
+		
+		if(r1.equals(ResultMessage.SUCCEED) && r2.equals(ResultMessage.SUCCEED)) return ResultMessage.SUCCEED;
+		else  return ResultMessage.FAIL;
 	}
 
+	
+	/**
+	 * HotelVo -> HotelPo
+	 * @param vo
+	 * @return
+	 */
 	private HotelPo voTopo(HotelVo vo){
 		//HotelTypeRoomVo --> po
 		

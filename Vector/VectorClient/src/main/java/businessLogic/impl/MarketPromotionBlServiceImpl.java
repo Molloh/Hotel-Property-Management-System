@@ -40,16 +40,8 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 				|| vo.getStartDate().after(vo.getEndDate()))
 			return ResultMessage.INVALID;
 		
-		try {
-			List<String> activityList = marketPromotionDao.getActivity();
-			Iterator<String> it = activityList.iterator();
-			//检查促销活动名称有无重复
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return ResultMessage.INVALID;     //名称重复，无法添加
-			}	
-			return marketPromotionDao.updateActivity(new ActivityPromotionPo(vo));
+		try {	
+			return marketPromotionDao.addActivity(new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -64,16 +56,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 			return ResultMessage.INVALID;
 		
 		try {
-			List<String> activityList = marketPromotionDao.getActivity();
-			Iterator<String> it = activityList.iterator();
-			//检查有无该促销活动
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return marketPromotionDao.updateActivity(new ActivityPromotionPo(vo));
-			}	
-			
-			return ResultMessage.INVALID;    //不存在该活动
+			return marketPromotionDao.updateActivity(new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -83,23 +66,15 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 	@Override
 	public ResultMessage delActivityStrategy(ActivityPromotionVo vo){
 		try {
-			List<String> activityList = marketPromotionDao.getActivity();
-			Iterator<String> it = activityList.iterator();
-			//检查有无该促销活动
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return marketPromotionDao.deleteActivity(new ActivityPromotionPo(vo));
-			}	
-			
-			return ResultMessage.INVALID;    //不存在该活动
+			return marketPromotionDao.deleteActivity(new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
 		return ResultMessage.FAIL;
 	}
 	
+
+	@Override
 	public List<Double> getCurrentActDiscount(){
 		List<ActivityPromotionVo> list = getCurrentActStrategy();
 		List<Double> discountList = new ArrayList<Double>();
@@ -112,7 +87,7 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		}
 		return discountList;
 	}
-	
+
 	
 	@Override
 	public List<ActivityPromotionVo> getCurrentActStrategy(){
@@ -120,30 +95,30 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		
 		try {
 			List<String> actStr = marketPromotionDao.getActivity();
-			Iterator<String> it = actStr.iterator();
+			if(actStr != null){
+				Iterator<String> it = actStr.iterator();
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
+				Date now = new Date();
 			
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
-			Date now = new Date();
-			
-			//得到当前时期有效的活动促销列表
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				/*
-				 * 活动开始日期 token[1]
-				 * 活动结束日期 token[2]
-				 * 若当前在某次活动期间内
-				 */
-				try {
-					Date start = df.parse(token[1]);
-					Date end = df.parse(token[2]);
-					
-					if(now.before(end) && now.after(start)){
-						ActivityPromotionVo vo = new ActivityPromotionVo(token[0], start, end,
-							                   Double.parseDouble(token[3]));
+				//得到当前时期有效的活动促销列表
+				while(it.hasNext()){
+					String [] token = it.next().split("/");
+					/*
+				     * 活动开始日期 token[1]
+				     * 活动结束日期 token[2]
+				     * 若当前在某次活动期间内
+				     */
+					try {
+						Date start = df.parse(token[1]);
+						Date end = df.parse(token[2]);
+						if(now.before(end) && now.after(start)){
+							ActivityPromotionVo vo = new ActivityPromotionVo(token[0], start, end,
+									Double.parseDouble(token[3]));
 						list.add(vo);
 					}
-				} catch (ParseException e) {
-					e.printStackTrace();
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 			

@@ -1,5 +1,6 @@
 package dataService.dao.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import common.ResultMessage;
@@ -13,9 +14,8 @@ import po.CompanyProPo;
 import po.RoomPromotionPo;
 
 /**
- * @version 2016-12-08
+ * @version 2017-01-01
  * @author 金灵益
- *
  */
 public class HotelPromotionDaoImpl implements HotelPromotionDao{
 	
@@ -31,7 +31,7 @@ public class HotelPromotionDaoImpl implements HotelPromotionDao{
 		}
 		return hotelPromotionDaoImpl;
 	}
-
+	
 	private HotelPromotionDaoImpl(){
 		super();
 		dataFactory = new DataFactoryImpl();
@@ -39,13 +39,48 @@ public class HotelPromotionDaoImpl implements HotelPromotionDao{
 	}
 	
 	
+	public ResultMessage addActPromotion(String hotelId, ActivityPromotionPo po){
+		List<String> list = getActProList(hotelId);
+		if(list != null){
+			Iterator<String> it = list.iterator();
+			while(it.hasNext()){
+				//若存在该活动
+				if(it.next().startsWith(po.getPromotionName()))
+					return ResultMessage.FAIL;
+			}
+		}
+		return hotelPromotionDataHelper.addActivity(hotelId, po);
+	}
 	
 	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po){
-		return hotelPromotionDataHelper.updateActivity(hotelId, po);
+		List<String> list = getActProList(hotelId);
+		if(list != null){
+			Iterator<String> it = list.iterator();
+			while(it.hasNext()){
+				//若存在该活动
+				if(it.next().startsWith(po.getPromotionName()))
+					return hotelPromotionDataHelper.updateActivity(hotelId, po);
+			}
+		}
+		//不存在该活动
+		return ResultMessage.FAIL;
 	}
 	
 	public ResultMessage delActPromotion(String hotelId, ActivityPromotionPo po){
-		return hotelPromotionDataHelper.deleteActivity(hotelId, po);
+		List<String> activityList = getActProList(hotelId);
+			
+		if(activityList != null){
+			Iterator<String> it = activityList.iterator();
+			
+			//检查有无该促销活动
+			while(it.hasNext()){
+				String [] token = it.next().split("/");
+				if(token[0].equals(po.getPromotionName()))
+					return hotelPromotionDataHelper.deleteActivity(hotelId, po);
+			}	
+		}
+		
+		return ResultMessage.FAIL;//不存在该活动
 	}
 	
 	public List<String> getActProList(String hotelId){

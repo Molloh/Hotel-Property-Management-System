@@ -7,12 +7,20 @@ import po.ActivityPromotionPo;
 import po.BusinessProPo;
 import po.LevelPo;
 /**
- * @version 2016-12-10
+ * @version 2017-01-01
  * @author 金灵益
  */
 public interface MarketPromotionDataHelper {
+	
 	/**
-	 * 增加或更新网站的活动策略列表
+	 * 增加活动策略
+	 * @param po
+	 * @return
+	 */
+	public ResultMessage addActivity(ActivityPromotionPo po);
+	
+	/**
+	 * 更新网站的活动策略列表
 	 * @param po
 	 * @return
 	 */

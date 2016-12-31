@@ -166,6 +166,10 @@ implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromot
 	}
 	
    	/*HotelPromotionDao 接口方法*/
+	public ResultMessage addActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
+		return hotelPromotionDao.addActPromotion(hotelId, po);
+	}
+	
 	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po) throws RemoteException{
 		return hotelPromotionDao.upActPromotion(hotelId, po);
 	}
@@ -241,6 +245,10 @@ implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromot
 
 
 	/*MarketPromotionDao 接口方法*/
+	public ResultMessage addActivity(ActivityPromotionPo po) throws RemoteException{
+		return marketPromotionDao.addActivity(po);
+	}
+	
 	public ResultMessage updateActivity(ActivityPromotionPo po) throws RemoteException{
 		return marketPromotionDao.updateActivity(po);
 	}
@@ -272,7 +280,7 @@ implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromot
 	public List<BusinessProPo> getBusinessList() throws RemoteException {
 		return marketPromotionDao.getBusinessList();
 	}
-
+	
 	/* CreditDao 接口方法 */
 	public ResultMessage addCreditByOrder(String id,int amount,OrderVo vo)
 			throws RemoteException{
