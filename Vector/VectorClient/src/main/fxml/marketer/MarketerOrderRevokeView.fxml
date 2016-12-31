@@ -6,23 +6,29 @@
 
 <AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerOrderRevokeView">
     <children>
-        <Label layoutX="66.0" layoutY="31.0" text="订单编号" />
-        <Label layoutX="66.0" layoutY="60.0" text="2012121200001" />
-        <Label layoutX="66.0" layoutY="90.0" text="酒店名" />
-        <Label layoutX="66.0" layoutY="122.0" text="房间数量" />
-        <Label layoutX="66.0" layoutY="152.0" text="开始时间" />
-        <Label layoutX="66.0" layoutY="178.0" text="退房时间" />
-        <Label layoutX="66.0" layoutY="207.0" text="最晚订单执行时间" />
-        <Label layoutX="66.0" layoutY="240.0" text="预计入住人数" />
-        <Label layoutX="66.0" layoutY="271.0" text="有无儿童" />
-        <Label layoutX="200.0" layoutY="122.0" text="房间类型" />
         <Button layoutX="454.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
-        <Button layoutX="358.0" layoutY="320.0" mnemonicParsing="false" text="确认恢复" />
-        <Label layoutX="206.0" layoutY="38.0" text="客户Id" />
-        <Label layoutX="310.0" layoutY="38.0" text="订单价格" />
+        <Button fx:id="revoke_btn" layoutX="358.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleRevoke" text="确认恢复" />
       <Label layoutX="358.0" layoutY="130.0" text="申诉理由" />
       <TextArea layoutX="358.0" layoutY="148.0" prefHeight="77.0" prefWidth="176.0" />
       <Label layoutX="358.0" layoutY="233.0" text="信用值恢复" />
-      <TextField layoutX="358.0" layoutY="267.0" prefHeight="23.0" prefWidth="176.0" />
+      <TextField fx:id="credit_field" layoutX="358.0" layoutY="267.0" prefHeight="23.0" prefWidth="176.0" />
+      <Label fx:id="yesOrNo_label" layoutX="137.0" layoutY="313.0" text="yes" />
+      <Label fx:id="people_label" layoutX="178.0" layoutY="275.0" text="people" />
+      <Label fx:id="type_label" layoutX="134.0" layoutY="123.0" text="type" />
+      <Label fx:id="last_label" layoutX="178.0" layoutY="251.0" text="time" />
+      <Label fx:id="end_label" layoutX="135.0" layoutY="220.0" text="time" />
+      <Label fx:id="start_label" layoutX="135.0" layoutY="186.0" text="time" />
+      <Label fx:id="num_label" layoutX="133.0" layoutY="152.0" text="num" />
+      <Label fx:id="hotel_label" layoutX="135.0" layoutY="98.0" text="hotel" />
+      <Label layoutX="63.0" layoutY="123.0" text="房间类型" />
+      <Label layoutX="63.0" layoutY="313.0" text="有无儿童" />
+      <Label layoutX="63.0" layoutY="275.0" text="预计入住人数" />
+      <Label layoutX="63.0" layoutY="251.0" text="最晚订单执行时间" />
+      <Label layoutX="63.0" layoutY="220.0" text="退房时间" />
+      <Label layoutX="63.0" layoutY="186.0" text="开始时间" />
+      <Label layoutX="63.0" layoutY="152.0" text="房间数量" />
+      <Label layoutX="63.0" layoutY="98.0" text="酒店名" />
+      <Label fx:id="orderId_label" layoutX="63.0" layoutY="68.0" text="2012121200001" />
+      <Label layoutX="63.0" layoutY="46.0" text="订单编号" />
     </children>
 </AnchorPane>

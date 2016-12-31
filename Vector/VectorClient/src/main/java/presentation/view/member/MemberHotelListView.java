@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
@@ -29,15 +30,15 @@ import java.util.ResourceBundle;
  */
 public class MemberHotelListView implements Initializable {
     @FXML
-    private ChoiceBox<String> province_choice;
+    private ComboBox<String> province_choice;
     @FXML
-    private ChoiceBox<String> city_choice;
+    private ComboBox<String> city_choice;
     @FXML
-    private ChoiceBox<String> cbd_choice;
+    private ComboBox<String> cbd_choice;
     @FXML
     private ChoiceBox<Integer> star_choice;
     @FXML
-    private ChoiceBox<RoomType> roomtype_choice;
+    private ChoiceBox<RoomType> roomType_choice;
 
     @FXML
     private TextField keyword_field;
@@ -64,6 +65,9 @@ public class MemberHotelListView implements Initializable {
     private TableColumn<Hotel, String> hotelPrice_column;
 
     @FXML
+    private Group other_group;
+
+    @FXML
     private AnchorPane missionPane;
 
     private MemberHotelListViewControllerService controller;
@@ -76,15 +80,16 @@ public class MemberHotelListView implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         controller = MemberHotelListViewControllerImpl.getInstance();
 
-        province_choice.setValue("省");
-        city_choice.setValue("市");
-        cbd_choice.setValue("商圈");
+        other_group.setDisable(true);
+        province_choice.setPromptText("省");
+        city_choice.setPromptText("市");
+        cbd_choice.setPromptText("商圈");
 
         initChoice();
-
     }
 
     private void initChoice() {
+        //根据星级查找酒店
         star_choice.getItems().addAll(1, 2, 3, 4, 5);
         star_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
@@ -92,22 +97,22 @@ public class MemberHotelListView implements Initializable {
                         hotelSubList = (ArrayList<HotelVo>) controller
                                 .findByStars(star_choice.getItems().get(new_val.intValue()), hotelList);
                         initTable(hotelSubList);
-                    }else {
-                    	System.out.println("a");
                     }
                 }
         );
 
-        roomtype_choice.getItems().addAll(RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
-        roomtype_choice.getSelectionModel().selectedIndexProperty().addListener(
+        //根据房间类型查找酒店
+        roomType_choice.getItems().addAll(RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
+        roomType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     if(hotelList != null) {
                         hotelList = (ArrayList<HotelVo>) controller
-                                .findByRoomType(roomtype_choice.getItems().get((Integer)new_val), hotelList);
+                                .findByRoomType(roomType_choice.getItems().get((Integer)new_val), hotelList);
                     }
                 }
         );
 
+        //根据省、市、商圈查找酒店
         ArrayList<String> province = (ArrayList<String>) controller.getProvinceList();
         for(String item : province) {
             province_choice.getItems().add(item);
@@ -118,27 +123,30 @@ public class MemberHotelListView implements Initializable {
                             .getCityList(province.get(new_val.intValue()));
                     city_choice.getItems().clear();
                     cbd_choice.getItems().clear();
+                    other_group.setDisable(true);
                     for(String item : city) {
                         city_choice.getItems().add(item);
                     }
-                    if(!city_choice.getItems().isEmpty()) {
-                        city_choice.getSelectionModel().selectedIndexProperty().addListener(
-                                (ObservableValue<? extends Number> oV, Number oldVal, Number newVal) -> {
-                                    ArrayList<String> cbd = (ArrayList<String>) controller
-                                            .getCbdList(province_choice.getValue(), city.get(newVal.intValue()));
-                                    cbd_choice.getItems().clear();
-                                    for (String item : cbd) {
-                                        cbd_choice.getItems().add(item);
-                                    }
-                                    cbd_choice.getSelectionModel().selectedIndexProperty().addListener(
-                                            (ObservableValue<? extends Number> one, Number oldOne, Number newOne) -> {
-                                                hotelList = (ArrayList<HotelVo>) controller.findByAddress(province_choice.getValue(), city_choice.getValue(), cbd.get(newOne.intValue()));
-                                                initTable(hotelList);
-                                            }
-                                    );
-                                }
-                        );
+                }
+        );
+        //市
+        city_choice.getSelectionModel().selectedIndexProperty().addListener(
+                (ObservableValue<? extends Number> oV, Number oldVal, Number newVal) -> {
+                    ArrayList<String> cbd = (ArrayList<String>) controller
+                            .getCbdList(province_choice.getValue(), city_choice.getItems().get(newVal.intValue()));
+                    cbd_choice.getItems().clear();
+                    other_group.setDisable(true);
+                    for (String item : cbd) {
+                        cbd_choice.getItems().add(item);
                     }
+                }
+        );
+        //商圈
+        cbd_choice.getSelectionModel().selectedIndexProperty().addListener(
+                (ObservableValue<? extends Number> one, Number oldOne, Number newOne) -> {
+                    hotelList = (ArrayList<HotelVo>) controller.findByAddress(province_choice.getValue(), city_choice.getValue(), cbd_choice.getItems().get(newOne.intValue()));
+                    initTable(hotelList);
+                    other_group.setDisable(false);
                 }
         );
     }
@@ -147,7 +155,7 @@ public class MemberHotelListView implements Initializable {
     private void selectHotelByPriceRange() {
         int low = Integer.parseInt(lowPrice_field.getText());
         int high = Integer.parseInt(highPrice_field.getText());
-        RoomType type = roomtype_choice.getValue();
+        RoomType type = roomType_choice.getValue();
         if(hotelList != null && type != null ) {
             if(low > high) {
 
@@ -183,7 +191,7 @@ public class MemberHotelListView implements Initializable {
                         String.valueOf(hotelVo.getStars()),
                         String.valueOf(hotelVo.getNumOfpoint()),
                         hotelVo.getHotelPosition(),
-                        String.valueOf(hotelVo.getOriginPrice(roomtype_choice.getValue()))));
+                        String.valueOf(hotelVo.getOriginPrice(RoomType.SINGLE))));
             }
             ObservableList<Hotel> data = FXCollections.observableArrayList();
             for (Hotel hotel : propertyList) {
@@ -192,7 +200,6 @@ public class MemberHotelListView implements Initializable {
             hotel_list.setItems(data);
 
             hotelName_column.setCellValueFactory(cellData -> cellData.getValue().hotelNameProperty());
-
             hotelStar_column.setCellValueFactory(cellData -> cellData.getValue().hotelStarProperty());
             hotelPoint_column.setCellValueFactory(cellData -> cellData.getValue().hotelPointProperty());
             hotelPrice_column.setCellValueFactory(cellData -> cellData.getValue().hotelPriceProperty());

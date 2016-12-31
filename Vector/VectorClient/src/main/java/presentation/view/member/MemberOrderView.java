@@ -1,5 +1,7 @@
 package presentation.view.member;
 
+import common.OrderCondition;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import presentation.common.ViewFxmlPath;
 import presentation.controller.Order;
 import presentation.controller.impl.member.MemberOrderViewControllerImpl;
 import presentation.controller.service.member.MemberOrderViewControllerService;
+import vo.HotelVo;
 import vo.OrderVo;
 
 import java.io.IOException;
@@ -42,7 +45,7 @@ public class MemberOrderView implements Initializable {
     private TableColumn<Order, String> orderExeTime_column;
 
     @FXML
-    private ChoiceBox<String> orderType_choice;
+    private ComboBox<String> orderType_choice;
 
     @FXML
     private AnchorPane missionPane;
@@ -56,9 +59,20 @@ public class MemberOrderView implements Initializable {
         controller = MemberOrderViewControllerImpl.getInstance();
         controller.setMemberId(SingletonItem.getInstance().getActivateId());
 
-        orderType_choice.getItems().addAll("全部订单", "未执行订单", "已执行订单", "已入住订单", "待评价订单", "异常订单");
+        orderType_choice.getItems().addAll("全部订单", "未执行订单", "已执行订单", "执行中订单", "待评价订单", "异常订单");
+        orderType_choice.setValue("全部订单");
         orderList = (ArrayList<OrderVo>) controller.getAllOrders();
         initTable();
+        initOrderTypeChoice();
+    }
+
+    private void initOrderTypeChoice() {
+        orderType_choice.getSelectionModel().selectedIndexProperty().addListener(
+                (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+                    orderList = (ArrayList<OrderVo>) controller.getOrdersInConditionByMember(getState(orderType_choice.getItems().get(new_val.intValue())));
+                    initTable();
+                }
+        );
     }
 
     private void initTable() {
@@ -100,6 +114,18 @@ public class MemberOrderView implements Initializable {
                     }
                 });
             }
+        }
+    }
+
+    private OrderCondition getState(String state) {
+        switch (state) {
+            case "全部订单": return null;
+            case "未执行订单": return OrderCondition.WAITING;
+            case "已执行订单": return OrderCondition.EXECUTED;
+            case "执行中订单": return OrderCondition.EXECUTING;
+            case "待评价订单": return OrderCondition.FINISHED;
+            case "异常订单": return OrderCondition.ABNORMAL;
+            default: return null;
         }
     }
 }

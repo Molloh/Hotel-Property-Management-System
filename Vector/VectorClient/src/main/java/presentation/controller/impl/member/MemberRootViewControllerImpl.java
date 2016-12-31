@@ -34,6 +34,5 @@ public class MemberRootViewControllerImpl implements MemberRootViewControllerSer
     public String getMemberName() {
         MemberVo memberVo = member.getInfo(memberId);
         return memberVo.getName();
-        //return "Molloh";
     }
 }

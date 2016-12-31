@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
+import presentation.controller.impl.member.MemberOrderInfoViewControllerImpl;
+import presentation.controller.service.member.MemberOrderInfoViewControllerService;
 
 import java.awt.*;
 import java.io.IOException;
@@ -38,9 +41,21 @@ public class MemberOrderInfoView implements Initializable {
     @FXML
     private AnchorPane missionPane;
 
+    private MemberOrderInfoViewControllerService controller;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controller = MemberOrderInfoViewControllerImpl.getInstance();
+        controller.setOrderId(SingletonItem.getInstance().getOrderId());
 
+        orderId_label.setText(SingletonItem.getInstance().getOrderId());
+        hotel_label.setText(controller.getHotelName());
+        type_label.setText(controller.getRoomType().name());
+        yesOrNo_label.setText(String.valueOf(controller.getChildExist()));
+        start_label.setText(controller.getCheckInTime());
+        end_label.setText(controller.getCheckOutTime());
+        last_label.setText("");
+        people_label.setText(String.valueOf(controller.getNumOfGuest()));
     }
 
     @FXML

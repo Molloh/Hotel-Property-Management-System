@@ -7,7 +7,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import presentation.common.ViewFxmlPath;
 import rmi.RemoteHelper;
 
@@ -18,12 +20,34 @@ import rmi.RemoteHelper;
  */
 public class ClientRunner extends Application {
     private RemoteHelper remoteHelper;
+    private double xOffset = 0;
+    private double yOffset = 0;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         linkToServer();
         //TimedTask timedTask = new TimedTask();
-        Parent root = FXMLLoader.load(getClass().getResource(ViewFxmlPath.SignIn_View_Path));
+
+        //自定义窗体
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        Parent root = FXMLLoader.load(getClass().getResource(ViewFxmlPath.Sign_View_Path));
+        //窗体拖动
+        root.setOnMousePressed((MouseEvent event) -> {
+            event.consume();
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();});
+
+        root.setOnMouseDragged((MouseEvent event) -> {
+            event.consume();
+            primaryStage.setX(event.getScreenX() - xOffset);
+
+        if (event.getScreenY() - yOffset < 0) {
+            primaryStage.setY(0);
+        } else {
+            primaryStage.setY(event.getScreenY() - yOffset);
+        }});
+
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

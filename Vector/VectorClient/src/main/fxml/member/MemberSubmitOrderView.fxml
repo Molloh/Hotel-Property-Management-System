@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="missionPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberHotelOrderView">
+    <children>
+        <Label fx:id="hotel_label" layoutX="92.0" layoutY="46.0" text="酒店名" />
+        <Label fx:id="address_label" layoutX="95.0" layoutY="72.0" text="地址" />
+        <Label layoutX="173.0" layoutY="50.0" text="房间数量" />
+        <Label layoutX="173.0" layoutY="88.0" text="房间类型" />
+        <Label layoutX="173.0" layoutY="250.0" text="有无儿童" />
+        <Label layoutX="173.0" layoutY="126.0" text="预计入住人数" />
+        <RadioButton fx:id="hasChild_radio" layoutX="266.0" layoutY="250.0" mnemonicParsing="false" text="有" />
+        <TextField fx:id="roomNum_field" layoutX="266.0" layoutY="46.0" prefHeight="23.0" prefWidth="186.0" />
+        <TextField fx:id="peopleNum_field" layoutX="266.0" layoutY="122.0" prefHeight="23.0" prefWidth="186.0" />
+        <Button layoutX="173.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleSubmit" text="提交订单" />
+        <Button layoutX="299.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+        <ChoiceBox fx:id="roomType_choice" layoutX="266.0" layoutY="84.0" prefHeight="23.0" prefWidth="186.0" />
+      <TextField fx:id="stayDays_field" layoutX="266.0" layoutY="200.0" prefHeight="23.0" prefWidth="186.0" />
+      <Label layoutX="173.0" layoutY="204.0" text="预计入住天数" />
+      <Label layoutX="173.0" layoutY="164.0" text="预计入住时间" />
+      <DatePicker fx:id="checkInTime_date" layoutX="266.0" layoutY="160.0" />
+      <Label layoutX="173.0" layoutY="289.0" text="订单价格" />
+      <Label fx:id="price_label" layoutX="266.0" layoutY="289.0" text="￥0" />
+    </children>
+</AnchorPane>

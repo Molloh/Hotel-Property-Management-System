@@ -12,33 +12,35 @@ import java.util.Date;
  */
 public interface MemberOrderInfoViewControllerService {
 
-    String getOrderCondition(String orderId);
+    void setOrderId(String orderId);
 
-    String getMemberId(String orderId);
+    String getOrderCondition();
 
-    String getMemberName(String orderId);
+    String getMemberId();
 
-    Date getCreateTime(String orderId);
+    String getMemberName();
 
-    Date getCheckInTime(String orderId);
+    String getCreateTime();
 
-    Date getCheckOutTime(String orderId);
+    String getCheckInTime();
 
-    String getHotelName(String orderId);
+    String getCheckOutTime();
 
-    String getHotelId(String orderId);
+    String getHotelName();
 
-    RoomType getRoomType(String orderId);
+    String getHotelId();
 
-    int getNumOfRoom(String orderId);
+    RoomType getRoomType();
 
-    int getNumOfGuest(String orderId);
+    int getNumOfRoom();
 
-    boolean getChildExist(String orderId);
+    int getNumOfGuest();
 
-    int getOriginalPrice(String orderId);
+    boolean getChildExist();
 
-    double getDiscount(String orderId);
+    int getOriginalPrice();
 
-    double getDiscountedPrice(String orderId);
+    double getDiscount();
+
+    double getDiscountedPrice();
 }

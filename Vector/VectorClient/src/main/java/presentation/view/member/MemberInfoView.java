@@ -1,6 +1,7 @@
 package presentation.view.member;
 
 import common.AccountType;
+import common.ResultMessage;
 import common.Sex;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -29,7 +30,6 @@ public class MemberInfoView implements Initializable {
     //企业会员
     @FXML
     private TextField enterprise_field;
-
     @FXML
     private TextField address_field;
     @FXML
@@ -38,6 +38,9 @@ public class MemberInfoView implements Initializable {
     private RadioButton male_radio;
     @FXML
     private RadioButton female_radio;
+
+    @FXML
+    private TextField password_field;
 
     @FXML
     private Label VIP_label;
@@ -73,6 +76,8 @@ public class MemberInfoView implements Initializable {
         //不可修改
         VIP_label.setText(controller.getVIPLevel());
         credit_label.setText(controller.getCredit());
+        password_field.setText("000000");
+        password_field.setEditable(false);
 
         //普通会员显示生日，企业会员显示企业名
         AccountType accountType = controller.getAccountType();
@@ -110,6 +115,19 @@ public class MemberInfoView implements Initializable {
         controller.setPhone(phone_field.getText());
         controller.setMemberName(name_field.getText());
         controller.setSex(this.sex);
+        controller.setPassword(password_field.getText());
+
+        ResultMessage msg = controller.updateInfo();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText("修改成功！");
+            alert.showAndWait();
+        }else {
+            alert.setContentText(controller.getMemberName());
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -119,6 +137,8 @@ public class MemberInfoView implements Initializable {
         if(birthday_field.isVisible())
             birthday_field.setValue(controller.getBirthDay());
 
+        password_field.setText("000000");
+        password_field.setEditable(false);
         name_field.setText(controller.getMemberName());
         address_field.setText(controller.getAddress());
         phone_field.setText(controller.getPhone());
@@ -137,6 +157,6 @@ public class MemberInfoView implements Initializable {
     
     @FXML
     private void handleModifyPassword() {
-    	
+    	password_field.setEditable(true);
     }
 }

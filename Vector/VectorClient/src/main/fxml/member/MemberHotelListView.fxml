@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberHotelListView">
+<AnchorPane fx:id="missionPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberHotelListView">
    <children>
       <SplitPane dividerPositions="0.19597989949748743" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="120.0" prefWidth="160.0">
                <children>
-                  <HBox layoutX="347.0" layoutY="14.0">
+                  <Group fx:id="other_group">
                      <children>
-                        <TextField fx:id="keyword_field" layoutX="339.0" layoutY="31.0" prefHeight="23.0" prefWidth="152.0" text="搜索" />
-                        <Button layoutX="491.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectHotelByKeyWord" text="search" />
+                        <Group>
+                           <children>
+                              <HBox layoutX="121.0" layoutY="83.0">
+                                 <children>
+                                    <Label prefHeight="24.0" prefWidth="61.0" text="评分区间：" />
+                                    <TextField fx:id="lowPoint_field" layoutX="24.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
+                                    <Label layoutX="59.0" layoutY="80.0" text="-" />
+                                    <TextField fx:id="highPoint_field" layoutX="80.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
+                                    <Button mnemonicParsing="false" onAction="#selectHotelByPoint" text="确认" />
+                                 </children>
+                              </HBox>
+                              <ChoiceBox fx:id="roomType_choice" layoutX="24.0" layoutY="49.0" prefHeight="23.0" prefWidth="97.0" />
+                              <HBox layoutX="121.0" layoutY="48.0">
+                                 <children>
+                                    <Label prefHeight="24.0" prefWidth="61.0" text="价格区间：" />
+                                    <TextField fx:id="lowPrice_field" layoutX="24.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
+                                    <Label layoutX="59.0" layoutY="80.0" text="-" />
+                                    <TextField fx:id="highPrice_field" layoutX="80.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
+                                    <Button fx:id="filterPrice_btn" mnemonicParsing="false" onAction="#selectHotelByPriceRange" text="确认" />
+                                 </children>
+                              </HBox>
+                              <ChoiceBox fx:id="star_choice" layoutX="24.0" layoutY="83.0" prefHeight="23.0" prefWidth="97.0" />
+                           </children>
+                        </Group>
+                        <HBox layoutX="345.0" layoutY="84.0">
+                           <children>
+                              <TextField fx:id="keyword_field" layoutX="339.0" layoutY="31.0" prefHeight="23.0" prefWidth="152.0" text="搜索" />
+                              <Button layoutX="491.0" layoutY="31.0" mnemonicParsing="false" onAction="#selectHotelByKeyWord" text="search" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox layoutX="24.0" layoutY="83.0">
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="61.0" text="价格区间：" />
-                        <TextField fx:id="lowPrice_field" layoutX="24.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
-                        <Label layoutX="59.0" layoutY="80.0" text="-" />
-                        <TextField fx:id="highPrice_field" layoutX="80.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
-                        <Button fx:id="filterPrice_btn" mnemonicParsing="false" onAction="#selectHotelByPriceRange" text="确认" />
-                     </children>
-                  </HBox>
+                  </Group>
                   <HBox layoutX="24.0" layoutY="14.0">
                      <children>
-                        <ChoiceBox fx:id="province_choice" layoutX="24.0" layoutY="31.0" prefHeight="23.0" prefWidth="97.0" />
-                        <ChoiceBox fx:id="city_choice" layoutX="121.0" layoutY="31.0" prefHeight="23.0" prefWidth="91.0" />
-                        <ChoiceBox fx:id="cbd_choice" layoutX="210.0" layoutY="31.0" prefHeight="23.0" prefWidth="91.0" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="258.0" layoutY="82.0">
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="61.0" text="评分区间：" />
-                        <TextField fx:id="lowPoint_field" layoutX="24.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
-                        <Label layoutX="59.0" layoutY="80.0" text="-" />
-                        <TextField fx:id="highPoint_field" layoutX="80.0" layoutY="76.0" prefHeight="23.0" prefWidth="42.0" />
-                        <Button mnemonicParsing="false" onAction="#selectHotelByPoint" text="确认" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="24.0" layoutY="49.0">
-                     <children>
-                        <ChoiceBox fx:id="star_choice" layoutX="24.0" layoutY="49.0" prefHeight="23.0" prefWidth="97.0" />
-                        <ChoiceBox fx:id="roomtype_choice" layoutX="121.0" layoutY="49.0" prefHeight="23.0" prefWidth="97.0" />
+                        <ComboBox fx:id="province_choice" prefHeight="23.0" prefWidth="136.0" />
+                        <ComboBox fx:id="city_choice" prefWidth="150.0" />
+                        <ComboBox fx:id="cbd_choice" prefWidth="150.0" />
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
             <TableView fx:id="hotel_list" prefHeight="200.0" prefWidth="200.0">
                <columns>
-                  <TableColumn fx:id="hotelName_column" editable="false" prefWidth="75.0" text="酒店名" />
-                  <TableColumn fx:id="hotelStar_column" editable="false" prefWidth="75.0" text="星级" />
-                  <TableColumn fx:id="hotelPoint_column" editable="false" prefWidth="75.0" text="评分" />
-                  <TableColumn fx:id="hotelAddress_column" editable="false" prefWidth="75.0" text="地址" />
-                  <TableColumn fx:id="hotelPrice_column" editable="false" prefWidth="75.0" text="价格" />
+                  <TableColumn fx:id="hotelName_column" editable="false" prefWidth="125.0" text="酒店名" />
+                  <TableColumn fx:id="hotelStar_column" editable="false" prefWidth="125.0" resizable="false" text="星级" />
+                  <TableColumn fx:id="hotelPoint_column" editable="false" prefWidth="125.0" resizable="false" text="评分" />
+                  <TableColumn fx:id="hotelAddress_column" editable="false" prefWidth="125.0" resizable="false" text="地址" />
+                  <TableColumn fx:id="hotelPrice_column" editable="false" prefWidth="125.0" resizable="false" text="价格" />
                </columns>
             </TableView>
          </items>

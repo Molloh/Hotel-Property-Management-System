@@ -2,6 +2,7 @@ package presentation.controller.impl.member;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.OrderCondition;
 import presentation.controller.service.member.MemberOrderViewControllerService;
 import vo.OrderVo;
 
@@ -21,6 +22,11 @@ public class MemberOrderViewControllerImpl implements MemberOrderViewControllerS
         order = OrderBlServiceImpl.getInstance();
     }
 
+    @Override
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
     public static MemberOrderViewControllerService getInstance() {
         return INSTANCE;
     }
@@ -31,8 +37,8 @@ public class MemberOrderViewControllerImpl implements MemberOrderViewControllerS
     }
 
     @Override
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public List<OrderVo> getOrdersInConditionByMember(OrderCondition condition) {
+        return order.getOrdersInConditionByMember(memberId, condition);
     }
 
 }

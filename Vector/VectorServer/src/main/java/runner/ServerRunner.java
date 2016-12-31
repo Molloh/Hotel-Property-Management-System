@@ -1,18 +1,56 @@
 package runner;
+/**
+ * @author Molloh
+ * @version 2016/12/31
+ * @description
+ */
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import rmi.RemoteHelper;
 
-/**
- * Created by Administrator on 2016-11-20.
- */
-public class ServerRunner {
+public class ServerRunner extends Application {
 
-    public ServerRunner(){
-        new RemoteHelper();
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public static void main(String[] args){
-        new ServerRunner();
-    }
+    @Override
+    public void start(Stage primaryStage) {
+        final RemoteHelper helper = new RemoteHelper();
+        final Label label = new Label("");
+        Button start = new Button("启动");
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                label.setText(helper.initServer());
+            }
+        });
 
+        Button stop = new Button("停止");
+        stop.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                label.setText(helper.stopServer());
+            }
+        });
+
+
+        FlowPane root = new FlowPane();
+        root.getChildren().addAll(start, stop, label);
+        Scene scene = new Scene(root, 300, 250);
+
+        primaryStage.setTitle("Server");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
 }

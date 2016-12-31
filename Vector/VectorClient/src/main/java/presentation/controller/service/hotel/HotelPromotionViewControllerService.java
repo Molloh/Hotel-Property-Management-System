@@ -1,5 +1,6 @@
 package presentation.controller.service.hotel;
 
+import common.ResultMessage;
 import vo.ActivityPromotionVo;
 
 import java.util.List;
@@ -12,5 +13,7 @@ import java.util.List;
 public interface HotelPromotionViewControllerService {
 
     List<ActivityPromotionVo> getCurrentActStrategy();
+
+    ResultMessage delActivityStrategy(ActivityPromotionVo vo);
 
 }

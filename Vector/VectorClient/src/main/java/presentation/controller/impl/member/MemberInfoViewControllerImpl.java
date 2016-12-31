@@ -5,6 +5,7 @@ import businessLogic.impl.MemberBlServiceImpl;
 import businessLogic.service.AccountBlService;
 import businessLogic.service.MemberBlService;
 import common.AccountType;
+import common.ResultMessage;
 import common.Sex;
 import presentation.common.SingletonItem;
 import presentation.controller.service.member.MemberInfoViewControllerService;
@@ -30,9 +31,10 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
     private String memberId;
 
     private MemberInfoViewControllerImpl() {
+        account = AccountBlServiceImpl.getInstance();
+
     	memberId = SingletonItem.getInstance().getActivateId();
         member = MemberBlServiceImpl.getInstance();
-        account = AccountBlServiceImpl.getInstance();
         memberVo = member.getInfo(memberId);
     }
 
@@ -52,7 +54,6 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
 
     @Override
     public String getMemberName() {
-        //return "as";
     	return memberVo.getName();
     }
 
@@ -66,25 +67,21 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
 
     @Override
     public String getAddress() {
-        //return "nanjing";
         return memberVo.getAddress();
     }
 
     @Override
     public String getCredit() {
         return String.valueOf(memberVo.getCredit());
-        //return "100";
     }
 
     @Override
     public String getPhone() {
     	return memberVo.getPhone();
-        //return "15050582691";
     }
 
     @Override
     public Sex getSex() {
-        //return Sex.FEMALE;
         return memberVo.getSex();
     }
 
@@ -128,6 +125,16 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
     @Override
     public void setEnterPrise(String enterPrise) {
         memberVo.setAddress(enterPrise);
+    }
+
+    @Override
+    public void setPassword(String password) {
+        account.modifyPassword(memberId, password);
+    }
+
+    @Override
+    public ResultMessage updateInfo() {
+        return member.modifyInfo(this.memberVo);
     }
 
 }

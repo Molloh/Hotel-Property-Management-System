@@ -1,5 +1,10 @@
 package presentation.controller.impl.hotel;
 
+import businessLogic.impl.HotelPromotionBlServiceImpl;
+import businessLogic.service.HotelBlService;
+import businessLogic.service.HotelPromotionBlService;
+import common.ResultMessage;
+import presentation.common.SingletonItem;
 import presentation.controller.service.hotel.HotelInfoViewControllerService;
 import presentation.controller.service.hotel.HotelPromotionViewControllerService;
 import presentation.view.hotel.HotelPromotionView;
@@ -14,14 +19,26 @@ import java.util.List;
  */
 public class HotelPromotionViewControllerImpl implements HotelPromotionViewControllerService {
     private String hotelId;
+    private static HotelPromotionViewControllerService INSTANCE = new HotelPromotionViewControllerImpl();
 
-    public HotelPromotionViewControllerImpl(String hotelId) {
-        this.hotelId = hotelId;
+    private HotelPromotionBlService promotion;
+
+    private HotelPromotionViewControllerImpl() {
+        hotelId = SingletonItem.getInstance().getHotelId();
+        promotion = HotelPromotionBlServiceImpl.getInstance();
     }
 
+    public static HotelPromotionViewControllerService getInstance() {
+        return INSTANCE;
+    }
 
     @Override
     public List<ActivityPromotionVo> getCurrentActStrategy() {
-        return null;
+        return promotion.getCurrentActStrategy(hotelId);
+    }
+
+    @Override
+    public ResultMessage delActivityStrategy(ActivityPromotionVo vo) {
+        return promotion.delActivityStrategy(hotelId, vo);
     }
 }

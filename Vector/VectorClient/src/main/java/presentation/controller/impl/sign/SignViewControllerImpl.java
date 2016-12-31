@@ -39,7 +39,7 @@ public class SignViewControllerImpl implements SignViewControllerService {
     @Override
     public void signOut() {
         account.logout(SingletonItem.getInstance().getActivateId());
-        SingletonItem.getInstance().setActivateId(null);
+        SingletonItem.getInstance().setActivateId("");
     }
 
 }

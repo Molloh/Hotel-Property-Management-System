@@ -38,7 +38,7 @@ public class MarketerPromotionView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new HotelPromotionViewControllerImpl(SingletonItem.getInstance().getHotelId());
+        //controller = new HotelPromotionViewControllerImpl(SingletonItem.getInstance().getHotelId());
         promotion = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
 
         ObservableList<ActivityPromotionVo> data = FXCollections.observableArrayList();

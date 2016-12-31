@@ -1,9 +1,14 @@
 package presentation.controller.impl.member;
 
+import businessLogic.impl.OrderBlServiceImpl;
+import businessLogic.service.OrderBlService;
 import common.RoomType;
 import presentation.controller.service.member.MemberOrderInfoViewControllerService;
 import presentation.controller.service.member.MemberOrderViewControllerService;
+import vo.OrderVo;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -12,78 +17,101 @@ import java.util.Date;
  * @description
  */
 public class MemberOrderInfoViewControllerImpl implements MemberOrderInfoViewControllerService {
-    @Override
-    public String getOrderCondition(String orderId) {
-        return null;
+    private static MemberOrderInfoViewControllerService INSTANCE = new MemberOrderInfoViewControllerImpl();
+
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private OrderBlService order;
+    private OrderVo orderVo;
+
+    private String orderId;
+
+    private MemberOrderInfoViewControllerImpl() {
+        order = OrderBlServiceImpl.getInstance();
+    }
+
+    public static MemberOrderInfoViewControllerService getInstance() {
+        return INSTANCE;
     }
 
     @Override
-    public String getMemberId(String orderId) {
-        return null;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+        orderVo = order.getOrder(orderId);
     }
 
     @Override
-    public String getMemberName(String orderId) {
-        return null;
+    public String getOrderCondition() {
+        return String.valueOf(orderVo.getCondition());
     }
 
     @Override
-    public Date getCreateTime(String orderId) {
-        return null;
+    public String getMemberId() {
+        return orderVo.getMemberId();
     }
 
     @Override
-    public Date getCheckInTime(String orderId) {
-        return null;
+    public String getMemberName() {
+        return orderVo.getMemberName();
     }
 
     @Override
-    public Date getCheckOutTime(String orderId) {
-        return null;
+    public String getCreateTime() {
+        return formatter.format(orderVo.getCreateTime());
     }
 
     @Override
-    public String getHotelName(String orderId) {
-        return null;
+    public String getCheckInTime() {
+        return formatter.format(orderVo.getCheckInTime());
     }
 
     @Override
-    public String getHotelId(String orderId) {
-        return null;
+    public String getCheckOutTime() {
+        return formatter.format(orderVo.getCheckOutTime());
     }
 
     @Override
-    public RoomType getRoomType(String orderId) {
-        return null;
+    public String getHotelName() {
+        return orderVo.getHotel();
     }
 
     @Override
-    public int getNumOfRoom(String orderId) {
-        return 0;
+    public String getHotelId() {
+        return orderVo.getHotelId();
     }
 
     @Override
-    public int getNumOfGuest(String orderId) {
-        return 0;
+    public RoomType getRoomType() {
+        return orderVo.getRoomType();
     }
 
     @Override
-    public boolean getChildExist(String orderId) {
-        return false;
+    public int getNumOfRoom() {
+        return orderVo.getNumOfRoom();
     }
 
     @Override
-    public int getOriginalPrice(String orderId) {
-        return 0;
+    public int getNumOfGuest() {
+        return orderVo.getNumOfGuest();
     }
 
     @Override
-    public double getDiscount(String orderId) {
-        return 0;
+    public boolean getChildExist() {
+        return orderVo.getChildExist();
     }
 
     @Override
-    public double getDiscountedPrice(String orderId) {
-        return 0;
+    public int getOriginalPrice() {
+        return orderVo.getOriginalPrice();
+    }
+
+    @Override
+    public double getDiscount() {
+        return orderVo.getDiscount();
+    }
+
+    @Override
+    public double getDiscountedPrice() {
+        return orderVo.getDiscountedPrice();
     }
 }

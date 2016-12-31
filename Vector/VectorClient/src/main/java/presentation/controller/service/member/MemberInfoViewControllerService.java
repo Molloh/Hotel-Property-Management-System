@@ -1,6 +1,7 @@
 package presentation.controller.service.member;
 
 import common.AccountType;
+import common.ResultMessage;
 import common.Sex;
 
 import java.time.LocalDate;
@@ -12,6 +13,11 @@ import java.time.LocalDate;
  */
 public interface MemberInfoViewControllerService {
 
+    //设置当前操作的Id
+    void setMemberId(String memberId);
+
+    //get方法
+
     String getMemberName();
 
     LocalDate getBirthDay();
@@ -21,7 +27,7 @@ public interface MemberInfoViewControllerService {
     String getCredit();
 
     String getPhone();
-    
+
     AccountType getAccountType();
 
     Sex getSex();
@@ -30,7 +36,7 @@ public interface MemberInfoViewControllerService {
 
     String getVIPLevel();
 
-    void setMemberId(String memberId);
+    //set方法
 
     void setSex(Sex sex);
 
@@ -43,5 +49,9 @@ public interface MemberInfoViewControllerService {
     void setAddress(String address);
 
     void setEnterPrise(String enterPrise);
+
+    void setPassword(String password);
+
+    ResultMessage updateInfo();
 
 }

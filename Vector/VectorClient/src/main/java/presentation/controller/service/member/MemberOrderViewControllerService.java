@@ -1,17 +1,23 @@
 package presentation.controller.service.member;
 
+import common.OrderCondition;
 import vo.OrderVo;
 
 import java.util.List;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2016/12/25
+ * @description 客户订单列表界面
  */
 public interface MemberOrderViewControllerService {
 
+    void setMemberId(String memberId);
+
+    //所有订单
     List<OrderVo> getAllOrders();
 
-    void setMemberId(String memberId);
+    //订单状态筛选订单
+    List<OrderVo> getOrdersInConditionByMember(OrderCondition condition);
+
 }

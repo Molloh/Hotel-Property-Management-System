@@ -9,14 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
+import presentation.controller.Promotion;
 import presentation.controller.impl.hotel.HotelPromotionViewControllerImpl;
 import presentation.controller.service.hotel.HotelPromotionViewControllerService;
 import vo.ActivityPromotionVo;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -26,55 +27,27 @@ import java.util.ResourceBundle;
  */
 public class HotelPromotionView implements Initializable {
     @FXML
-    AnchorPane missionPane;
+    private AnchorPane anchorPane;
 
-    @FXML
-    private ListView<ActivityPromotionVo> promotion_list;
-
+    private ArrayList<ActivityPromotionVo> promotionList;
     private HotelPromotionViewControllerService controller;
-
-    private ArrayList<ActivityPromotionVo> promotion;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new HotelPromotionViewControllerImpl(SingletonItem.getInstance().getHotelId());
-        promotion = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
+        controller = HotelPromotionViewControllerImpl.getInstance();
+        promotionList = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
 
-        ObservableList<ActivityPromotionVo> data = FXCollections.observableArrayList();
-        for (ActivityPromotionVo item : promotion) {
-            data.add(item);
+
+
+        for(ActivityPromotionVo promotionVo : promotionList) {
+            SingletonItem.getInstance().setActivityPromotionVo(promotionVo);
         }
-        promotion_list.setItems(data);
-        promotion_list.setCellFactory((ListView<ActivityPromotionVo> lv) -> new PromotionCell());
-
     }
+
+
 
     @FXML
     private void handleAddPro() {
-        try {
-            missionPane.getChildren().clear();
-            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelProAdd_View_Path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    class PromotionCell extends ListCell<ActivityPromotionVo> {
-        @Override
-        protected void updateItem(ActivityPromotionVo item, boolean empty) {
-            super.updateItem(item, empty);
-            Label area = new Label();
-            area.setText(item.getPromotionName() + " " + item.getStartDate() + "-" + item.getEndDate() + "\n" + item.getPromotionType() + " " + item.getDiscount());
-            Button btn = new Button("编辑");
-            btn.setOnAction(event -> {
-                SingletonItem.getInstance().setActivityPromotionVo(item);
-                missionPane.getChildren().clear();
-                try {
-                    missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelProInfo_View_Path)));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
     }
 }

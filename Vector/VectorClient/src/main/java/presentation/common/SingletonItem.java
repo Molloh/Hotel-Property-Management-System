@@ -8,6 +8,7 @@ import vo.ActivityPromotionVo;
  * @description 创建一个单例类，实现activeId的set和get
  */
 public class SingletonItem {
+
     private String activateId;
 
     private String searchedId;

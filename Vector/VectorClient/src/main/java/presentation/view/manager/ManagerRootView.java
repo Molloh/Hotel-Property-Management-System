@@ -51,7 +51,7 @@ public class ManagerRootView implements Initializable {
     @FXML
     private void handleMissionSwitch(ActionEvent event) throws IOException {
         if(event.getSource() == signOut_btn) {
-            fxmlPath = ViewFxmlPath.SignIn_View_Path;
+            fxmlPath = ViewFxmlPath.Sign_View_Path;
             Stage stage = (Stage)signOut_btn.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);

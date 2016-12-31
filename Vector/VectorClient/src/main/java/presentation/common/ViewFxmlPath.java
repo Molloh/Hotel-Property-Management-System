@@ -7,11 +7,11 @@ package presentation.common;
  */
 public interface ViewFxmlPath {
 
+    String Promotion_View_Path = "/unity/PromotionView.fxml";
+
     //Path for sign's view
 
-    String SignIn_View_Path = "/sign/SignInView.fxml";
-
-    String SignUp_View_Path = "/sign/SignUpView.fxml";
+    String Sign_View_Path = "/sign/SignView.fxml";
 
     //Path for member‘s view
 
@@ -23,7 +23,7 @@ public interface ViewFxmlPath {
 
     String MemberHotelInfo_View_Path = "/member/MemberHotelInfoView.fxml";
 
-    String MemberHotelOrder_View_Path = "/member/MemberHotelOrderView.fxml";
+    String MemberHotelOrder_View_Path = "/member/MemberSubmitOrderView.fxml";
 
     String MemberOrder_View_Path = "/member/MemberOrderView.fxml";
 

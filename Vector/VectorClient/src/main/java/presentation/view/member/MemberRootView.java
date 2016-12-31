@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.common.SingletonItem;
@@ -28,57 +30,60 @@ import java.util.ResourceBundle;
  */
 public class MemberRootView implements Initializable {
     @FXML
-    private Label memberName_label;
-    @FXML
     private Label memberId_label;
 
     @FXML
-    private Button modifyInfo_btn;
+    private ToggleButton modifyInfo_btn;
     @FXML
-    private Button myOrder_btn;
+    private ToggleButton myOrder_btn;
     @FXML
     private Button signOut_btn;
     @FXML
-    private Button home_btn;
+    private ToggleButton home_btn;
+    @FXML
+    private Button exit_btn;
+    @FXML
+    private Button logo_btn;
 
     @FXML
     private BorderPane missionPane;
 
     private String fxmlPath;
 
-    private MemberRootViewControllerService controller;
-
     @Override
     public void initialize(URL location, ResourceBundle resources){
-    	controller = MemberRootViewControllerImpl.getInstance();
-    	
         String memberId = SingletonItem.getInstance().getActivateId();
-        controller.setMemberId(memberId);
 
-        memberName_label.setText(controller.getMemberName());
         memberId_label.setText(memberId);
+        ToggleGroup guide = new ToggleGroup();
+        myOrder_btn.setToggleGroup(guide);
+        home_btn.setToggleGroup(guide);
+        modifyInfo_btn.setToggleGroup(guide);
 
         setMissionPane(ViewFxmlPath.MemberHotelList_View_Path);
     }
 
+    //导航设置
     @FXML
     private void handleMissionSwitch(ActionEvent event) throws IOException {
         if(event.getSource() == signOut_btn) {
             SignViewControllerImpl.getInstance().signOut();
-
-            fxmlPath = ViewFxmlPath.SignIn_View_Path;
+            //跳转登录界面
+            fxmlPath = ViewFxmlPath.Sign_View_Path;
             Stage stage = (Stage)signOut_btn.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         }else if(event.getSource() == modifyInfo_btn) {
             fxmlPath = ViewFxmlPath.MemberInfo_View_Path;
         }else if(event.getSource() == myOrder_btn) {
             fxmlPath = ViewFxmlPath.MemberOrder_View_Path;
-        }else if(event.getSource() == home_btn) {
+        }else if(event.getSource() == home_btn || event.getSource() == logo_btn) {
             fxmlPath = ViewFxmlPath.MemberHotelList_View_Path;
+        }else if(event.getSource() == exit_btn) {
+            SignViewControllerImpl.getInstance().signOut();
+            System.exit(0);
         }
 
         if(fxmlPath != null)
@@ -92,5 +97,19 @@ public class MemberRootView implements Initializable {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //关闭
+    @FXML
+    private void handleExit() {
+        SignViewControllerImpl.getInstance().signOut();
+        System.exit(0);
+    }
+
+    //最小化
+    @FXML
+    private void handleMinimize() {
+        Stage stage = (Stage)memberId_label.getScene().getWindow();
+        stage.setIconified(true);
     }
 }
