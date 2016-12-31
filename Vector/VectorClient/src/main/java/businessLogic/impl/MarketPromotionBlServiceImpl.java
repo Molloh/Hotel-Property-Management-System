@@ -100,12 +100,12 @@ public class MarketPromotionBlServiceImpl implements MarketPromotionBlService{
 		return ResultMessage.FAIL;
 	}
 	
-	public List<Double> getCurrentActDiscount(String hotelId){
+	public List<Double> getCurrentActDiscount(){
 		List<ActivityPromotionVo> list = getCurrentActStrategy();
-		if(list.isEmpty())  return null;
+		List<Double> discountList = new ArrayList<Double>();
+		if(list.isEmpty())  return discountList;
 		
 		Iterator<ActivityPromotionVo> it = list.iterator();
-		List<Double> discountList = new ArrayList<Double>();
 		
 		while(it.hasNext()){
 			discountList.add(it.next().getDiscount());

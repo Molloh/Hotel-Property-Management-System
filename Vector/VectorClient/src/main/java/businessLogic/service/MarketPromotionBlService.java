@@ -47,7 +47,7 @@ public interface MarketPromotionBlService {
 	 * @param hotelId
 	 * @return
 	 */
-	public List<Double> getCurrentActDiscount(String hotelId);
+	public List<Double> getCurrentActDiscount();
 	
 	/**
 	 * 增加一个特定商圈促销策略

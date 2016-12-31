@@ -105,10 +105,9 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	
 	public List<Double> getCurrentActDiscount(String hotelId){
 		List<ActivityPromotionVo> list = getCurrentActStrategy(hotelId);
-		if(list.isEmpty())  return null;
-		
-		Iterator<ActivityPromotionVo> it = list.iterator();
 		List<Double> discountList = new ArrayList<Double>();
+		if(list.isEmpty())  return discountList;
+		Iterator<ActivityPromotionVo> it = list.iterator();
 		
 		while(it.hasNext()){
 			discountList.add(it.next().getDiscount());

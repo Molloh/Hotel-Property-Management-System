@@ -6,6 +6,7 @@ import common.OrderCondition;
 import presentation.controller.service.member.MemberOrderViewControllerService;
 import vo.OrderVo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,6 @@ public class MemberOrderViewControllerImpl implements MemberOrderViewControllerS
     @Override
     public void setMemberId(String memberId) {
         this.memberId = memberId;
-        System.out.print(memberId);
     }
 
     public static MemberOrderViewControllerService getInstance() {
