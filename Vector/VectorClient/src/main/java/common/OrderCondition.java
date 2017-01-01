@@ -7,5 +7,6 @@ public enum OrderCondition {
 	EXECUTED,  //已执行
 	FINISHED,  //已评价
 	ABNORMAL,  //异常
-	REVOKED;   //异常恢复
+	REVOKED,   //异常恢复
+	ALL        //所有订单
 }

@@ -70,7 +70,12 @@ public class HotelOrderView implements Initializable{
     private void initOrderTypeChoice() {
         orderType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                    orderList = (ArrayList<OrderVo>) controller.getOrdersInConditionByHotel(getState(orderType_choice.getItems().get(new_val.intValue())));
+                    OrderCondition condition = getState(orderType_choice.getItems().get(new_val.intValue()));
+                    if(condition == OrderCondition.ALL) {
+                        orderList = (ArrayList<OrderVo>) controller.getAllOrders();
+                    }else {
+                        orderList = (ArrayList<OrderVo>) controller.getOrdersInConditionByHotel(condition);
+                    }
                     initTable();
                 }
         );
@@ -109,7 +114,7 @@ public class HotelOrderView implements Initializable{
                     try {
                         SingletonItem.getInstance().setOrderId(item);
                         missionPane.getChildren().clear();
-                        missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.MemberOrderInfo_View_Path)));
+                        missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelOrderExe_View_Path)));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -120,7 +125,7 @@ public class HotelOrderView implements Initializable{
 
     private OrderCondition getState(String state) {
         switch (state) {
-            case "全部订单": return null;
+            case "全部订单": return OrderCondition.ALL;
             case "未执行订单": return OrderCondition.WAITING;
             case "已执行订单": return OrderCondition.EXECUTED;
             case "执行中订单": return OrderCondition.EXECUTING;
@@ -135,5 +140,6 @@ public class HotelOrderView implements Initializable{
         String orderId = orderId_field.getText();
         orderList.clear();
         orderList.add(controller.findOrder(orderId));
+        initTable();
     }
 }

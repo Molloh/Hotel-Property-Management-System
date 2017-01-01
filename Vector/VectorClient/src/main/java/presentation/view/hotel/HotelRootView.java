@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.common.SingletonItem;
@@ -46,7 +47,7 @@ public class HotelRootView implements Initializable{
     private Label hotelId_label;
 
     @FXML
-    private BorderPane missionPane;
+    private AnchorPane missionPane;
 
     private HotelRootViewControllerService controller;
 
@@ -94,7 +95,8 @@ public class HotelRootView implements Initializable{
 
     private void setMissionPane(String fxmlPath) {
         try {
-            missionPane.setCenter(FXMLLoader.load(getClass().getResource(fxmlPath)));
+            missionPane.getChildren().clear();
+            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(fxmlPath)));
         }catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package presentation.controller.service.hotel;
 
+import common.ResultMessage;
+
 /**
  * @author Molloh
  * @version 2016/12/11
@@ -30,4 +32,6 @@ public interface HotelInfoViewControllerService {
     void setHotelPhone(String hotelPhone);
 
     void setHotelStar(String hotelStar);
+
+    ResultMessage updateInfo();
 }
