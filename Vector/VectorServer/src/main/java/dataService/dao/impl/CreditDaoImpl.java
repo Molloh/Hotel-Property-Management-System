@@ -45,7 +45,7 @@ public class CreditDaoImpl implements CreditDao {
 					"Charge credit",time_str,amount);
 		else
 			po = new CreditRecordPo(ori_credit+amount,
-				vo.getOrderId()+"&&"+vo.getCondition(),time_str,amount);
+				vo.getOrderId()+" && "+vo.getCondition(),time_str,amount);
 		
 		List<CreditRecordPo> list = creditDataHelper.getCreditRecordData(id);
 		list.add(po);

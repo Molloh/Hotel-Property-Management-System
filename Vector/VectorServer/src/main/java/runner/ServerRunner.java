@@ -25,7 +25,7 @@ public class ServerRunner extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        final RemoteHelper helper = new RemoteHelper();
+        final RemoteHelper helper = RemoteHelper.getInstance();
         final Label label = new Label("");
         Button start = new Button("启动");
         start.setOnAction(new EventHandler<ActionEvent>() {
