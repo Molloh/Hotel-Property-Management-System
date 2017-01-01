@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import presentation.common.SingletonItem;
 import presentation.controller.impl.manager.ManagerUserControllerImpl;
@@ -20,6 +21,9 @@ import java.util.ResourceBundle;
  * @description Manager 编辑用户信息界面
  */
 public class ManagerUserEditView implements Initializable {
+    @FXML
+    private AnchorPane missionPane;
+
     @FXML
     private TextField name_field;
     @FXML
@@ -177,7 +181,7 @@ public class ManagerUserEditView implements Initializable {
             controller.setHotelPhone(hotelPhone_field.getText());
             controller.setHotelAddress(hotelAddress_field.getText());
             controller.setHotelDiscription(discription_area.getText());
-            controller.setHotelPoint(hotelPoint_field.getPromptText());
+            controller.setHotelPoint(hotelPoint_field.getText());
             controller.setHotelStar(star_combo.getValue());
         }
         ResultMessage msg = controller.updateInfo();
@@ -206,5 +210,10 @@ public class ManagerUserEditView implements Initializable {
             alert.setContentText("删除失败！");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    private void handleCancel() {
+        missionPane.getChildren().clear();
     }
 }

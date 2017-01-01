@@ -4,10 +4,8 @@ import businessLogic.impl.AccountBlServiceImpl;
 import businessLogic.impl.MemberBlServiceImpl;
 import businessLogic.service.AccountBlService;
 import businessLogic.service.MemberBlService;
-import common.AccountType;
 import common.ResultMessage;
 import common.Sex;
-import presentation.common.SingletonItem;
 import presentation.controller.service.member.MemberInfoViewControllerService;
 import vo.MemberVo;
 
@@ -18,8 +16,8 @@ import java.util.Date;
 
 /**
  * @author Molloh
- * @version 2016/11/27
- * @description
+ * @version 2016/12/31
+ * @description MemberInfo Controller 的实现类
  */
 public class MemberInfoViewControllerImpl implements MemberInfoViewControllerService {
     private static final MemberInfoViewControllerService INSTANCE = new MemberInfoViewControllerImpl();
@@ -49,6 +47,13 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
     public String getMemberName() {
     	return memberVo.getName();
     }
+
+    @Override
+    public ResultMessage updateInfo() {
+        return member.modifyInfo(this.memberVo);
+    }
+
+    /* Member get 方法 */
 
     @Override
     public LocalDate getBirthDay() {
@@ -88,6 +93,8 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
         return "VIP " + String.valueOf(memberVo.getVip());
     }
 
+    /* Member set 方法 */
+
     @Override
     public void setSex(Sex sex) {
         memberVo.setSex(sex);
@@ -123,11 +130,6 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
     @Override
     public void setPassword(String password) {
         account.modifyPassword(memberId, password);
-    }
-
-    @Override
-    public ResultMessage updateInfo() {
-        return member.modifyInfo(this.memberVo);
     }
 
 }

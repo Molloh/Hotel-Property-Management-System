@@ -40,7 +40,7 @@ public class ManagerRootView implements Initializable {
     private Label id_label;
 
     @FXML
-    private BorderPane missionPane;
+    public BorderPane missionPane;
 
     private String fxmlPath;
     private SignViewControllerService controller;

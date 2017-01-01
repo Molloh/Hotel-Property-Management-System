@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/11
+ * @version 2016/12/31
  * @description Member信息修改界面
  */
 public class MemberInfoView implements Initializable {
