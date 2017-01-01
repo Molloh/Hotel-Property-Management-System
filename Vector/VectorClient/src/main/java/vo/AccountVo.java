@@ -5,6 +5,13 @@ import java.io.Serializable;
 import common.AccountType;
 import po.AccountPo;
 
+
+/**
+ * @ author Lienming
+ * @ version 2016/11/27
+ * @ description
+ * 账号的基本属性有：ID、密码、名称、登录状态、用户类型
+ */
 public class AccountVo  implements Serializable{
     /**
 	 * 

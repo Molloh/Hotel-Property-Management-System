@@ -14,18 +14,21 @@ import po.MemberPo;
 import vo.MemberVo;
 
 /**
- * Created by Administrator on 2016-11-27.
+ * 类MemberDaoImpl的职责是实现接口MemberDao的方法，通过与数据层的交互、处理数据完成请求
  */
 
 public class MemberDaoImpl implements MemberDao {
 
+
+    /* 持有数据 map<String,MemberPo> */
     private TreeMap<String,MemberPo> map_member;
     private TreeMap<String,MemberPo> map_enterprise;
     
     private MemberDataHelper memberDataHelper;
 
     private DataFactory dataFactory;
-
+    
+    /*单件模式*/
     private static MemberDaoImpl memberDataServiceImpl;
 
     public static MemberDaoImpl getInstance(){
@@ -44,8 +47,14 @@ public class MemberDaoImpl implements MemberDao {
             this.map_enterprise = memberDataHelper.getMemberData(false);
         }
     }
-
-
+    
+    /**
+	 * 获取用户的信用值
+	 * @param id
+	 * @return credit:int
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public int getCredit(String id) {
     	MemberVo vo = getInfo(id);
     	if(!vo.equals(null))
@@ -53,7 +62,15 @@ public class MemberDaoImpl implements MemberDao {
     	else
     		return -1;
     }
-
+    
+    
+    /**
+	 * 为客户充值信用
+	 * @param id :int, amount :int充值的信用数量 可为负数
+	 * @return ResultMessage.SUCCEED/FAIL
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public ResultMessage chargeCredit(String id, int amount){
     	TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
@@ -77,10 +94,18 @@ public class MemberDaoImpl implements MemberDao {
         return ResultMessage.FAIL;
     }
 
+    /** 检查 VIP等级是否正确 */ 
     public boolean checkVip(int credit){
     	return true;
     }
     
+     /**
+	 * 显示用户的信息
+	 * @param id
+	 * @return MemberVo/null
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public MemberVo getInfo(String id){
     	TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
@@ -95,6 +120,13 @@ public class MemberDaoImpl implements MemberDao {
         return null;
     }
 
+    /**
+	 * 修改用户信息
+	 * @param vo 
+	 * @return ResultMessage.SUCCEED/FAIL
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public ResultMessage modifyInfo(MemberVo vo){
     	TreeMap<String,MemberPo> map = getMap(isMember(vo.getId())) ;
         Iterator<Map.Entry<String, MemberPo>> iterator = map.entrySet().iterator();
@@ -108,6 +140,13 @@ public class MemberDaoImpl implements MemberDao {
         return ResultMessage.FAIL;
     }
 
+    /**
+	 * 插入一个用户的基本信息 
+	 * @param vo 
+	 * @return ResultMessage.SUCCEED/FAIL
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public ResultMessage insertInfo(MemberVo vo){
     	TreeMap<String,MemberPo> map = getMap(isMember(vo.getId())) ;
     	 if(!map.containsKey(vo.getId())) {
@@ -123,6 +162,13 @@ public class MemberDaoImpl implements MemberDao {
              return ResultMessage.FAIL; //已存在
     }
     
+    /**
+	 * 更新一个用户的基本信息 
+	 * @param vo 
+	 * @return ResultMessage.SUCCEED/FAIL
+	 * @author lienming
+	 * @version 2016-11-27
+	 */
     public ResultMessage updateInfo(MemberVo vo){
     	String id = vo.getId() ;
     	TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
@@ -140,6 +186,13 @@ public class MemberDaoImpl implements MemberDao {
             return ResultMessage.FAIL;
     }
     
+    /**
+   	 * 删除一个用户的基本信息 
+   	 * @param vo 
+   	 * @return ResultMessage.SUCCEED/FAIL
+   	 * @author lienming
+   	 * @version 2016-11-27
+   	 */
     public ResultMessage deleteInfo(String id){
     	  TreeMap<String,MemberPo> map = getMap(isMember(id)) ;
     	  if(map.containsKey(id))
@@ -153,6 +206,7 @@ public class MemberDaoImpl implements MemberDao {
               return ResultMessage.FAIL;
     }
     
+    /** 根据用户类型取原表进行下一步操作 */
     public TreeMap<String,MemberPo> getMap(boolean isMember){
     	TreeMap<String,MemberPo> map;
     	if(isMember)
@@ -162,6 +216,7 @@ public class MemberDaoImpl implements MemberDao {
     	return map;
     }
     
+    /** 将新表覆盖原表 */
     public void updateMap(TreeMap<String,MemberPo> map,boolean isMember){
     	if(isMember)
     		this.map_member=map;
@@ -169,6 +224,7 @@ public class MemberDaoImpl implements MemberDao {
     		this.map_enterprise=map;
     }
     
+    /** 根据ID判断是普通用户还是企业用户的简单方法 */
     public boolean isMember(String id){
     	char label = id.charAt(0);
     	if(label=='N')

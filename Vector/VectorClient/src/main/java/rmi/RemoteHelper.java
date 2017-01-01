@@ -11,7 +11,7 @@ import dataService.dao.service.MemberDao;
 import dataService.dao.service.OrderDao;
 
 /**
- * Created by Administrator on 2016-11-20.
+ * RMI
  */
 public class RemoteHelper {
 

@@ -16,15 +16,23 @@ import dataService.dataHelper.service.AccountDataHelper;
 import po.AccountPo;
 
 /**
- * Updated by lienming on 2016-11-27.
+ * Updated by lienming on 2016-12-31.
+ * 类AccountDataHelper的职责是实现接口AccountDataHelper的方法,
+ * 通过直接读写存储Account数据的Txt文本，完成请求
  */
 public class AccountDataTxtHelper implements AccountDataHelper {
+	/*根据账号类型分为5个txt文本存储Account数据*/
 	File memberFile    = new File("src/main/resources/textData/account/memberAccount.txt");
 	File enterpriseFile= new File("src/main/resources/textData/account/enterpriseAccount.txt");
 	File hotelFile     = new File("src/main/resources/textData/account/hotelAccount.txt");
 	File marketerFile  = new File("src/main/resources/textData/account/marketerAccount.txt");
 	File managerFile   = new File("src/main/resources/textData/account/managerAccount.txt");
 	
+	/**
+	 * 获取所有同一个类型的账号信息
+	 * @param AccountType 
+	 * @return TreeMap<String,AccountPo>
+	 */
     public TreeMap<String, AccountPo> getAccountData(AccountType type) {
         TreeMap<String, AccountPo> TreeMap = new TreeMap<String, AccountPo>();
         File file = getFile(type) ; 
@@ -61,6 +69,12 @@ public class AccountDataTxtHelper implements AccountDataHelper {
         return null;
     }
 
+    /**
+     * 将同一个类型的账号数据一次写入
+     * @param TreeMap<String, AccountPo> 
+     * @param AccountType 
+     * @return void
+     */
     public void updateAccountData(TreeMap<String, AccountPo> TreeMap,AccountType type) {
         //写入用户数据
     	File file = getFile(type);
@@ -87,6 +101,11 @@ public class AccountDataTxtHelper implements AccountDataHelper {
 
     }
     
+    /**
+     * 根据用户类型获得文件的方法
+     * @param AccountType
+     * @return File
+     */
     public File getFile(AccountType type){
     	switch(type){
         case Member		: return this.memberFile;   

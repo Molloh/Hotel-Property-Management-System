@@ -16,16 +16,22 @@ import java.util.TreeMap;
 import common.Sex;
 import dataService.dataHelper.service.MemberDataHelper;
 import po.MemberPo;
-
 /**
- * Updated by lienming on 2016-11-27.
+ * Updated by lienming on 2016-12-31.
+ * 类MemberDataHelper的职责是实现接口MemberDataHelper的方法,
+ * 通过直接读写存储Member数据的Txt文本，完成请求
  */
 public class MemberDataTxtHelper implements MemberDataHelper {
-	
+	/*根据账号类型分为2个txt文本存储Account数据*/
 	File file_member	 = new File("src/main/resources/textData/member/memberInfo.txt");
 	File file_enterprise = new File("src/main/resources/textData/member/enterpriseInfo.txt");
     //File file = new File(getClass().getResource("/textData/member.txt").getPath());
 	
+	/**
+	 * 获取所有同一个类型的账号的个人基本信息
+	 * @param isMember
+	 * @return TreeMap<String, MemberPo>
+	 */
     public TreeMap<String, MemberPo> getMemberData(boolean isMember){
         TreeMap<String, MemberPo> map = new TreeMap<String, MemberPo>();
         File file;
@@ -75,6 +81,12 @@ public class MemberDataTxtHelper implements MemberDataHelper {
         return map;
     }
 
+    /**
+     * 将同一个类型的个人基本信息一次写入
+     * @param TreeMap<String, MemberPo> 
+     * @param boolean
+     * @return void
+     */
     public void updateMemberData(TreeMap<String, MemberPo> map,boolean isMember){
     	//写入用户数据
     	 File file;

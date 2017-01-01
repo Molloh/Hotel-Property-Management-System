@@ -2,8 +2,8 @@ package dataService.dataHelper.service;
 
 /**
  * @ author Molloh
- * @ version 2016/11/6
- * @ description
+ * @ version 2016/12/31
+ * @ description 工厂类
  */
 public interface DataFactory {
 

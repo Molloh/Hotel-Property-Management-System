@@ -7,8 +7,9 @@ import po.AccountPo;
 
 /**
  * @ author lienming
- * @ version 2016-11-27
- * @ description
+ * @ version 2016-12-31
+ * @ description AccountDataHelper接口的职责是负责处理与Account数据相关的读写请求
+ *  由类AccountDataTxtHelper来实现这个接口中的方法。
  */
 public interface AccountDataHelper {
     /**
@@ -18,7 +19,7 @@ public interface AccountDataHelper {
 
     /**
      * 向数据文件中写入用户数据
-     * @param map
+     * @param TreeMap<String, AccountPo>
      */
     public void updateAccountData(TreeMap<String, AccountPo> map,AccountType type);
 

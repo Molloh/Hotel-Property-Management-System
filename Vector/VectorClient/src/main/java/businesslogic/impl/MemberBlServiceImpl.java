@@ -8,10 +8,10 @@ import rmi.RemoteHelper;
 import vo.MemberVo;
 
 /**
- * Updated by lienming on 2016-11-27.
+ * 类MemberBlServiceImpl的职责是实现接口MemberBlService的方法，通过远程调用服务端的方法来完成请求
  */
 public class MemberBlServiceImpl implements MemberBlService{
-
+	/* 单件模式  */
     private MemberDao memberDao ;
     
     private static MemberBlServiceImpl memberBlServiceImpl;
@@ -30,20 +30,18 @@ public class MemberBlServiceImpl implements MemberBlService{
         return memberDao.getCredit(id);
     }
 
-    /*线下充值调用接口,amount为正整数*/
+    /** 线下充值调用接口实现,amount为正整数 */
     public ResultMessage chargeCredit(String id, int amount){
     	if(amount<=0)
 			return ResultMessage.FAIL;
         return memberDao.chargeCredit(id,amount);
     }
-
+    /** 根据id获取用户基本信息 */
     public MemberVo getInfo(String id){
         return memberDao.getInfo(id);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see businessLogic.service.MemberBlService#checkInfo(java.lang.String, common.InfoType)
+    /** 检查输入是否合法
      * 数据格式要求：
      * InfoType   
      *  NAME     :   长度为4~12
@@ -80,6 +78,7 @@ public class MemberBlServiceImpl implements MemberBlService{
         return ResultMessage.SUCCEED;
     }
 
+    /** 修改用户个人基本信息 */
     public ResultMessage modifyInfo(MemberVo vo){
     	if(checkInfo(vo.getName(),InfoType.NAME) == ResultMessage.VALID
     			&& checkInfo(vo.getPhone(),InfoType.PHONE)== ResultMessage.VALID)

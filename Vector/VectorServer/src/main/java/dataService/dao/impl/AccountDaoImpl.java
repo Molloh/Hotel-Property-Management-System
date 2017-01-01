@@ -16,17 +16,18 @@ import vo.AccountVo;
 import vo.MemberVo;
 
 /**
- * Updated by lienming on 2016-12-8.
+ * 类AccountDaoImpl的职责是实现接口AccountDao的方法，通过与数据层的交互、处理数据完成请求
  */
 public class AccountDaoImpl implements AccountDao {
 
-    /* map<Id,AccountPO> */
+    /* 持有数据 map<Id,AccountPO> */
     private TreeMap<String,AccountPo> map_member;
     private TreeMap<String,AccountPo> map_enterprise;
     private TreeMap<String,AccountPo> map_hotel;
     private TreeMap<String,AccountPo> map_marketer;
     private TreeMap<String,AccountPo> map_manager;
     
+    /*单件模式*/
     private AccountDataHelper accountDataHelper;
 
     private DataFactory dataFactory;
@@ -53,10 +54,18 @@ public class AccountDaoImpl implements AccountDao {
         }
     }
 
-
+    /** 所有类型账号的登入 
+     * 从数据层获取数据并做比对 
+     * @param id :String  如：Member的为:"N00001",Hotel的为:"H00001"
+	 * @param password : String
+	 * @return  AccountType/Fail (只有第一个字母大写)
+     * */
     public AccountType login(String id, String password) {
+    	/* 获取账号类型确定查找方向 */
     	AccountType type = getAccountType(id);
     	TreeMap<String,AccountPo> map = getMap(type);
+    	
+    	/*迭代器遍历*/
         Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, AccountPo> entry = iterator.next();
@@ -81,8 +90,14 @@ public class AccountDaoImpl implements AccountDao {
         return AccountType.Fail; //账号名不存在
 
     }
-
+    
+    /**
+   	 * 账号通过Id登出
+   	 * @param id : String
+   	 * @return ResultMessage
+   	 */
     public ResultMessage logout(String id) {
+    	/* 获取账号类型确定查找方向 */
     	AccountType type = getAccountType(id);
     	TreeMap<String,AccountPo> map = getMap(type);
         if( map.containsKey(id) )
@@ -100,7 +115,14 @@ public class AccountDaoImpl implements AccountDao {
         else return ResultMessage.FAIL;
     }
 
+    /**
+   	 * 账号密码修改
+   	 * @param id
+   	 * @param newPassword
+   	 * @return ResultMessage.SUCCEED/FAIL
+   	 */
     public ResultMessage modifyPassword(String id,String newPassword) {
+    	/* 获取账号类型确定查找方向 */
     	AccountType type = getAccountType(id);
     	TreeMap<String,AccountPo> map = getMap(type);
     	if( map.containsKey(id) )
@@ -112,12 +134,19 @@ public class AccountDaoImpl implements AccountDao {
     		po.setPassword(newPassword);
     		po.setLogState(0);
             map.put(po.getId(), po);
-            updateMap(map,type);       //更新Map中的po信息
+            updateMap(map,type);       //更新Map中的po信息，更新数据库
+            accountDataHelper.updateAccountData(map,type);  /////
+            
             return ResultMessage.SUCCEED;
          }
          else return ResultMessage.FAIL;
     }
 
+    /**
+   	 * 根据ID查找账号
+   	 * @param id
+   	 * @return AccountVo / null（失败时）
+   	 */
     public AccountVo findAccount(String id){
     	AccountType type = getAccountType(id);
     	TreeMap<String,AccountPo> map = getMap(type);
@@ -130,9 +159,21 @@ public class AccountDaoImpl implements AccountDao {
         else return null;
     }
 
+    /**
+   	 * 管理员插入任意类型的账号
+   	 * @param name
+   	 * @param password
+   	 * @param type
+   	 * @return Id/"FAIL"
+   	 */
     public String insertAccount(String name,String password,AccountType type) {
     	TreeMap<String,AccountPo> map = getMap(type);
     	Iterator<Map.Entry<String, AccountPo>> iterator = map.entrySet().iterator();
+    	
+    	
+    	/* 该模块作用为 生成一个新的ID，按从00000开始的递增次序寻找一个最大的数作为ID后缀
+    	 * eg:若 00001,00003存在但是00002不存在，00004以及之后都不存在，则会返回00004
+    	 */
     	String newId = null;
         int Id_num = 0 ;
         while(iterator.hasNext()) {
@@ -146,13 +187,15 @@ public class AccountDaoImpl implements AccountDao {
         }
         Id_num ++ ;  //默认不会超出五位数
         newId = newId.charAt(0)+ String.format("%05d",Id_num);
+        ///////////////////////////////////////////////////////
         
         AccountPo newAccPo = new AccountPo(name,password,newId,0);
         map.put(newId, newAccPo);
-        updateMap(map,type);
+        updateMap(map,type);      //更新Account数据库
         
         accountDataHelper.updateAccountData(map, type);
         
+        /*同时更新member信息，生成该账号相应的member信息*/
         MemberPo newMemPo = null;
 		try {
 			newMemPo = new MemberPo(newId,name);
@@ -165,13 +208,17 @@ public class AccountDaoImpl implements AccountDao {
 			MemberDaoImpl.getInstance().insertInfo(newMemVo);
 		else if(type==AccountType.Enterprise)
 			MemberDaoImpl.getInstance().insertInfo(newMemVo);
-	
+		////////////////////////////////
+		
+		/*生成相应的信用记录表*/
 		CreditDaoImpl.getInstance().newCredit(newId);
 		
         return newId;
     }
 
-    /**对AccountDaoImpl类持有的map对象进行数据更新，再更新txtData里的数据*/
+    /**  通过提供一个账号所有的信息更新一个账号 
+    *	对AccountDaoImpl类持有的map对象进行数据更新，再更新txtData里的数据
+    */
     public ResultMessage updateAccount(AccountVo vo){
         String id = vo.getId() ;
         AccountType type = vo.getAccountType();
@@ -197,7 +244,7 @@ public class AccountDaoImpl implements AccountDao {
         else
             return ResultMessage.FAIL;
     }
-
+    /** 网站管理人员通过ID删除账号*/
     public ResultMessage deleteAccount(String id){
     	AccountType type = getAccountType(id);
     	TreeMap<String,AccountPo> map = getMap(type);
@@ -213,6 +260,7 @@ public class AccountDaoImpl implements AccountDao {
             return ResultMessage.FAIL;
     }
 
+    /** 根据用户类型取原表进行下一步操作 */
     public TreeMap<String,AccountPo> getMap(AccountType type){
     	TreeMap<String,AccountPo> map;
     	switch(type){
@@ -226,6 +274,7 @@ public class AccountDaoImpl implements AccountDao {
     	return map;
     }
     
+    /** 将新表覆盖原表 */
     public void updateMap(TreeMap<String,AccountPo> map,AccountType type){
     	switch(type){
     	case Member    : this.map_member    = map ;		break;
@@ -237,6 +286,8 @@ public class AccountDaoImpl implements AccountDao {
     	}
     }
     
+    
+    /** 通过ID获取账号类型的方法 */
     public AccountType getAccountType(String id){
     	char label = id.charAt(0);
     	AccountType type ;

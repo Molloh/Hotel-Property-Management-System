@@ -18,10 +18,21 @@ import dataService.dataHelper.service.CreditDataHelper;
 import po.CreditRecordPo;
 import vo.CreditRecordVo;
 
+/**
+ * Updated by lienming on 2016-12-31.
+ * 类CreditDataHelper的职责是实现接口CreditDataHelper的方法,
+ * 通过直接读写存储Credit数据的Txt文本，完成请求
+ */
 public class CreditDataTxtHelper implements CreditDataHelper{
+	/*根据账号类型分为2个txt文本存储CreditRecord数据*/
 	String memberFile    ="src/main/resources/textData/creditRecord/member/";
 	String enterpriseFile="src/main/resources/textData/creditRecord/enterprise/";
 	
+	/**
+	 * 获取所有同一个类型的Credit信息
+	 * @param String 
+	 * @return List<CreditRecordPo>
+	 */
 	public List<CreditRecordPo> getCreditRecordData(String id){
 		List<CreditRecordPo> list = new ArrayList<CreditRecordPo>();
 		String txtFileName = getMemberTxtFile(id);
@@ -56,6 +67,12 @@ public class CreditDataTxtHelper implements CreditDataHelper{
 		return null;
 	}
 	
+	 /**
+     * 将同一个类型的Credit数据一次写入
+     * @param List<CreditRecordPo>
+     * @param String
+     * @return ResultMessage
+     */
 	public ResultMessage updateCreditRecordData(List<CreditRecordPo> list,String id){
 		String txtFileName = getMemberTxtFile(id);
 		File txtFile = new File(txtFileName);
@@ -78,6 +95,11 @@ public class CreditDataTxtHelper implements CreditDataHelper{
 		return ResultMessage.SUCCEED;
 	}
 	
+	/**
+	 * 新建用户同时新建Credit
+	 * @param String
+	 * @return ResultMessage
+	 */
 	public ResultMessage newCredit(String id){
 		String txtFileName = getMemberTxtFile(id);
 		File txtFile = new File(txtFileName);
@@ -97,7 +119,11 @@ public class CreditDataTxtHelper implements CreditDataHelper{
 		return ResultMessage.SUCCEED;
 	}
 	
-	
+	  /**
+     * 根据用户ID获得其文件路径
+     * @param id
+     * @return String
+     */
 	public String getMemberTxtFile(String id){
 		return memberFile + id ; 
 	}

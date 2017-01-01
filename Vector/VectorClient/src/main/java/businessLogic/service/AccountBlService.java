@@ -7,10 +7,13 @@ import vo.AccountVo;
 
 /**
  * @author lienming
- * @version 2016-12-09
- * 账号的基本属性有：ID、密码、名称、登录状态、用户类型
- * 账号逻辑层的接口包含的方法:
- * 登入、登出、注册、修改密码、检查输入、查找账户、插入、更新、删除账户
+ * @version 2016-12-31
+ * @description 
+ * AccountBlService接口的职责是处理相应的presentation层和businesslogic层中其他的逻辑模块发来的请求,
+ * 由类AccountBlServiceImpl来实现这个接口中的方法。
+ * 
+ * AccountBlService的接口包含的方法:
+ * 登入、登出、注册、修改密码、检查输入、查找账户、插入、更新、删除账户.
  */
 public interface AccountBlService {
 
@@ -85,6 +88,11 @@ public interface AccountBlService {
 	 */
 	public ResultMessage deleteAccount(String id) ;
 	
+	/**
+	 * 根据Id获取用户类型
+	 * @param id
+	 * @return AccountType
+	 */
 	public AccountType getAccountTypeById(String id);
 	
 

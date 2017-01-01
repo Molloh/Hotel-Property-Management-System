@@ -4,11 +4,13 @@ package businessLogic.service;
 import common.InfoType;
 import common.ResultMessage;
 import vo.MemberVo;
-
 /**
- * 账号信息的属性有： 用户名、ID、地址、联系方式、性别、信用值、生日、VIP等级
  * @author lienming
- * @version 2016-12-09
+ * @version 2016-12-31
+ * @description 
+ * MemberBlService接口的职责是处理相应的presentation层和businesslogic层中其他的逻辑模块发来的请求,
+ * 由类MemberBlServiceImpl来实现这个接口中的方法。
+ * 账号信息的属性有： 用户名、ID、地址、联系方式、性别、信用值、生日、VIP等级
  */
 
 public interface MemberBlService {

@@ -35,7 +35,7 @@ import vo.MemberVo;
 import vo.OrderVo;
 
 /**
- * Updated by lienming on 2016-12-08.
+ * RMI
  */
 public class DataRemoteObject extends UnicastRemoteObject
 implements AccountDao,MemberDao,HotelDao,OrderDao,HotelPromotionDao,MarketPromotionDao,CreditDao{
