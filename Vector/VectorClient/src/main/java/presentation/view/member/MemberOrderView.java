@@ -91,7 +91,7 @@ public class MemberOrderView implements Initializable {
                     vo.getDiscountedPrice(),
                     vo.getHotel(),
                     vo.getCreateTime(),
-                    vo.getCheckInTime()));
+                    vo.getPlanCheckInTime()));
         }
         order_list.setItems(data);
 

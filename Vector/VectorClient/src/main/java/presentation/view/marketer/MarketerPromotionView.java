@@ -2,6 +2,7 @@ package presentation.view.marketer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,73 +10,98 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.impl.hotel.HotelPromotionViewControllerImpl;
-import presentation.controller.service.hotel.HotelPromotionViewControllerService;
-import presentation.view.hotel.HotelPromotionView;
+import presentation.controller.impl.marketer.MarketerPromotionViewControllerImpl;
+import presentation.controller.service.marketer.MarketerPromotionViewControllerService;
+import presentation.controller.unity.Promotion;
 import vo.ActivityPromotionVo;
 
-import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
+ * @version 2016/12/31
  * @description
  */
 public class MarketerPromotionView implements Initializable {
     @FXML
-    AnchorPane missionPane;
+    private AnchorPane missionPane;
 
     @FXML
-    private ListView<ActivityPromotionVo> promotion_list;
+    private TableView<Promotion> promotion_List;
+    @FXML
+    private TableColumn<Promotion, ActivityPromotionVo> promotionName_column;
+    @FXML
+    private TableColumn<Promotion, Date> promotionStartDate_column;
+    @FXML
+    private TableColumn<Promotion, Date> promotionEndDate_column;
+    @FXML
+    private TableColumn<Promotion, Number> promotionDiscount_column;
 
-    private HotelPromotionViewControllerService controller;
+    @FXML
+    private TextField birthDiscount_field;
 
-    private ArrayList<ActivityPromotionVo> promotion;
+    private ArrayList<ActivityPromotionVo> promotionList;
+    private MarketerPromotionViewControllerService controller;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //controller = new HotelPromotionViewControllerImpl(SingletonItem.getInstance().getHotelId());
-        promotion = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
+        controller = MarketerPromotionViewControllerImpl.getInstance();
+        promotionList = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
 
-        ObservableList<ActivityPromotionVo> data = FXCollections.observableArrayList();
-        for (ActivityPromotionVo item : promotion) {
-            data.add(item);
+        initTable();
+    }
+
+    private void initTable() {
+        ObservableList<Promotion> data = FXCollections.observableArrayList();
+        for(ActivityPromotionVo vo : promotionList) {
+            data.add(new Promotion(vo, vo.getStartDate(), vo.getEndDate(), vo.getDiscount()));
         }
-        promotion_list.setItems(data);
-        promotion_list.setCellFactory((ListView<ActivityPromotionVo> lv) -> new PromotionCell());
+        promotion_List.setItems(data);
 
+        promotionStartDate_column.setCellValueFactory(cellData -> cellData.getValue().promotionStartDateProperty());
+        promotionEndDate_column.setCellValueFactory(cellData -> cellData.getValue().promotionEndDateProperty());
+        promotionDiscount_column.setCellValueFactory(cellData -> cellData.getValue().promotionDiscountProperty());
+        promotionName_column.setCellValueFactory(cellData -> cellData.getValue().promotionNameProperty());
+        promotionName_column.setCellFactory(param -> new PromotionBtnCell());
+    }
+
+    class PromotionBtnCell extends TableCell<Promotion, ActivityPromotionVo> {
+        @Override
+        public void updateItem(ActivityPromotionVo item, boolean empty) {
+            super.updateItem(item, empty);
+            Button order_btn;
+            if (item != null) {
+                order_btn = new Button(item.getPromotionName());
+                SingletonItem.getInstance().setActivityPromotionVo(item);
+                setGraphic(order_btn);
+                order_btn.setOnAction((ActionEvent event) -> {
+                    switcher(ViewFxmlPath.MarketerProInfo_View_Path);
+                });
+            }
+        }
+    }
+
+    @FXML
+    private void handleSaveBirthday() {
+        double discount = Double.valueOf(birthDiscount_field.getText());
     }
 
     @FXML
     private void handleAddPro() {
-        try {
-            missionPane.getChildren().clear();
-            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelProAdd_View_Path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switcher(ViewFxmlPath.MarketerProAdd_View_Path);
     }
 
-    class PromotionCell extends ListCell<ActivityPromotionVo> {
-        @Override
-        protected void updateItem(ActivityPromotionVo item, boolean empty) {
-            super.updateItem(item, empty);
-            Label area = new Label();
-            area.setText(item.getPromotionName() + " " + item.getStartDate() + "-" + item.getEndDate() + "\n" + item.getPromotionType() + " " + item.getDiscount());
-            javafx.scene.control.Button btn = new javafx.scene.control.Button("编辑");
-            btn.setOnAction(event -> {
-                SingletonItem.getInstance().setActivityPromotionVo(item);
-                missionPane.getChildren().clear();
-                try {
-                    missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelProInfo_View_Path)));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+    private void switcher(String fxml) {
+        try {
+            missionPane.getChildren().clear();
+            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(fxml)));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

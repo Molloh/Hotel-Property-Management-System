@@ -92,7 +92,7 @@ public class HotelOrderView implements Initializable{
                     vo.getDiscountedPrice(),
                     vo.getHotel(),
                     vo.getCreateTime(),
-                    vo.getCheckInTime()));
+                    vo.getPlanCheckInTime() ));
         }
         order_list.setItems(data);
 

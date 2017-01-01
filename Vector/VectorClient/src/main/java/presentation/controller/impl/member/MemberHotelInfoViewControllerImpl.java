@@ -48,7 +48,7 @@ public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewCon
 
     @Override
     public String getHotelDiscription() {
-        return "aaa";
+        return hotelVo.getHotelInfo();
     }
 
     @Override

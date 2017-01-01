@@ -60,7 +60,6 @@ public class MarketerOrderView implements Initializable {
         controller = MarketerOrderViewControllerImpl.getInstance();
 
         orderType_choice.getItems().addAll("未执行订单", "异常订单");
-        initTable();
         initOrderTypeChoice();
     }
 

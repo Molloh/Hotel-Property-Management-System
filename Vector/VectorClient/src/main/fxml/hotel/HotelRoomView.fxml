@@ -4,17 +4,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelRoomView">
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" stylesheets="@../css/InfoView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelRoomView">
    <children>
-      <Button layoutX="124.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleUpdate" text="确认" />
-      <Button layoutX="234.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleClear" text="取消" />
-      <Label layoutX="124.0" layoutY="42.0" text="选择：" />
-      <Label layoutX="124.0" layoutY="179.0" text="数量：" />
-      <TextField fx:id="num_field" layoutX="124.0" layoutY="200.0" prefHeight="23.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="mission_choice" layoutX="124.0" layoutY="70.0" prefWidth="150.0" />
-      <Label fx:id="price_label" layoutX="300.0" layoutY="116.0" text="单价：" />
-      <TextField fx:id="price_field" layoutX="300.0" layoutY="137.0" />
-      <ComboBox fx:id="roomType_combo" layoutX="124.0" layoutY="137.0" prefWidth="150.0" />
-      <Label layoutX="127.0" layoutY="116.0" text="房间类型：" />
+      <Button id="save-btn" layoutX="445.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleUpdate" styleClass="normal-button" text="确认" />
+      <Button layoutX="566.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleClear" styleClass="normal-button" text="取消" />
+      <Label layoutX="199.0" layoutY="180.0" text="选择：" />
+      <Label layoutX="199.0" layoutY="293.0" text="数量：" />
+      <TextField fx:id="num_field" layoutX="199.0" layoutY="330.0" prefHeight="23.0" prefWidth="197.0" />
+      <ChoiceBox fx:id="mission_choice" layoutX="199.0" layoutY="222.0" prefHeight="28.0" prefWidth="197.0" />
+      <Label fx:id="price_label" layoutX="439.0" layoutY="293.0" text="单价：" />
+      <TextField fx:id="price_field" layoutX="439.0" layoutY="330.0" prefWidth="197.0" />
+      <ComboBox fx:id="roomType_combo" layoutX="439.0" layoutY="222.0" prefHeight="28.0" prefWidth="197.0" />
+      <Label layoutX="439.0" layoutY="180.0" text="房间类型：" />
    </children>
 </AnchorPane>

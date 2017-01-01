@@ -43,6 +43,9 @@ public class HotelInfoView implements Initializable {
         String hotelId = SingletonItem.getInstance().getActivateId();
         controller.setHotelId(hotelId);
 
+        star_combo.getItems().addAll("1", "2", "3", "4", "5");
+        discription_area.setPrefRowCount(5);
+
         name_field.setText(controller.getHotelName());
         address_field.setText(controller.getHotelAddress());
         phone_field.setText(controller.getHotelPhone());

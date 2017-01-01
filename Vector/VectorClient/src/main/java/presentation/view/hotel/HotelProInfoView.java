@@ -1,8 +1,10 @@
 package presentation.view.hotel;
 
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,17 +13,15 @@ import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.hotel.HotelProInfoViewControllerImpl;
 import presentation.controller.service.hotel.HotelProInfoViewControllerService;
-import vo.ActivityPromotionVo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
- * @description
+ * @version 2016/12/31
+ * @description 促销策略信息界面
  */
 public class HotelProInfoView implements Initializable {
     @FXML
@@ -42,7 +42,8 @@ public class HotelProInfoView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new HotelProInfoViewControllerImpl();
+        controller = HotelProInfoViewControllerImpl.getInstance();
+        controller.setPromotionVo(SingletonItem.getInstance().getActivityPromotionVo());
 
         proType_label.setText(controller.getPromotionType());
         name_field.setText(controller.getPromotionName());
@@ -57,6 +58,10 @@ public class HotelProInfoView implements Initializable {
         controller.setDiscount(discount_field.getText());
         controller.setStartDate(start_date.getValue());
         controller.setEndDate(end_date.getValue());
+
+        ResultMessage msg = controller.update();
+        popUp(msg, "修改促销策略成功！");
+        handleCancel();
     }
 
     @FXML
@@ -72,6 +77,20 @@ public class HotelProInfoView implements Initializable {
     @FXML
     private void handleDelete() {
         controller.delete();
+        handleCancel();
+    }
+
+    private void popUp(ResultMessage msg, String a) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText(a);
+            alert.showAndWait();
+        }else {
+            alert.setContentText("失败！");
+            alert.showAndWait();
+        }
     }
 
 }

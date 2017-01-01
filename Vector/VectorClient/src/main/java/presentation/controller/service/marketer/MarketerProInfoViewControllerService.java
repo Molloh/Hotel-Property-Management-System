@@ -1,5 +1,8 @@
 package presentation.controller.service.marketer;
 
+import common.ResultMessage;
+import vo.ActivityPromotionVo;
+
 import java.time.LocalDate;
 
 /**
@@ -8,6 +11,8 @@ import java.time.LocalDate;
  * @description
  */
 public interface MarketerProInfoViewControllerService {
+
+    void setPromotionVo(ActivityPromotionVo vo);
 
     String getPromotionType();
 
@@ -27,6 +32,8 @@ public interface MarketerProInfoViewControllerService {
 
     void setDiscount(String dis);
 
-    void delete();
+    ResultMessage update();
+
+    ResultMessage delete();
 
 }

@@ -27,7 +27,7 @@ public class ClientRunner extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         linkToServer();
-        //TimedTask timedTask = new TimedTask();
+        TimedTask timedTask = new TimedTask();
 
         //自定义窗体
         primaryStage.initStyle(StageStyle.UNDECORATED);

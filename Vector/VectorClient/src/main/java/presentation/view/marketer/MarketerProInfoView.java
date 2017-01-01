@@ -1,15 +1,18 @@
 package presentation.view.marketer;
 
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.impl.hotel.HotelProInfoViewControllerImpl;
-import presentation.controller.service.hotel.HotelProInfoViewControllerService;
+import presentation.controller.impl.marketer.MarketerProInfoViewControllerImpl;
+import presentation.controller.service.marketer.MarketerProInfoViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,11 +38,12 @@ public class MarketerProInfoView implements Initializable {
     @FXML
     private DatePicker end_date;
 
-    private HotelProInfoViewControllerService controller;
+    private MarketerProInfoViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new HotelProInfoViewControllerImpl();
+        controller = MarketerProInfoViewControllerImpl.getInstance();
+        controller.setPromotionVo(SingletonItem.getInstance().getActivityPromotionVo());
 
         proType_label.setText(controller.getPromotionType());
         name_field.setText(controller.getPromotionName());
@@ -54,13 +58,17 @@ public class MarketerProInfoView implements Initializable {
         controller.setDiscount(discount_field.getText());
         controller.setStartDate(start_date.getValue());
         controller.setEndDate(end_date.getValue());
+
+        ResultMessage msg = controller.update();
+        popUp(msg, "修改促销策略成功！");
+        handleCancel();
     }
 
     @FXML
     private void handleCancel() {
         try {
             missionPane.getChildren().clear();
-            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.HotelPromotion_View_Path)));
+            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.MarketerPromotion_View_Path)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,5 +77,19 @@ public class MarketerProInfoView implements Initializable {
     @FXML
     private void handleDelete() {
         controller.delete();
+        handleCancel();
+    }
+
+    private void popUp(ResultMessage msg, String a) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText(a);
+            alert.showAndWait();
+        }else {
+            alert.setContentText("失败！");
+            alert.showAndWait();
+        }
     }
 }

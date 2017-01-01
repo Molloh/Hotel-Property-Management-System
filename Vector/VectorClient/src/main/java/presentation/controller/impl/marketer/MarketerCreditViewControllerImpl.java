@@ -1,5 +1,7 @@
 package presentation.controller.impl.marketer;
 
+import businessLogic.impl.MemberBlServiceImpl;
+import businessLogic.service.MemberBlService;
 import common.ResultMessage;
 import presentation.controller.service.marketer.MarketerCreditViewControllerService;
 
@@ -9,8 +11,19 @@ import presentation.controller.service.marketer.MarketerCreditViewControllerServ
  * @description
  */
 public class MarketerCreditViewControllerImpl implements MarketerCreditViewControllerService {
+    private static MarketerCreditViewControllerService INSTANCE = new MarketerCreditViewControllerImpl();
+    private MemberBlService credit;
+
+    private MarketerCreditViewControllerImpl() {
+        credit = MemberBlServiceImpl.getInstance();
+    }
+
+    public static MarketerCreditViewControllerService getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     public ResultMessage chargeCredit(String memberId, int amount) {
-        return null;
+        return credit.chargeCredit(memberId, amount);
     }
 }

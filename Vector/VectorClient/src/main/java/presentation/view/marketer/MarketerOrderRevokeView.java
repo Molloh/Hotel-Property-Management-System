@@ -1,8 +1,10 @@
 package presentation.view.marketer;
 
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -69,7 +71,17 @@ public class MarketerOrderRevokeView implements Initializable {
 
     @FXML
     private void handleRevoke() {
-        credit_field.clear();
+        ResultMessage msg = controller.revoke(Double.valueOf(credit_field.getText()));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText("恢复成功！");
+            alert.showAndWait();
+        }else {
+            alert.setContentText("恢复失败！");
+            alert.showAndWait();
+        }
     }
 
     @FXML

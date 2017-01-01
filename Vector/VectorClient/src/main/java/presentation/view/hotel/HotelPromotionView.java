@@ -45,6 +45,9 @@ public class HotelPromotionView implements Initializable {
     @FXML
     private TableColumn<Promotion, Number> promotionDiscount_column;
 
+    @FXML
+    private TextField birthDiscount_field;
+
     private ArrayList<ActivityPromotionVo> promotionList;
     private HotelPromotionViewControllerService controller;
 
@@ -76,68 +79,31 @@ public class HotelPromotionView implements Initializable {
         public void updateItem(ActivityPromotionVo item, boolean empty) {
             super.updateItem(item, empty);
             Button order_btn;
-            if(item != null) {
+            if (item != null) {
                 order_btn = new Button(item.getPromotionName());
                 SingletonItem.getInstance().setActivityPromotionVo(item);
                 setGraphic(order_btn);
                 order_btn.setOnAction((ActionEvent event) -> {
-                    try {
-                        Stage primaryStage = (Stage)promotion_List.getScene().getWindow();
-
-                        // Load the fxml file and create a new stage for the popup dialog.
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource(ViewFxmlPath.Promotion_View_Path));
-                        AnchorPane page = (AnchorPane) loader.load();
-
-                        // Create the dialog Stage.
-                        Stage dialogStage = new Stage();
-                        dialogStage.setTitle("新增活动策略");
-                        dialogStage.initModality(Modality.WINDOW_MODAL);
-                        dialogStage.initOwner(primaryStage);
-                        Scene scene = new Scene(page);
-                        dialogStage.setScene(scene);
-
-                        // Set the person into the controller.
-                        PromotionView controller = loader.getController();
-                        controller.initModify();
-
-                        // Show the dialog and wait until the user closes it
-                        dialogStage.showAndWait();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    switcher(ViewFxmlPath.HotelProInfo_View_Path);
                 });
             }
         }
     }
 
     @FXML
+    private void handleSaveBirthday() {
+        double discount = Double.valueOf(birthDiscount_field.getText());
+    }
+
+    @FXML
     private void handleAddPro() {
+        switcher(ViewFxmlPath.HotelProAdd_View_Path);
+    }
+
+    private void switcher(String fxml) {
         try {
-            Stage primaryStage = (Stage)promotion_List.getScene().getWindow();
-
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ViewFxmlPath.Promotion_View_Path));
-            AnchorPane page = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("新增活动策略");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            PromotionView controller = loader.getController();
-            controller.initCreate();
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-
+            missionPane.getChildren().clear();
+            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(fxml)));
         } catch (IOException e) {
             e.printStackTrace();
         }

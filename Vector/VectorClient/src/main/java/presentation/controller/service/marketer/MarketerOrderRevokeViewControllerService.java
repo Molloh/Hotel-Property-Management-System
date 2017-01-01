@@ -1,5 +1,6 @@
 package presentation.controller.service.marketer;
 
+import common.ResultMessage;
 import common.RoomType;
 
 /**
@@ -10,6 +11,8 @@ import common.RoomType;
 public interface MarketerOrderRevokeViewControllerService {
 
     void setOrderId(String orderId);
+
+    ResultMessage revoke(double d);
 
     String getOrderCondition();
 
