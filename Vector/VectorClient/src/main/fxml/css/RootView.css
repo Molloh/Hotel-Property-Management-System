@@ -60,6 +60,23 @@
     -fx-graphic: url("/images/member/Credit.png");
 }
 
+/* hotel root */
+#hotel-order {
+    -fx-graphic: url("/images/hotel/Order.png");
+}
+
+#promotion-list {
+    -fx-graphic: url("/images/Promotion.png");
+}
+
+#hotel-info {
+    -fx-graphic: url("/images/hotel/Hotel.png");
+}
+
+#hotel-room {
+    -fx-graphic: url("/images/hotel/Room.png");
+}
+
 /* manager root */
 #user-add {
     -fx-graphic: url("/images/manager/AddUser.png");

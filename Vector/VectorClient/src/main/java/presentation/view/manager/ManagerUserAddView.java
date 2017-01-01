@@ -8,13 +8,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.manager.ManagerUserControllerImpl;
 import presentation.controller.service.manager.ManagerUserControllerService;
 
-import javax.swing.text.View;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

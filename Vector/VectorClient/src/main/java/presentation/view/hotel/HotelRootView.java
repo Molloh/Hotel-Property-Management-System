@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.common.SingletonItem;
@@ -15,7 +17,6 @@ import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.hotel.HotelRootViewControllerImpl;
 import presentation.controller.impl.sign.SignViewControllerImpl;
 import presentation.controller.service.hotel.HotelRootViewControllerService;
-import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,18 +29,21 @@ import java.util.ResourceBundle;
  */
 public class HotelRootView implements Initializable{
     @FXML
-    private Button modifyInfo_btn;
+    private ToggleButton modifyInfo_btn;
     @FXML
-    private Button promotion_btn;
+    private ToggleButton promotion_btn;
     @FXML
-    private Button order_btn;
+    private ToggleButton order_btn;
     @FXML
-    private Button roomUpdate_btn;
+    private ToggleButton roomUpdate_btn;
+
+    @FXML
+    private Button logo_btn;
     @FXML
     private Button signOut_btn;
 
     @FXML
-    private Label hotelName_label;
+    private Label hotelId_label;
 
     @FXML
     private BorderPane missionPane;
@@ -51,11 +55,16 @@ public class HotelRootView implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = HotelRootViewControllerImpl.getInstance();
-
         String hotelId = SingletonItem.getInstance().getActivateId();
         controller.setHotelId(hotelId);
 
-        hotelName_label.setText(controller.getHotelName());
+        hotelId_label.setText(hotelId);
+
+        ToggleGroup guide = new ToggleGroup();
+        modifyInfo_btn.setToggleGroup(guide);
+        promotion_btn.setToggleGroup(guide);
+        order_btn.setToggleGroup(guide);
+        roomUpdate_btn.setToggleGroup(guide);
 
         setMissionPane(ViewFxmlPath.HotelOrder_View_Path);
     }
@@ -74,7 +83,7 @@ public class HotelRootView implements Initializable{
             fxmlPath = ViewFxmlPath.HotelInfo_View_Path;
         }else if(event.getSource() == promotion_btn) {
             fxmlPath = ViewFxmlPath.HotelPromotion_View_Path;
-        }else if(event.getSource() == order_btn) {
+        }else if(event.getSource() == order_btn || event.getSource() == logo_btn) {
             fxmlPath = ViewFxmlPath.HotelOrder_View_Path;
         }else if(event.getSource() == roomUpdate_btn) {
             fxmlPath = ViewFxmlPath.HotelRoom_View_Path;
@@ -89,5 +98,19 @@ public class HotelRootView implements Initializable{
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //关闭
+    @FXML
+    private void handleExit() {
+        SignViewControllerImpl.getInstance().signOut();
+        System.exit(0);
+    }
+
+    //最小化
+    @FXML
+    private void handleMinimize() {
+        Stage stage = (Stage)modifyInfo_btn.getScene().getWindow();
+        stage.setIconified(true);
     }
 }

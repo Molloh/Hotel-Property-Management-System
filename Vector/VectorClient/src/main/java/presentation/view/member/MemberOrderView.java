@@ -25,8 +25,8 @@ import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
- * @description
+ * @version 2016/12/31
+ * @description Member 查看Order界面
  */
 public class MemberOrderView implements Initializable {
     @FXML

@@ -11,14 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.impl.member.MemberRootViewControllerImpl;
 import presentation.controller.impl.sign.SignViewControllerImpl;
-import presentation.controller.service.member.MemberRootViewControllerService;
-import presentation.controller.service.sign.SignViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +45,7 @@ public class MemberRootView implements Initializable {
     private Button logo_btn;
 
     @FXML
-    private BorderPane missionPane;
+    private AnchorPane missionPane;
 
     private String fxmlPath;
 
@@ -99,7 +95,8 @@ public class MemberRootView implements Initializable {
     //load mission pane
     private void setMissionPane(String fxmlPath) {
         try {
-            missionPane.setCenter(FXMLLoader.load(getClass().getResource(fxmlPath)));
+            missionPane.getChildren().clear();
+            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(fxmlPath)));
         }catch (IOException e) {
             e.printStackTrace();
         }
