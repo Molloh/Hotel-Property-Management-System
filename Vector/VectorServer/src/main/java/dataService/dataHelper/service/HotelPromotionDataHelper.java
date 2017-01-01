@@ -9,16 +9,24 @@ import po.CompanyProPo;
 import po.RoomPromotionPo;
 
 /**
- * @version 2016-12-08
+ * @version 2017-01-01
  * @author 金灵益
  *
  */
 public interface HotelPromotionDataHelper {
 
 	/**
+	 * 增加酒店的活动促销策略
+	 * @param hotelId
+	 * @param po
+	 * @return ResultMessage.SUCCEED 添加成功； ResultMessage.FAIL 添加失败
+	 */
+	public ResultMessage addActivity(String hotelId, ActivityPromotionPo po);
+	
+	/**
 	 * 更新酒店的活动策略列表
 	 * @param po
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateActivity(String hotelId, ActivityPromotionPo po);
 	
@@ -26,7 +34,7 @@ public interface HotelPromotionDataHelper {
 	 * 删除一个活动策略
 	 * @param hotelId
 	 * @param po
-	 * @return
+	 * @return ResultMessage.SUCCEED 删除成功； ResultMessage.FAIL 删除失败
 	 */
 	public ResultMessage deleteActivity(String hotelId, ActivityPromotionPo po);
 	
@@ -38,7 +46,7 @@ public interface HotelPromotionDataHelper {
 	/**
 	 * 更新酒店的客户生日优惠折扣
 	 * @param po
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateBirthPromotion(String hotelId, BirthdayProPo po);
 	
@@ -50,7 +58,7 @@ public interface HotelPromotionDataHelper {
 	/**
 	 * 更新酒店合作企业优惠：折扣，减价，企业账号列表
 	 * @param po
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateCompanyPro(String hotelId, CompanyProPo po);
 	
@@ -62,7 +70,7 @@ public interface HotelPromotionDataHelper {
 	/**
 	 * 更新酒店房间数量预定优惠策略
 	 * @param po
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateRoomPromotion(String hotelId, RoomPromotionPo po);
 	

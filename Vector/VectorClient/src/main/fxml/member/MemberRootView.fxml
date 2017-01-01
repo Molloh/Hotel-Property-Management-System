@@ -8,7 +8,7 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1000.0" stylesheets="@MemberRootView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberRootView">
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" stylesheets="@../css/RootView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberRootView">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="750.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -29,7 +29,7 @@
                               <ToggleButton id="info-list" fx:id="modifyInfo_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" styleClass="left-guide-button" />
                               <ToggleButton id="hotel-list" fx:id="home_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="254.0" styleClass="left-guide-button" />
                               <ToggleButton id="order-list" fx:id="myOrder_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" prefHeight="23.0" prefWidth="252.0" styleClass="left-guide-button" />
-                              <ToggleButton id="credit-list" mnemonicParsing="false" styleClass="left-guide-button" />
+                              <ToggleButton id="credit-list" fx:id="credit_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" styleClass="left-guide-button" />
                            </children></VBox>
                         <Button id="exit-btn" fx:id="exit_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" styleClass="left-guide-button" GridPane.rowIndex="2" />
                         <Button id="logo-btn" fx:id="logo_btn" mnemonicParsing="false" onAction="#handleMissionSwitch" />

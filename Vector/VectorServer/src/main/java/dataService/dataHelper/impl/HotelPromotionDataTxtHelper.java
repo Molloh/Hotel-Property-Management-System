@@ -25,7 +25,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 	/**
 	 * 酒店创建时调用此方法，初始化促销策略默认数据:生日优惠，合作企业优惠
 	 * @param hotelId
-	 * @return
+	 * @return ResultMessage.SUCCEED 初始化成功； ResultMessage.FAIL 初始化失败
 	 */
 	public ResultMessage initDefaultData(String hotelId){
 		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
@@ -51,6 +51,32 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		return ResultMessage.FAIL;
 	}
 	
+	
+	@Override
+	public ResultMessage addActivity(String hotelId, ActivityPromotionPo po){
+		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
+		rootFile.mkdir();
+		File actFile = new File(rootFile.getAbsolutePath() + "/activityPro.txt");
+		
+		try {
+			actFile.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile(), true));
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
+			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
+			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
+			writer.write(str);
+			writer.newLine();
+			writer.close();
+			
+			return ResultMessage.SUCCEED;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
+	}
+	
+	
 	@Override
 	public ResultMessage updateActivity(String hotelId, ActivityPromotionPo po){
 		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
@@ -66,28 +92,23 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
 			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
 			
-			if(actList.isEmpty()) actList.add(str);
-			else{
-				Iterator<String> it = actList.iterator();
-				int flag = -1, count = 0;   //flag判断是否存在该活动策略
-			
-				while(it.hasNext()){
-					if(it.next().startsWith(po.getPromotionName())){
-						flag = 0; break;
-					}
-					count ++;
+			Iterator<String> it = actList.iterator();
+			int count = 0;     //确定该活动策略在List中的位置
+			while(it.hasNext()){
+				if(it.next().startsWith(po.getPromotionName())){
+					break;
 				}
-				
-				//若存在该活动策略，则更新；不存在则增加一条
-				if(flag == -1)     actList.add(str);
-				else               actList.set(count, str);
+				count ++;
 			}
+		
+			actList.set(count, str);
 			
+			//写入文件
 			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile()));
 			
-			Iterator<String> it = actList.iterator();
-			while(it.hasNext()){
-				writer.write(it.next());
+			Iterator<String> it1 = actList.iterator();
+			while(it1.hasNext()){
+				writer.write(it1.next());
 				writer.newLine();
 			}
 			writer.close();
@@ -98,6 +119,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage deleteActivity(String hotelId, ActivityPromotionPo po){
@@ -115,6 +137,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			
 			while(it.hasNext()){
 				String str = it.next();
+				//若碰到需要删除的，则跳过不写入
 				if(str.startsWith(po.getPromotionName()))
 					continue;
 				bw.write(str);
@@ -240,8 +263,8 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 	public CompanyProPo getCompanyPro(String hotelId){
 		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
 		rootFile.mkdir();
-		File comPro = new File(rootFile.getAbsolutePath() + "/cooperPro.txt");
-		File comList = new File(rootFile.getAbsolutePath() + "/cooperAcc.txt");
+		File comPro = new File(rootFile.getAbsolutePath() + "/cooperPro.txt");//促销策略文件
+		File comList = new File(rootFile.getAbsolutePath() + "/cooperAcc.txt");//合作企业账号文件
 		
 		try {
 			comPro.createNewFile();
@@ -297,7 +320,6 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 	
 	@Override
 	public RoomPromotionPo getRoomPromotion(String hotelId){
-		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
 		rootFile.mkdir();
 		File roomProFile = new File(rootFile.getAbsolutePath() + "/orderPro.txt");
 		

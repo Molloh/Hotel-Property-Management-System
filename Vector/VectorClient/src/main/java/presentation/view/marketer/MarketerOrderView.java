@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.Order;
+import presentation.controller.unity.Order;
 import presentation.controller.impl.marketer.MarketerOrderViewControllerImpl;
 import presentation.controller.service.marketer.MarketerOrderViewControllerService;
 import vo.OrderVo;

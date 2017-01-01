@@ -31,7 +31,7 @@ public class HotelDaoImpl implements HotelDao{
 		
 		return hotelDataServiceImpl;
 	}
-	
+
 	public HotelDaoImpl(){
 		if(map == null){
 			dataFactory = new DataFactoryImpl();
@@ -40,6 +40,7 @@ public class HotelDaoImpl implements HotelDao{
 		}
 	}
 
+	
 	@Override
 	public ResultMessage addHotelPO(HotelPo po) {
 		if(!map.containsKey(po.getId())) {	    
@@ -50,6 +51,7 @@ public class HotelDaoImpl implements HotelDao{
 		//若已存在该po
 		return ResultMessage.FAIL;	
 	}
+	
 	
 	@Override
 	public ResultMessage updateHotelList(HotelPo po) {
@@ -63,30 +65,34 @@ public class HotelDaoImpl implements HotelDao{
 		return ResultMessage.FAIL;
 	}
 	
+	
 	@Override
 	public ResultMessage initHotelTypeRoom(String hotelId, RoomType type, int number, int price){
 		if(map.get(hotelId) != null){
-			hotelDataHelper.initRoom(hotelId, type, number, price);
-			return ResultMessage.SUCCEED;
+			if(price <= 0 && number < 0)   
+				return ResultMessage.FAIL;
+			return hotelDataHelper.initRoom(hotelId, type, number, price);
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage updateComment(HotelPo po){
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
-			hotelDataHelper.updateComments(hotelId, po.getCommentList());
-			return ResultMessage.SUCCEED;
+			return hotelDataHelper.updateComments(hotelId, po.getCommentList());
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage deleteHotelPO(String hotelId){
 		return hotelDataHelper.deleteHotelData(hotelId);
 	}
 
+	
 	@Override
 	public HotelPo findHotel(String hotelId){
 		Iterator<Map.Entry<String,HotelPo>> iterator = map.entrySet().iterator();
@@ -101,6 +107,7 @@ public class HotelDaoImpl implements HotelDao{
 		return null;
 	}
 
+	
 	@Override
 	public List<HotelPo> keyFind(String key){
 		List<HotelPo> hotelList = new ArrayList<HotelPo>();
@@ -109,6 +116,7 @@ public class HotelDaoImpl implements HotelDao{
 		while(iterator.hasNext()){
 			Map.Entry<String, HotelPo> entry = iterator.next();
 			HotelPo po = entry.getValue();
+			//根据酒店基本信息包含关键字，都符合条件
 			if(po.showInfo().contains(key)){
 				hotelList.add(po);
 			}
@@ -116,27 +124,35 @@ public class HotelDaoImpl implements HotelDao{
 		return hotelList;
 	}
 
+	
 	@Override
 	public List<String> getProvinceList(){
 		return hotelDataHelper.getProvinceList();
 	}
+	
 	
 	@Override
 	public List<String> getCityList(String province){
 		return hotelDataHelper.getCityList(province);
 	}
 	
+	
 	@Override
 	public List<String> getBusinessList(String province, String city){
 		return hotelDataHelper.getBusinessList(province, city);
 	}
 	
+	
+	@Override
 	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn){
 		return hotelDataHelper.updateOrderedRoom(hotelId, type, number, isCheckIn);
 	}
 	
+	
+	@Override
 	public int getReadyRoom(String hotelId, RoomType type){
 		HotelPo po = findHotel(hotelId);
+		//获得酒店该类型房间的总数
 		List<HotelTypeRoomPo> list = po.getTypeRoom();
 		Iterator<HotelTypeRoomPo> it = list.iterator();
 		int sum = 0;
@@ -147,6 +163,7 @@ public class HotelDaoImpl implements HotelDao{
 				break;
 			}
 		}
+		//根据被预订数量计算
 		int readyRoom = sum - hotelDataHelper.getOrderedRoom(hotelId, type);
 		return readyRoom;
 	}

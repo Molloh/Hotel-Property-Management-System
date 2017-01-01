@@ -20,7 +20,8 @@ import po.HotelPo;
 import po.HotelTypeRoomPo;
 
 public class HotelDataTxtHelper implements HotelDataHelper{
-	private String rootPath = "src/main/resources/textData/hotel/";
+	
+	private String rootPath = "src/main/resources/textData/hotel/";    //hotel文件根目录
 	
 	@Override
 	public Map<String, HotelPo> getHotelData() {
@@ -45,13 +46,13 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			br.close();
 			
 			return map;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	
 	@Override
 	public ResultMessage addHotelData(HotelPo po){
 		File file = new File(rootPath + "hotelList.txt");
@@ -59,10 +60,14 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			File rootFile = new File(rootPath + po.getId());	
 			rootFile.mkdir();
 	
-			//创建酒店信息的相关文件
+			/*
+			 * 创建酒店信息的相关文件
+			 */
+			//存储评论的文件
 			File commentfile = new File(rootFile.getAbsolutePath(),"comments.txt");	
 			commentfile.createNewFile();
-			
+		
+			//存储房间信息的文件
 			File initRoomFile = new File(rootFile.getAbsolutePath(),"initRoom.txt");
 			initRoomFile.createNewFile();
 			
@@ -87,6 +92,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			return ResultMessage.FAIL;
 		}
 	}
+	
 	
 	@Override
 	public ResultMessage updateHotelListData(Map<String, HotelPo> map) {
@@ -117,6 +123,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}	
 	}
 
+	
 	@Override
 	public ResultMessage deleteHotelData(String hotelId) {
 		//在酒店列表中删除酒店信息
@@ -136,25 +143,27 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}
 		updateHotelListData(updateMap);
 		
-		//删除该酒店房间、促销策略、评价文件
+		//删除该酒店房间、评价文件
 		File hotelfile = new File(rootPath + hotelId);
 		hotelfile.mkdir();	
 		for(File files : hotelfile.listFiles()){
 			files.delete();
 		
 		}		
-		
+		//删除促销策略文件
 		File profile = new File(hotelfile.getAbsolutePath() + "/promotion");	
 		profile.mkdir();
 		for(File files : profile.listFiles()){
 			files.delete();
 		}
 		profile.delete();
+		
 		hotelfile.delete();
 
 		return ResultMessage.SUCCEED;		
 	}
 		
+	
 	@Override
 	public List<String> getComments(String hotelId){
 		File file = new File(rootPath + hotelId + "/comments.txt");
@@ -168,6 +177,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			
 			while (str != null) {
 				String result = "";
+				//每个人的评论以单行的*隔开为标志
 				while( !str.trim().equals("*") ){
 					result += str + "\n";
 					str = br.readLine();
@@ -178,16 +188,15 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			
 			br.close();
 			return comment;
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
+	
 	@Override
-	public void updateComments(String hotelId,List<String> commentList){
-		
+	public ResultMessage updateComments(String hotelId,List<String> commentList){
 		try {
 			File rootFile = new File(rootPath + hotelId);
 			rootFile.mkdir();
@@ -203,22 +212,25 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			while(iterator.hasNext()){
 				writer.write(iterator.next());
 				writer.newLine();
-				writer.write("*");
+				writer.write("*");//每个人的评论以单行的*隔开为标志
 				writer.newLine();
 			}		
 			writer.close();	
+			return ResultMessage.SUCCEED;
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}	
+		return ResultMessage.FAIL;
 	}
 	
+	
 	@Override
-	public void initRoom(String hotelId, RoomType type, int number, int price){
+	public ResultMessage initRoom(String hotelId, RoomType type, int number, int price){
 		File rootFile = new File(rootPath + hotelId);
 		rootFile.mkdir();
 	
-		String type_str = getRoomTypeName(type);
-		
+		String type_str = getRoomTypeName(type);    //获取房间类型的string表示
+		//文件中存储的格式
 		String result = type_str + "/" + (number + "") + "/" + (price + "");
 		
 		File file = new File(rootFile.getAbsolutePath(),"initRoom.txt");	
@@ -229,9 +241,13 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 					file), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
 			
+			/*
+			 * 先读取原文件中的内容
+			 */
 			List<String> list = new ArrayList<String>();
 			String str = br.readLine();
 			while (str != null) {
+				//检查该酒店是否有该类型的酒店，若没有则添加；若有，则跳过原来的内容再添加新的内容
 				if( !str.startsWith(type_str) )
 					list.add(str);
 				str = br.readLine();
@@ -239,6 +255,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			br.close();
 			list.add(result);
 			
+			//再重新写入房间信息
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());	
 			BufferedWriter writer = new BufferedWriter(fw);
 			
@@ -248,22 +265,24 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 				writer.newLine();
 			}
 			writer.close();
-			
+			return ResultMessage.SUCCEED;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return ResultMessage.FAIL;
 	}
 
 	
+	@Override
 	public ResultMessage updateOrderedRoom(String hotelId, RoomType type, int number, boolean isCheckIn){
 		File file = new File(rootPath + hotelId + "/" + getRoomTypeName(type) + ".txt");
 		
 		try {
 			file.createNewFile();
 		
-			int num = 0;
-			if(isCheckIn)  num = number + getOrderedRoom(hotelId, type);
-			else           num = getOrderedRoom(hotelId, type) - number;
+			int num = 0;     //该类型房间被预定的数量
+			if(isCheckIn)  num = number + getOrderedRoom(hotelId, type);    //预定房间
+			else           num = getOrderedRoom(hotelId, type) - number;    //退房
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));			
 			bw.write( (num+""));
 			bw.close();
@@ -272,11 +291,11 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return ResultMessage.FAIL;
 	}
 	
 	
+	@Override
 	public int getOrderedRoom(String hotelId, RoomType type){
 		File file = new File(rootPath + hotelId + "/" + getRoomTypeName(type) + ".txt");
 		
@@ -383,7 +402,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		
 		for(File f: businessFile.listFiles()){
 			String name = f.getName();
-			list.add(name.substring(0,name.lastIndexOf(".")));
+			list.add(name.substring(0,name.lastIndexOf(".")));   //只读取文件名
 		}
 		return list;
 	}

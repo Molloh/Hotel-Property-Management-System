@@ -131,6 +131,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 	public List<OrderVo> getAllOrdersByMember(String memberId) {
 		List<OrderVo> voList = new ArrayList<OrderVo>();
 		List<OrderPo> poList = orderDao.getAllByMember(memberId);
+		//System.out.println("test:" + poList.size());
 		for(int i = 0; i < poList.size(); i++) {
 			voList.add(new OrderVo(poList.get(i)));
 		}
@@ -224,7 +225,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 				MemberBlServiceImpl.getInstance().getInfo(memberId).getBirthday()));
 		hotelDiscountList.add(HotelPromotionBlServiceImpl.getInstance().getCooperationStrategy(hotelId, memberId));
 		
-		List<Double> marketDiscountList = MarketPromotionBlServiceImpl.getInstance().getCurrentActDiscount(hotelId);
+		List<Double> marketDiscountList = MarketPromotionBlServiceImpl.getInstance().getCurrentActDiscount();
 		marketDiscountList.add(MarketPromotionBlServiceImpl.getInstance()
 				.getBusinessDiscount(HotelBlServiceImpl.getInstance().getHotelVo(hotelId).getInBusiness()));
 		marketDiscountList.add(MarketPromotionBlServiceImpl.getInstance()

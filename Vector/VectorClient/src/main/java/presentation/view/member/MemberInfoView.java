@@ -1,6 +1,5 @@
 package presentation.view.member;
 
-import common.AccountType;
 import common.ResultMessage;
 import common.Sex;
 import javafx.beans.value.ObservableValue;
@@ -40,7 +39,7 @@ public class MemberInfoView implements Initializable {
     private RadioButton female_radio;
 
     @FXML
-    private TextField password_field;
+    private PasswordField password_field;
 
     @FXML
     private Label VIP_label;
@@ -78,10 +77,10 @@ public class MemberInfoView implements Initializable {
         credit_label.setText(controller.getCredit());
         password_field.setText("000000");
         password_field.setEditable(false);
+        password_field.setStyle(null);
 
         //普通会员显示生日，企业会员显示企业名
-        AccountType accountType = controller.getAccountType();
-        if(accountType == AccountType.Member) {
+        if(memberId.charAt(0) == 'N') {
             type_label.setText("生日：");
             birthday_field.setVisible(true);
             enterprise_field.setVisible(false);
@@ -89,7 +88,8 @@ public class MemberInfoView implements Initializable {
         }else {
             type_label.setText("企业：");
             enterprise_field.setVisible(true);
-            birthday_field.setVisible(true);
+            enterprise_field.setEditable(true);
+            birthday_field.setVisible(false);
             enterprise_field.setText(controller.getEnterPrise());
         }
 
@@ -104,6 +104,7 @@ public class MemberInfoView implements Initializable {
         }
     }
 
+    //处理修改信息事件
     @FXML
     private void handleModify() {
         if(enterprise_field.isVisible())
@@ -130,6 +131,7 @@ public class MemberInfoView implements Initializable {
         }
     }
 
+    //处理取消事件，信息恢复
     @FXML
     private void handleCancel() {
         if(enterprise_field.isVisible())
@@ -154,7 +156,8 @@ public class MemberInfoView implements Initializable {
             female_radio.requestFocus();
         }
     }
-    
+
+    //修改密码事件
     @FXML
     private void handleModifyPassword() {
     	password_field.setEditable(true);

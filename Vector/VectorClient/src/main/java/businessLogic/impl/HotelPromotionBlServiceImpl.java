@@ -35,6 +35,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	private HotelPromotionBlServiceImpl(){
 		hotelPromotionDao = RemoteHelper.getInstance().getHotelPromotionDao();
 	}
+	 
 	
 	@Override
 	public ResultMessage addActivityStrategy(String hotelId, ActivityPromotionVo vo){
@@ -44,20 +45,13 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 			return ResultMessage.INVALID;
 		
 		try {
-			List<String> activityList = hotelPromotionDao.getActProList(hotelId);
-			Iterator<String> it = activityList.iterator();
-			//检查促销活动名称有无重复
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return ResultMessage.INVALID;     //名称重复，无法添加
-			}	
-			return hotelPromotionDao.upActPromotion(hotelId, new ActivityPromotionPo(vo));
+			return hotelPromotionDao.addActPromotion(hotelId, new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage upActivityStrategy(String hotelId, ActivityPromotionVo vo){
@@ -67,54 +61,38 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 			return ResultMessage.INVALID;
 		
 		try {
-			List<String> activityList = hotelPromotionDao.getActProList(hotelId);
-			Iterator<String> it = activityList.iterator();
-			//检查有无该促销活动
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return hotelPromotionDao.upActPromotion(hotelId, new ActivityPromotionPo(vo));
-			}	
-			
-			return ResultMessage.INVALID;    //不存在该活动
+			return hotelPromotionDao.upActPromotion(hotelId, new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage delActivityStrategy(String hotelId, ActivityPromotionVo vo){
 		try {
-			List<String> activityList = hotelPromotionDao.getActProList(hotelId);
-			Iterator<String> it = activityList.iterator();
-			//检查有无该促销活动
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				if(token[0].equals(vo.getPromotionName()))
-					return hotelPromotionDao.delActPromotion(hotelId, new ActivityPromotionPo(vo));
-			}	
-			
-			return ResultMessage.INVALID;    //不存在该活动
+			return hotelPromotionDao.delActPromotion(hotelId, new ActivityPromotionPo(vo));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
 		return ResultMessage.FAIL;
 	}
 	
+
+	@Override
 	public List<Double> getCurrentActDiscount(String hotelId){
 		List<ActivityPromotionVo> list = getCurrentActStrategy(hotelId);
-		if(list.isEmpty())  return null;
-		
-		Iterator<ActivityPromotionVo> it = list.iterator();
 		List<Double> discountList = new ArrayList<Double>();
+		if(list.isEmpty())  return discountList;
+		Iterator<ActivityPromotionVo> it = list.iterator();
 		
 		while(it.hasNext()){
 			discountList.add(it.next().getDiscount());
 		}
 		return discountList;
 	}
+
 	
 	@Override
 	public List<ActivityPromotionVo> getCurrentActStrategy(String hotelId){
@@ -122,41 +100,42 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		
 		try {
 			List<String> actStr = hotelPromotionDao.getActProList(hotelId);
-			Iterator<String> it = actStr.iterator();
+			if(actStr != null){
+				Iterator<String> it = actStr.iterator();
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
+				Date now = new Date();
 			
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
-			Date now = new Date();
-			
-			//得到当前时期有效的活动促销列表
-			while(it.hasNext()){
-				String [] token = it.next().split("/");
-				/*
-				 * 活动开始日期 token[1]
-				 * 活动结束日期 token[2]
-				 * 若当前在某次活动期间内
-				 */
-				try {
-					Date start = df.parse(token[1]);
-					Date end = df.parse(token[2]);
+				//得到当前时期有效的活动促销列表
+				while(it.hasNext()){
+					String [] token = it.next().split("/");
 					
-					if(now.before(end) && now.after(start)){
-						ActivityPromotionVo vo = new ActivityPromotionVo(token[0], start, end,
-							                   Double.parseDouble(token[3]));
-						list.add(vo);
+					/*
+				     * 活动开始日期 token[1]
+				     * 活动结束日期 token[2]
+				     * 若当前在某次活动期间内
+				     */
+					try {
+						Date start = df.parse(token[1]);
+						Date end = df.parse(token[2]);
+					
+						if(now.before(end) && now.after(start)){
+							ActivityPromotionVo vo = new ActivityPromotionVo(token[0], start, end,
+									Double.parseDouble(token[3]));
+							list.add(vo);
+						}
+					} catch (ParseException e) {
+						e.printStackTrace();
 					}
-				} catch (ParseException e) {
-					e.printStackTrace();
 				}
 			}
-			
 			return list;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 
+	
 	@Override
 	public ResultMessage updateCooperationStrategy(String hotelId, CompanyProVo vo){
 		if(vo.getDiscount()<=0 || vo.getDiscount()>1)
@@ -186,10 +165,10 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
 		return 1;
 	}
 
+	
 	@Override
 	public ResultMessage updateOrderRoomStrategy(String hotelId, RoomPromotionVo vo){
 		//检查输入合法性
@@ -207,24 +186,26 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	}
 	
 	
+	@Override
 	public double getOrderRoomDiscount(String hotelId, int numOfRoom){
 		RoomPromotionVo vo = getOrderRoomStrategy(hotelId, numOfRoom);
 		if(vo != null)   return vo.getDiscount();
 		return 1;
 	}
 	
+	
 	@Override
 	public RoomPromotionVo getOrderRoomStrategy(String hotelId, int numOfRoom){
 		try {
 			RoomPromotionPo po = hotelPromotionDao.getRoomPromotion(hotelId);
-
+			
 			if(po != null){
 				RoomPromotionVo vo = new RoomPromotionVo(po);
 				//若预订数量满足房间预订促销策略
 				if(numOfRoom >= vo.getNumOfRoom())
 					return vo;
 			}
-
+			
 			return null;
 		} catch (RemoteException e) {
 			e.printStackTrace();

@@ -1,6 +1,7 @@
 package presentation.controller.service.member;
 
 import common.OrderCondition;
+import common.ResultMessage;
 import common.RoomType;
 
 import java.util.Date;
@@ -43,4 +44,5 @@ public interface MemberOrderInfoViewControllerService {
     double getDiscount();
 
     double getDiscountedPrice();
+
 }

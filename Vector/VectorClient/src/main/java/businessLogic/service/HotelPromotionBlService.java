@@ -10,7 +10,7 @@ import vo.CompanyProVo;
 import vo.RoomPromotionVo;
 
 /**
- * @version 2016-12-09
+ * @version 2017-01-01
  * @author 金灵益
  * @description 酒店促销策略相关接口
  */
@@ -20,7 +20,8 @@ public interface HotelPromotionBlService {
 	 * 增加一条活动策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 添加成功； ResultMessage.FAIL 添加失败,活动已存在
+	 *         ResultMessage.INVALID 折扣，日期非法；
 	 */
 	public ResultMessage addActivityStrategy(String hotelId, ActivityPromotionVo vo);
 	
@@ -28,7 +29,8 @@ public interface HotelPromotionBlService {
 	 * 更新一条活动策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败,活动不存在
+	 *         ResultMessage.INVALID 折扣，日期非法；
 	 */
 	public ResultMessage upActivityStrategy(String hotelId, ActivityPromotionVo vo);
 	
@@ -36,22 +38,19 @@ public interface HotelPromotionBlService {
 	 * 删除一条活动策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 删除成功； ResultMessage.FAIL 删除失败
 	 */
 	public ResultMessage delActivityStrategy(String hotelId, ActivityPromotionVo vo);
 	
 	/**
-	 * 得到当前的有效活动策略列表
-	 * 提供给酒店用
 	 * @param hotelId
-	 * @return
+	 * @return 得到当前的有效活动策略列表
 	 */
 	public List<ActivityPromotionVo> getCurrentActStrategy(String hotelId);
 	
 	/**
-	 * 得到当前活动策略列表的折扣
 	 * @param hotelId
-	 * @return
+	 * @return 得到当前活动策略列表对应的折扣
 	 */
 	public List<Double> getCurrentActDiscount(String hotelId);
 	
@@ -59,15 +58,14 @@ public interface HotelPromotionBlService {
 	 * 更新合作企业促销策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateCooperationStrategy(String hotelId, CompanyProVo vo);
 	
 	/**
-	 * 若该企业为酒店合作企业，则得到相应关于合作企业促销策略
 	 * @param hotelId
 	 * @param memberId    企业账号
-	 * @return
+	 * @return 若该企业为酒店合作企业，则得到相应关于合作企业促销策略
 	 */
 	public double getCooperationStrategy(String hotelId, String memberId);
 
@@ -75,31 +73,28 @@ public interface HotelPromotionBlService {
 	 * 更新房间预订促销策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage updateOrderRoomStrategy(String hotelId, RoomPromotionVo vo);
 	
 	/**
-	 * 得到房间预订折扣
 	 * @param hotelId
 	 * @param numOfRoom
-	 * @return
+	 * @return 得到房间预订折扣
 	 */
 	public double getOrderRoomDiscount(String hotelId, int numOfRoom);
 	
 	/**
-	 * 当在该酒店一次订单订房间数量满足条件，得到该酒店房间预订促销策略
 	 * @param hotelId
 	 * @param numOfRoom
-	 * @return
+	 * @return 当在该酒店一次订单订房间数量满足条件，得到该酒店房间预订促销策略
 	 */
 	public RoomPromotionVo getOrderRoomStrategy(String hotelId, int numOfRoom);
 	
 	/**
-	 * 当前为客户生日时，得到生日优惠策略
 	 * @param hotelId
 	 * @param birthDay
-	 * @return
+	 * @return 当前为客户生日时，得到生日优惠策略
 	 */
 	public double getBirthStrategy(String hotelId, Date birthDay);
 	
@@ -107,7 +102,7 @@ public interface HotelPromotionBlService {
 	 * 更新该酒店客户生日促销策略
 	 * @param hotelId
 	 * @param vo
-	 * @return
+	 * @return ResultMessage.SUCCEED 更新成功； ResultMessage.FAIL 更新失败
 	 */
 	public ResultMessage upBirthStrategy(String hotelId, BirthdayProVo vo);
 	

@@ -100,7 +100,7 @@ public class OrderDaoImpl implements OrderDao {
 		while(iterator.hasNext()){
 			Map.Entry<String, OrderPo> entry = iterator.next();
 			OrderPo orderPo = entry.getValue();
-			if(orderPo.getMemberId() == memberId){
+			if(orderPo.getMemberId().equals(memberId)){
 				orderList.add(orderPo);
 			}
 		}

@@ -25,6 +25,29 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		rootFile = new File("src/main/resources/textData/market");
 		rootFile.mkdir();
 	}
+
+	
+	@Override
+	public ResultMessage addActivity(ActivityPromotionPo po){
+		File actFile = new File(rootFile.getAbsolutePath() + "/promotion.txt");
+		
+		try {
+			actFile.createNewFile();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile(), true));
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
+			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
+			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
+			writer.write(str);
+			writer.newLine();
+			writer.close();
+			
+			return ResultMessage.SUCCEED;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
+	}
 	
 	@Override
 	public ResultMessage updateActivity(ActivityPromotionPo po){
@@ -33,34 +56,29 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		try {
 			actFile.createNewFile();
 			List<String> actList = getActivity();
-			
+
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
 			
 			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
 			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
-
-			if(actList.isEmpty()) actList.add(str);
-			else{
-				Iterator<String> it = actList.iterator();
-				int flag = -1, count = 0;   //flag判断是否存在该活动策略
-			
-				while(it.hasNext()){
-					if(it.next().startsWith(po.getPromotionName())){
-						flag = 0; break;
-					}
-					count ++;
-				}
-				
-				//若存在该活动策略，则更新；不存在则增加一条
-				if(flag == -1)     actList.add(str);
-				else               actList.set(count, str);
-			}
-			
-			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile()));
 			
 			Iterator<String> it = actList.iterator();
+			int count = 0;     //确定该活动策略在List中的位置
 			while(it.hasNext()){
-				writer.write(it.next());
+				if(it.next().startsWith(po.getPromotionName())){
+					break;
+				}
+				count ++;
+			}
+		
+			actList.set(count, str);
+			
+			//写入文件
+			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile()));
+			
+			Iterator<String> it1 = actList.iterator();
+			while(it1.hasNext()){
+				writer.write(it1.next());
 				writer.newLine();
 			}
 			writer.close();
@@ -86,6 +104,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			
 			while(it.hasNext()){
 				String str = it.next();
+				//若碰到需要删除的，则跳过不写入
 				if(str.startsWith(po.getPromotionName()))
 					continue;
 				bw.write(str);
@@ -97,9 +116,9 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public List<String> getActivity(){
@@ -269,7 +288,6 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			
 			return list;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 		}
 		return list;
 	}

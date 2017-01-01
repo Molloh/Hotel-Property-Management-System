@@ -2,6 +2,7 @@ package presentation.controller.impl.member;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.ResultMessage;
 import common.RoomType;
 import presentation.controller.service.member.MemberOrderInfoViewControllerService;
 import presentation.controller.service.member.MemberOrderViewControllerService;
@@ -114,4 +115,5 @@ public class MemberOrderInfoViewControllerImpl implements MemberOrderInfoViewCon
     public double getDiscountedPrice() {
         return orderVo.getDiscountedPrice();
     }
+
 }

@@ -1,13 +1,18 @@
-package presentation;
+package presentation.view.unity;
 
+import businessLogic.service.HotelPromotionBlService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import presentation.common.SingletonItem;
+import presentation.controller.impl.hotel.HotelPromotionViewControllerImpl;
+import presentation.controller.service.hotel.HotelPromotionViewControllerService;
 import vo.ActivityPromotionVo;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -17,8 +22,6 @@ import java.util.ResourceBundle;
  */
 public class PromotionView implements Initializable {
     @FXML
-    private TitledPane promotion_pane;
-    @FXML
     private TextField proName_field;
     @FXML
     private TextField proDiscount_field;
@@ -27,34 +30,56 @@ public class PromotionView implements Initializable {
     @FXML
     private DatePicker proEnd_date;
     @FXML
-    private ComboBox<String> proType_choice;
+    private Label proType_choice;
 
     private ActivityPromotionVo promotionVo;
+    private HotelPromotionViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        promotionVo = SingletonItem.getInstance().getActivityPromotionVo();
+        controller = HotelPromotionViewControllerImpl.getInstance();
+        controller.setHotelId(SingletonItem.getInstance().getHotelId());
+    }
 
-        promotion_pane.setGraphic(new Button(""));
+    public void initModify() {
+        promotionVo = SingletonItem.getInstance().getActivityPromotionVo();
         proName_field.setText(promotionVo.getPromotionName());
-        proType_choice.setValue(promotionVo.getPromotionType().name());
+        proType_choice.setText(promotionVo.getPromotionType().name());
         proStart_date.setValue(promotionVo.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         proEnd_date.setValue(promotionVo.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         proDiscount_field.setText(String.valueOf(promotionVo.getDiscount()));
 
         proName_field.setEditable(false);
         proDiscount_field.setEditable(false);
-        proType_choice.setEditable(false);
         proStart_date.setEditable(false);
         proEnd_date.setEditable(false);
+
+    }
+
+    public void initCreate() {
+        proName_field.setText("");
+        proStart_date.setValue(null);
+        proEnd_date.setValue(null);
+        proDiscount_field.setText("");
     }
 
     @FXML
     private void handleEdit() {
         proName_field.setEditable(true);
         proDiscount_field.setEditable(true);
-        proType_choice.setEditable(true);
         proStart_date.setEditable(true);
         proEnd_date.setEditable(true);
     }
+
+    @FXML
+    private void handleModify() {
+        promotionVo.setDiscount(Double.valueOf(proDiscount_field.getText()));
+        promotionVo.setStartDate(Date.from(proStart_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        promotionVo.setEndDate(Date.from(proEnd_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        promotionVo.setPromotionName(proName_field.getText());
+
+        controller.upActivityStrategy(promotionVo);
+    }
+
+
 }

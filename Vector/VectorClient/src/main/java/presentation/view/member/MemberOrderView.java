@@ -12,14 +12,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.Order;
+import presentation.controller.unity.Order;
 import presentation.controller.impl.member.MemberOrderViewControllerImpl;
 import presentation.controller.service.member.MemberOrderViewControllerService;
-import vo.HotelVo;
 import vo.OrderVo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -79,12 +79,15 @@ public class MemberOrderView implements Initializable {
         ObservableList<Order> data = FXCollections.observableArrayList();
         //data.add(new Order("1","2", "3", "4", "5", "6"));
         for(OrderVo vo : orderList) {
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        	String date_Create = sdf.format(vo.getCreateTime());
+        	String date_CheckIn = sdf.format(vo.getCheckInTime());
             data.add(new Order(vo.getOrderId(),
                     vo.getCondition().toString(),
                     vo.getHotel(),
                     String.valueOf(vo.getDiscountedPrice()),
-                    vo.getCreateTime().toInstant().toString(),
-                    vo.getCheckInTime().toInstant().toString()));
+                    date_Create,
+                    date_CheckIn));
         }
         order_list.setItems(data);
 

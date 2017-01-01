@@ -32,10 +32,7 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
 
     private MemberInfoViewControllerImpl() {
         account = AccountBlServiceImpl.getInstance();
-
-    	memberId = SingletonItem.getInstance().getActivateId();
         member = MemberBlServiceImpl.getInstance();
-        memberVo = member.getInfo(memberId);
     }
 
     public static MemberInfoViewControllerService getInstance() {
@@ -45,11 +42,7 @@ public class MemberInfoViewControllerImpl implements MemberInfoViewControllerSer
     @Override
     public void setMemberId(String memberId) {
         this.memberId = memberId;
-    }
-
-    @Override
-    public AccountType getAccountType() {
-    	return account.getAccountTypeById(memberId);
+        memberVo = member.getInfo(memberId);
     }
 
     @Override

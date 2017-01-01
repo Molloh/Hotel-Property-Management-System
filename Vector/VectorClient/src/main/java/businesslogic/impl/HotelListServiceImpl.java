@@ -194,6 +194,7 @@ public class HotelListServiceImpl implements HotelListService{
 	
 		for(HotelVo hotel : list){
 			int price = hotel.getOriginPrice(type);
+			//若不存在该类型的房间，则价格为-1
 			if(price != -1 && price >= low && price <= high){
 				findList.add(hotel);
 			}

@@ -12,12 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.Order;
+import presentation.controller.unity.Order;
 import presentation.controller.impl.hotel.HotelOrderViewControllerImpl;
-import presentation.controller.impl.member.MemberOrderViewControllerImpl;
 import presentation.controller.service.hotel.HotelOrderViewControllerService;
-import presentation.controller.service.member.MemberOrderViewControllerService;
-import presentation.view.member.MemberOrderView;
 import vo.OrderVo;
 
 import java.io.IOException;
@@ -97,7 +94,7 @@ public class HotelOrderView implements Initializable{
         orderExeTime_column.setCellValueFactory(cellData -> cellData.getValue().orderExeTimeProperty());
         orderState_column.setCellValueFactory(cellData -> cellData.getValue().orderStateProperty());
         orderId_column.setCellValueFactory(cellData -> cellData.getValue().orderIdProperty());
-        orderId_column.setCellFactory(param -> new HotelOrderView.OrderBtnCell());
+        orderId_column.setCellFactory(param -> new OrderBtnCell());
     }
 
     class OrderBtnCell extends TableCell<Order, String> {

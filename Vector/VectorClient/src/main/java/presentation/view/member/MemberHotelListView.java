@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.Hotel;
+import presentation.controller.unity.Hotel;
 import presentation.controller.impl.member.MemberHotelListViewControllerImpl;
 import presentation.controller.service.member.MemberHotelListViewControllerService;
 import vo.HotelVo;
@@ -88,6 +88,7 @@ public class MemberHotelListView implements Initializable {
         initChoice();
     }
 
+    //初始化选择框
     private void initChoice() {
         //根据星级查找酒店
         star_choice.getItems().addAll(1, 2, 3, 4, 5);
@@ -182,6 +183,7 @@ public class MemberHotelListView implements Initializable {
         initTable(hotelList);
     }
 
+    //初始化表格
     private void initTable(ArrayList<HotelVo> hotelList) {
         if(hotelList != null) {
             List<Hotel> propertyList = new ArrayList<>();

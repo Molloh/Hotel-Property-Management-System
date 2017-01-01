@@ -29,16 +29,39 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 			marketPromotionDaoImpl = new MarketPromotionDaoImpl();
 		return marketPromotionDaoImpl;
 	}
-	
+ 
 	private MarketPromotionDaoImpl(){
 		super();
 		dataFactory = new DataFactoryImpl();
 		marketPromotionDataHelper = dataFactory.getMarketPromotionDataHelper();
 	}
 	
+	public ResultMessage addActivity(ActivityPromotionPo po){
+		List<String> list = getActivity();
+		if(list != null){
+			Iterator<String> it = list.iterator();
+			while(it.hasNext()){
+				//若存在该活动
+				if(it.next().startsWith(po.getPromotionName()))
+					return ResultMessage.FAIL;
+			}
+		}
+		return marketPromotionDataHelper.addActivity(po);
+	}
+	
 	@Override
 	public ResultMessage updateActivity(ActivityPromotionPo po){
-		return marketPromotionDataHelper.updateActivity(po);
+		List<String> list = getActivity();
+		if(list != null){
+			Iterator<String> it = list.iterator();
+			while(it.hasNext()){
+				//若存在该活动
+				if(it.next().startsWith(po.getPromotionName()))
+					return marketPromotionDataHelper.updateActivity(po);
+			}
+		}
+		//不存在该活动
+		return ResultMessage.FAIL;
 	}
 	
 	@Override
@@ -55,7 +78,20 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 
 	@Override
 	public ResultMessage deleteActivity(ActivityPromotionPo po){
-		return marketPromotionDataHelper.deleteActivity(po);
+		List<String> activityList = getActivity();
+		
+		if(activityList != null){
+			Iterator<String> it = activityList.iterator();
+			
+			//检查有无该促销活动
+			while(it.hasNext()){
+				String [] token = it.next().split("/");
+				if(token[0].equals(po.getPromotionName()))
+					return marketPromotionDataHelper.deleteActivity(po);
+			}	
+		}
+		
+		return ResultMessage.FAIL;//不存在该活动
 	}
 
 	@Override
