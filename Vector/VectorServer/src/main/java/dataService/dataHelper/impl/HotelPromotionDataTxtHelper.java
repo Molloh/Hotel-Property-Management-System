@@ -89,8 +89,10 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
 			
+			// 格式：名称/开始时间/结束时间/折扣
 			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
 			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
+			
 			
 			Iterator<String> it = actList.iterator();
 			int count = 0;     //确定该活动策略在List中的位置
@@ -174,8 +176,9 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
+	
 	
 	@Override
 	public ResultMessage updateBirthPromotion(String hotelId, BirthdayProPo po){
@@ -187,6 +190,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			birthFile.createNewFile();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(birthFile.getAbsoluteFile()));
 			
+			//格式：只存储折扣
 			writer.write((po.getDiscount()+""));
 			writer.close();
 			
@@ -197,6 +201,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public BirthdayProPo getBirthPromotion(String hotelId){
@@ -222,6 +227,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		return null;
 	}
 	
+	
 	@Override
 	public ResultMessage updateCompanyPro(String hotelId, CompanyProPo po){
 		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
@@ -243,7 +249,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			//更新合作企业列表
 			BufferedWriter bw2 = new BufferedWriter(new FileWriter(comList.getAbsoluteFile()));
 
-			if(po.getCompanyList() != null){
+			if( !po.getCompanyList().isEmpty()){
 				Iterator<String> it = po.getCompanyList().iterator();
 				while(it.hasNext()){
 					bw2.write(it.next());
@@ -258,6 +264,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public CompanyProPo getCompanyPro(String hotelId){
@@ -296,6 +303,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		return null;
 	}
 	
+	
 	@Override
 	public ResultMessage updateRoomPromotion(String hotelId, RoomPromotionPo po){
 		rootFile = new File("src/main/resources/textData/hotel/" + hotelId + "/promotion");
@@ -306,6 +314,8 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			roomProFile.createNewFile();
 			
 			BufferedWriter bw = new BufferedWriter(new FileWriter(roomProFile.getAbsoluteFile()));
+			
+			//格式：促销名称；预订数量；折扣
 			String str = po.getPromotionName() + "/" + (po.getNumOfRoom()+"") + "/" + (po.getDiscount()+"");
 					     
 			bw.write(str);
@@ -317,6 +327,7 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public RoomPromotionPo getRoomPromotion(String hotelId){

@@ -12,7 +12,8 @@ import vo.RoomPromotionVo;
 /**
  * @version 2017-01-01
  * @author 金灵益
- * @description 酒店促销策略相关接口
+ * @description 酒店促销策略相关接口：增删改活动促销策略，修改合作企业促销策略、客户生日促销策略、
+ *              房间预定促销策略，获得上述策略
  */
 public interface HotelPromotionBlService {
 

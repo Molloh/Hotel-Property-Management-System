@@ -1,6 +1,5 @@
 package businessLogic.impl;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -127,16 +126,17 @@ public class HotelListServiceImpl implements HotelListService{
 	@Override
 	public List<HotelVo> findByKeyword(String key) {	
 		List<HotelVo> list = new ArrayList<HotelVo>();
-		try {
-			Iterator<HotelPo> it = hotelDao.keyFind(key).iterator();
+		List<HotelPo> poList = new ArrayList<HotelPo>();
+		
+		//考虑列表为空的情况，保护程序
+		if( !poList.isEmpty() ){
+			Iterator<HotelPo> it = poList.iterator();
 			while(it.hasNext()){
 				HotelVo vo = new HotelVo(it.next());
+				
 				if(vo.showInfo().contains(key))
 					list.add(vo);
 			}
-		
-		} catch (RemoteException e) {
-			e.printStackTrace();
 		}
 		
 		return list;
@@ -145,58 +145,47 @@ public class HotelListServiceImpl implements HotelListService{
 	@Override
 	public List<HotelVo> findByAddress(String province, String city, String business){
 		hotelList = new ArrayList<HotelVo>();
-		try{
-			List<HotelPo> list = hotelDao.keyFind(province + " " + city + " " + business);
+			
+		List<HotelPo> list = hotelDao.keyFind(province + " " + city + " " + business);
+		
+		if(!list.isEmpty()){
 			Iterator<HotelPo> it = list.iterator();
 			while(it.hasNext()){
 				//po --> vo
 				hotelList.add(new HotelVo(it.next()));
 			}
-		}catch(RemoteException e){
-			e.printStackTrace();
 		}
+		
 		return hotelList;
 	}
 
 	@Override
 	public List<String> getProvinceList(){
-		try {
 			return hotelDao.getProvinceList();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	@Override
 	public List<String> getCityList(String province){	
-		try {
-			return hotelDao.getCityList(province);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return hotelDao.getCityList(province);
 	}
 	
 	@Override
 	public List<String> getBusinessList(String province, String city){
-		try {
-			return hotelDao.getBusinessList(province, city);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return hotelDao.getBusinessList(province, city);
 	}
 
 	@Override
 	public List<HotelVo> findByOriginalPrice(RoomType type, int low, int high, List<HotelVo> list) {
 		List<HotelVo> findList = new ArrayList<HotelVo>();
 	
-		for(HotelVo hotel : list){
-			int price = hotel.getOriginPrice(type);
-			//若不存在该类型的房间，则价格为-1
-			if(price != -1 && price >= low && price <= high){
-				findList.add(hotel);
+		if( !list.isEmpty()){
+			for(HotelVo hotel : list){
+				int price = hotel.getOriginPrice(type);
+			
+				//若不存在该类型的房间，则价格为-1
+				if(price != -1 && price >= low && price <= high){
+					findList.add(hotel);
+				}
 			}
 		}
 		return findList;
@@ -205,35 +194,48 @@ public class HotelListServiceImpl implements HotelListService{
 	@Override
 	public List<HotelVo> findByPoint(double least, double max, List<HotelVo> list) {
 		List<HotelVo> findList = new ArrayList<HotelVo>();
-		for(HotelVo hotel : list){
-			if(hotel.getPoStrings() >= least && hotel.getPoStrings() <= max){
-				findList.add(hotel);
+		
+		if( !list.isEmpty()){
+			for(HotelVo hotel : list){
+				if(hotel.getPoStrings() >= least && hotel.getPoStrings() <= max){
+					findList.add(hotel);
+				}
 			}
 		}
+		
 		return findList;
 	}
 
 	@Override
 	public List<HotelVo> findByStars(int least, int max, List<HotelVo> list) {
 		List<HotelVo> findList = new ArrayList<HotelVo>();
-		for(HotelVo hotel : list){
-			if(hotel.getStars() >= least && hotel.getStars() <= max){
-				findList.add(hotel);
+		
+		if( !list.isEmpty() ){
+			for(HotelVo hotel : list){
+				if(hotel.getStars() >= least && hotel.getStars() <= max){
+					findList.add(hotel);
+				}
 			}
 		}
+		
 		return findList;
 	}
 
 	@Override
 	public List<HotelVo> findByRoomType(RoomType type, List<HotelVo> list){
 		List<HotelVo> findList = new ArrayList<HotelVo>();
-		for(HotelVo hotel : list){
-			List<HotelTypeRoomVo> typeRoomList = hotel.getTypeRoom();
-			Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
+		
+		if(!list.isEmpty()){
+			for(HotelVo hotel : list){
+				List<HotelTypeRoomVo> typeRoomList = hotel.getTypeRoom();
 			
-			while(it.hasNext()){
-				if(it.next().getType().equals(type))
-					findList.add(hotel);
+				if(!typeRoomList.isEmpty()) continue;
+				Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
+			
+				while(it.hasNext()){
+					if(it.next().getType().equals(type))
+						findList.add(hotel);
+				}
 			}
 		}
 		return findList;

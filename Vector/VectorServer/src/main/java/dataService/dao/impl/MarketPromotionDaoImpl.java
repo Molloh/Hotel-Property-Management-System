@@ -36,9 +36,11 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		marketPromotionDataHelper = dataFactory.getMarketPromotionDataHelper();
 	}
 	
+	
+	@Override
 	public ResultMessage addActivity(ActivityPromotionPo po){
 		List<String> list = getActivity();
-		if(list != null){
+		if(!list.isEmpty()){
 			Iterator<String> it = list.iterator();
 			while(it.hasNext()){
 				//若存在该活动
@@ -49,10 +51,11 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		return marketPromotionDataHelper.addActivity(po);
 	}
 	
+	
 	@Override
 	public ResultMessage updateActivity(ActivityPromotionPo po){
 		List<String> list = getActivity();
-		if(list != null){
+		if(!list.isEmpty()){
 			Iterator<String> it = list.iterator();
 			while(it.hasNext()){
 				//若存在该活动
@@ -64,23 +67,26 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		return ResultMessage.FAIL;
 	}
 	
+	
 	@Override
 	public List<String> getActivity(){
 		return marketPromotionDataHelper.getActivity();
 	}
 	
+	
 	@Override
 	public ResultMessage updateLevelRule(List<LevelPo> list){
-		updateMemberVIP(list, true);
-		updateMemberVIP(list, false);
+		updateMemberVIP(list, true);     //更新普通客户VIP
+		updateMemberVIP(list, false);    //更新企业客户VIP
 		return marketPromotionDataHelper.updateLevelRule(list);
 	}
 
+	
 	@Override
 	public ResultMessage deleteActivity(ActivityPromotionPo po){
 		List<String> activityList = getActivity();
 		
-		if(activityList != null){
+		if(!activityList.isEmpty()){
 			Iterator<String> it = activityList.iterator();
 			
 			//检查有无该促销活动
@@ -94,10 +100,12 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		return ResultMessage.FAIL;//不存在该活动
 	}
 
+	
 	@Override
 	public List<LevelPo> getLevelList(){
 		return marketPromotionDataHelper.getLevelList();
 	}
+	
 	
 	/**
 	 * 通过客户信用值得到其等级
@@ -107,20 +115,23 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 	public int getMemberLevel(int credit){
 		int level = 1;
 		List<LevelPo> levelList = getLevelList();
-		Iterator<LevelPo> it = levelList.iterator();
 		
-		while(it.hasNext()){
-			LevelPo po = it.next();
-			int level_credit = po.getCredit();     //某个等级对应的信用值
+		if(!levelList.isEmpty()){
+			Iterator<LevelPo> it = levelList.iterator();
+		
+			while(it.hasNext()){
+				LevelPo po = it.next();
+				int level_credit = po.getCredit();     //某个等级对应的信用值
 			
-			//检查在哪个等级区间内
-			if(credit >= level_credit)     level = po.getLevel();
-			else                           return level;	
+				//检查在哪个等级区间内
+				if(credit >= level_credit)     level = po.getLevel();
+				else                           return level;	
+			}
 		}
-
 		return level;
 	}
 
+	
 	/**
 	 * 网站营销人员更新等级策略时，同时调用此方法修改所有客户的等级
 	 * @param list
@@ -153,6 +164,7 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 		
 	}
 
+	
 	@Override
 	public ResultMessage updateBusiness(BusinessProPo po) {
 		return marketPromotionDataHelper.updateBusinessPro(po);
@@ -167,6 +179,4 @@ public class MarketPromotionDaoImpl implements MarketPromotionDao{
 	public List<BusinessProPo> getBusinessList() {
 		return marketPromotionDataHelper.getBusinessProList();
 	}
-	
-
 }
