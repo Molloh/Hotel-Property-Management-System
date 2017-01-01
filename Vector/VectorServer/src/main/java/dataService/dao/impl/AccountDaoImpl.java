@@ -195,6 +195,8 @@ public class AccountDaoImpl implements AccountDao {
         
         accountDataHelper.updateAccountData(map, type);
         
+        
+        
         /*同时更新member信息，生成该账号相应的member信息*/
         MemberPo newMemPo = null;
 		try {

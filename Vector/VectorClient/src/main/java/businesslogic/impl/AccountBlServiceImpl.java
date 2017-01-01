@@ -1,6 +1,7 @@
 package businessLogic.impl;
 
 import businessLogic.service.AccountBlService;
+import businessLogic.service.HotelBlService;
 import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.service.AccountDao;
@@ -99,7 +100,9 @@ public class AccountBlServiceImpl implements AccountBlService{
         if(nameValid == ResultMessage.VALID
                 && passwordValid == ResultMessage.VALID )
         {
-        	 return accountDao.insertAccount(name,password,type);
+        	String id = accountDao.insertAccount(name,password,type);
+        	HotelBlServiceImpl.getInstance().addHotel(id);
+        	return id;
         }
         return null;
     }
