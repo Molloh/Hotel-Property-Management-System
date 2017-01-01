@@ -126,7 +126,7 @@ public class MemberInfoView implements Initializable {
             alert.setContentText("修改成功！");
             alert.showAndWait();
         }else {
-            alert.setContentText(controller.getMemberName());
+            alert.setContentText("修改失败！");
             alert.showAndWait();
         }
     }

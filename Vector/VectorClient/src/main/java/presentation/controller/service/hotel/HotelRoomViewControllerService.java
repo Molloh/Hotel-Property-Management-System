@@ -1,5 +1,6 @@
 package presentation.controller.service.hotel;
 
+import common.ResultMessage;
 import common.RoomType;
 
 /**
@@ -9,5 +10,12 @@ import common.RoomType;
  */
 public interface HotelRoomViewControllerService {
 
-    void initializeRoom(String hotelId, RoomType type, int number, int price);
+    ResultMessage initializeRoom(RoomType type, int number, int price);
+
+    ResultMessage checkoutRoom(RoomType type, int number);
+
+    ResultMessage checkinRoom(RoomType type, int number);
+
+    void setHotelId(String hotelId);
+
 }

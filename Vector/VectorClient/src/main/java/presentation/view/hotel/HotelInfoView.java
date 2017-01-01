@@ -1,15 +1,13 @@
 package presentation.view.hotel;
 
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import presentation.common.SingletonItem;
 import presentation.controller.impl.hotel.HotelInfoViewControllerImpl;
 import presentation.controller.service.hotel.HotelInfoViewControllerService;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -61,6 +59,18 @@ public class HotelInfoView implements Initializable {
         controller.setHotelDiscription(discription_area.getText());
         controller.setHotelPhone(phone_field.getText());
         controller.setHotelStar(star_combo.getValue());
+
+        ResultMessage msg = controller.updateInfo();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText("修改成功！");
+            alert.showAndWait();
+        }else {
+            alert.setContentText("修改失败！");
+            alert.showAndWait();
+        }
     }
 
     @FXML

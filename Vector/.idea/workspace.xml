@@ -7,23 +7,21 @@
   <component name="ChangeListManager">
     <list default="true" id="faa990ec-c1f2-406b-a89a-91a8ec201095" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/css/RootView.css" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/css/RootView.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelOrderView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelOrderView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRoomView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRoomView.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRootView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRootView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberHotelInfoView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberHotelInfoView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberOrderInfoView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberOrderInfoView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberOrderView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberOrderView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberRootView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberRootView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberSubmitOrderView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberSubmitOrderView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberOrderInfoViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberOrderInfoViewControllerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/common/OrderCondition.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/common/OrderCondition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelInfoViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelInfoViewControllerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelRoomViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelRoomViewControllerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelInfoView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelInfoView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerUserAddView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerUserAddView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/account/managerAccount.txt" afterPath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/account/managerAccount.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/account/memberAccount.txt" afterPath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/account/memberAccount.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/hotel/H00024/SINGLE.txt" afterPath="$PROJECT_DIR$/VectorServer/src/main/resources/textData/hotel/H00024/SINGLE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/junit/testHotelBl/TestHotel.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/junit/testHotelBl/TestHotel.java" />
     </list>
     <ignored path="Vector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,41 +46,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MemberRootView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java">
+      <file leaf-file-name="HotelPromotionBlService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelPromotionBlService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="115" column="33" lean-forward="false" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberOrderInfoViewControllerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="43" column="37" lean-forward="false" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
-              <folding>
-                <element signature="e#1215#1216#0" expanded="true" />
-                <element signature="e#1259#1260#0" expanded="true" />
-                <element signature="e#1322#1323#0" expanded="true" />
-                <element signature="e#1367#1368#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberOrderInfoView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="106" column="44" lean-forward="false" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,8 +59,20 @@
       <file leaf-file-name="MemberOrderCommentView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="21" column="62" lean-forward="false" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
+            <state relative-caret-position="234">
+              <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+              <folding>
+                <marker date="1483285299615" expanded="false" signature="1431:1442" ph=" { " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MemberHotelOrderViewControllerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelOrderViewControllerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -141,15 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelOrderView.fxml" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/marketer/MarketerOrderView.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderExeView.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/marketer/MarketerOrderRevokeViewControllerService.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/marketer/MarketerOrderRevokeViewControllerImpl.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/marketer/MarketerOrderRevokeView.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/common/SingletonItem.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/sign/SignView.css" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/member/MemberRootView.css" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/unity/Password.fxml" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/Promotion.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelListView.java" />
@@ -175,23 +147,32 @@
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/unity/PromotionView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelPromotionView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderComment.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberInfoViewControllerService.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/css/SignView.css" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/css/InfoView.css" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerRootView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberInfoViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerUserAddView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerUserEditView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRootView.fxml" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/fxml/css/RootView.css" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberRootView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberOrderInfoViewControllerService.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelOrderViewControllerImpl.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/common/OrderCondition.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelInfoViewControllerService.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelInfoView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelRoomViewControllerService.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java" />
       </list>
     </option>
   </component>
@@ -589,6 +570,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hotel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="impl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -673,49 +696,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="marketer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VectorClient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="presentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
+              <option name="myItemId" value="hotel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -779,7 +760,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="businessLogic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -870,36 +885,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sign" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VectorClient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1581,7 +1566,7 @@
       <workItem from="1483172134276" duration="18806000" />
       <workItem from="1483242371210" duration="13079000" />
       <workItem from="1483268689800" duration="1296000" />
-      <workItem from="1483270348991" duration="6376000" />
+      <workItem from="1483270348991" duration="13935000" />
     </task>
     <servers />
   </component>
@@ -1609,11 +1594,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185430000" />
+    <option name="totallyTimeSpent" value="192989000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1625,12 +1610,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994923" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30471203" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16439791" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26145834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1703,104 +1688,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/CreditBlService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/unity/Credit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/unity/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/javafx-src.zip!/javafx/util/Callback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/unity/Promotion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="40" column="33" lean-forward="false" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/MarketPromotionBlServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="38" column="40" lean-forward="false" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/CompanyProVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/BusinessProVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/BirthdayProVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/HotelPromotionBlServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/CreditRecordVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelPromotionBlService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="106" column="75" lean-forward="false" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/ActivityPromotionVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="38" column="20" lean-forward="false" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelPromotionViewControllerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelPromotionViewControllerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1822,28 +1709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/OrderBlServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="330" column="8" lean-forward="false" selection-start-line="330" selection-start-column="8" selection-end-line="330" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelBlService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="78" column="53" lean-forward="false" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/HotelBlServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1638">
-          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/OrderBlService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -1862,6 +1727,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1888,17 +1754,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1819">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberInfoViewControllerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1906,6 +1766,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1127#1128#0" expanded="false" />
+            <element signature="e#1158#1159#0" expanded="false" />
+            <element signature="e#1449#1450#0" expanded="false" />
+            <element signature="e#1504#1505#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1963,16 +1830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelPromotionView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="89" column="69" lean-forward="false" selection-start-line="87" selection-start-column="24" selection-end-line="89" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/common/ViewFxmlPath.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -2022,29 +1879,7 @@
           <caret line="81" column="57" lean-forward="true" selection-start-line="81" selection-start-column="57" selection-end-line="81" selection-end-column="57" />
           <folding>
             <element signature="e#2354#2355#0" expanded="false" />
-            <element signature="e#2418#2419#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="98" column="32" lean-forward="false" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRootView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2053,6 +1888,16 @@
         <state relative-caret-position="230">
           <caret line="44" column="59" lean-forward="false" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="106" column="44" lean-forward="false" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2079,13 +1924,232 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/HotelPromotionBlServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="106" column="44" lean-forward="false" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+        <state relative-caret-position="180">
+          <caret line="28" column="47" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRootView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/OrderVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/OrderBlServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#996#997#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/common/OrderCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelOrderViewControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+          <folding>
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#701#702#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#1246#1247#0" expanded="true" />
+            <element signature="e#1292#1293#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelPromotionView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-454">
+          <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelRootView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="90" column="39" lean-forward="false" selection-start-line="90" selection-start-column="39" selection-end-line="90" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1256#1257#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+            <element signature="e#1520#1521#0" expanded="true" />
+            <element signature="e#1571#1572#0" expanded="true" />
+            <element signature="e#1613#1614#0" expanded="true" />
+            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="e#1722#1723#0" expanded="true" />
+            <element signature="e#1792#1793#0" expanded="true" />
+            <element signature="e#1844#1845#0" expanded="true" />
+            <element signature="e#1922#1923#0" expanded="true" />
+            <element signature="e#1974#1975#0" expanded="true" />
+            <element signature="e#2040#2041#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2149#2150#0" expanded="true" />
+            <element signature="e#2207#2208#0" expanded="true" />
+            <element signature="e#2322#2323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelInfoViewControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelInfoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="82" column="5" lean-forward="false" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-904">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberInfoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="125" column="42" lean-forward="true" selection-start-line="125" selection-start-column="42" selection-end-line="125" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="93" column="34" lean-forward="true" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/hotel/HotelRoomViewControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelBlService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="65" column="51" lean-forward="false" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/impl/HotelBlServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="78" column="8" lean-forward="false" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#660#661#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="e#1158#1159#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1363#1364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelPromotionBlService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelOrderViewControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2099,9 +2163,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="21" column="62" lean-forward="false" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
-          <folding />
+        <state relative-caret-position="234">
+          <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <marker date="1483285299615" expanded="false" signature="1431:1442" ph=" { " />
+          </folding>
         </state>
       </provider>
     </entry>

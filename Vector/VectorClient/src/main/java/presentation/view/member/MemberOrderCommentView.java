@@ -37,7 +37,7 @@ public class MemberOrderCommentView implements Initializable {
 
     @FXML
     private void handleComment() {
-        ResultMessage msg = controller.comment(commentArea.getText());
+        ResultMessage msg = controller.comment("2000","非常舒适",5.0);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Tips");
         alert.setHeaderText("");
