@@ -5,41 +5,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="promotion" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.unity.PromotionView">
+   <children>
+      <GridPane layoutX="-14.0" prefHeight="300.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane layoutX="132.0" layoutY="98.0" prefHeight="376.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columnConstraints>
-                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="290.99999237060547" minWidth="10.0" prefWidth="83.0" />
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.99999237060547" minWidth="10.0" prefWidth="109.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="225.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="194.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="促销名：" GridPane.columnIndex="1" />
-                  <Label text="促销类型：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="促销开始时间：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="促销结束时间：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="proName_field" GridPane.columnIndex="2" />
-                  <ComboBox fx:id="proType_choice" prefHeight="23.0" prefWidth="236.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="proStart_date" prefHeight="23.0" prefWidth="229.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="proEnd_date" prefHeight="23.0" prefWidth="218.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label text="促销折扣：" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="proDiscount_field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Button fx:id="edit_btn" mnemonicParsing="false" onAction="#handleEdit" text="编辑促销策略" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Button fx:id="save_btn" mnemonicParsing="false" prefHeight="23.0" prefWidth="88.0" text="保存" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-               </children>
-            </GridPane>
-         </children></AnchorPane>
-  </content>
-</TitledPane>
+            <Label text="促销名：" GridPane.columnIndex="1" />
+            <Label text="促销类型：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="促销开始时间：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="促销结束时间：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="proName_field" GridPane.columnIndex="2" />
+            <DatePicker fx:id="proStart_date" prefHeight="23.0" prefWidth="229.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <DatePicker fx:id="proEnd_date" prefHeight="23.0" prefWidth="218.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="促销折扣：" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="proDiscount_field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="edit_btn" mnemonicParsing="false" onAction="#handleEdit" text="编辑促销策略" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="save_btn" mnemonicParsing="false" prefHeight="23.0" prefWidth="88.0" text="保存" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" text="删除促销策略" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label fx:id="proType_choice" text="活动促销策略" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="290.99999237060547" minWidth="10.0" prefWidth="83.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="290.99999237060547" minWidth="10.0" prefWidth="109.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="225.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="194.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

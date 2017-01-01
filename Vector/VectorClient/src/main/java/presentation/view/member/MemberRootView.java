@@ -41,6 +41,8 @@ public class MemberRootView implements Initializable {
     @FXML
     private ToggleButton home_btn;
     @FXML
+    private ToggleButton credit_btn;
+    @FXML
     private Button exit_btn;
     @FXML
     private Button logo_btn;
@@ -59,6 +61,7 @@ public class MemberRootView implements Initializable {
         myOrder_btn.setToggleGroup(guide);
         home_btn.setToggleGroup(guide);
         modifyInfo_btn.setToggleGroup(guide);
+        credit_btn.setToggleGroup(guide);
 
         setMissionPane(ViewFxmlPath.MemberHotelList_View_Path);
     }
@@ -84,6 +87,8 @@ public class MemberRootView implements Initializable {
         }else if(event.getSource() == exit_btn) {
             SignViewControllerImpl.getInstance().signOut();
             System.exit(0);
+        }else if(event.getSource() == credit_btn) {
+            fxmlPath = ViewFxmlPath.MemberCreidt_View_Patn;
         }
 
         if(fxmlPath != null)

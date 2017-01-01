@@ -12,10 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.Order;
+import presentation.controller.unity.Order;
 import presentation.controller.impl.member.MemberOrderViewControllerImpl;
 import presentation.controller.service.member.MemberOrderViewControllerService;
-import vo.HotelVo;
 import vo.OrderVo;
 
 import java.io.IOException;

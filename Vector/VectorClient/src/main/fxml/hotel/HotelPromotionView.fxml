@@ -6,17 +6,44 @@
 
 <AnchorPane fx:id="missionPane" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelPromotionView">
    <children>
-      <SplitPane dividerPositions="0.10026737967914438" layoutX="180.0" layoutY="155.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.30802292263610315" layoutX="180.0" layoutY="155.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
+              <items>
+                  <AnchorPane minWidth="0.0" prefHeight="212.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="43.0" text="生日特惠 折扣：" />
+                        <TextField layoutX="29.0" layoutY="76.0" />
+                        <Button layoutX="29.0" layoutY="123.0" mnemonicParsing="false" text="修改" />
+                        <Button layoutX="150.0" layoutY="123.0" mnemonicParsing="false" text="确定" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="212.0" prefWidth="494.0">
+                     <children>
+                        <ListView layoutX="25.0" layoutY="65.0" prefHeight="106.0" prefWidth="167.0" />
+                        <Label layoutX="25.0" layoutY="39.0" text="合作企业：" />
+                        <TextField layoutX="261.0" layoutY="67.0" prefHeight="23.0" prefWidth="167.0" />
+                        <Button layoutX="388.0" layoutY="95.0" mnemonicParsing="false" text="添加" />
+                        <TextField layoutX="261.0" layoutY="140.0" prefHeight="23.0" prefWidth="167.0" />
+                        <Label layoutX="261.0" layoutY="39.0" text="添加合作企业：" />
+                        <Label layoutX="261.0" layoutY="118.0" text="企业折扣：" />
+                        <Button layoutX="325.0" layoutY="171.0" mnemonicParsing="false" text="修改" />
+                        <Button layoutX="388.0" layoutY="171.0" mnemonicParsing="false" text="确定" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="748.0">
                <children>
-                  <Button layoutX="495.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleAddPro" text="新增促销策略" />
-                  <Button layoutX="623.0" layoutY="22.0" mnemonicParsing="false" text="删除促销策略" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Accordion fx:id="promotions_accordion" prefHeight="670.0" prefWidth="998.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TableView fx:id="promotion_List" layoutX="-1.0" layoutY="42.0" prefHeight="342.0" prefWidth="750.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="42.0">
+                    <columns>
+                      <TableColumn fx:id="promotionName_column" prefWidth="141.0" text="促销策略" />
+                      <TableColumn fx:id="promotionStartDate_column" prefWidth="153.0" text="开始时间" />
+                        <TableColumn fx:id="promotionEndDate_column" minWidth="7.0" prefWidth="142.0" text="结束时间" />
+                        <TableColumn fx:id="promotionDiscount_column" minWidth="0.0" prefWidth="175.0" text="折扣额度" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddPro" text="新增活动策略" />
                </children>
             </AnchorPane>
         </items>

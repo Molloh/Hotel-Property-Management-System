@@ -28,8 +28,6 @@ public interface MemberInfoViewControllerService {
 
     String getPhone();
 
-    AccountType getAccountType();
-
     Sex getSex();
 
     String getEnterPrise();
