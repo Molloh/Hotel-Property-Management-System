@@ -6,13 +6,12 @@ import common.OrderCondition;
 import presentation.controller.service.member.MemberOrderViewControllerService;
 import vo.OrderVo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2016/12/31
+ * @description 客户订单列表界面控制器接口实现类
  */
 public class MemberOrderViewControllerImpl implements MemberOrderViewControllerService {
     private String memberId;

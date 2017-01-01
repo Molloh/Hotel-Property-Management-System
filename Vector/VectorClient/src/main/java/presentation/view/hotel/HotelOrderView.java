@@ -20,12 +20,13 @@ import vo.OrderVo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
  * @ author Molloh
- * @ version 2016/11/6
- * @ description
+ * @ version 2016/12/31
+ * @ description Hotel的订单界面
  */
 public class HotelOrderView implements Initializable{
     @FXML
@@ -35,13 +36,13 @@ public class HotelOrderView implements Initializable{
     @FXML
     private TableColumn<Order, String> orderState_column;
     @FXML
-    private TableColumn<Order, String> orderPrice_column;
+    private TableColumn<Order, Number> orderPrice_column;
     @FXML
     private TableColumn<Order, String> orderHotel_column;
     @FXML
-    private TableColumn<Order, String> orderTime_column;
+    private TableColumn<Order, Date> orderTime_column;
     @FXML
-    private TableColumn<Order, String> orderExeTime_column;
+    private TableColumn<Order, Date> orderExeTime_column;
 
     @FXML
     private ComboBox<String> orderType_choice;
@@ -63,33 +64,35 @@ public class HotelOrderView implements Initializable{
         orderType_choice.getItems().addAll("全部订单", "未执行订单", "已执行订单", "执行中订单", "待评价订单", "异常订单");
         orderType_choice.setValue("全部订单");
         orderList = (ArrayList<OrderVo>) controller.getAllOrders();
-        initTable();
+        initTable(orderList);
         initOrderTypeChoice();
     }
 
+    //为订单类别选择添加监听
     private void initOrderTypeChoice() {
         orderType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     OrderCondition condition = getState(orderType_choice.getItems().get(new_val.intValue()));
                     if(condition == OrderCondition.ALL) {
-                        orderList = (ArrayList<OrderVo>) controller.getAllOrders();
+                        initTable(orderList);
                     }else {
-                        orderList = (ArrayList<OrderVo>) controller.getOrdersInConditionByHotel(condition);
+                        ArrayList<OrderVo> list = (ArrayList<OrderVo>) controller.getOrdersInConditionByHotel(condition);
+                        initTable(list);
                     }
-                    initTable();
                 }
         );
     }
 
-    private void initTable() {
+    //刷新/初始化表格
+    private void initTable(ArrayList<OrderVo> orderList) {
         ObservableList<Order> data = FXCollections.observableArrayList();
         for(OrderVo vo : orderList) {
             data.add(new Order(vo.getOrderId(),
                     vo.getCondition().toString(),
+                    vo.getDiscountedPrice(),
                     vo.getHotel(),
-                    String.valueOf(vo.getDiscountedPrice()),
-                    vo.getCreateTime().toInstant().toString(),
-                    vo.getCheckInTime().toInstant().toString()));
+                    vo.getCreateTime(),
+                    vo.getCheckInTime()));
         }
         order_list.setItems(data);
 
@@ -102,6 +105,7 @@ public class HotelOrderView implements Initializable{
         orderId_column.setCellFactory(param -> new OrderBtnCell());
     }
 
+    //自定义订单组件为按钮
     class OrderBtnCell extends TableCell<Order, String> {
         @Override
         public void updateItem(String item, boolean empty) {
@@ -135,11 +139,12 @@ public class HotelOrderView implements Initializable{
         }
     }
 
+    //处理搜索订单事件
     @FXML
     private void handleSearchOrder() {
         String orderId = orderId_field.getText();
-        orderList.clear();
-        orderList.add(controller.findOrder(orderId));
-        initTable();
+        ArrayList<OrderVo> list = new ArrayList<>();
+        list.add(controller.findOrder(orderId));
+        initTable(list);
     }
 }

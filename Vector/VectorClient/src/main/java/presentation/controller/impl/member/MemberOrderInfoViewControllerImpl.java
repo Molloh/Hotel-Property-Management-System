@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2016/12/31
+ * @description  Member Order信息控制器接口实现类
  */
 public class MemberOrderInfoViewControllerImpl implements MemberOrderInfoViewControllerService {
     private static MemberOrderInfoViewControllerService INSTANCE = new MemberOrderInfoViewControllerImpl();

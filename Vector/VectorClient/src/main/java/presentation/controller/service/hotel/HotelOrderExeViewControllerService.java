@@ -1,5 +1,7 @@
 package presentation.controller.service.hotel;
 
+import common.OrderCondition;
+import common.ResultMessage;
 import common.RoomType;
 
 /**
@@ -11,7 +13,13 @@ public interface HotelOrderExeViewControllerService {
 
     void setOrderId(String orderId);
 
-    String getOrderCondition();
+    ResultMessage delayOrder();
+
+    ResultMessage revokeOrder();
+
+    ResultMessage checkIn();
+
+    OrderCondition getOrderCondition();
 
     String getMemberId();
 

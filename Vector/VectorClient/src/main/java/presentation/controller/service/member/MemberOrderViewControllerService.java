@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Molloh
  * @version 2016/12/25
- * @description 客户订单列表界面
+ * @description 客户订单列表界面控制器接口
  */
 public interface MemberOrderViewControllerService {
 

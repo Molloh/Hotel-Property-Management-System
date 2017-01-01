@@ -19,8 +19,8 @@ import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
- * @description
+ * @version 2016/12/31
+ * @description Manager 添加用户界面
  */
 public class ManagerUserAddView implements Initializable {
     @FXML

@@ -7,8 +7,4 @@ HuJinTao;20160890z;N00007;0
 WenJiaBao;q204900q;N00008;0
 guojimilan;xiaoguoji;N00009;0
 Molloh;123456;N00010;0
-<<<<<<< HEAD
-default;987654;N00011;0
-=======
 labbal;000000;N00011;0
->>>>>>> d3fd7cb31252f79fc61d98c2b7a790c0d012ff89

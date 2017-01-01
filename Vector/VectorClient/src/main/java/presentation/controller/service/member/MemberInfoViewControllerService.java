@@ -1,6 +1,5 @@
 package presentation.controller.service.member;
 
-import common.AccountType;
 import common.ResultMessage;
 import common.Sex;
 
@@ -8,8 +7,8 @@ import java.time.LocalDate;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description Member编辑个人信息处理
+ * @version 2016/12/31
+ * @description Member编辑个人信息处理控制器接口
  */
 public interface MemberInfoViewControllerService {
 

@@ -77,6 +77,15 @@
     -fx-graphic: url("/images/hotel/Room.png");
 }
 
+/* marketer root */
+#credit-btn {
+    -fx-graphic: url("/images/marketer/Credit.png");
+}
+
+#ab-order {
+    -fx-graphic: url("/images/marketer/Order.png");
+}
+
 /* manager root */
 #user-add {
     -fx-graphic: url("/images/manager/AddUser.png");

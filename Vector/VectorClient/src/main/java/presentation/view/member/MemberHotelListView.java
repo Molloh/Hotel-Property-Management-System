@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -56,13 +57,13 @@ public class MemberHotelListView implements Initializable {
     @FXML
     private TableColumn<Hotel, String> hotelName_column;
     @FXML
-    private TableColumn<Hotel, String> hotelStar_column;
+    private TableColumn<Hotel, Number> hotelStar_column;
     @FXML
-    private TableColumn<Hotel, String> hotelPoint_column;
+    private TableColumn<Hotel, Number> hotelPoint_column;
     @FXML
     private TableColumn<Hotel, String> hotelAddress_column;
     @FXML
-    private TableColumn<Hotel, String> hotelPrice_column;
+    private TableColumn<Hotel, Number> hotelPrice_column;
 
     @FXML
     private Group other_group;
@@ -91,24 +92,33 @@ public class MemberHotelListView implements Initializable {
     //初始化选择框
     private void initChoice() {
         //根据星级查找酒店
-        star_choice.getItems().addAll(1, 2, 3, 4, 5);
+        star_choice.getItems().addAll(0, 1, 2, 3, 4, 5);
         star_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     if(hotelList != null) {
-                        hotelSubList = (ArrayList<HotelVo>) controller
-                                .findByStars(star_choice.getItems().get(new_val.intValue()), hotelList);
-                        initTable(hotelSubList);
+                        if(star_choice.getItems().get(new_val.intValue()) == 0 || star_choice.getItems().get(new_val.intValue()) != null) {
+                            initTable(hotelList);
+                        }else {
+                            hotelSubList = (ArrayList<HotelVo>) controller
+                                    .findByStars(star_choice.getItems().get(new_val.intValue()), hotelList);
+                            initTable(hotelSubList);
+                        }
                     }
                 }
         );
 
         //根据房间类型查找酒店
-        roomType_choice.getItems().addAll(RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
+        roomType_choice.getItems().addAll(RoomType.ALL, RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
         roomType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     if(hotelList != null) {
-                        hotelList = (ArrayList<HotelVo>) controller
-                                .findByRoomType(roomType_choice.getItems().get((Integer)new_val), hotelList);
+                        if(roomType_choice.getItems().get((Integer)new_val) != RoomType.ALL && roomType_choice.getItems().get((Integer)new_val) != null) {
+                            hotelSubList = (ArrayList<HotelVo>) controller
+                                    .findByRoomType(roomType_choice.getItems().get((Integer)new_val), hotelList);
+                            initTable(hotelSubList);
+                        }else {
+                            initTable(hotelList);
+                        }
                     }
                 }
         );
@@ -122,8 +132,10 @@ public class MemberHotelListView implements Initializable {
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     ArrayList<String> city = (ArrayList<String>) controller
                             .getCityList(province.get(new_val.intValue()));
-                    city_choice.getItems().clear();
-                    cbd_choice.getItems().clear();
+                    if(!city_choice.getItems().isEmpty())
+                        city_choice.getItems().clear();
+                    if(!cbd_choice.getItems().isEmpty())
+                        cbd_choice.getItems().clear();
                     other_group.setDisable(true);
                     for(String item : city) {
                         city_choice.getItems().add(item);
@@ -133,54 +145,78 @@ public class MemberHotelListView implements Initializable {
         //市
         city_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> oV, Number oldVal, Number newVal) -> {
-                    ArrayList<String> cbd = (ArrayList<String>) controller
-                            .getCbdList(province_choice.getValue(), city_choice.getItems().get(newVal.intValue()));
-                    cbd_choice.getItems().clear();
-                    other_group.setDisable(true);
-                    for (String item : cbd) {
-                        cbd_choice.getItems().add(item);
+                    if(province_choice.getValue() != null) {
+                        ArrayList<String> cbd = (ArrayList<String>) controller
+                                .getCbdList(province_choice.getValue(), city_choice.getItems().get(newVal.intValue()));
+                        cbd_choice.getItems().clear();
+                        other_group.setDisable(true);
+                        for (String item : cbd) {
+                            cbd_choice.getItems().add(item);
+                        }
                     }
                 }
         );
         //商圈
         cbd_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> one, Number oldOne, Number newOne) -> {
-                    hotelList = (ArrayList<HotelVo>) controller.findByAddress(province_choice.getValue(), city_choice.getValue(), cbd_choice.getItems().get(newOne.intValue()));
-                    initTable(hotelList);
-                    other_group.setDisable(false);
+                    if(province_choice.getValue() != null && city_choice.getValue() != null) {
+                        hotelList = (ArrayList<HotelVo>) controller.findByAddress(province_choice.getValue(), city_choice.getValue(), cbd_choice.getItems().get(newOne.intValue()));
+                        hotelSubList = hotelList;
+                        initTable(hotelList);
+                        other_group.setDisable(false);
+                    }
                 }
         );
     }
 
+    //根据价格范围查找酒店
     @FXML
     private void selectHotelByPriceRange() {
-        int low = Integer.parseInt(lowPrice_field.getText());
-        int high = Integer.parseInt(highPrice_field.getText());
-        RoomType type = roomType_choice.getValue();
-        if(hotelList != null && type != null ) {
-            if(low > high) {
+        if(!lowPrice_field.getText().equals("") && !highPrice_field.getText().equals("")) {
+            int low = Integer.valueOf(lowPrice_field.getText());
+            int high = Integer.valueOf(highPrice_field.getText());
+            RoomType type = roomType_choice.getValue();
+            if(hotelList != null && type != null ) {
+                if(low > high) {
 
-            }else {
-                hotelList = (ArrayList<HotelVo>) controller.findByOriginalPrice(type, low, high, hotelList);
-                initTable(hotelList);
+                }else {
+                    ArrayList<HotelVo> list = (ArrayList<HotelVo>) controller.findByOriginalPrice(type, low, high, hotelList);
+                    initTable(list);
+                }
             }
         }
     }
 
+    //根据评分查找酒店
     @FXML
     private void selectHotelByPoint() {
-        double low = Double.parseDouble(lowPoint_field.getText());
-        double high = Double.parseDouble(highPoint_field.getText());
-        if(hotelList != null) {
-            hotelList = (ArrayList<HotelVo>) controller.findByPoint(low, high, hotelList);
-            initTable(hotelList);
+        if(!lowPoint_field.getText().equals("") && !highPoint_field.getText().equals("")) {
+            double low = Double.valueOf(lowPoint_field.getText());
+            double high = Double.valueOf(highPoint_field.getText());
+            if(hotelList != null) {
+                ArrayList<HotelVo> list = (ArrayList<HotelVo>) controller.findByPoint(low, high, hotelList);
+                initTable(list);
+            }
         }
     }
 
+    //根据关键字查找酒店
     @FXML
     private void selectHotelByKeyWord() {
         hotelList = (ArrayList<HotelVo>) controller.findByKeyword(keyword_field.getText());
         initTable(hotelList);
+    }
+
+    //重置搜索条件
+    @FXML
+    private void handleRefresh() {
+        initTable(hotelList);
+        highPoint_field.clear();
+        lowPoint_field.clear();
+        highPrice_field.clear();
+        lowPrice_field.clear();
+        star_choice.setValue(null);
+        roomType_choice.setValue(null);
     }
 
     //初始化表格
@@ -190,10 +226,10 @@ public class MemberHotelListView implements Initializable {
             for (HotelVo hotelVo : hotelList) {
                 propertyList.add(
                         new Hotel(hotelVo.getHotelName() + "#" + hotelVo.getId(),
-                        String.valueOf(hotelVo.getStars()),
-                        String.valueOf(hotelVo.getNumOfpoint()),
+                        hotelVo.getStars(),
+                        hotelVo.getNumOfpoint(),
                         hotelVo.getHotelPosition(),
-                        String.valueOf(hotelVo.getOriginPrice(RoomType.SINGLE))));
+                        hotelVo.getOriginPrice(RoomType.SINGLE)));
             }
             ObservableList<Hotel> data = FXCollections.observableArrayList();
             for (Hotel hotel : propertyList) {

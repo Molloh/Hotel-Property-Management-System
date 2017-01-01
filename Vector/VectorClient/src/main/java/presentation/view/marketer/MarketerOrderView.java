@@ -19,6 +19,7 @@ import vo.OrderVo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -34,13 +35,13 @@ public class MarketerOrderView implements Initializable {
     @FXML
     private TableColumn<Order, String> orderState_column;
     @FXML
-    private TableColumn<Order, String> orderPrice_column;
+    private TableColumn<Order, Number> orderPrice_column;
     @FXML
     private TableColumn<Order, String> orderHotel_column;
     @FXML
-    private TableColumn<Order, String> orderTime_column;
+    private TableColumn<Order, Date> orderTime_column;
     @FXML
-    private TableColumn<Order, String> orderExeTime_column;
+    private TableColumn<Order, Date> orderExeTime_column;
 
     @FXML
     private ComboBox<String> orderType_choice;
@@ -83,10 +84,10 @@ public class MarketerOrderView implements Initializable {
         for(OrderVo vo : orderList) {
             data.add(new Order(vo.getOrderId(),
                     vo.getCondition().toString(),
+                    vo.getDiscountedPrice(),
                     vo.getHotel(),
-                    String.valueOf(vo.getDiscountedPrice()),
-                    vo.getCreateTime().toInstant().toString(),
-                    vo.getCheckInTime().toInstant().toString()));
+                    vo.getCreateTime(),
+                    vo.getCheckInTime()));
         }
         order_list.setItems(data);
 
