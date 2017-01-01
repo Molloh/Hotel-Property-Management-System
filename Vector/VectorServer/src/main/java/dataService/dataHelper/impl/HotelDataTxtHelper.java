@@ -191,7 +191,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		return null;
+		return comment;
 	}
 	
 	
@@ -205,18 +205,24 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			if(!file.exists())
 				file.createNewFile();
 			
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter writer = new BufferedWriter(fw);
+			if( !commentList.isEmpty()){
+				FileWriter fw = new FileWriter(file.getAbsoluteFile());
+				BufferedWriter writer = new BufferedWriter(fw);
 				
-			Iterator<String> iterator = commentList.iterator();
-			while(iterator.hasNext()){
-				writer.write(iterator.next());
-				writer.newLine();
-				writer.write("*");//每个人的评论以单行的*隔开为标志
-				writer.newLine();
-			}		
-			writer.close();	
-			return ResultMessage.SUCCEED;
+				Iterator<String> iterator = commentList.iterator();
+			
+				while(iterator.hasNext()){
+					writer.write(iterator.next());
+					writer.newLine();
+					writer.write("*");//每个人的评论以单行的*隔开为标志
+					writer.newLine();
+				}	
+				
+				writer.close();
+				return ResultMessage.SUCCEED;
+			}
+			
+			return ResultMessage.FAIL;
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}	
@@ -235,6 +241,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		
 		File file = new File(rootFile.getAbsolutePath(),"initRoom.txt");	
 		File type_f = new File(rootFile.getAbsolutePath(),type_str + ".txt");
+		
 		try {
 			file.createNewFile();       type_f.createNewFile();
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -325,6 +332,8 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		rootFile.mkdir();
 		
 		File file = new File(rootFile.getAbsolutePath(),"initRoom.txt");	
+		
+		
 		try {
 			file.createNewFile();
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(
@@ -335,13 +344,16 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 			while (str != null) {
 				String [] data = str.split("/");
 				RoomType rt = null;
+				//字符串转化为房间类型
 				switch(data[0]){
 				case "SINGLE": rt = RoomType.SINGLE; break;
 				case "DOUBLE": rt = RoomType.DOUBLE; break;
 				case "FAMILY": rt = RoomType.FAMILY; break;
 				}
+				
 				HotelTypeRoomPo po = new HotelTypeRoomPo(rt,Integer.valueOf(data[1]),
 						Integer.valueOf(data[2]));
+				
 				list.add(po);
 				str = br.readLine();
 			}

@@ -57,8 +57,8 @@ public class HotelDaoImpl implements HotelDao{
 	public ResultMessage updateHotelList(HotelPo po) {
 		String hotelId = po.getId();
 		if(map.get(hotelId) != null){
-			//修改map对应元素
-			map.put(hotelId, po);
+			map.put(hotelId, po);//修改map对应元素
+			
 			hotelDataHelper.updateHotelListData(map);
 			return ResultMessage.SUCCEED;
 		}
@@ -152,19 +152,26 @@ public class HotelDaoImpl implements HotelDao{
 	@Override
 	public int getReadyRoom(String hotelId, RoomType type){
 		HotelPo po = findHotel(hotelId);
-		//获得酒店该类型房间的总数
+		
 		List<HotelTypeRoomPo> list = po.getTypeRoom();
-		Iterator<HotelTypeRoomPo> it = list.iterator();
 		int sum = 0;
-		while(it.hasNext()){
-			HotelTypeRoomPo rpo = it.next();
-			if(rpo.getType().equals(type)){
-				sum = rpo.getNumOfTypeRoom();
-				break;
+		int readyRoom = 0;
+		
+		if( !list.isEmpty() ){
+			Iterator<HotelTypeRoomPo> it = list.iterator();
+		
+			//获得酒店该类型房间的总数
+			while(it.hasNext()){
+				HotelTypeRoomPo rpo = it.next();
+			
+				if(rpo.getType().equals(type)){
+					sum = rpo.getNumOfTypeRoom();
+					break;
+				}
 			}
+			//根据被预订数量计算
+			readyRoom = sum - hotelDataHelper.getOrderedRoom(hotelId, type);
 		}
-		//根据被预订数量计算
-		int readyRoom = sum - hotelDataHelper.getOrderedRoom(hotelId, type);
 		return readyRoom;
 	}
 }

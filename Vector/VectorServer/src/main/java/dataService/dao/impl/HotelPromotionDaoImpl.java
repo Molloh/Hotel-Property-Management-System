@@ -39,9 +39,10 @@ public class HotelPromotionDaoImpl implements HotelPromotionDao{
 	}
 	
 	
+	@Override
 	public ResultMessage addActPromotion(String hotelId, ActivityPromotionPo po){
 		List<String> list = getActProList(hotelId);
-		if(list != null){
+		if(!list.isEmpty()){
 			Iterator<String> it = list.iterator();
 			while(it.hasNext()){
 				//若存在该活动
@@ -52,9 +53,11 @@ public class HotelPromotionDaoImpl implements HotelPromotionDao{
 		return hotelPromotionDataHelper.addActivity(hotelId, po);
 	}
 	
+	
+	@Override
 	public ResultMessage upActPromotion(String hotelId, ActivityPromotionPo po){
 		List<String> list = getActProList(hotelId);
-		if(list != null){
+		if( !list.isEmpty()){
 			Iterator<String> it = list.iterator();
 			while(it.hasNext()){
 				//若存在该活动
@@ -66,10 +69,12 @@ public class HotelPromotionDaoImpl implements HotelPromotionDao{
 		return ResultMessage.FAIL;
 	}
 	
+	
+	@Override
 	public ResultMessage delActPromotion(String hotelId, ActivityPromotionPo po){
 		List<String> activityList = getActProList(hotelId);
 			
-		if(activityList != null){
+		if(!activityList.isEmpty()){
 			Iterator<String> it = activityList.iterator();
 			
 			//检查有无该促销活动
