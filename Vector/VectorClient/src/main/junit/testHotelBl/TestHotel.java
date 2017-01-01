@@ -34,7 +34,7 @@ public class TestHotel {
 	@Test
 	public void testGiveComment() {
 		vo = test.getHotelVo("H00000");
-		HotelBlServiceImpl.getInstance().comment("2000","非常舒适",5.0);
+		HotelBlServiceImpl.getInstance().comment("非常舒适");
 		List<String> l1 = vo.getCommentList();
 		assertEquals(5, l1.size());
 		assertEquals("非常舒适",l1.get(3));
