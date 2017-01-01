@@ -1,9 +1,13 @@
 package presentation.view.member;
 
+import common.AccountType;
+import common.OrderCondition;
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -13,7 +17,6 @@ import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.member.MemberOrderInfoViewControllerImpl;
 import presentation.controller.service.member.MemberOrderInfoViewControllerService;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +43,13 @@ public class MemberOrderInfoView implements Initializable {
     private Label last_label;
     @FXML
     private Label people_label;
+    @FXML
+    private Label orderState_label;
+
+    @FXML
+    private Button delete_btn;
+    @FXML
+    private Button comment_btn;
 
     @FXML
     private AnchorPane missionPane;
@@ -51,6 +61,17 @@ public class MemberOrderInfoView implements Initializable {
         controller = MemberOrderInfoViewControllerImpl.getInstance();
         controller.setOrderId(SingletonItem.getInstance().getOrderId());
 
+        delete_btn.setVisible(false);
+        comment_btn.setVisible(false);
+
+        OrderCondition orderCondition = controller.getOrderCondition();
+        if(orderCondition == OrderCondition.WAITING) {
+            delete_btn.setVisible(true);
+        }else if(orderCondition == OrderCondition.FINISHED) {
+            comment_btn.setVisible(true);
+        }
+
+        orderState_label.setText(controller.getOrderCondition().name());
         orderId_label.setText(SingletonItem.getInstance().getOrderId());
         hotel_label.setText(controller.getHotelName());
         type_label.setText(controller.getRoomType().name());
@@ -73,12 +94,13 @@ public class MemberOrderInfoView implements Initializable {
 
     @FXML
     private void handleComment() {
+        //弹出窗口实现评论功能
         try {
             Stage primaryStage = (Stage)orderId_label.getScene().getWindow();
 
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("view/PersonEditDialog.fxml"));
+            loader.setLocation(getClass().getResource(ViewFxmlPath.MemberOrderComment_View_Path));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
@@ -98,6 +120,14 @@ public class MemberOrderInfoView implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleDelete() {
+        ResultMessage msg = controller.deleteOrder();
+        if(msg == ResultMessage.SUCCEED) {
+            handleReturn();
         }
     }
 

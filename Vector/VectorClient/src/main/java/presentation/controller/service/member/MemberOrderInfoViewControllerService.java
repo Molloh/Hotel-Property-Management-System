@@ -15,7 +15,9 @@ public interface MemberOrderInfoViewControllerService {
 
     void setOrderId(String orderId);
 
-    String getOrderCondition();
+    ResultMessage deleteOrder();
+
+    OrderCondition getOrderCondition();
 
     String getMemberId();
 

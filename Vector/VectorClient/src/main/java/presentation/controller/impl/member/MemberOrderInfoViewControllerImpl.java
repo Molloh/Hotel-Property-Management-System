@@ -2,15 +2,13 @@ package presentation.controller.impl.member;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.OrderCondition;
 import common.ResultMessage;
 import common.RoomType;
 import presentation.controller.service.member.MemberOrderInfoViewControllerService;
-import presentation.controller.service.member.MemberOrderViewControllerService;
 import vo.OrderVo;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * @author Molloh
@@ -42,8 +40,13 @@ public class MemberOrderInfoViewControllerImpl implements MemberOrderInfoViewCon
     }
 
     @Override
-    public String getOrderCondition() {
-        return String.valueOf(orderVo.getCondition());
+    public ResultMessage deleteOrder() {
+        return order.delete(orderId);
+    }
+
+    @Override
+    public OrderCondition getOrderCondition() {
+        return orderVo.getCondition();
     }
 
     @Override

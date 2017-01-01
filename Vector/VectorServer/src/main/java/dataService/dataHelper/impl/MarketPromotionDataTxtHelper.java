@@ -36,6 +36,8 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile(), true));
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
+			
+			// 格式：名称/开始时间/结束时间/折扣  （名称不得重复）
 			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
 			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
 			writer.write(str);
@@ -49,6 +51,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		return ResultMessage.FAIL;
 	}
 	
+	
 	@Override
 	public ResultMessage updateActivity(ActivityPromotionPo po){
 		File actFile = new File(rootFile.getAbsolutePath() + "/promotion.txt");
@@ -59,6 +62,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH");
 			
+			// 格式：名称/开始时间/结束时间/折扣  （名称不得重复）
 			String str = po.getPromotionName() + "/" + sdf.format(po.getStartDate()) + "/" +
 			             sdf.format(po.getEndDate()) + "/" + (po.getDiscount()+"");
 			
@@ -71,9 +75,9 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 				count ++;
 			}
 		
-			actList.set(count, str);
+			actList.set(count, str);       //替换List中相应元素
 			
-			//写入文件
+			
 			BufferedWriter writer = new BufferedWriter(new FileWriter(actFile.getAbsoluteFile()));
 			
 			Iterator<String> it1 = actList.iterator();
@@ -89,6 +93,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		}
 		return ResultMessage.FAIL;
 	}
+	
 	
 	@Override
 	public ResultMessage deleteActivity(ActivityPromotionPo po){
@@ -140,8 +145,9 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
+	
 	
 	@Override
 	public ResultMessage updateLevelRule(List<LevelPo> list){
@@ -154,6 +160,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			Iterator<LevelPo> it = list.iterator();
 			while(it.hasNext()){
 				LevelPo po = it.next();
+				//格式：等级/信用值/折扣
 				String str = (po.getLevel()+"") + "/" + (po.getCredit()+"") + "/" + (po.getDiscount()+"");
 				writer.write(str);
 				writer.newLine();
@@ -190,8 +197,9 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return levelList;
 	}
+	
 	
 	@Override
 	public ResultMessage updateBusinessPro(BusinessProPo po){
@@ -216,6 +224,8 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 						writeList.add(str);
 						continue;
 					}
+					
+					//格式：商圈名/折扣
 					String tempStr = tempPo.getBusinessName() + "/" + (tempPo.getDiscount()+"");
 					writeList.add(tempStr);
 					count ++;
@@ -240,6 +250,7 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		return ResultMessage.FAIL;
 	}
 	
+	
 	@Override
 	public ResultMessage deleteBusiness(BusinessProPo po){
 		File busiFile = new File(rootFile.getAbsolutePath() + "/business.txt");
@@ -248,10 +259,16 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 			busiFile.createNewFile();
 
 			List<BusinessProPo> list = getBusinessProList();//得到原文件中的商圈列表
+			
+			if(list.isEmpty()){
+				return ResultMessage.FAIL;
+			}
+			
 			Iterator<BusinessProPo> it = list.iterator();
 		
 			BufferedWriter bw = new BufferedWriter(new FileWriter(busiFile.getAbsoluteFile()));
 			
+			//检查是否存在该商圈，若存在则跳过写入文件
 			while(it.hasNext()){
 				BusinessProPo temp = it.next();
 				if(temp.getBusinessName().equals(po.getBusinessName()))
@@ -269,6 +286,8 @@ public class MarketPromotionDataTxtHelper implements MarketPromotionDataHelper{
 		return ResultMessage.FAIL;
 	}
 	
+	
+	@Override
 	public List<BusinessProPo> getBusinessProList(){
 		File busiFile = new File(rootFile.getAbsolutePath() + "/business.txt");
 		List<BusinessProPo> list = new ArrayList<BusinessProPo>();

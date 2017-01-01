@@ -73,15 +73,12 @@ public interface HotelBlService {
 	public int getReadyRoom(RoomType type);
 
 	/**
-	 * @description 客户给予文字评价
+	 * 客户给予文字评价和评分，同时将订单状态改为已评价
+	 * @param orderId
 	 * @param giveComment
-	 */
-	public ResultMessage comment(String giveComment);
-
-	/**
-	 * @description 客户给予评分,同时将订单状态置为已评价状态
 	 * @param poStrings
+	 * @return
 	 */
-	public ResultMessage givePoStrings(String orderId, double poStrings);
+	public ResultMessage comment(String orderId, String giveComment, double poStrings);
 
 }
