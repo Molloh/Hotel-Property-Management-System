@@ -89,7 +89,7 @@ public class HotelBlServiceImpl implements HotelBlService{
     
 
     @Override
-	public ResultMessage comment(String giveComment) {
+	public ResultMessage comment(String orderId, String giveComment, double poStrings) {
 		List<String> comment = vo.getCommentList();
 		//酒店评论为空的情况
 		if(!comment.isEmpty()){
@@ -98,12 +98,24 @@ public class HotelBlServiceImpl implements HotelBlService{
 		comment.add(giveComment);
 		vo.setCommentList(comment);
 			
-		return hotelDao.updateComment(voTopo(vo));
+		ResultMessage r1 = hotelDao.updateComment(voTopo(vo));
+		
+		ResultMessage r2 = givePoStrings(orderId, poStrings);
+		
+		if(r1 == ResultMessage.SUCCEED && r2 == ResultMessage.SUCCEED)
+			return ResultMessage.SUCCEED;
+		
+		return ResultMessage.FAIL;
 	}
 
     
-	@Override
-	public ResultMessage givePoStrings(String orderId, double poStrings) {
+    /**
+     * 客户给予评分,同时将订单状态置为已评价状态
+     * @param orderId
+     * @param poStrings
+     * @return
+     */
+	private ResultMessage givePoStrings(String orderId, double poStrings) {
 		//计算评分
 		double points = vo.getPoStrings();
 		int num = vo.getNumOfpoint();
