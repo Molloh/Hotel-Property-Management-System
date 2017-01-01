@@ -125,7 +125,11 @@ public class CreditDataTxtHelper implements CreditDataHelper{
      * @return String
      */
 	public String getMemberTxtFile(String id){
-		return memberFile + id ; 
+		if(id.charAt(0)=='N')
+			return memberFile + id ; 
+		else if(id.charAt(0)=='E')
+			return enterpriseFile + id;
+		else return null;
 	}
 	
 }

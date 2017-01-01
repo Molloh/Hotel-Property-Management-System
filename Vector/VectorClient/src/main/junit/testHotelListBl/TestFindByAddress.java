@@ -23,6 +23,11 @@ public class TestFindByAddress {
 	
 	@Test
 	public void test() {
+		List<HotelVo> list0 = test.findByAddress("江苏", "南京", "");
+		assertEquals(0, list0.size());
+		
+		/*由于是选择筛选，无非法输入"#" */
+		
 		List<HotelVo> list1 = test.findByAddress("江苏", "南京", "夫子庙");
 		assertEquals(5, list1.size());
 		assertEquals("H00010", list1.get(0).getId());

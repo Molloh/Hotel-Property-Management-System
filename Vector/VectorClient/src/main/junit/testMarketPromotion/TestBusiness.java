@@ -1,12 +1,13 @@
 package testMarketPromotion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import businessLogic.impl.MarketPromotionBlServiceImpl;
 import businessLogic.service.MarketPromotionBlService;
+import common.ResultMessage;
 import myTest.TestClient;
 import vo.BusinessProVo;
 
@@ -27,6 +28,11 @@ public class TestBusiness {
 		test.addBusinessStrategy(vo1);
 		test.addBusinessStrategy(vo2);
 		assertEquals(0.7, test.getBusinessDiscount("夫子庙"), 0.001);
+		
+		//error test
+		vo1 = new BusinessProVo("", 0);
+		ResultMessage msg1 = test.addBusinessStrategy(vo1);
+		assertEquals(ResultMessage.FAIL,msg1);
 	}
 	
 	@Test
@@ -35,6 +41,11 @@ public class TestBusiness {
 		vo.setDiscount(0.8);
 		test.updateBusinessStrategy(vo);
 		assertEquals(0.8, test.getBusinessDiscount("夫子庙"), 0.001);
+		
+		//error test 
+		vo.setDiscount(0);
+		ResultMessage msg1 = test.addBusinessStrategy(vo);
+		assertEquals(ResultMessage.FAIL,msg1);
 	}
 	
 	@Test

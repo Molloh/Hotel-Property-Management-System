@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import businessLogic.impl.MarketPromotionBlServiceImpl;
 import businessLogic.service.MarketPromotionBlService;
+import common.ResultMessage;
 import myTest.TestClient;
 import vo.ActivityPromotionVo;
 
@@ -28,11 +29,34 @@ public class TestActivity {
 	@Test
 	public void testAdd() {
     	try {
+    		
+    		
 			Date date1 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-11-11-00");
 			Date date2 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-12-31-24");
 			
 			ActivityPromotionVo vo = new ActivityPromotionVo("双十一", date1, date2, 0.85);
 			test.addActivityStrategy(vo);
+			
+			// error test1
+			date1 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-11-11-00");
+		    date2 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-12-31-24");
+		    vo = new ActivityPromotionVo("双十一", date1, date2, 1.85);
+			ResultMessage er1 = test.addActivityStrategy( vo);
+			assertEquals(ResultMessage.FAIL,er1);
+			
+			// error test2
+			date1 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-12-11-00");
+		    date2 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-11-31-24");
+			vo = new ActivityPromotionVo("双十一", date1, date2, 0.85);
+			er1 = test.addActivityStrategy( vo);
+			assertEquals(ResultMessage.FAIL,er1);
+			
+			// error test3
+			date1 = null;
+		    date2 = null;
+		    vo = new ActivityPromotionVo("双十一", date1, date2, 1.85);
+			er1 = test.addActivityStrategy( vo);
+			assertEquals(ResultMessage.FAIL,er1);
 			
 			Date date3 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-12-11-00");
 			Date date4 = new SimpleDateFormat("yyyy-MM-dd-HH").parse("2016-12-25-24");

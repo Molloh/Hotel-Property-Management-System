@@ -44,6 +44,7 @@ public class TestAccount {
 		Assert.assertEquals("E00007", test.register("Baidu", "2mmmmm0z",false));
 		Assert.assertEquals("FAIL"  , test.register("Baidu", "2mmmmm0z",false));
 		Assert.assertEquals("FAIL"  , test.register("Tencent", "268889z",false));
+		
 	}
 
 	@Test
@@ -66,6 +67,12 @@ public class TestAccount {
 		
 		//test manager
 		Assert.assertEquals(AccountType.Manager,test.login("A00001", "00000001"));
+		
+		//error test 
+		Assert.assertEquals(AccountType.Fail,test.login("QT0001", "00123456"));
+		Assert.assertEquals(AccountType.Fail,test.login("G 0001", "0dqwwa56"));
+		Assert.assertEquals(AccountType.Fail,test.login("", "0dqwwa56"));
+		Assert.assertEquals(AccountType.Fail,test.login("0dqwwa56", ""));
 	}
 
 	@Test
@@ -209,6 +216,10 @@ public class TestAccount {
 		//manager
 		test.deleteAccount("A00003");
 		Assert.assertEquals(null, test.findAccount("A00003"));
+		
+		//error test 
+		ResultMessage msg = test.deleteAccount("G00003");
+		Assert.assertEquals(ResultMessage.FAIL, msg);
 	}
 
 }

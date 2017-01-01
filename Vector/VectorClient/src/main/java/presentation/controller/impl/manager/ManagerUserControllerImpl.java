@@ -79,7 +79,7 @@ public class ManagerUserControllerImpl implements ManagerUserControllerService {
 
     @Override
     public String addUser(String password, AccountType type) {
-        return account.insertAccount("", password, type);
+        return account.insertAccount("default", password, type);
     }
 
     @Override

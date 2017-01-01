@@ -26,7 +26,7 @@ public class TestHotel {
 	
 	@Test
 	public void testGetComment() {
-		vo = test.getHotelVo("H00000");
+		vo = test.getHotelVo("H00000"); 
 		List<String> l1 = vo.getCommentList();
 		assertEquals(4, l1.size());
 	}

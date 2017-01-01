@@ -25,6 +25,8 @@ public class TestOrder {
 	@Test
 	public void testGetOrderId() {
 		Assert.assertEquals("2016121812345", test.getOrderId("2016121812345"));
+		Assert.assertEquals(null, test.getOrderId(""));
+		Assert.assertEquals(null, test.getOrderId("20161218#1212345"));
 	}
 
 	@Test
@@ -102,7 +104,7 @@ public class TestOrder {
 		Assert.assertEquals(260, test.getDiscountedPrice("2016121812345"));
 	}
 //////
-	/*
+	
 	@Test
 	public void testSetToAbnormal() {
 		Assert.assertEquals("ABNORMAL", test.getOrderCondition("2016121812345"));
@@ -112,13 +114,13 @@ public class TestOrder {
 	public void testCancel() {
 		Assert.assertEquals("CANCEL", test.getOrderCondition("2016121812345"));
 	}
-*/
+
 	@Test
 	public void testCheckIn() {
 		test.checkIn("2016121812345");
 		Assert.assertEquals(OrderCondition.EXECUTING, test.getOrderCondition("2016121812345"));
 	}
-/*
+
 	@Test
 	public void testAbnormalCheckIn() {
 		Assert.assertEquals("EXCUTING", test.getOrderCondition("2016121812345"));
@@ -131,12 +133,17 @@ public class TestOrder {
 
 	@Test
 	public void testRevoke() {
+		test.revoke("2016121812345", 0.50);
 		Assert.assertEquals("REVOKED", test.getOrderCondition("2016121812345"));
+		
+		test.revoke("2016121812341", 1);
+		Assert.assertEquals("REVOKED", test.getOrderCondition("2016121812341"));
+		
 	}
 	
 	@Test
 	public void testSetToFinished() {
 		Assert.assertEquals("FINISHED", test.getOrderCondition("2016121812345"));
 	}
-*/
+
 }

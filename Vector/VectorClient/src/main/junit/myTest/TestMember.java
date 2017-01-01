@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import businessLogic.impl.MemberBlServiceImpl;
 import businessLogic.service.MemberBlService;
+import common.ResultMessage;
 import common.Sex;
 import vo.MemberVo;
 
@@ -58,13 +59,31 @@ public class TestMember {
 
 	@Test
 	public void testModifyInfo() {
-		//test member
-		String set = "99900007777";
-		MemberVo actual_vo = test.getInfo("N00003") ;
-		actual_vo.setPhone(set);
-		test.modifyInfo(actual_vo);
-		actual_vo = test.getInfo("N00003");
-		Assert.assertEquals("99900007777", actual_vo.getPhone());
+		String test_id = "N00003";
+		
+		MemberVo actual_vo = test.getInfo(test_id) ;
+		
+		//test 1
+		actual_vo.setName("");
+		actual_vo.setPhone("");		
+		ResultMessage rmsg = test.modifyInfo(actual_vo);
+		Assert.assertEquals(ResultMessage.FAIL,rmsg);
+		
+		//test 2
+		actual_vo.setName("ABC");
+		actual_vo.setPhone("##12345678");		
+		rmsg = test.modifyInfo(actual_vo);
+		Assert.assertEquals(ResultMessage.FAIL,rmsg);
+		
+		//test 3
+		actual_vo.setPhone("12345678");
+		rmsg = test.modifyInfo(actual_vo);
+		Assert.assertEquals(ResultMessage.SUCCEED,rmsg);
+		
+		//test 4
+		actual_vo.setName("");
+		actual_vo.setPhone("12#345678");
+		Assert.assertEquals(ResultMessage.FAIL,rmsg);
 	}
 
 

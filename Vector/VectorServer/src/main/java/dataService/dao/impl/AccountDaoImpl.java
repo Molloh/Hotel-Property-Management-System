@@ -204,15 +204,15 @@ public class AccountDaoImpl implements AccountDao {
 			e.printStackTrace();
 		}
 		MemberVo newMemVo = new MemberVo(newMemPo);
-		if(type==AccountType.Member)
-			MemberDaoImpl.getInstance().insertInfo(newMemVo);
-		else if(type==AccountType.Enterprise)
+		if(type==AccountType.Member||type==AccountType.Enterprise)
 			MemberDaoImpl.getInstance().insertInfo(newMemVo);
 		////////////////////////////////
 		
 		/*生成相应的信用记录表*/
-		CreditDaoImpl.getInstance().newCredit(newId);
+		if(type==AccountType.Member||type==AccountType.Enterprise)
+			CreditDaoImpl.getInstance().newCredit(newId);
 		
+			
         return newId;
     }
 
@@ -254,6 +254,7 @@ public class AccountDaoImpl implements AccountDao {
             accountDataHelper.updateAccountData(map,type);
             
             MemberDaoImpl.getInstance().deleteInfo(id);
+            
             return ResultMessage.SUCCEED;
         }
         else
