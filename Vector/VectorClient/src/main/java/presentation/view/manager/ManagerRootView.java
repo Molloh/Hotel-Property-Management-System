@@ -8,8 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.sign.SignViewControllerImpl;
 import presentation.controller.service.sign.SignViewControllerService;
@@ -25,14 +28,14 @@ import java.util.ResourceBundle;
  */
 public class ManagerRootView implements Initializable {
     @FXML
-    private Button searchUser_btn;
+    private Button search_btn;
     @FXML
-    private Button addUser_btn;
+    private TextField search_field;
+    @FXML
+    private ToggleButton addUser_btn;
     @FXML
     private Button signOut_btn;
 
-    @FXML
-    private Label name_label;
     @FXML
     private Label id_label;
 
@@ -44,10 +47,13 @@ public class ManagerRootView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        id_label.setText(SingletonItem.getInstance().getActivateId());
         controller = SignViewControllerImpl.getInstance();
-        setMissionPane(ViewFxmlPath.ManagerUserSearch_View_Path);
     }
 
+    /**
+     * 处理界面跳转事件
+     */
     @FXML
     private void handleMissionSwitch(ActionEvent event) throws IOException {
         if(event.getSource() == signOut_btn) {
@@ -58,8 +64,9 @@ public class ManagerRootView implements Initializable {
             stage.setScene(scene);
             SignViewControllerImpl.getInstance().signOut();
             stage.show();
-        }else if(event.getSource() == searchUser_btn) {
-            fxmlPath = ViewFxmlPath.ManagerUserSearch_View_Path;
+        }else if(event.getSource() == search_btn) {
+            SingletonItem.getInstance().setSearchedId(search_field.getText());
+            fxmlPath = ViewFxmlPath.ManagerUserEdit_View_Path;
         }else if(event.getSource() == addUser_btn) {
             fxmlPath = ViewFxmlPath.ManagerUserAdd_View_Path;
         }
@@ -67,11 +74,20 @@ public class ManagerRootView implements Initializable {
         setMissionPane(fxmlPath);
     }
 
+    //关闭
     @FXML
     private void handleExit() {
-        controller.signOut();
+        SignViewControllerImpl.getInstance().signOut();
         System.exit(0);
     }
+
+    //最小化
+    @FXML
+    private void handleMinimize() {
+        Stage stage = (Stage)search_btn.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
 
     private void setMissionPane(String fxmlPath) {
         try {
@@ -81,3 +97,4 @@ public class ManagerRootView implements Initializable {
         }
     }
 }
+

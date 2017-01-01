@@ -36,9 +36,9 @@ public class MemberHotelListView implements Initializable {
     @FXML
     private ComboBox<String> cbd_choice;
     @FXML
-    private ChoiceBox<Integer> star_choice;
+    private ComboBox<Integer> star_choice;
     @FXML
-    private ChoiceBox<RoomType> roomType_choice;
+    private ComboBox<RoomType> roomType_choice;
 
     @FXML
     private TextField keyword_field;

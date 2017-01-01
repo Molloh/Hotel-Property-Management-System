@@ -1,6 +1,7 @@
 package presentation.controller.service.manager;
 
 import common.AccountType;
+import common.ResultMessage;
 import common.Sex;
 
 import java.time.LocalDate;
@@ -12,17 +13,21 @@ import java.time.LocalDate;
  */
 public interface ManagerUserControllerService {
 
-    void addUser(String password, AccountType type);
-
-    void searchUser(String userId);
-
-    AccountType getUserType();
+    String addUser(String password, AccountType type);
 
     String getUserName();
 
+    void setUserId(String userId);
+
     void setUserName(String userName);
 
-    //member
+    ResultMessage updateInfo();
+
+    ResultMessage delUser(String userId);
+
+    /**
+     * Member的get/set方法
+     */
 
     LocalDate getBirthDay();
 
@@ -52,7 +57,9 @@ public interface ManagerUserControllerService {
 
     void setVIPLevel(String vipLevel);
 
-    //hotel
+    /**
+     * Hotel的get/set方法
+     */
 
     String getHotelAddress();
 

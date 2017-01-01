@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.manager.ManagerUserEditView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.manager.ManagerUserEditView">
     <children>
-        <GridPane fx:id="member_grid" alignment="CENTER_RIGHT" layoutX="-14.0" layoutY="211.0" prefHeight="489.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0">
+        <GridPane fx:id="member_grid" alignment="CENTER_RIGHT" layoutX="-14.0" layoutY="211.0" prefHeight="489.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0">
             <children>
                 <Label text="地址：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <DatePicker fx:id="birthday_field" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
@@ -18,16 +18,14 @@
                         <RadioButton fx:id="female_radio" mnemonicParsing="false" prefHeight="16.0" prefWidth="142.0" text="女" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" onAction="#handleAddUser" text="保存" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancelAdd" text="取消" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                 <Label text="信用：" GridPane.columnIndex="1" />
             <TextField fx:id="address_field" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <TextField fx:id="credit_field" GridPane.columnIndex="2" />
             <Label text="VIP：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="VIP_field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="联系方式：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="phone_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <TextField fx:id="enterprise_field" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <Label fx:id="credit_label" GridPane.columnIndex="2" />
+            <Label fx:id="VIP_label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             </children>
             <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,10 +54,10 @@
           <TextField fx:id="name_field" editable="false" layoutX="184.0" layoutY="147.0" />
       <Button fx:id="delete_btn" layoutX="546.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleDelete" text="删除" />
           <Button layoutX="599.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleEditUser" text="保存" />
-      <Button layoutX="653.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleCancel" text="取消" />
+      <Button layoutX="653.0" layoutY="178.0" mnemonicParsing="false" text="取消" />
       <Label layoutX="93.0" layoutY="62.0" text="用户类别：" />
       <Label fx:id="type_label" layoutX="184.0" layoutY="62.0" text="类别" />
-      <GridPane fx:id="hotel_grid" alignment="CENTER_RIGHT" layoutX="-4.0" layoutY="221.0" prefHeight="489.0" prefWidth="750.0">
+      <GridPane fx:id="hotel_grid" alignment="CENTER_RIGHT" layoutX="-4.0" layoutY="221.0" prefHeight="489.0" prefWidth="750.0" visible="false">
          <children>
             <Label text="地址：" GridPane.columnIndex="1" />
             <Button fx:id="confirm_btn1" mnemonicParsing="false" text="保存" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />

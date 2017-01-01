@@ -1,30 +1,25 @@
 package presentation.view.manager;
 
-import common.AccountType;
+import common.ResultMessage;
 import common.Sex;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import presentation.common.ViewFxmlPath;
+import presentation.common.SingletonItem;
 import presentation.controller.impl.manager.ManagerUserControllerImpl;
 import presentation.controller.service.manager.ManagerUserControllerService;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
- * @description
+ * @version 2016/12/31
+ * @description Manager 编辑用户信息界面
  */
 public class ManagerUserEditView implements Initializable {
-    @FXML
-    private AnchorPane missionPane;
     @FXML
     private TextField name_field;
     @FXML
@@ -82,13 +77,18 @@ public class ManagerUserEditView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = ManagerUserControllerImpl.getInstance();
+        controller.setUserId(SingletonItem.getInstance().getSearchedId());
 
-        type_label.setText(String.valueOf(controller.getUserType()));
+        star_combo.getItems().addAll("1", "2", "3", "4", "5");
         name_field.setText(controller.getUserName());
-        ID_label.setText(controller.getUserName());
+        ID_label.setText(SingletonItem.getInstance().getSearchedId());
 
-        AccountType accountType = controller.getUserType();
-        if(accountType == AccountType.Member) {
+        //根据用户类型初始化界面
+        char accountType = SingletonItem.getInstance().getSearchedId().charAt(0);
+        if(accountType == 'N') {
+            VIP_label.setText(controller.getVIPLevel());
+            credit_label.setText(controller.getCredit());
+            type_label.setText("普通会员");
             member_grid.setVisible(true);
             hotel_grid.setVisible(false);
             member_label.setText("生日：");
@@ -96,7 +96,10 @@ public class ManagerUserEditView implements Initializable {
             enterprise_field.setVisible(false);
             birthday_field.setValue(controller.getBirthDay());
             initialMember();
-        }else if(accountType == AccountType.Enterprise) {
+        }else if(accountType == 'E') {
+            VIP_label.setText("VIP " + controller.getVIPLevel());
+            credit_label.setText("信用: " + controller.getCredit());
+            type_label.setText("企业会员");
             member_grid.setVisible(true);
             hotel_grid.setVisible(false);
             member_label.setText("企业：");
@@ -104,10 +107,12 @@ public class ManagerUserEditView implements Initializable {
             birthday_field.setVisible(true);
             enterprise_field.setText(controller.getEnterPrise());
             initialMember();
-        }else if(accountType == AccountType.Marketer) {
+        }else if(accountType == 'M') {
+            type_label.setText("营销人员");
             member_grid.setVisible(false);
             hotel_grid.setVisible(false);
-        }else if(accountType == AccountType.Hotel) {
+        }else if(accountType == 'H') {
+            type_label.setText("酒店");
             hotel_grid.setVisible(true);
             member_grid.setVisible(false);
             initialHotel();
@@ -115,6 +120,7 @@ public class ManagerUserEditView implements Initializable {
 
     }
 
+    //初始化member的信息显示
     private void initialMember() {
         address_field.setText(controller.getAddress());
         phone_field.setText(controller.getPhone());
@@ -136,6 +142,7 @@ public class ManagerUserEditView implements Initializable {
         );
     }
 
+    //初始化hotel的信息显示
     private void initialHotel() {
         hotelAddress_field.setText(controller.getHotelAddress());
         hotelPhone_field.setText(controller.getHotelPhone());
@@ -143,27 +150,61 @@ public class ManagerUserEditView implements Initializable {
         discription_area.setText(controller.getHotelDiscription());
     }
 
+
     @FXML
-    private void handleCancel() {
-        try {
-            missionPane.getChildren().clear();
-            missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.ManagerUserSearch_View_Path)));
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void handleEditUser() {
+        //根据用户类型保存用户信息
+        char accountType = SingletonItem.getInstance().getSearchedId().charAt(0);
+        if(accountType == 'N') {
+            controller.setBirthDay(birthday_field.getValue());
+            controller.setUserName(name_field.getText());
+            controller.setAddress(address_field.getText());
+            controller.setPhone(phone_field.getText());
+            controller.setSex(sex);
+
+            controller.setBirthDay(birthday_field.getValue());
+        }else if(accountType == 'E') {
+            controller.setBirthDay(birthday_field.getValue());
+            controller.setUserName(name_field.getText());
+            controller.setAddress(address_field.getText());
+            controller.setPhone(phone_field.getText());
+            controller.setSex(sex);
+
+            controller.setEnterPrise(enterprise_field.getText());
+        }else if(accountType == 'M') {
+            controller.setUserName(name_field.getText());
+        }else if(accountType == 'H') {
+            controller.setHotelPhone(hotelPhone_field.getText());
+            controller.setHotelAddress(hotelAddress_field.getText());
+            controller.setHotelDiscription(discription_area.getText());
+            controller.setHotelPoint(hotelPoint_field.getPromptText());
+            controller.setHotelStar(star_combo.getValue());
+        }
+        ResultMessage msg = controller.updateInfo();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText("订单已提交！");
+            alert.showAndWait();
+        }else {
+            alert.setContentText("提交失败！");
+            alert.showAndWait();
         }
     }
 
     @FXML
-    private void handleEditUser() {
-        AccountType accountType = controller.getUserType();
-        if(accountType == AccountType.Member) {
-
-        }else if(accountType == AccountType.Enterprise) {
-
-        }else if(accountType == AccountType.Marketer) {
-
-        }else if(accountType == AccountType.Hotel) {
-
+    private void handleDelete() {
+        ResultMessage msg = controller.delUser(SingletonItem.getInstance().getSearchedId());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText("账号已删除！");
+            alert.showAndWait();
+        }else {
+            alert.setContentText("删除失败！");
+            alert.showAndWait();
         }
     }
 }

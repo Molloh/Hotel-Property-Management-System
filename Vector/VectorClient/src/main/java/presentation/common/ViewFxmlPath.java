@@ -55,8 +55,6 @@ public interface ViewFxmlPath {
 
     String ManagerRoot_View_Path = "/manager/ManagerRootView.fxml";
 
-    String ManagerUserSearch_View_Path = "/manager/ManagerUserSearchView.fxml";
-
     String ManagerUserAdd_View_Path = "/manager/ManagerUserAddView.fxml";
 
     String ManagerUserEdit_View_Path = "/manager/ManagerUserEditView.fxml";
