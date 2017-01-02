@@ -64,6 +64,13 @@ public interface HotelPromotionBlService {
 	public ResultMessage updateCooperationStrategy(String hotelId, CompanyProVo vo);
 	
 	/**
+	 * 得到酒店的企业合作策略
+	 * @param hotelId
+	 * @return
+	 */
+	public CompanyProVo getCooperationStrategy(String hotelId);
+	
+	/**
 	 * @param hotelId
 	 * @param memberId    企业账号
 	 * @return 若该企业为酒店合作企业，则得到相应关于合作企业促销策略
@@ -98,6 +105,13 @@ public interface HotelPromotionBlService {
 	 * @return 当前为客户生日时，得到生日优惠策略
 	 */
 	public double getBirthStrategy(String hotelId, Date birthDay);
+	
+	/**
+	 * 得到酒店的客户生日促销策略
+	 * @param hotelId
+	 * @return
+	 */
+	public BirthdayProVo getBirthStrategy(String hotelId);
 	
 	/**
 	 * 更新该酒店客户生日促销策略

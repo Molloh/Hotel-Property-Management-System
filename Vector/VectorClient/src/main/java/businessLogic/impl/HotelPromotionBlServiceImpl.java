@@ -127,6 +127,11 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 	}
 	
 	
+	public CompanyProVo getCooperationStrategy(String hotelId){
+		return new CompanyProVo(hotelPromotionDao.getCooperPro(hotelId));
+	}
+	
+	
 	@Override
 	public double getCooperationStrategy(String hotelId, String memberId){
 		CompanyProVo vo = new CompanyProVo(hotelPromotionDao.getCooperPro(hotelId));
@@ -176,6 +181,7 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		return null;
 	}
 	
+	
 	@Override	
 	public ResultMessage upBirthStrategy(String hotelId, BirthdayProVo vo){
 		//检查输入有效性
@@ -187,6 +193,12 @@ public class HotelPromotionBlServiceImpl implements HotelPromotionBlService{
 		
 	}
 
+	
+	public BirthdayProVo getBirthStrategy(String hotelId){
+		return new BirthdayProVo(hotelPromotionDao.getBirthPromotion(hotelId));
+	}
+	
+	
 	@Override
 	public double getBirthStrategy(String hotelId, Date birthDay){
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
