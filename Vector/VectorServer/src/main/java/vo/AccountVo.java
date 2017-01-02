@@ -11,7 +11,8 @@ import po.AccountPo;
  * @ description
  * 账号的基本属性有：ID、密码、名称、登录状态、用户类型
  */
-public class AccountVo  implements Serializable{
+public class
+AccountVo  implements Serializable{
     /**
 	 * 
 	 */

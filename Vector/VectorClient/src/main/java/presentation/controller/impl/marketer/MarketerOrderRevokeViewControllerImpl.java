@@ -2,10 +2,10 @@ package presentation.controller.impl.marketer;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.OrderCondition;
 import common.ResultMessage;
 import common.RoomType;
 import presentation.controller.service.marketer.MarketerOrderRevokeViewControllerService;
-import presentation.controller.service.marketer.MarketerOrderViewControllerService;
 import vo.OrderVo;
 
 import java.text.SimpleDateFormat;
@@ -117,5 +117,10 @@ public class MarketerOrderRevokeViewControllerImpl implements MarketerOrderRevok
     @Override
     public double getDiscountedPrice() {
         return orderVo.getDiscountedPrice();
+    }
+
+    @Override
+    public OrderCondition getOrderState() {
+        return orderVo.getCondition();
     }
 }

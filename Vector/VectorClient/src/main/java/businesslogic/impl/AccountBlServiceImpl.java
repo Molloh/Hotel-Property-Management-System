@@ -1,7 +1,6 @@
 package businessLogic.impl;
 
 import businessLogic.service.AccountBlService;
-import businessLogic.service.HotelBlService;
 import common.AccountType;
 import common.ResultMessage;
 import dataService.dao.service.AccountDao;

@@ -4,29 +4,31 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelOrderExeView">
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" stylesheets="@../css/InfoView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.hotel.HotelOrderExeView">
     <children>
-        <Label layoutX="97.0" layoutY="60.0" text="订单编号" />
-        <Label fx:id="orderId_label" layoutX="97.0" layoutY="82.0" text="2012121200001" />
-        <Label layoutX="97.0" layoutY="112.0" text="酒店名" />
-        <Label layoutX="97.0" layoutY="166.0" text="房间数量" />
-        <Label layoutX="97.0" layoutY="200.0" text="开始时间" />
-        <Label layoutX="97.0" layoutY="234.0" text="退房时间" />
-        <Label layoutX="97.0" layoutY="265.0" text="最晚订单执行时间" />
-        <Label layoutX="97.0" layoutY="289.0" text="预计入住人数" />
-        <Label layoutX="97.0" layoutY="327.0" text="有无儿童" />
-        <Label layoutX="97.0" layoutY="137.0" text="房间类型" />
-        <Button layoutX="485.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleCancel" text="返回" />
-        <Button fx:id="exe_btn" layoutX="300.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleExe" text="确认执行" />
-        <Label fx:id="hotel_label" layoutX="169.0" layoutY="112.0" text="hotel" />
-        <Label fx:id="num_label" layoutX="167.0" layoutY="166.0" text="num" />
-        <Label fx:id="start_label" layoutX="169.0" layoutY="200.0" text="time" />
-        <Label fx:id="end_label" layoutX="169.0" layoutY="234.0" text="time" />
-        <Label fx:id="last_label" layoutX="212.0" layoutY="265.0" text="time" />
-        <Label fx:id="type_label" layoutX="169.0" layoutY="137.0" text="type" />
-        <Label fx:id="people_label" layoutX="212.0" layoutY="289.0" text="people" />
-        <Label fx:id="yesOrNo_label" layoutX="171.0" layoutY="327.0" text="yes" />
-      <Button fx:id="delay_btn" layoutX="432.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelay" text="退房" />
-      <Button fx:id="revoke_btn" layoutX="379.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRevoke" text="延期" />
+        <Label layoutX="255.0" layoutY="146.0" text="订单编号" />
+        <Label fx:id="orderId_label" layoutX="394.0" layoutY="146.0" text="2012121200001" />
+        <Label layoutX="255.0" layoutY="184.0" text="酒店名" />
+        <Label layoutX="255.0" layoutY="265.0" text="房间数量" />
+        <Label layoutX="255.0" layoutY="307.0" text="开始时间" />
+        <Label layoutX="255.0" layoutY="350.0" text="退房时间" />
+        <Label layoutX="255.0" layoutY="395.0" text="最晚订单执行时间" />
+        <Label layoutX="256.0" layoutY="442.0" text="预计入住人数" />
+        <Label layoutX="255.0" layoutY="483.0" text="有无儿童" />
+        <Label layoutX="255.0" layoutY="225.0" text="房间类型" />
+        <Button layoutX="575.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="normal-button" text="返回" />
+        <Button id="save-btn" fx:id="exe_btn" layoutX="575.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleExe" styleClass="normal-button" text="执行" />
+        <Label fx:id="hotel_label" layoutX="394.0" layoutY="184.0" text="hotel" />
+        <Label fx:id="num_label" layoutX="396.0" layoutY="265.0" text="num" />
+        <Label fx:id="start_label" layoutX="397.0" layoutY="307.0" text="time" />
+        <Label fx:id="end_label" layoutX="397.0" layoutY="350.0" text="time" />
+        <Label fx:id="last_label" layoutX="397.0" layoutY="395.0" text="time" />
+        <Label fx:id="type_label" layoutX="396.0" layoutY="225.0" text="type" />
+        <Label fx:id="people_label" layoutX="397.0" layoutY="442.0" text="people" />
+        <Label fx:id="yesOrNo_label" layoutX="400.0" layoutY="483.0" text="yes" />
+      <Button id="save-btn" fx:id="delay_btn" layoutX="575.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleDelay" styleClass="normal-button" text="退房" />
+      <Button id="save-btn" fx:id="revoke_btn" layoutX="575.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleRevoke" styleClass="normal-button" text="延期" />
+      <Label layoutX="255.0" layoutY="110.0" text="订单价格" />
+      <Label fx:id="price_label" layoutX="392.0" layoutY="110.0" text="订单价格" />
     </children>
 </AnchorPane>

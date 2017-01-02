@@ -6,17 +6,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TreeMap;
 
 import common.ResultMessage;
 import dataService.dataHelper.service.CreditDataHelper;
 import po.CreditRecordPo;
-import vo.CreditRecordVo;
 
 /**
  * Updated by lienming on 2016-12-31.

@@ -132,7 +132,7 @@ public class MemberOrderView implements Initializable {
             case "未执行订单": return OrderCondition.WAITING;
             case "已执行订单": return OrderCondition.EXECUTED;
             case "执行中订单": return OrderCondition.EXECUTING;
-            case "待评价订单": return OrderCondition.FINISHED;
+            case "已评价订单": return OrderCondition.FINISHED;
             case "取消的订单": return OrderCondition.CANCELED;
             case "异常订单": return OrderCondition.ABNORMAL;
             default: return null;

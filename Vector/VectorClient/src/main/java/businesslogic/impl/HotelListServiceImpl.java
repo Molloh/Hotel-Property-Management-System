@@ -229,7 +229,7 @@ public class HotelListServiceImpl implements HotelListService{
 			for(HotelVo hotel : list){
 				List<HotelTypeRoomVo> typeRoomList = hotel.getTypeRoom();
 			
-				if(!typeRoomList.isEmpty()) continue;
+				if(typeRoomList.isEmpty()) continue;
 				Iterator<HotelTypeRoomVo> it = typeRoomList.iterator();
 			
 				while(it.hasNext()){

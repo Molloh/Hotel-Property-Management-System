@@ -6,7 +6,8 @@ import java.util.Date;
 import common.Sex;
 import po.MemberPo;
 
-public class MemberVo implements Serializable{
+public class
+MemberVo implements Serializable{
 	
 	/**
 	 * 

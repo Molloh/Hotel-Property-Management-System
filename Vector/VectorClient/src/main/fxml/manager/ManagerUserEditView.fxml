@@ -54,7 +54,7 @@
           <TextField fx:id="name_field" editable="false" layoutX="198.0" layoutY="147.0" prefWidth="250.0" />
       <Button id="save-btn" fx:id="delete_btn" layoutX="544.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleDelete" styleClass="normal-button" text="删除" />
           <Button id="save-btn" layoutX="641.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleEditUser" styleClass="normal-button" text="保存" />
-      <Button layoutX="732.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="normal-button" text="取消" />
+      <Button layoutX="732.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleMissionCancel" styleClass="normal-button" text="取消" />
       <Label layoutX="93.0" layoutY="62.0" text="用户类别：" />
       <Label fx:id="type_label" layoutX="198.0" layoutY="62.0" text="类别" />
       <GridPane fx:id="hotel_grid" alignment="CENTER_RIGHT" layoutX="-4.0" layoutY="221.0" prefHeight="489.0" prefWidth="750.0" visible="false">

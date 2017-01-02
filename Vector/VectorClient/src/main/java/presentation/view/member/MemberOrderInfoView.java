@@ -66,7 +66,7 @@ public class MemberOrderInfoView implements Initializable {
         OrderCondition orderCondition = controller.getOrderCondition();
         if(orderCondition == OrderCondition.WAITING) {
             delete_btn.setVisible(true);
-        }else if(orderCondition == OrderCondition.FINISHED) {
+        }else if(orderCondition == OrderCondition.EXECUTED) {
             comment_btn.setVisible(true);
         }
 
@@ -105,7 +105,7 @@ public class MemberOrderInfoView implements Initializable {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Person");
+            dialogStage.setTitle("评价酒店");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);

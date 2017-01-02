@@ -11,6 +11,7 @@ import presentation.controller.impl.hotel.HotelRoomViewControllerImpl;
 import presentation.controller.impl.member.MemberHotelInfoViewControllerImpl;
 import presentation.controller.service.hotel.HotelRoomViewControllerService;
 import presentation.controller.service.member.MemberHotelInfoViewControllerService;
+import presentation.view.unity.StyleUnity;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +60,8 @@ public class HotelRoomView implements Initializable {
         price_field.setVisible(false);
         price_label.setVisible(false);
 
+        StyleUnity.numeric(num_field);
+        StyleUnity.numeric(price_field);
 
         mission_choice.getItems().addAll("更新入住", "更新退房", "设置房间数量");
         roomType_combo.getItems().addAll(RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
@@ -95,6 +98,7 @@ public class HotelRoomView implements Initializable {
             if(type != null) {
                 msg = helper.initializeRoom(type, Integer.valueOf(num_field.getText()), Integer.valueOf(price_field.getText()));
                 popUp(msg);
+                initRoom();
             }
         }else {
             String command = mission_choice.getValue();
@@ -106,11 +110,15 @@ public class HotelRoomView implements Initializable {
             }
             popUp(msg);
         }
+
         initRoom();
     }
 
     @FXML
     private void handleClear() {
+        mission_choice.setValue("");
+        roomType_combo.setValue(null);
+        num_field.clear();
 
     }
 

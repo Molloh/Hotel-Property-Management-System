@@ -1,6 +1,5 @@
 package presentation.view.unity;
 
-import businessLogic.service.HotelPromotionBlService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,7 +9,6 @@ import presentation.controller.service.hotel.HotelPromotionViewControllerService
 import vo.ActivityPromotionVo;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;

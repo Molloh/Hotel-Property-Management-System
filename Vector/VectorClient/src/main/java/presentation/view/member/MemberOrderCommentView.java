@@ -1,7 +1,9 @@
 package presentation.view.member;
 
 import businessLogic.impl.HotelBlServiceImpl;
+import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.HotelBlService;
+import businessLogic.service.OrderBlService;
 import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,10 +29,12 @@ public class MemberOrderCommentView implements Initializable {
 
     private Stage dialogStage;
     private HotelBlService controller;
+    private OrderBlService order;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = HotelBlServiceImpl.getInstance();
+        order = OrderBlServiceImpl.getInstance();
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -40,18 +44,21 @@ public class MemberOrderCommentView implements Initializable {
     //处理提交评价界面
     @FXML
     private void handleComment() {
+        controller.getHotelVo(order.getHotelId(SingletonItem.getInstance().getOrderId()));
         ResultMessage msg = controller.comment(SingletonItem.getInstance().getOrderId(),commentArea.getText(), Double.valueOf(point.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Tips");
         alert.setHeaderText("");
         if(msg == ResultMessage.SUCCEED) {
+            dialogStage.close();
             alert.setContentText("评价成功！");
             alert.showAndWait();
         }else {
+            dialogStage.close();
             alert.setContentText("评价失败！");
             alert.showAndWait();
         }
-        dialogStage.close();
+
     }
 
     @FXML

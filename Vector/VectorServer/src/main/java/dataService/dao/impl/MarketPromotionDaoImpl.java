@@ -16,7 +16,8 @@ import po.LevelPo;
 import po.MemberPo;
 import vo.MemberVo;
 
-public class MarketPromotionDaoImpl implements MarketPromotionDao{
+public class
+MarketPromotionDaoImpl implements MarketPromotionDao{
 	
 	private DataFactory dataFactory;
 

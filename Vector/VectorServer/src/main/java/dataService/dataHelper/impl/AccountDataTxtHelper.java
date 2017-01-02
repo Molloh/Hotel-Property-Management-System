@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;

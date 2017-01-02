@@ -4,7 +4,6 @@ import businessLogic.impl.HotelBlServiceImpl;
 import businessLogic.service.HotelBlService;
 import common.ResultMessage;
 import presentation.controller.service.hotel.HotelInfoViewControllerService;
-import presentation.view.hotel.HotelInfoView;
 import vo.HotelVo;
 
 /**

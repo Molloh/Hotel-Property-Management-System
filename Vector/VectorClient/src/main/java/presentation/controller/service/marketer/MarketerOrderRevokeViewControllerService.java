@@ -1,5 +1,6 @@
 package presentation.controller.service.marketer;
 
+import common.OrderCondition;
 import common.ResultMessage;
 import common.RoomType;
 
@@ -43,4 +44,6 @@ public interface MarketerOrderRevokeViewControllerService {
     double getDiscount();
 
     double getDiscountedPrice();
+
+    OrderCondition getOrderState();
 }

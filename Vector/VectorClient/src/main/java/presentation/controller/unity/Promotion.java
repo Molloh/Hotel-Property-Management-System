@@ -2,7 +2,6 @@ package presentation.controller.unity;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import vo.ActivityPromotionVo;
 
 import java.util.Date;

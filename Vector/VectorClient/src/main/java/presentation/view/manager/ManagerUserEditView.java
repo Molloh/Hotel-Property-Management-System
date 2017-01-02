@@ -85,9 +85,8 @@ public class ManagerUserEditView implements Initializable {
 
         star_combo.getItems().addAll("1", "2", "3", "4", "5");
         name_field.setText(controller.getUserName());
-        name_field.setEditable(true);
-        hotelAddress_field.setEditable(true);
         ID_label.setText(SingletonItem.getInstance().getSearchedId());
+        initEditable();
 
         //根据用户类型初始化界面
         char accountType = SingletonItem.getInstance().getSearchedId().charAt(0);
@@ -126,6 +125,15 @@ public class ManagerUserEditView implements Initializable {
 
     }
 
+    private void initEditable () {
+        name_field.setEditable(true);
+        hotelAddress_field.setEditable(true);
+        birthday_field.setEditable(true);
+        enterprise_field.setEditable(true);
+        address_field.setEditable(true);
+        phone_field.setEditable(true);
+    }
+
     //初始化member的信息显示
     private void initialMember() {
         address_field.setText(controller.getAddress());
@@ -162,7 +170,6 @@ public class ManagerUserEditView implements Initializable {
         //根据用户类型保存用户信息
         char accountType = SingletonItem.getInstance().getSearchedId().charAt(0);
         if(accountType == 'N') {
-            controller.setBirthDay(birthday_field.getValue());
             controller.setUserName(name_field.getText());
             controller.setAddress(address_field.getText());
             controller.setPhone(phone_field.getText());
@@ -170,7 +177,6 @@ public class ManagerUserEditView implements Initializable {
 
             controller.setBirthDay(birthday_field.getValue());
         }else if(accountType == 'E') {
-            controller.setBirthDay(birthday_field.getValue());
             controller.setUserName(name_field.getText());
             controller.setAddress(address_field.getText());
             controller.setPhone(phone_field.getText());
@@ -215,7 +221,7 @@ public class ManagerUserEditView implements Initializable {
     }
 
     @FXML
-    private void handleCancel() {
+    private void handleMissionCancel() {
         missionPane.getChildren().clear();
     }
 }

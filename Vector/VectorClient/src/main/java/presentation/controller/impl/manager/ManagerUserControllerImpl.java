@@ -9,7 +9,6 @@ import businessLogic.service.MemberBlService;
 import common.AccountType;
 import common.ResultMessage;
 import common.Sex;
-import javafx.fxml.FXML;
 import presentation.controller.service.manager.ManagerUserControllerService;
 import vo.AccountVo;
 import vo.HotelVo;

@@ -151,6 +151,7 @@ public class HotelDaoImpl implements HotelDao{
 	
 	@Override
 	public int getReadyRoom(String hotelId, RoomType type){
+		map = hotelDataHelper.getHotelData();
 		HotelPo po = findHotel(hotelId);
 		
 		List<HotelTypeRoomPo> list = po.getTypeRoom();

@@ -1,9 +1,11 @@
 package presentation.view.marketer;
 
+import common.OrderCondition;
 import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,6 +47,9 @@ public class MarketerOrderRevokeView implements Initializable {
     private Label people_label;
 
     @FXML
+    private Group revoke;
+
+    @FXML
     private Button revoke_btn;
 
     @FXML
@@ -56,6 +61,11 @@ public class MarketerOrderRevokeView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         controller = MarketerOrderRevokeViewControllerImpl.getInstance();
         controller.setOrderId(SingletonItem.getInstance().getOrderId());
+
+        revoke.setVisible(false);
+        OrderCondition state = controller.getOrderState();
+        if(state == OrderCondition.ABNORMAL)
+            revoke.setVisible(true);
 
         revoke_btn.setVisible(true);
 

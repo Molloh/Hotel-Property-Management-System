@@ -4,7 +4,6 @@ import businessLogic.impl.HotelListServiceImpl;
 import businessLogic.service.HotelListService;
 import common.RoomType;
 import presentation.controller.service.member.MemberHotelListViewControllerService;
-import presentation.view.member.MemberHotelListView;
 import vo.HotelVo;
 
 import java.util.List;
@@ -48,6 +47,7 @@ public class MemberHotelListViewControllerImpl implements MemberHotelListViewCon
 
     @Override
     public List<HotelVo> findByRoomType(RoomType type, List<HotelVo> list) {
+        System.out.print(hotelList.findByRoomType(type, list).isEmpty());
         return hotelList.findByRoomType(type, list);
     }
 

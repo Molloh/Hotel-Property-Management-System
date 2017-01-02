@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" stylesheets="@../css/InfoView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerOrderRevokeView">
     <children>
-        <Button layoutX="659.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="normal-button" text="取消" />
-        <Button id="save-btn" fx:id="revoke_btn" layoutX="517.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleRevoke" styleClass="normal-button" text="恢复" />
-      <Label layoutX="514.0" layoutY="500.0" text="信用值恢复" />
-      <TextField fx:id="credit_field" layoutX="517.0" layoutY="546.0" prefHeight="23.0" prefWidth="212.0" />
+      <Group fx:id="revoke" layoutX="-60.0" layoutY="2.0">
+         <children>
+            <TextField fx:id="credit_field" layoutX="517.0" layoutY="546.0" prefHeight="23.0" prefWidth="183.0" />
+            <Label layoutX="514.0" layoutY="500.0" text="信用值恢复" />
+              <Button id="save-btn" fx:id="revoke_btn" layoutX="517.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleRevoke" styleClass="normal-button" text="恢复" />
+         </children>
+      </Group>
+        <Button layoutX="572.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleCancel" styleClass="normal-button" text="取消" />
       <Label fx:id="yesOrNo_label" layoutX="342.0" layoutY="559.0" text="yes" />
       <Label fx:id="people_label" layoutX="338.0" layoutY="500.0" text="people" />
       <Label fx:id="type_label" layoutX="338.0" layoutY="220.0" text="type" />

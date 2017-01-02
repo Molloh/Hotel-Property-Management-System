@@ -48,6 +48,8 @@ public class HotelOrderExeView implements Initializable {
     private Label last_label;
     @FXML
     private Label people_label;
+    @FXML
+    private Label price_label;
 
     @FXML
     private Button revoke_btn;
@@ -71,6 +73,7 @@ public class HotelOrderExeView implements Initializable {
     }
 
     private void initOrder() {
+        price_label.setText("￥" + String.valueOf(controller.getDiscountedPrice()));
         orderId_label.setText(SingletonItem.getInstance().getOrderId());
         hotel_label.setText(controller.getHotelName());
         type_label.setText(controller.getRoomType().name());

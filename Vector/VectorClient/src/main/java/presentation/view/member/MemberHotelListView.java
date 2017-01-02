@@ -15,13 +15,13 @@ import presentation.common.ViewFxmlPath;
 import presentation.controller.unity.Hotel;
 import presentation.controller.impl.member.MemberHotelListViewControllerImpl;
 import presentation.controller.service.member.MemberHotelListViewControllerService;
+import presentation.view.unity.StyleUnity;
 import vo.HotelVo;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -73,9 +73,9 @@ public class MemberHotelListView implements Initializable {
 
     private MemberHotelListViewControllerService controller;
 
-    private ArrayList<HotelVo> hotelList;
+    private ArrayList<HotelVo> hotelList = new ArrayList<>();
 
-    private ArrayList<HotelVo> hotelSubList;
+    private ArrayList<HotelVo> hotelSubList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -85,6 +85,11 @@ public class MemberHotelListView implements Initializable {
         province_choice.setPromptText("省");
         city_choice.setPromptText("市");
         cbd_choice.setPromptText("商圈");
+
+        StyleUnity.numeric(lowPoint_field);
+        StyleUnity.numeric(lowPrice_field);
+        StyleUnity.numeric(highPoint_field);
+        StyleUnity.numeric(highPrice_field);
 
         initChoice();
     }
@@ -96,12 +101,12 @@ public class MemberHotelListView implements Initializable {
         star_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     if(hotelList != null) {
-                        if(star_choice.getItems().get(new_val.intValue()) == 0 || star_choice.getItems().get(new_val.intValue()) != null) {
-                            initTable(hotelList);
-                        }else {
+                        if(star_choice.getItems().get(new_val.intValue()) != 0 && star_choice.getItems().get(new_val.intValue()) != null) {
                             hotelSubList = (ArrayList<HotelVo>) controller
                                     .findByStars(star_choice.getItems().get(new_val.intValue()), hotelList);
                             initTable(hotelSubList);
+                        }else {
+                            initTable(hotelList);
                         }
                     }
                 }
@@ -112,7 +117,7 @@ public class MemberHotelListView implements Initializable {
         roomType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                     if(hotelList != null) {
-                        if(roomType_choice.getItems().get((Integer)new_val) != RoomType.ALL && roomType_choice.getItems().get((Integer)new_val) != null) {
+                        if((roomType_choice.getItems().get((Integer)new_val) != RoomType.ALL) && (roomType_choice.getItems().get((Integer)new_val) != null)) {
                             hotelSubList = (ArrayList<HotelVo>) controller
                                     .findByRoomType(roomType_choice.getItems().get((Integer)new_val), hotelList);
                             initTable(hotelSubList);
@@ -203,14 +208,15 @@ public class MemberHotelListView implements Initializable {
     //根据关键字查找酒店
     @FXML
     private void selectHotelByKeyWord() {
-        hotelList = (ArrayList<HotelVo>) controller.findByKeyword(keyword_field.getText());
-        initTable(hotelList);
+        ArrayList<HotelVo> ist = (ArrayList<HotelVo>) controller.findByKeyword(keyword_field.getText());
+        initTable(ist);
     }
 
     //重置搜索条件
     @FXML
     private void handleRefresh() {
         initTable(hotelList);
+        hotelSubList = hotelList;
         highPoint_field.clear();
         lowPoint_field.clear();
         highPrice_field.clear();
@@ -227,7 +233,7 @@ public class MemberHotelListView implements Initializable {
                 propertyList.add(
                         new Hotel(hotelVo.getHotelName() + "#" + hotelVo.getId(),
                         hotelVo.getStars(),
-                        hotelVo.getNumOfpoint(),
+                        hotelVo.getPoStrings(),
                         hotelVo.getHotelPosition(),
                         hotelVo.getOriginPrice(RoomType.SINGLE)));
             }
@@ -257,9 +263,9 @@ public class MemberHotelListView implements Initializable {
                 String name = item.split("#")[0];
                 String id = item.split("#")[1];
                 hotel_btn = new Button(name);
-                SingletonItem.getInstance().setHotelId(id);
                 setGraphic(hotel_btn);
                 hotel_btn.setOnAction(event -> {
+                    SingletonItem.getInstance().setHotelId(id);
                     try {
                         missionPane.getChildren().clear();
                         missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.MemberHotelInfo_View_Path)));

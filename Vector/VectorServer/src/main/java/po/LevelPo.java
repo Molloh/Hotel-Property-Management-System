@@ -8,7 +8,8 @@ import java.io.Serializable;
  * @description 会员等级。该po包含一个等级的属性：等级名称，升到该等级所需的信用值，该等级对应的折扣
  *              由网站营销人员制定，普通客户调用
  */
-public class LevelPo implements Serializable {
+public class
+LevelPo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int level;                  //等级

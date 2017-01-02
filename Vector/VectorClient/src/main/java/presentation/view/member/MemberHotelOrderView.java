@@ -3,7 +3,6 @@ package presentation.view.member;
 import common.ResultMessage;
 import common.RoomType;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,13 +14,12 @@ import presentation.controller.impl.member.MemberHotelInfoViewControllerImpl;
 import presentation.controller.impl.member.MemberHotelOrderViewControllerImpl;
 import presentation.controller.service.member.MemberHotelInfoViewControllerService;
 import presentation.controller.service.member.MemberHotelOrderViewControllerService;
-import vo.HotelVo;
+import presentation.view.unity.StyleUnity;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -56,6 +54,9 @@ public class MemberHotelOrderView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        StyleUnity.numeric(peopleNum_field);
+        StyleUnity.numeric(stayDays_field);
+        StyleUnity.numeric(roomNum_field);
         controller = MemberHotelOrderViewControllerImpl.getInstance();
         MemberHotelInfoViewControllerService tempController = MemberHotelInfoViewControllerImpl.getInstance();
         tempController.setHotelId(SingletonItem.getInstance().getHotelId());
@@ -96,7 +97,7 @@ public class MemberHotelOrderView implements Initializable {
 
     //处理订单提交事件
     @FXML
-    private void handleSubmit() {
+    private void handleSubmit() throws IOException {
         String memberId = SingletonItem.getInstance().getActivateId();
         String hoteId = SingletonItem.getInstance().getHotelId();
         LocalDate localDate = checkInTime_date.getValue();
@@ -119,5 +120,6 @@ public class MemberHotelOrderView implements Initializable {
             alert.setContentText("提交失败！");
             alert.showAndWait();
         }
+        handleCancel();
     }
 }

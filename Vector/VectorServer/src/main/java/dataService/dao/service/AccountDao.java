@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 
 import common.AccountType;
 import common.ResultMessage;
-import po.AccountPo;
 import vo.AccountVo;
 
 /**

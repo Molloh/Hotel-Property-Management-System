@@ -1,14 +1,9 @@
 package presentation.controller.impl.hotel;
 
 import businessLogic.impl.HotelPromotionBlServiceImpl;
-import businessLogic.service.HotelBlService;
 import businessLogic.service.HotelPromotionBlService;
 import common.ResultMessage;
-import javafx.fxml.FXML;
-import presentation.common.SingletonItem;
-import presentation.controller.service.hotel.HotelInfoViewControllerService;
 import presentation.controller.service.hotel.HotelPromotionViewControllerService;
-import presentation.view.hotel.HotelPromotionView;
 import vo.ActivityPromotionVo;
 import vo.BirthdayProVo;
 import vo.CompanyProVo;
