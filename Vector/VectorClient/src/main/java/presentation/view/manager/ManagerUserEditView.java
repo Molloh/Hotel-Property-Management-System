@@ -85,6 +85,8 @@ public class ManagerUserEditView implements Initializable {
 
         star_combo.getItems().addAll("1", "2", "3", "4", "5");
         name_field.setText(controller.getUserName());
+        name_field.setEditable(true);
+        hotelAddress_field.setEditable(true);
         ID_label.setText(SingletonItem.getInstance().getSearchedId());
 
         //根据用户类型初始化界面
@@ -189,10 +191,10 @@ public class ManagerUserEditView implements Initializable {
         alert.setTitle("Tips");
         alert.setHeaderText("");
         if(msg == ResultMessage.SUCCEED) {
-            alert.setContentText("订单已提交！");
+            alert.setContentText("修改成功！");
             alert.showAndWait();
         }else {
-            alert.setContentText("提交失败！");
+            alert.setContentText("失败！");
             alert.showAndWait();
         }
     }

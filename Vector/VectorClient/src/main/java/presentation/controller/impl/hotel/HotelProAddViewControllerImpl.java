@@ -60,6 +60,6 @@ public class HotelProAddViewControllerImpl implements HotelProAddViewControllerS
 
         @Override
         public ResultMessage update() {
-            return hotelPromotionBlService.addActivityStrategy(SingletonItem.getInstance().getHotelId(), vo);
+            return hotelPromotionBlService.addActivityStrategy(SingletonItem.getInstance().getActivateId(), vo);
         }
 }
