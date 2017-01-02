@@ -74,9 +74,9 @@ public class MemberHotelInfoView implements Initializable {
         double_label.setText("￥" + controller.getHotelRoomPrice(RoomType.DOUBLE));
         family_label.setText("￥" + controller.getHotelRoomPrice(RoomType.FAMILY));
 
-        singleNum_label.setText("100" + "间");
-        doubleNum_label.setText("120" + "间");
-        familyNum_label.setText("50" + "间");
+        singleNum_label.setText(controller.getRoomNum(RoomType.SINGLE) + "间");
+        doubleNum_label.setText(controller.getRoomNum(RoomType.DOUBLE) + "间");
+        familyNum_label.setText(controller.getRoomNum(RoomType.FAMILY) + "间");
 
         ArrayList<String> list = (ArrayList<String>) controller.getComment();
         if(list.isEmpty()) {

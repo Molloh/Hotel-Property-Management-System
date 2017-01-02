@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="faa990ec-c1f2-406b-a89a-91a8ec201095" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelOrderExeView.fxml" afterPath="$PROJECT_DIR$/VectorClient/src/main/fxml/hotel/HotelOrderExeView.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelInfoViewControllerService.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelInfoViewControllerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java" afterPath="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java" />
     </list>
     <ignored path="Vector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,107 +32,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HotelBlService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelBlService.java">
+      <file leaf-file-name="HotelRoomViewControllerImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HotelPromotionBlService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/businessLogic/service/HotelPromotionBlService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="44" column="4" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HotelOrderExeViewControllerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelOrderExeViewControllerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberOrderInfoView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-648">
-              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberOrderInfoViewControllerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+            <state relative-caret-position="324">
+              <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
               <folding>
-                <element signature="e#1239#1240#0" expanded="true" />
-                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#834#835#0" expanded="true" />
+                <element signature="e#899#900#0" expanded="true" />
+                <element signature="e#1158#1159#0" expanded="true" />
+                <element signature="e#1222#1223#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemberHotelListViewControllerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelListViewControllerImpl.java">
+      <file leaf-file-name="HotelRoomView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberHotelInfoViewControllerImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="61" column="79" lean-forward="false" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
-              <folding>
-                <element signature="e#1572#1573#0" expanded="true" />
-                <element signature="e#1659#1660#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberHotelInfoView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="76" column="32" lean-forward="false" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HotelInfoViewControllerImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="51" column="50" lean-forward="false" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HotelOrderExeView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelOrderExeView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="86" column="37" lean-forward="false" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
+            <state relative-caret-position="342">
+              <caret line="48" column="53" lean-forward="true" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -173,13 +92,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderCommentView.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberOrderInfoView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerRootView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/manager/ManagerUserAddView.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberCreditViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberCreditViewControllerService.java" />
-        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelInfoViewControllerService.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelListViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelListViewControllerService.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelOrderViewControllerImpl.java" />
@@ -224,6 +140,9 @@
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberOrderInfoViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java" />
         <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelInfoViewControllerService.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java" />
+        <option value="$PROJECT_DIR$/VectorClient/src/main/java/vo/HotelVo.java" />
       </list>
     </option>
   </component>
@@ -761,6 +680,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="member" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="marketer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -926,6 +887,48 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="marketer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VectorClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1903,7 +1906,7 @@
       <workItem from="1483268689800" duration="1296000" />
       <workItem from="1483270348991" duration="38415000" />
       <workItem from="1483309915640" duration="4980000" />
-      <workItem from="1483317740197" duration="1455000" />
+      <workItem from="1483317740197" duration="2163000" />
     </task>
     <servers />
   </component>
@@ -1931,7 +1934,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223904000" />
+    <option name="totallyTimeSpent" value="224612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -2025,51 +2028,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/marketer/MarketerOrderRevokeViewControllerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/marketer/MarketerOrderRevokeView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="81" column="42" lean-forward="false" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberCreditViewControllerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
-          <folding>
-            <element signature="e#634#635#0" expanded="false" />
-            <element signature="e#692#693#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelOrderView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="96" column="14" lean-forward="false" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/marketer/MarketerOrderView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="70" column="99" lean-forward="false" selection-start-line="70" selection-start-column="99" selection-end-line="70" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/marketer/MarketerCreditView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -2457,11 +2415,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelOrderExeViewControllerImpl.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/manager/ManagerUserControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="414">
+          <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/vo/HotelVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="755">
+          <caret line="171" column="15" lean-forward="false" selection-start-line="171" selection-start-column="15" selection-end-line="171" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/service/member/MemberHotelInfoViewControllerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="61" column="80" lean-forward="true" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
+          <folding>
+            <element signature="e#1572#1573#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2469,14 +2462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="51" column="50" lean-forward="false" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -2500,22 +2485,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/member/MemberHotelInfoView.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelOrderExeViewControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="76" column="32" lean-forward="false" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+        <state relative-caret-position="306">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/member/MemberHotelInfoViewControllerImpl.java">
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelInfoViewControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="61" column="79" lean-forward="false" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
+        <state relative-caret-position="630">
+          <caret line="51" column="50" lean-forward="false" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/controller/impl/hotel/HotelRoomViewControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
           <folding>
-            <element signature="e#1572#1573#0" expanded="true" />
-            <element signature="e#1659#1660#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="e#1158#1159#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorClient/src/main/java/presentation/view/hotel/HotelRoomView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="48" column="53" lean-forward="true" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
