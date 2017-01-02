@@ -41,7 +41,8 @@ public class HotelPromotionDataTxtHelper implements HotelPromotionDataHelper{
 			BirthdayProPo bpo = new BirthdayProPo(1.0);
 			updateBirthPromotion(hotelId, bpo);
 			
-			CompanyProPo cpo = new CompanyProPo(1.0, null);
+			List<String> companyList = new ArrayList<String>();
+			CompanyProPo cpo = new CompanyProPo(1.0, companyList);
 			updateCompanyPro(hotelId, cpo);
 			return ResultMessage.SUCCEED;
 		} catch (IOException e) {
