@@ -51,6 +51,7 @@ public class TestAddressList {
 
 	@Test
 	public void testBusiness() {
+		
 		List<String> list1 = test.getBusinessList("江苏", "南京");
 		assertEquals(3, list1.size());
 		assertEquals(true, list1.contains("夫子庙"));
@@ -65,6 +66,16 @@ public class TestAddressList {
 		
 		List<String> list3 = test.getBusinessList("上海", "黄浦区");
 		assertEquals(3, list3.size());
-		assertEquals(true, list3.contains("外滩地区"));
+		//assertEquals(true, list3.contains("外滩地区"));
+		
+		//err test
+		List<String> list4 = test.getBusinessList("上海", "");
+		assertEquals(null, list4.size());
+		
+		List<String> list5 = test.getBusinessList("上海", "###");
+		assertEquals(null, list5.size());
+		
+		List<String> list6 = test.getBusinessList("上海", "外滩地区");
+		assertEquals(0, list6.size());
 	}
 }

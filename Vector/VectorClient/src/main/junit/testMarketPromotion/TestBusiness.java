@@ -30,7 +30,7 @@ public class TestBusiness {
 		assertEquals(0.7, test.getBusinessDiscount("夫子庙"), 0.001);
 		
 		//error test
-		vo1 = new BusinessProVo("", 0);
+		vo1 = new BusinessProVo("新街口", 0);
 		ResultMessage msg1 = test.addBusinessStrategy(vo1);
 		assertEquals(ResultMessage.FAIL,msg1);
 	}

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import businessLogic.impl.HotelBlServiceImpl;
 import businessLogic.service.HotelBlService;
+import common.ResultMessage;
 import common.RoomType;
 import myTest.TestClient;
 import vo.HotelVo;
@@ -34,10 +35,19 @@ public class TestHotel {
 	@Test
 	public void testGiveComment() {
 		vo = test.getHotelVo("H00000");
-		HotelBlServiceImpl.getInstance().comment("2000","非常舒适",5.0);
+		ResultMessage msg = HotelBlServiceImpl.getInstance().comment("2016110891541","好评！",5.0);
+		assertEquals(ResultMessage.SUCCEED,msg);
+		
+		msg = HotelBlServiceImpl.getInstance().comment("2016110891541","一般",4.0);
+		assertEquals(ResultMessage.SUCCEED,msg);
+		
+		msg = HotelBlServiceImpl.getInstance().comment("2016110891541","",5.0);
+		assertEquals(ResultMessage.SUCCEED,msg);
+		
+		
 		List<String> l1 = vo.getCommentList();
 		assertEquals(5, l1.size());
-		assertEquals("非常舒适",l1.get(3));
+		assertEquals("好评！",l1.get(3));
 	}
 
 	@Test
@@ -68,6 +78,10 @@ public class TestHotel {
 		vo.setHotelTel("85991165");
 		test.updateBasicInfo(vo);
 		
+		vo = test.getHotelVo("H00000");
+		assertEquals("85991165", vo.getHotelTel());
+		
+		vo.setHotelTel("#123432");
 		vo = test.getHotelVo("H00000");
 		assertEquals("85991165", vo.getHotelTel());
 	}

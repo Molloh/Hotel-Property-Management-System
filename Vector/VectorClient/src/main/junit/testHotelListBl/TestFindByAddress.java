@@ -26,7 +26,11 @@ public class TestFindByAddress {
 		List<HotelVo> list0 = test.findByAddress("江苏", "南京", "");
 		assertEquals(0, list0.size());
 		
-		/*由于是选择筛选，无非法输入"#" */
+		
+		List<HotelVo> list_1 = test.findByAddress("江苏", "南京", "新街口");
+		assertEquals(2,  list_1.size());
+		assertEquals("H00021",  list_1.get(0).getId());
+		assertEquals("H00023",  list_1.get(1).getId());
 		
 		List<HotelVo> list1 = test.findByAddress("江苏", "南京", "夫子庙");
 		assertEquals(5, list1.size());
@@ -35,6 +39,7 @@ public class TestFindByAddress {
 		assertEquals("H00007", list1.get(2).getId());
 		assertEquals("H00002", list1.get(3).getId());
 		assertEquals("H00024", list1.get(4).getId());
+		
 		
 		
 		List<HotelVo> list2 = test.findByAddress("上海", "虹口区", "虹口足球场地区");

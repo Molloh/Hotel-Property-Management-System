@@ -45,6 +45,9 @@ public class TestAccount {
 		Assert.assertEquals("FAIL"  , test.register("Baidu", "2mmmmm0z",false));
 		Assert.assertEquals("FAIL"  , test.register("Tencent", "268889z",false));
 		
+		//error test
+		Assert.assertEquals("FAIL"  , test.register("", "",false));
+		Assert.assertEquals("FAIL"  , test.register("", "",true));
 	}
 
 	@Test

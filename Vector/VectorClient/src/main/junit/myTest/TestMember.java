@@ -35,6 +35,7 @@ public class TestMember {
 
 	@Test
 	public void testChargeCredit() {
+		
 		//test member
 		int ori = test.getCredit("N00007");
 		int charge = 1 ;
@@ -43,6 +44,21 @@ public class TestMember {
 		Assert.assertEquals(1,test.getInfo("N00007").getVip());
 		test.chargeCredit("N00007",100);
 		Assert.assertEquals(2,test.getInfo("N00007").getVip());
+		
+		//err test
+		ResultMessage msg = test.chargeCredit("", 0);
+		Assert.assertEquals(ResultMessage.FAIL,msg);
+		
+		 msg = test.chargeCredit("N00003", 0);
+		 Assert.assertEquals(ResultMessage.SUCCEED,msg);
+		 
+		 msg = test.chargeCredit("N00003", 1000);
+		 Assert.assertEquals(ResultMessage.SUCCEED,msg);
+		 Assert.assertEquals(10,test.getInfo("N00003").getVip());
+		 
+		 msg = test.chargeCredit("N00004", 1500);
+		 Assert.assertEquals(ResultMessage.SUCCEED,msg);
+		 Assert.assertEquals(15,test.getInfo("N00004").getVip());
 	}
 
 	@Test
