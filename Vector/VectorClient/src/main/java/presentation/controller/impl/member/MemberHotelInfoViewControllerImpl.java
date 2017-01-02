@@ -1,6 +1,7 @@
 package presentation.controller.impl.member;
 
 import businessLogic.impl.HotelBlServiceImpl;
+import businessLogic.service.HotelBlService;
 import common.RoomType;
 import presentation.controller.service.member.MemberHotelInfoViewControllerService;
 import vo.HotelVo;
@@ -43,7 +44,7 @@ public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewCon
 
     @Override
     public String getHotelPoint() {
-        return String.valueOf(hotelVo.getNumOfpoint());
+        return String.valueOf(hotelVo.getPoStrings());
     }
 
     @Override
@@ -54,6 +55,11 @@ public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewCon
     @Override
     public String getHotelRoomPrice(RoomType T) {
         return String.valueOf(hotelVo.getOriginPrice(T));
+    }
+
+    @Override
+    public String getRoomNum(RoomType T) {
+        return String.valueOf(HotelBlServiceImpl.getInstance().getReadyRoom(T));
     }
 
     @Override
