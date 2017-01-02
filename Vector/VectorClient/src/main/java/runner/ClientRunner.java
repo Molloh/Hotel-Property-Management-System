@@ -2,6 +2,8 @@ package runner;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -66,5 +68,5 @@ public class ClientRunner extends Application {
     public static void main(String[] args) throws RemoteException{
         launch(args);
     }
-  
+
 }
