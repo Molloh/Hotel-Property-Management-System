@@ -9,7 +9,7 @@ import presentation.controller.service.member.MemberHotelOrderViewControllerServ
 /**
  * @author Molloh
  * @version 2016/12/25
- * @description
+ * @description 提交界面的controller接口实现类
  */
 public class MemberHotelOrderViewControllerImpl implements MemberHotelOrderViewControllerService {
     private static MemberHotelOrderViewControllerService INSTANCE = new MemberHotelOrderViewControllerImpl();

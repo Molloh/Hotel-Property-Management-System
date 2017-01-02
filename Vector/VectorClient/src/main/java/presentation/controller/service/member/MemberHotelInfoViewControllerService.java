@@ -2,14 +2,18 @@ package presentation.controller.service.member;
 
 import common.RoomType;
 
+import java.util.List;
+
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2017/1/1
+ * @description 客户查看酒店信息界面的controller
  */
 public interface MemberHotelInfoViewControllerService {
 
     void setHotelId(String hotelId);
+
+    //hotel信息的get/set方法
 
     String getHotelName();
 
@@ -21,6 +25,6 @@ public interface MemberHotelInfoViewControllerService {
 
     String getHotelRoomPrice(RoomType T);
 
-    String getComment();
+    List<String> getComment();
 
 }

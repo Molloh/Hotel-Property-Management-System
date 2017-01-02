@@ -29,9 +29,9 @@ public interface ViewFxmlPath {
 
     String MemberOrderInfo_View_Path = "/member/MemberOrderInfoView.fxml";
 
-    String MemberOrderComment_View_Path = "/member/MemberOrderCommentView.fxml";
+    String MemberOrderComment_View_Path = "/unity/Comment.fxml";
 
-    String MemberCreidt_View_Patn = "/member/MemberCreditView.fxml";
+    String MemberCredit_View_Path = "/member/MemberCreditView.fxml";
 
     //Path for hotel's view
 

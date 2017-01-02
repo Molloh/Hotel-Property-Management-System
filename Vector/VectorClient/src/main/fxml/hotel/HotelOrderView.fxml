@@ -19,7 +19,7 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <TableView fx:id="order_list" prefHeight="625.0" prefWidth="748.0">
+            <TableView fx:id="order_list" prefHeight="625.0" prefWidth="748.0" stylesheets="@../css/InfoView.css">
                <columns>
                   <TableColumn fx:id="orderId_column" minWidth="100.0" prefWidth="123.0" text="订单号" />
                   <TableColumn fx:id="orderState_column" minWidth="77.0" prefWidth="114.0" text="订单状态" />

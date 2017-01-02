@@ -23,8 +23,8 @@ import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/3
- * @description
+ * @version 2016/12/31
+ * @description Manager 界面根节点
  */
 public class ManagerRootView implements Initializable {
     @FXML

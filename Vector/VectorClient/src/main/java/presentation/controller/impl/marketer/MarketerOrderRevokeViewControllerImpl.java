@@ -2,6 +2,7 @@ package presentation.controller.impl.marketer;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.ResultMessage;
 import common.RoomType;
 import presentation.controller.service.marketer.MarketerOrderRevokeViewControllerService;
 import presentation.controller.service.marketer.MarketerOrderViewControllerService;
@@ -36,6 +37,11 @@ public class MarketerOrderRevokeViewControllerImpl implements MarketerOrderRevok
     public void setOrderId(String orderId) {
         this.orderId = orderId;
         orderVo = order.getOrder(orderId);
+    }
+
+    @Override
+    public ResultMessage revoke(double d) {
+        return order.revoke(orderId, d);
     }
 
     @Override

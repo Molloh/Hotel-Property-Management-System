@@ -85,7 +85,7 @@ public class MemberRootView implements Initializable {
             SignViewControllerImpl.getInstance().signOut();
             System.exit(0);
         }else if(event.getSource() == credit_btn) {
-            fxmlPath = ViewFxmlPath.MemberCreidt_View_Patn;
+            fxmlPath = ViewFxmlPath.MemberCredit_View_Path;
         }
 
         if(fxmlPath != null)

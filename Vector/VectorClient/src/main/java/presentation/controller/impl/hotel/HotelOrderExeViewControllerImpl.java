@@ -2,6 +2,8 @@ package presentation.controller.impl.hotel;
 
 import businessLogic.impl.OrderBlServiceImpl;
 import businessLogic.service.OrderBlService;
+import common.OrderCondition;
+import common.ResultMessage;
 import common.RoomType;
 
 import presentation.controller.service.hotel.HotelOrderExeViewControllerService;
@@ -39,8 +41,23 @@ public class HotelOrderExeViewControllerImpl implements HotelOrderExeViewControl
     }
 
     @Override
-    public String getOrderCondition() {
-        return String.valueOf(orderVo.getCondition());
+    public ResultMessage delayOrder() {
+        return order.checkOut(orderId);
+    }
+
+    @Override
+    public ResultMessage revokeOrder() {
+        return order.abnormalCheckIn(orderId);
+    }
+
+    @Override
+    public ResultMessage checkIn() {
+        return order.checkIn(orderId);
+    }
+
+    @Override
+    public OrderCondition getOrderCondition() {
+        return orderVo.getCondition();
     }
 
     @Override

@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2016/12/31
+ * @description Member 酒店列表界面的控制器实现类
  */
 public class MemberHotelListViewControllerImpl implements MemberHotelListViewControllerService {
     private HotelListService hotelList;

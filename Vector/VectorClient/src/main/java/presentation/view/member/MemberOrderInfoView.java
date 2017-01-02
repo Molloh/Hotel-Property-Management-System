@@ -1,6 +1,5 @@
 package presentation.view.member;
 
-import common.AccountType;
 import common.OrderCondition;
 import common.ResultMessage;
 import javafx.fxml.FXML;
@@ -23,8 +22,8 @@ import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/4
- * @description
+ * @version 2016/12/31
+ * @description 客户订单信息界面
  */
 public class MemberOrderInfoView implements Initializable {
     @FXML
@@ -82,6 +81,7 @@ public class MemberOrderInfoView implements Initializable {
         people_label.setText(String.valueOf(controller.getNumOfGuest()));
     }
 
+    //处理返回事件
     @FXML
     private void handleReturn() {
         try {
@@ -123,6 +123,7 @@ public class MemberOrderInfoView implements Initializable {
         }
     }
 
+    //处理删除订单事件
     @FXML
     private void handleDelete() {
         ResultMessage msg = controller.deleteOrder();

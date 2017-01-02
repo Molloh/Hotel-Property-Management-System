@@ -26,7 +26,7 @@
         <Label fx:id="type_label" layoutX="169.0" layoutY="137.0" text="type" />
         <Label fx:id="people_label" layoutX="212.0" layoutY="289.0" text="people" />
         <Label fx:id="yesOrNo_label" layoutX="171.0" layoutY="327.0" text="yes" />
-      <Button layoutX="437.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelay" text="延期" />
-      <Button fx:id="revoke_btn" layoutX="363.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleRevoke" text="恢复" />
+      <Button fx:id="delay_btn" layoutX="437.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelay" text="延期" />
+      <Button fx:id="revoke_btn" layoutX="375.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleRevoke" text="恢复" />
     </children>
 </AnchorPane>

@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * @author Molloh
  * @version 2016/12/31
- * @description
+ * @description Member 信用记录查看界面
  */
 public class MemberCreditView implements Initializable {
     @FXML
@@ -40,6 +40,7 @@ public class MemberCreditView implements Initializable {
         MemberCreditViewControllerService controller = MemberCreditViewControllerImpl.getInstance();
         ArrayList<CreditRecordVo> creditRecordVos = (ArrayList<CreditRecordVo>) controller.getCreditRecordList(SingletonItem.getInstance().getActivateId());
 
+        //初始化信用记录表格
         List<Credit> propertyList = new ArrayList<>();
         for(CreditRecordVo creditRecordVo : creditRecordVos) {
             propertyList.add(new Credit(String.valueOf(creditRecordVo.getCredit()),

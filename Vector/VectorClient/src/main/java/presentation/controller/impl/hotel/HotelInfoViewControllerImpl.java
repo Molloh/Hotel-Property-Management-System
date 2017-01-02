@@ -54,7 +54,7 @@ public class HotelInfoViewControllerImpl implements HotelInfoViewControllerServi
 
     @Override
     public String getHotelStar() {
-        return String.valueOf(hotel.getNumOfpoint());
+        return String.valueOf(hotel.getStars());
     }
 
     @Override

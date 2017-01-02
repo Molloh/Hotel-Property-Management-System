@@ -6,22 +6,24 @@ import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import presentation.common.SingletonItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/7
- * @description
+ * @version 2017/1/1
+ * @description Member 订单评价
  */
 public class MemberOrderCommentView implements Initializable {
     @FXML
     private TextArea commentArea;
+    @FXML
+    private TextField point;
 
     private Stage dialogStage;
     private HotelBlService controller;
@@ -35,9 +37,10 @@ public class MemberOrderCommentView implements Initializable {
         this.dialogStage = dialogStage;
     }
 
+    //处理提交评价界面
     @FXML
     private void handleComment() {
-        ResultMessage msg = controller.comment("2000","非常舒适",5.0);
+        ResultMessage msg = controller.comment(SingletonItem.getInstance().getOrderId(),commentArea.getText(), Double.valueOf(point.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Tips");
         alert.setHeaderText("");

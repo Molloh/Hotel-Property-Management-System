@@ -4,29 +4,29 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberOrderInfoView">
+<AnchorPane fx:id="missionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="850.0" stylesheets="@../css/InfoView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.member.MemberOrderInfoView">
    <children>
-      <Label layoutX="97.0" layoutY="60.0" text="订单编号" />
-      <Label fx:id="orderId_label" layoutX="97.0" layoutY="82.0" text="2012121200001" />
-      <Label layoutX="97.0" layoutY="112.0" text="酒店名" />
-      <Label layoutX="97.0" layoutY="166.0" text="房间数量" />
-      <Label layoutX="97.0" layoutY="200.0" text="开始时间" />
-      <Label layoutX="97.0" layoutY="234.0" text="退房时间" />
-      <Label layoutX="97.0" layoutY="265.0" text="最晚订单执行时间" />
-      <Label layoutX="97.0" layoutY="289.0" text="预计入住人数" />
-      <Label layoutX="97.0" layoutY="327.0" text="有无儿童" />
-      <Label layoutX="97.0" layoutY="137.0" text="房间类型" />
-      <Button layoutX="485.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleReturn" text="返回" />
-      <Button fx:id="comment_btn" layoutX="405.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleComment" text="评价" />
-      <Label fx:id="hotel_label" layoutX="169.0" layoutY="112.0" text="hotel" />
-      <Label fx:id="num_label" layoutX="167.0" layoutY="166.0" text="num" />
-      <Label fx:id="start_label" layoutX="169.0" layoutY="200.0" text="time" />
-      <Label fx:id="end_label" layoutX="169.0" layoutY="234.0" text="time" />
-      <Label fx:id="last_label" layoutX="212.0" layoutY="265.0" text="time" />
-      <Label fx:id="type_label" layoutX="169.0" layoutY="137.0" text="type" />
-      <Label fx:id="people_label" layoutX="212.0" layoutY="289.0" text="people" />
-      <Label fx:id="yesOrNo_label" layoutX="171.0" layoutY="327.0" text="yes" />
-      <Button fx:id="delete_btn" layoutX="405.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelete" text="删除" />
-      <Label fx:id="orderState_label" layoutX="237.0" layoutY="82.0" text="订单状态" />
+      <Label layoutX="273.0" layoutY="75.0" text="订单编号" />
+      <Label fx:id="orderId_label" layoutX="364.0" layoutY="76.0" text="2012121200001" />
+      <Label layoutX="273.0" layoutY="130.0" text="酒店名" />
+      <Label layoutX="273.0" layoutY="229.0" text="房间数量" />
+      <Label layoutX="273.0" layoutY="282.0" text="开始时间" />
+      <Label layoutX="273.0" layoutY="391.0" text="退房时间" />
+      <Label layoutX="219.0" layoutY="335.0" text="最晚订单执行时间" />
+      <Label layoutX="246.0" layoutY="454.0" text="预计入住人数" />
+      <Label layoutX="273.0" layoutY="522.0" text="有无儿童" />
+      <Label layoutX="273.0" layoutY="180.0" text="房间类型" />
+      <Button layoutX="593.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleReturn" styleClass="normal-button" text="返回" />
+      <Button id="save-btn" fx:id="comment_btn" layoutX="466.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleComment" styleClass="normal-button" text="评价" />
+      <Label fx:id="hotel_label" layoutX="364.0" layoutY="130.0" text="hotel" />
+      <Label fx:id="num_label" layoutX="366.0" layoutY="229.0" text="num" />
+      <Label fx:id="start_label" layoutX="367.0" layoutY="282.0" text="time" />
+      <Label fx:id="end_label" layoutX="366.0" layoutY="335.0" text="time" />
+      <Label fx:id="last_label" layoutX="364.0" layoutY="391.0" text="time" />
+      <Label fx:id="type_label" layoutX="366.0" layoutY="180.0" text="type" />
+      <Label fx:id="people_label" layoutX="360.0" layoutY="454.0" text="people" />
+      <Label fx:id="yesOrNo_label" layoutX="368.0" layoutY="522.0" text="yes" />
+      <Button id="save-btn" fx:id="delete_btn" layoutX="466.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleDelete" styleClass="normal-button" text="删除" />
+      <Label fx:id="orderState_label" layoutX="466.0" layoutY="76.0" text="订单状态" />
    </children>
 </AnchorPane>

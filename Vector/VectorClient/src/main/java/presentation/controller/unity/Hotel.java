@@ -1,57 +1,43 @@
 package presentation.controller.unity;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author Molloh
  * @version 2016/12/10
- * @description
+ * @description Hotel的property类
  */
 public class Hotel {
     private final SimpleStringProperty hotelNameWithId;
-    private final SimpleStringProperty hotelStar;
-    private final SimpleStringProperty hotelPoint;
+    private final SimpleIntegerProperty hotelStar;
+    private final SimpleDoubleProperty hotelPoint;
     private final SimpleStringProperty hotelAddress;
-    private final SimpleStringProperty hotelPrice;
+    private final SimpleIntegerProperty hotelPrice;
 
 
-    public Hotel(String hotelNameWithId, String hotelStar, String hotelPoint, String hotelAddress, String hotelPrice) {
+    public Hotel(String hotelNameWithId, int hotelStar, double hotelPoint, String hotelAddress, int hotelPrice) {
         this.hotelNameWithId = new SimpleStringProperty(hotelNameWithId);
-        this.hotelStar = new SimpleStringProperty(hotelStar);
-        this.hotelPoint = new SimpleStringProperty(hotelPoint);
+        this.hotelStar = new SimpleIntegerProperty(hotelStar);
+        this.hotelPoint = new SimpleDoubleProperty(hotelPoint);
         this.hotelAddress = new SimpleStringProperty(hotelAddress);
-        this.hotelPrice = new SimpleStringProperty(hotelPrice);
+        this.hotelPrice = new SimpleIntegerProperty(hotelPrice);
     }
 
     public String getName() {
         return hotelNameWithId.get();
     }
 
-    public String getStar() {
-        return hotelStar.get();
-    }
-
-    public String getPoint() {
-        return hotelPoint.get();
-    }
-
-    public String getAddress() {
-        return hotelAddress.get();
-    }
-
-    public String getPrice() {
-        return hotelPrice.get();
-    }
-
     public SimpleStringProperty hotelNameProperty() {
         return hotelNameWithId;
     }
 
-    public SimpleStringProperty hotelStarProperty() {
+    public SimpleIntegerProperty hotelStarProperty() {
         return hotelStar;
     }
 
-    public SimpleStringProperty hotelPointProperty() {
+    public SimpleDoubleProperty hotelPointProperty() {
         return hotelPoint;
     }
 
@@ -59,7 +45,7 @@ public class Hotel {
         return hotelAddress;
     }
 
-    public SimpleStringProperty hotelPriceProperty() {
+    public SimpleIntegerProperty hotelPriceProperty() {
         return hotelPrice;
     }
 }

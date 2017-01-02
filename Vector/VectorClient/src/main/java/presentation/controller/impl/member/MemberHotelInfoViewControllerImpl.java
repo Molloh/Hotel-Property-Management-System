@@ -5,10 +5,12 @@ import common.RoomType;
 import presentation.controller.service.member.MemberHotelInfoViewControllerService;
 import vo.HotelVo;
 
+import java.util.List;
+
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2017/1/1
+ * @description 客户查看酒店信息界面的controller的实现类
  */
 public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewControllerService {
     private static MemberHotelInfoViewControllerService INSTANCE = new MemberHotelInfoViewControllerImpl();
@@ -46,7 +48,7 @@ public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewCon
 
     @Override
     public String getHotelDiscription() {
-        return "aaa";
+        return hotelVo.getHotelInfo();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class MemberHotelInfoViewControllerImpl implements MemberHotelInfoViewCon
     }
 
     @Override
-    public String getComment() {
-        return "aaaa";
+    public List<String> getComment() {
+        return hotelVo.getCommentList();
     }
 }

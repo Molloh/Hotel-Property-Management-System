@@ -40,7 +40,7 @@ public class MarketerProAddView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = new HotelProAddViewControllerImpl();
+        controller = HotelProAddViewControllerImpl.getInstance();
     }
 
     @FXML

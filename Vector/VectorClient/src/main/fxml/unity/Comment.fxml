@@ -13,15 +13,18 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="25.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="135.0" minHeight="9.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="135.0" minHeight="9.0" prefHeight="44.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea fx:id="commentArea" prefHeight="120.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#handleComment" text="发布评论" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#handleCancel" text="暂不评论" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextArea fx:id="commentArea" prefHeight="104.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleComment" text="发布评论" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="暂不评论" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Label text="写下你的评论：" GridPane.columnIndex="1" />
+            <TextField fx:id="point" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="评分：" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

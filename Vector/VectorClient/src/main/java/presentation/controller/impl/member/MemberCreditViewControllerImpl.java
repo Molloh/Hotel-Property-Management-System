@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Molloh
  * @version 2016/12/31
- * @description
+ * @description  Member 信用查看界面控制器接口实现类
  */
 public class MemberCreditViewControllerImpl implements MemberCreditViewControllerService {
     private static MemberCreditViewControllerService INSTANCE = new MemberCreditViewControllerImpl();

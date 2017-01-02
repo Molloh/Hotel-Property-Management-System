@@ -8,14 +8,16 @@ import java.util.Date;
 
 /**
  * @author Molloh
- * @version 2016/12/11
- * @description
+ * @version 2016/12/31
+ * @description Member Order信息控制器接口
  */
 public interface MemberOrderInfoViewControllerService {
 
     void setOrderId(String orderId);
 
     ResultMessage deleteOrder();
+
+    //Order get方法
 
     OrderCondition getOrderCondition();
 

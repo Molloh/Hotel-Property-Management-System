@@ -12,20 +12,20 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.unity.Order;
 import presentation.controller.impl.member.MemberOrderViewControllerImpl;
 import presentation.controller.service.member.MemberOrderViewControllerService;
+import presentation.controller.unity.Order;
 import vo.OrderVo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
  * @author Molloh
- * @version 2016/12/31
+ * @version 2017/1/1
  * @description Member 查看Order界面
  */
 public class MemberOrderView implements Initializable {
@@ -36,13 +36,13 @@ public class MemberOrderView implements Initializable {
     @FXML
     private TableColumn<Order, String> orderState_column;
     @FXML
-    private TableColumn<Order, String> orderPrice_column;
+    private TableColumn<Order, Number> orderPrice_column;
     @FXML
     private TableColumn<Order, String> orderHotel_column;
     @FXML
-    private TableColumn<Order, String> orderTime_column;
+    private TableColumn<Order, Date> orderTime_column;
     @FXML
-    private TableColumn<Order, String> orderExeTime_column;
+    private TableColumn<Order, Date> orderExeTime_column;
 
     @FXML
     private ComboBox<String> orderType_choice;
@@ -59,35 +59,39 @@ public class MemberOrderView implements Initializable {
         controller = MemberOrderViewControllerImpl.getInstance();
         controller.setMemberId(SingletonItem.getInstance().getActivateId());
 
-        orderType_choice.getItems().addAll("全部订单", "未执行订单", "已执行订单", "执行中订单", "待评价订单", "异常订单");
+        orderType_choice.getItems().addAll("全部订单", "未执行订单", "已执行订单", "执行中订单", "待评价订单", "取消的订单", "异常订单");
         orderType_choice.setValue("全部订单");
         orderList = (ArrayList<OrderVo>) controller.getAllOrders();
-        initTable();
+        initTable(orderList);
         initOrderTypeChoice();
     }
 
+    //订单类别选择监听
     private void initOrderTypeChoice() {
         orderType_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                    orderList = (ArrayList<OrderVo>) controller.getOrdersInConditionByMember(getState(orderType_choice.getItems().get(new_val.intValue())));
-                    initTable();
+                    OrderCondition state = getState(orderType_choice.getItems().get(new_val.intValue()));
+                    if(state == OrderCondition.ALL) {
+                        initTable(orderList);
+                    }else {
+                        ArrayList<OrderVo> list = (ArrayList<OrderVo>) controller.getOrdersInConditionByMember(state);
+                        initTable(list);
+                    }
                 }
         );
     }
 
-    private void initTable() {
+    //刷新/初始化表格
+    private void initTable(ArrayList<OrderVo> orderList) {
         ObservableList<Order> data = FXCollections.observableArrayList();
         //data.add(new Order("1","2", "3", "4", "5", "6"));
         for(OrderVo vo : orderList) {
-        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-        	String date_Create = sdf.format(vo.getCreateTime());
-        	String date_CheckIn = sdf.format(vo.getCheckInTime());
             data.add(new Order(vo.getOrderId(),
                     vo.getCondition().toString(),
+                    vo.getDiscountedPrice(),
                     vo.getHotel(),
-                    String.valueOf(vo.getDiscountedPrice()),
-                    date_Create,
-                    date_CheckIn));
+                    vo.getCreateTime(),
+                    vo.getPlanCheckInTime()));
         }
         order_list.setItems(data);
 
@@ -100,6 +104,7 @@ public class MemberOrderView implements Initializable {
         orderId_column.setCellFactory(param -> new OrderBtnCell());
     }
 
+    //自定义表格组件为按钮
     class OrderBtnCell extends TableCell<Order, String> {
         @Override
         public void updateItem(String item, boolean empty) {
@@ -123,11 +128,12 @@ public class MemberOrderView implements Initializable {
 
     private OrderCondition getState(String state) {
         switch (state) {
-            case "全部订单": return null;
+            case "全部订单": return OrderCondition.ALL;
             case "未执行订单": return OrderCondition.WAITING;
             case "已执行订单": return OrderCondition.EXECUTED;
             case "执行中订单": return OrderCondition.EXECUTING;
             case "待评价订单": return OrderCondition.FINISHED;
+            case "取消的订单": return OrderCondition.CANCELED;
             case "异常订单": return OrderCondition.ABNORMAL;
             default: return null;
         }
