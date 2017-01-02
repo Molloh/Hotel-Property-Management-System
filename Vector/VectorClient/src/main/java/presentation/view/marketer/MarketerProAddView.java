@@ -1,19 +1,15 @@
 package presentation.view.marketer;
 
-import common.HotelPromotionType;
 import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.impl.hotel.HotelProAddViewControllerImpl;
 import presentation.controller.impl.marketer.MarketerProAddViewControllerImpl;
-import presentation.controller.service.hotel.HotelProAddViewControllerService;
 import presentation.controller.service.marketer.MarketerProAddViewControllerService;
 
 import java.io.IOException;
