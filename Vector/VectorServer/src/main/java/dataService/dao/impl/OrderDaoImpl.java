@@ -114,7 +114,7 @@ public class OrderDaoImpl implements OrderDao {
 		while(iterator.hasNext()){
 			Map.Entry<String, OrderPo> entry = iterator.next();
 			OrderPo orderPo = entry.getValue();
-			if (orderPo.getCondition() == OrderCondition.CANCELED) {
+			if (orderPo.getCondition() == OrderCondition.WAITING || orderPo.getCondition() == OrderCondition.CANCELED) {
 				orderList.add(orderPo);
 			}
 		}
