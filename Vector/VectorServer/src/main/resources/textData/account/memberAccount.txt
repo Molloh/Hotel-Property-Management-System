@@ -8,7 +8,4 @@ WenJiaBao;q204900q;N00008;0
 guojimilan;xiaoguoji;N00009;0
 Molloh;123456;N00010;0
 labbal;000000;N00011;0
-<<<<<<< HEAD
 kaoshi;111111;N00012;0
-=======
->>>>>>> d19ece4ad6686245fe0b7f0e1fdaf077beda149c
