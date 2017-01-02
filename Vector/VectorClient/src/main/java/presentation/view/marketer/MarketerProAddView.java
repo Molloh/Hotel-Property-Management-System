@@ -1,16 +1,16 @@
 package presentation.view.marketer;
 
-import common.HotelPromotionType;
+import common.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import presentation.common.ViewFxmlPath;
-import presentation.controller.impl.hotel.HotelProAddViewControllerImpl;
-import presentation.controller.service.hotel.HotelProAddViewControllerService;
+import presentation.controller.impl.marketer.MarketerProAddViewControllerImpl;
+import presentation.controller.service.marketer.MarketerProAddViewControllerService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +26,6 @@ public class MarketerProAddView implements Initializable {
     private AnchorPane missionPane;
 
     @FXML
-    private ChoiceBox<HotelPromotionType> type_choice;
-    @FXML
     private TextField name_field;
     @FXML
     private TextField discount_field;
@@ -36,29 +34,46 @@ public class MarketerProAddView implements Initializable {
     @FXML
     private DatePicker end_date;
 
-    private HotelProAddViewControllerService controller;
+    private MarketerProAddViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = HotelProAddViewControllerImpl.getInstance();
+        controller = MarketerProAddViewControllerImpl.getInstance();
     }
 
     @FXML
     private void handleConfirm() {
-        controller.setPromotionType(type_choice.getValue());
+        //controller.setPromotionType(type_choice.getValue());
         controller.setPromotionName(name_field.getText());
         controller.setDiscount(discount_field.getText());
         controller.setStartDate(start_date.getValue());
         controller.setEndDate(end_date.getValue());
+
+        ResultMessage msg = controller.update();
+        popUp(msg, "新增促销策略成功！");
+        handleCancel();
     }
 
     @FXML
-    private void handleCancelMission() {
+    private void handleCancel() {
         try {
             missionPane.getChildren().clear();
             missionPane.getChildren().add(FXMLLoader.load(getClass().getResource(ViewFxmlPath.MarketerPromotion_View_Path)));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void popUp(ResultMessage msg, String a) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Tips");
+        alert.setHeaderText("");
+        if(msg == ResultMessage.SUCCEED) {
+            alert.setContentText(a);
+            alert.showAndWait();
+        }else {
+            alert.setContentText("失败！");
+            alert.showAndWait();
         }
     }
 }

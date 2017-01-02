@@ -8,10 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import presentation.common.SingletonItem;
 import presentation.controller.impl.hotel.HotelRoomViewControllerImpl;
+import presentation.controller.impl.member.MemberHotelInfoViewControllerImpl;
 import presentation.controller.service.hotel.HotelRoomViewControllerService;
+import presentation.controller.service.member.MemberHotelInfoViewControllerService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.SynchronousQueue;
 
 /**
  * @author Molloh
@@ -30,27 +33,57 @@ public class HotelRoomView implements Initializable {
     @FXML
     private TextField price_field;
 
-    private HotelRoomViewControllerService controller;
+    @FXML
+    private Label single_label;
+    @FXML
+    private Label singleNum_label;
+    @FXML
+    private Label double_label;
+    @FXML
+    private Label doubleNum_label;
+    @FXML
+    private Label family_label;
+    @FXML
+    private Label familyNum_label;
+
+    private HotelRoomViewControllerService helper;
+    private MemberHotelInfoViewControllerService controller;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controller = HotelRoomViewControllerImpl.getInstance();
+        helper = HotelRoomViewControllerImpl.getInstance();
+        helper.setHotelId(SingletonItem.getInstance().getActivateId());
+        controller = MemberHotelInfoViewControllerImpl.getInstance();
         controller.setHotelId(SingletonItem.getInstance().getActivateId());
-
+        initRoom();
         price_field.setVisible(false);
         price_label.setVisible(false);
 
-        mission_choice.getItems().addAll("更新入住", "更新退房", "设置房间间数量");
+
+        mission_choice.getItems().addAll("更新入住", "更新退房", "设置房间数量");
         roomType_combo.getItems().addAll(RoomType.SINGLE, RoomType.DOUBLE, RoomType.FAMILY);
         mission_choice.getSelectionModel().selectedIndexProperty().addListener(
                 (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                    String command = mission_choice.getItems().get((Integer)new_val);
+                    String command = mission_choice.getItems().get(new_val.intValue());
                     if(command.equals("设置房间数量")){
                         price_field.setVisible(true);
                         price_label.setVisible(true);
+                    }else {
+                        price_field.setVisible(false);
+                        price_label.setVisible(false);
                     }
                 }
         );
+    }
+
+    private void initRoom() {
+        single_label.setText("￥" + controller.getHotelRoomPrice(RoomType.SINGLE));
+        double_label.setText("￥" + controller.getHotelRoomPrice(RoomType.DOUBLE));
+        family_label.setText("￥" + controller.getHotelRoomPrice(RoomType.FAMILY));
+
+        singleNum_label.setText(controller.getRoomNum(RoomType.SINGLE) + "间");
+        doubleNum_label.setText(controller.getRoomNum(RoomType.DOUBLE) + "间");
+        familyNum_label.setText(controller.getRoomNum(RoomType.FAMILY) + "间");
     }
 
     //处理更新房间信息事件
@@ -60,19 +93,20 @@ public class HotelRoomView implements Initializable {
             RoomType type = roomType_combo.getValue();
             ResultMessage msg;
             if(type != null) {
-                msg = controller.initializeRoom(type, Integer.valueOf(num_field.getText()), Integer.valueOf(price_field.getText()));
+                msg = helper.initializeRoom(type, Integer.valueOf(num_field.getText()), Integer.valueOf(price_field.getText()));
                 popUp(msg);
             }
         }else {
             String command = mission_choice.getValue();
             ResultMessage msg = ResultMessage.FAIL;
             if(command.equals("更新入住")) {
-                msg = controller.checkinRoom(roomType_combo.getValue(), Integer.valueOf(num_field.getText()));
+                msg = helper.checkinRoom(roomType_combo.getValue(), Integer.valueOf(num_field.getText()));
             }else if(command.equals("更新退房")) {
-                msg = controller.checkoutRoom(roomType_combo.getValue(), Integer.valueOf(num_field.getText()));
+                msg = helper.checkoutRoom(roomType_combo.getValue(), Integer.valueOf(num_field.getText()));
             }
             popUp(msg);
         }
+        initRoom();
     }
 
     @FXML

@@ -23,8 +23,6 @@ public class MarketerCreditView implements Initializable {
     private TextField memberId_field;
     @FXML
     private TextField credit_field;
-    @FXML
-    private TextField charge_field;
 
     private MarketerCreditViewControllerService controller;
 
@@ -51,7 +49,6 @@ public class MarketerCreditView implements Initializable {
     @FXML
     private void handleCancelCharge() {
         memberId_field.setText(null);
-        charge_field.setText(null);
         credit_field.setText(null);
     }
 

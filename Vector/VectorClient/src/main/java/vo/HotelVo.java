@@ -169,6 +169,6 @@ public class HotelVo implements Serializable {
 			if(htrv.getType().equals(type))
 				return htrv.getPrice();
 		}
-		return -1;
+		return 100;
 	}
 }

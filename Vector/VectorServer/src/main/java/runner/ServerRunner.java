@@ -6,6 +6,9 @@ package runner;
  */
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +25,7 @@ public class ServerRunner extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
     @Override
     public void start(Stage primaryStage) {
         final RemoteHelper helper = RemoteHelper.getInstance();
@@ -51,6 +54,6 @@ public class ServerRunner extends Application {
         primaryStage.setTitle("Server");
         primaryStage.setScene(scene);
         primaryStage.show();
-
+       
     }
 }

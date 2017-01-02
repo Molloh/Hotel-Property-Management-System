@@ -42,6 +42,7 @@ public class HotelProAddView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = HotelProAddViewControllerImpl.getInstance();
+
     }
 
     @FXML

@@ -25,8 +25,8 @@ public interface MemberHotelInfoViewControllerService {
 
     String getHotelRoomPrice(RoomType T);
 
-    List<String> getComment();
+    String getRoomNum(RoomType T);
 
-	String getRoomNum(RoomType T);
+    List<String> getComment();
 
 }
