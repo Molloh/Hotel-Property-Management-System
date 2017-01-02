@@ -301,6 +301,7 @@ public class OrderBlServiceImpl implements OrderBlService {
 		OrderPo orderPo = orderDao.findOrder(orderId);
 		orderPo.setCondition(OrderCondition.EXECUTED);
 		orderPo.setCheckOutTime(new Date());
+		HotelBlServiceImpl.getInstance().getHotelVo(orderPo.getHotelId());
 		ResultMessage roomUpdate = HotelBlServiceImpl.getInstance().checkoutRoom(orderPo.getRoomType(), orderPo.getNumOfRoom());
 		ResultMessage orderUpdate = orderDao.updateOrder(orderPo);
 		if(roomUpdate == ResultMessage.SUCCEED && orderUpdate == ResultMessage.SUCCEED) {
