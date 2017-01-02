@@ -178,8 +178,8 @@ public class AccountDaoImpl implements AccountDao {
         int Id_num = 0 ;
         while(iterator.hasNext()) {
             Map.Entry<String, AccountPo> entry = iterator.next();
-            if(entry.getValue().getMemberName().equals(name))
-                return "FAIL";  //用户名已存在，不能重复注册
+          //  if(entry.getValue().getMemberName().equals(name))
+          //      return "FAIL";  //用户名已存在，不能重复注册
             newId = entry.getKey();
             int temp = Integer.parseInt(newId.substring(1));
             if(temp>Id_num)

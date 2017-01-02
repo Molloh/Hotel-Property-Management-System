@@ -101,7 +101,8 @@ public class AccountBlServiceImpl implements AccountBlService{
                 && passwordValid == ResultMessage.VALID )
         {
         	String id = accountDao.insertAccount(name,password,type);
-        	HotelBlServiceImpl.getInstance().addHotel(id);
+        	if(type == AccountType.Hotel)
+        		HotelBlServiceImpl.getInstance().addHotel(id);
         	return id;
         }
         return null;

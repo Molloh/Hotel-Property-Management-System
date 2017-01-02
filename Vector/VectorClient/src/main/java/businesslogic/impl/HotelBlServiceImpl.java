@@ -43,6 +43,7 @@ public class HotelBlServiceImpl implements HotelBlService{
     @Override
     public ResultMessage addHotel(String hotelId){
     	HotelPo po = new HotelPo(hotelId);
+    	System.out.println(hotelId);
     	return hotelDao.addHotelPO(po);
     }
     
