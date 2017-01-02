@@ -125,5 +125,6 @@ public class MarketerOrderView implements Initializable {
         String orderId = orderId_field.getText();
         orderList.clear();
         orderList.add(controller.findOrder(orderId));
+        initTable();
     }
 }

@@ -41,12 +41,8 @@ public class MarketerPromotionView implements Initializable {
     @FXML
     private TableColumn<Promotion, Number> promotionDiscount_column;
 
-    @FXML
-    private TextField birthDiscount_field;
-
     private ArrayList<ActivityPromotionVo> promotionList;
     private MarketerPromotionViewControllerService controller;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,11 +80,6 @@ public class MarketerPromotionView implements Initializable {
                 });
             }
         }
-    }
-
-    @FXML
-    private void handleSaveBirthday() {
-        double discount = Double.valueOf(birthDiscount_field.getText());
     }
 
     @FXML

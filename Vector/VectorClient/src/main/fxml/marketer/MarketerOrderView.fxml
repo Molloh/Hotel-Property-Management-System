@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="missionPane" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerOrderView">
+
+<AnchorPane fx:id="missionPane" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.view.marketer.MarketerOrderView">
    <children>
       <SplitPane dividerPositions="0.1" layoutX="91.0" layoutY="216.0" orientation="VERTICAL" prefHeight="698.0" prefWidth="696.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
                <children>
-                  <ComboBox fx:id="orderType_choice" layoutX="293.0" layoutY="26.0" prefWidth="150.0" />
-                  <HBox layoutX="495.0" layoutY="26.0">
+                  <ComboBox fx:id="orderType_choice" layoutX="418.0" layoutY="26.0" prefWidth="150.0" />
+                  <HBox layoutX="610.0" layoutY="26.0">
                      <children>
                         <TextField fx:id="orderId_field" layoutX="495.0" layoutY="26.0" />
                         <Button layoutX="679.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleSearchOrder" text="search" />
