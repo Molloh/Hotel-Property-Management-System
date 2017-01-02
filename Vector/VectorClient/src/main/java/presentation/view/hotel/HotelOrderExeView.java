@@ -14,6 +14,7 @@ import presentation.common.SingletonItem;
 import presentation.common.ViewFxmlPath;
 import presentation.controller.impl.hotel.HotelOrderExeViewControllerImpl;
 import presentation.controller.service.hotel.HotelOrderExeViewControllerService;
+import presentation.controller.unity.Order;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,6 +85,7 @@ public class HotelOrderExeView implements Initializable {
             revoke_btn.setVisible(true);
         }else if(state == OrderCondition.WAITING) {
             exe_btn.setVisible(true);
+        }else if(state == OrderCondition.EXECUTING) {
             delay_btn.setVisible(true);
         }
     }
@@ -91,7 +93,7 @@ public class HotelOrderExeView implements Initializable {
     @FXML
     private void handleRevoke() {
         ResultMessage msg = controller.revokeOrder();
-        popUp(msg, "订单已恢复！");
+        popUp(msg, "订单已延期！");
     }
 
     @FXML
@@ -104,7 +106,7 @@ public class HotelOrderExeView implements Initializable {
     @FXML
     private void handleDelay() {
         ResultMessage msg = controller.delayOrder();
-        popUp(msg, "订单已延期！");
+        popUp(msg, "订单已退房！");
     }
 
     @FXML

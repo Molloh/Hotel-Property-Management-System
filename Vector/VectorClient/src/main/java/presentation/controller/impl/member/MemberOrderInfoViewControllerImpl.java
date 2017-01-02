@@ -41,7 +41,7 @@ public class MemberOrderInfoViewControllerImpl implements MemberOrderInfoViewCon
 
     @Override
     public ResultMessage deleteOrder() {
-        return order.delete(orderId);
+        return order.cancel(orderId);
     }
 
     @Override
