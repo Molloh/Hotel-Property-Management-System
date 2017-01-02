@@ -55,6 +55,7 @@ public class HotelPromotionView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controller = HotelPromotionViewControllerImpl.getInstance();
+        controller.setHotelId(SingletonItem.getInstance().getActivateId());
         promotionList = (ArrayList<ActivityPromotionVo>) controller.getCurrentActStrategy();
 
         initTable();
